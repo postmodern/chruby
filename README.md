@@ -14,11 +14,11 @@ Simple Ruby switcher.
 
 ## Install
 
-    wget https://github.com/postmodern/chruby/downloads/chruby-0.1.0.tar.bz2 \
-         https://github.com/postmodern/chruby/downloads/chruby-0.1.0.tar.bz2.asc
-    gpg --verify chruby-0.1.0.tar.bz2.asc churby-0.1.0.tar.bz2
-    tar -xjvf chruby-0.1.0.tar.bz2
-    cd chrub-0.1.0/
+    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.0.1.tar.bz2 \
+         http://cloud.github.com/downloads/postmodern/chruby/chruby-0.0.1.tar.bz2.asc
+    gpg --verify chruby-0.0.1.tar.bz2.asc churby-0.0.1.tar.bz2
+    tar -xjvf chruby-0.0.1.tar.bz2
+    cd chrub-0.0.1/
     make install
 
 ## Configuration
