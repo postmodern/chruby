@@ -12,6 +12,13 @@ Simple Ruby switcher.
 * Fuzzy matching of Rubies by name.
 * Small (~80 LOC).
 
+## Anti-Features
+
+* Does not hook `cd`.
+* Does not install executable shims.
+* Does not require Rubies be installed into your home directory.
+* Does not automatically switch Rubies upon login or when changing directories.
+
 ## Install
 
     wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.0.1.tar.bz2 \
