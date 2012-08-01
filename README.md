@@ -77,3 +77,8 @@ Switch to an arbitrary Ruby on the fly:
 
     $ chruby_use /path/to/ruby
 
+## Alteratives
+
+* [RVM](https://rvm.io/)
+* [rbenv](https://github.com/sstephenson/rbenv#readme)
+* [rbfu](https://github.com/hmans/rbfu#readme)
