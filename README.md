@@ -18,7 +18,7 @@ Simple Ruby switcher.
 * Does not install executable shims.
 * Does not require Rubies be installed into your home directory.
 * Does not automatically switch Rubies upon login or when changing directories.
-* Does not require write-access to the Ruby directory, in order to install gems.
+* Does not require write-access to the Ruby directory in order to install gems.
 
 ## Install
 
