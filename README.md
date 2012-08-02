@@ -33,7 +33,7 @@ Simple Ruby switcher.
 ### PGP
 
 All releases are [PGP](http://en.wikipedia.org/wiki/Pretty_Good_Privacy) signed 
-for security. My PGP Key can be found [here](http://postmodern.github.com/contact.html).
+for security. My PGP Key can be found [here](http://postmodern.github.com/contact.html). To verify that a release was not tampered with:
 
     wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.0.1.tar.bz2.asc
     gpg --verify chruby-0.0.1.tar.bz2.asc chruby-0.0.1.tar.bz2
