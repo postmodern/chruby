@@ -6,8 +6,8 @@ Simple Ruby switcher.
 
 * Simply modifies `$PATH`.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
-  * Gems are installed into `~/.gem/$ruby/$version` for normal users.
-    As root, gems are installed directly into `$ruby/lib/ruby/gems/$version`.
+  * Users: gems are installed into `~/.gem/$ruby/$version`.
+  * Root: gems are installed directly into `/path/to/$ruby/lib/ruby/gems/$version`.
 * Adds `$GEM_HOME` and `$GEM_PATH` to `$PATH`.
 * Additionally sets `$RUBY_PATH`, `$RUBY_VERSION` and `$RUBY_ENGINE`.
 * Defaults to the system Ruby.
