@@ -2,8 +2,10 @@ NAME=chruby
 VERSION=0.0.2
 
 FILES=$(shell git ls-files)
-PKG=$(NAME)-$(VERSION).tar.bz2
-SIG=$(PKG).asc
+PKG_DIR=pkg
+PKG_NAME=$(NAME)-$(VERSION)
+PKG=$(PKG_DIR)/$(PKG_NAME).tar.bz2
+SIG=$(PKG_DIR)/$(PKG_NAME).asc
 
 PREFIX=/usr/local
 DOC_DIR=$(PREFIX)/share/doc/$(NAME)-$(VERSION)/
@@ -11,13 +13,14 @@ INSTALL_DIRS={etc,lib,bin,sbin,share}
 DOC_FILES=doc/*
 EXTRA_DOC_FILES=*.{md,tt,txt}
 
-$(PKG): $(FILES)
-	tar -cjvf $(PKG) $(FILES)
+$(PKG): $(PKG_DIR) $(FILES)
+	mkdir -p $(PKG_DIR)
+	tar -cjvf $(PKG) --transform 's|^|$(PKG_NAME)/|' $(FILES)
 
 pkg: $(PKG)
 
-$(SIG): $(PKG)
-	gpg --sign --detach-sign --armor $(PKG)
+$(SIG): $(TAR)
+	gpg --sign --detach-sign --armor $(TAR)
 
 sign: $(SIG)
 
