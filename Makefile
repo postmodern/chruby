@@ -14,7 +14,7 @@ SIG=$(PKG_DIR)/$(PKG_NAME).asc
 PREFIX=/usr/local
 DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
 
-$(PKG): $(PKG_DIR) $(FILES)
+$(PKG): $(FILES)
 	mkdir -p $(PKG_DIR)
 	tar -cjvf $(PKG) --transform 's|^|$(PKG_NAME)/|' $(FILES)
 
