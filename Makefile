@@ -1,5 +1,5 @@
 NAME=chruby
-VERSION=0.0.1
+VERSION=0.0.2
 
 FILES=$(shell git ls-files)
 PKG=$(NAME)-$(VERSION).tar.bz2
@@ -21,7 +21,7 @@ $(SIG): $(PKG)
 
 sign: $(SIG)
 
-all: pkg sign
+all: $(PKG) $(SIG)
 
 clean:
 	rm -f $(PKG) $(SIG)
