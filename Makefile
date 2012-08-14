@@ -22,8 +22,8 @@ $(PKG): pkg $(FILES)
 
 build: $(PKG)
 
-$(SIG): $(TAR)
-	gpg --sign --detach-sign --armor $(TAR)
+$(SIG): $(PKG)
+	gpg --sign --detach-sign --armor $(PKG)
 
 sign: $(SIG)
 
