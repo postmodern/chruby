@@ -27,10 +27,16 @@ $(SIG): $(PKG)
 
 sign: $(SIG)
 
-all: $(PKG) $(SIG)
-
 clean:
 	rm -f $(PKG) $(SIG)
+
+all: $(PKG) $(SIG)
+
+tag:
+	git tag v$(VERSION)
+	git push --tags
+
+release: $(PKG) $(SIG) tag
 
 install:
 	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do install -D $$file $(PREFIX)/$$file; done
