@@ -21,7 +21,7 @@ function chruby_use()
 
 	export PATH="$1/bin:$PATH"
 
-	local versions=( `ruby -e "require 'rbconfig'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
+	local versions=( `ruby $2 -e "require 'rbconfig'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
 
 	export RUBY_PATH="$1"
 	export RUBY_ENGINE=`echo $name | cut -f1 -d-`
@@ -39,7 +39,9 @@ function chruby_use()
 function chruby()
 {
 	case "$1" in
-		-h|--help) echo "usage: chruby [RUBY|VERSION|system]" ;;
+		-h|--help)
+			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
+			;;
 		"")
 			for path in ${RUBIES[@]}; do
 				if [[ "$path" == "$RUBY_PATH" ]]; then
@@ -55,7 +57,7 @@ function chruby()
 		*)
 			for path in ${RUBIES[@]}; do
 				if [[ `basename "$path"` == *$1* ]]; then
-					chruby_use "$path"
+					chruby_use "$path" "$2"
 					return
 				fi
 			done
