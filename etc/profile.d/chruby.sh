@@ -20,15 +20,16 @@ function chruby_use()
 	local name=`basename $1`
 
 	export PATH="$1/bin:$PATH"
+
+	local versions=( `ruby -e "require 'rbconfig'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
+
 	export RUBY_PATH="$1"
 	export RUBY_ENGINE=`echo $name | cut -f1 -d-`
-	export RUBY_VERSION=`ruby -e "print RUBY_VERSION"`
+	export RUBY_VERSION=${versions[0]}
 
 	if [[ ! $UID -eq 0 ]]; then
-		local family=`ruby -e "require 'rbconfig'; print RbConfig::CONFIG['ruby_version']"`
-
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
-		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/$family"
+		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/${versions[1]}"
 
 		export PATH="$GEM_HOME/bin:$GEM_PATH/bin:$PATH"
 		export GEM_PATH="$GEM_HOME:$GEM_PATH"
