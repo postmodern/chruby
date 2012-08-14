@@ -4,8 +4,7 @@ function chruby_reset()
 {
 	[[ -z "$RUBY_PATH" ]] && return
 
-	export PATH=`sed -e "s|$RUBY_PATH\/[^:]*:||g" <<< $PATH`
-	export PATH=`sed -e "s|$HOME\/.gem\/[^:]*:||g" <<< $PATH`
+	export PATH=`sed -e "s|$RUBY_PATH\/[^:]*:||g; s|$HOME\/.gem\/[^:]*:||g" <<< $PATH`
 	unset GEM_HOME
 	unset GEM_PATH
 	unset RUBY_PATH
