@@ -14,11 +14,13 @@ SIG=$(PKG_DIR)/$(PKG_NAME).asc
 PREFIX=/usr/local
 DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
 
-$(PKG): $(FILES)
+pkg:
 	mkdir -p $(PKG_DIR)
+
+$(PKG): pkg $(FILES)
 	tar -cjvf $(PKG) --transform 's|^|$(PKG_NAME)/|' $(FILES)
 
-pkg: $(PKG)
+build: $(PKG)
 
 $(SIG): $(TAR)
 	gpg --sign --detach-sign --armor $(TAR)
