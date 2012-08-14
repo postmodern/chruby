@@ -4,17 +4,8 @@ function chruby_reset()
 {
 	[[ -z "$RUBY_PATH" ]] && return
 
-	local family=`ruby -e "require 'rbconfig'; print RbConfig::CONFIG['ruby_version']"`
-	local new_path
-
-	new_path=":$PATH:"
-	new_path=${new_path/:$RUBY_PATH\/bin:/:}
-	new_path=${new_path/:$HOME\/.gem\/$RUBY_ENGINE\/$RUBY_VERSION\/bin:/:}
-	new_path=${new_path/:$RUBY_PATH\/lib\/ruby\/gems\/$family\/bin:/:}
-	new_path=${new_path%:}
-	new_path=${new_path#:}
-	export PATH="$new_path"
-
+	export PATH=`sed -e "s|$RUBY_PATH\/[^:]*:||g" <<< $PATH`
+	export PATH=`sed -e "s|$HOME\/.gem\/[^:]*:||g" <<< $PATH`
 	unset GEM_HOME
 	unset GEM_PATH
 	unset RUBY_PATH
