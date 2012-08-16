@@ -84,6 +84,12 @@ Select a Ruby:
     $ echo $GEM_PATH
     /home/hal/.gem/ruby/1.8.7:/usr/local/ruby-1.8.7-p370/lib/ruby/gems/1.8
 
+Switch to JRuby in 1.9 mode:
+
+    $ chruby jruby --1.9
+    $ ruby -v
+    jruby 1.6.7.2 (ruby-1.9.2-p312) (2012-05-01 26e08ba) (OpenJDK 64-Bit Server VM 1.6.0_24) [linux-amd64-java]
+
 Switch back to system Ruby:
 
     $ chruby system
