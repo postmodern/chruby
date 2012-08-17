@@ -11,6 +11,7 @@ function chruby_reset()
 	unset RUBY_PATH
 	unset RUBY_ENGINE
 	unset RUBY_VERSION
+	unset RUBY_API_VERSION
 }
 
 function chruby_use()
