@@ -20,15 +20,13 @@ function chruby_use()
 	export PATH="$1/bin:$PATH" && hash -r
 	export RUBYOPT="$2"
 
-	local ruby_version=( `ruby -e "require 'rbconfig'; puts defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
+	eval $(ruby -e "require 'rbconfig'; puts \"RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}\"; puts \"RUBY_VERSION=#{RUBY_VERSION}\"; puts \"RUBY_API_VERSION=#{RbConfig::CONFIG['ruby_version']}\"")
 
 	export RUBY_PATH="$1"
-	export RUBY_ENGINE=${ruby_version[0]}
-	export RUBY_VERSION=${ruby_version[1]}
 
 	if [[ ! $UID -eq 0 ]]; then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
-		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/${ruby_version[2]}"
+		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/$RUBY_API_VERSION"
 
 		export PATH="$GEM_HOME/bin:$GEM_PATH/bin:$PATH"
 		export GEM_PATH="$GEM_HOME:$GEM_PATH"
@@ -58,7 +56,8 @@ function chruby()
 		*)
 			for ruby_path in ${RUBIES[@]}; do
 				if [[ `basename "$ruby_path"` == *$1* ]]; then
-					chruby_use "$ruby_path" "${*:2}"
+					shift
+					chruby_use "$ruby_path" "$*"
 					return
 				fi
 			done
