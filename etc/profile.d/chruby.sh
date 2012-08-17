@@ -1,4 +1,4 @@
-RUBIES=()
+[[ -z "$RUBIES" ]] && RUBIES=()
 
 function chruby_reset()
 {
