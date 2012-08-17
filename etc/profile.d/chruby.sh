@@ -37,26 +37,28 @@ function chruby_use()
 
 function chruby()
 {
+	local ruby_dir
+
 	case "$1" in
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		"")
-			for path in ${RUBIES[@]}; do
-				if [[ "$path" == "$RUBY_PATH" ]]; then
+			for ruby_dir in ${RUBIES[@]}; do
+				if [[ "$ruby_dir" == "$RUBY_PATH" ]]; then
 					echo -n " * "
 				else
 					echo -n "   "
 				fi
 
-				echo `basename "$path"`
+				echo `basename "$ruby_dir"`
 			done
 			;;
 		system) chruby_reset ;;
 		*)
-			for path in ${RUBIES[@]}; do
-				if [[ `basename "$path"` == *$1* ]]; then
-					chruby_use "$path" "${*:2}"
+			for ruby_dir in ${RUBIES[@]}; do
+				if [[ `basename "$ruby_dir"` == *$1* ]]; then
+					chruby_use "$ruby_dir" "${*:2}"
 					return
 				fi
 			done
