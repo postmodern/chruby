@@ -51,7 +51,7 @@ function chruby()
 					echo -n "   "
 				fi
 
-				echo $(basename "$path")
+				echo `basename "$path"`
 			done
 			;;
 		system) chruby_reset ;;
