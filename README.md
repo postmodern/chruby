@@ -11,8 +11,9 @@ Simple Ruby switcher.
 * Adds `$GEM_HOME` and `$GEM_PATH` to `$PATH`.
 * Optionally sets `$RUBYOPT` is a second argument is given (ex: `--1.9`).
 * Additionally sets `$RUBY_PATH`, `$RUBY_VERSION` and `$RUBY_ENGINE`.
-* Defaults to the system Ruby.
+* Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
+* Defaults to the system Ruby.
 * Small (~80 LOC).
 
 ## Anti-Features
