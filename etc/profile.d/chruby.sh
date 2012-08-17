@@ -22,15 +22,15 @@ function chruby_use()
 	export PATH="$1/bin:$PATH"
 	export RUBYOPT="$2"
 
-	local versions=( `ruby -e "require 'rbconfig'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
+	local ruby_version=( `ruby -e "require 'rbconfig'; puts defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
 
 	export RUBY_PATH="$1"
-	export RUBY_ENGINE=`echo $name | cut -f1 -d-`
-	export RUBY_VERSION=${versions[0]}
+	export RUBY_ENGINE=${ruby_version[0]}
+	export RUBY_VERSION=${ruby_version[1]}
 
 	if [[ ! $UID -eq 0 ]]; then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
-		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/${versions[1]}"
+		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/${ruby_version[2]}"
 
 		export PATH="$GEM_HOME/bin:$GEM_PATH/bin:$PATH"
 		export GEM_PATH="$GEM_HOME:$GEM_PATH"
