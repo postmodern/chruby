@@ -25,9 +25,9 @@ Simple Ruby switcher.
 
 ## Install
 
-    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.0.1.tar.bz2 \
-    tar -xjvf chruby-0.0.1.tar.bz2
-    cd chrub-0.0.1/
+    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.0.2.tar.bz2
+    tar -xjvf chruby-0.0.2.tar.bz2
+    cd chrub-0.0.2/
     make install
 
 ### PGP
