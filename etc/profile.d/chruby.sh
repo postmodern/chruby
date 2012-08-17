@@ -17,8 +17,6 @@ function chruby_use()
 {
 	[[ -n "$RUBY_PATH" ]] && chruby_reset
 
-	local name=`basename $1`
-
 	export PATH="$1/bin:$PATH" && hash -r
 	export RUBYOPT="$2"
 
