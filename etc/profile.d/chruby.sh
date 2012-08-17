@@ -58,7 +58,8 @@ function chruby()
 		*)
 			for path in ${RUBIES[@]}; do
 				if [[ `basename "$path"` == *$1* ]]; then
-					chruby_use "$path" "$2"
+					shift 2
+					chruby_use "$path" "$*"
 					return
 				fi
 			done
