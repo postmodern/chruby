@@ -4,8 +4,7 @@ function chruby_reset()
 {
 	[[ -z "$RUBY_PATH" ]] && return
 
-	export PATH=`sed -e "s|$RUBY_PATH\/[^:]*:||g; s|$HOME\/.gem\/[^:]*:||g" <<< $PATH`
-	hash -r
+	export PATH=`sed -e "s|$RUBY_PATH\/[^:]*:||g; s|$HOME\/.gem\/[^:]*:||g" <<< $PATH` && hash -r
 
 	unset RUBYOPT
 	unset GEM_HOME
@@ -21,7 +20,7 @@ function chruby_use()
 
 	local name=`basename $1`
 
-	export PATH="$1/bin:$PATH"
+	export PATH="$1/bin:$PATH" && hash -r
 	export RUBYOPT="$2"
 
 	local ruby_version=( `ruby -e "require 'rbconfig'; puts defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'; puts RUBY_VERSION; puts RbConfig::CONFIG['ruby_version']"` )
