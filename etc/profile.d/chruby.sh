@@ -2,35 +2,38 @@
 
 function chruby_reset()
 {
-	[[ -z "$RUBY_PATH" ]] && return
+	[[ -z "$RUBY" ]] && return
 
-	export PATH=`sed -e "s|$RUBY_PATH\/[^:]*:||g; s|$HOME\/.gem\/[^:]*:||g" <<< $PATH` && hash -r
-	unset RUBYOPT
-	unset GEM_HOME
-	unset GEM_PATH
-	unset RUBY_PATH
-	unset RUBY_ENGINE
-	unset RUBY_VERSION
-	unset RUBY_API_VERSION
+	export PATH=`sed -e "s|$RUBY/bin:||" <<< $PATH`
+	unset RUBY RUBYOPT
+
+	if [[ -n "$GEM_HOME" ]] && [[ -n "$GEM_ROOT" ]]; then
+		export PATH=`sed -e "s|$GEM_HOME/bin:||; s|$GEM_ROOT/bin:||" <<< $PATH`
+		unset GEM_ROOT GEM_HOME GEM_PATH
+	fi
+
+	hash -r
 }
 
 function chruby_use()
 {
-	[[ -n "$RUBY_PATH" ]] && chruby_reset
+	[[ -n "$RUBY" ]] && chruby_reset
 
-	export PATH="$1/bin:$PATH" && hash -r
+	export RUBY="$1"
 	export RUBYOPT="$2"
+	export PATH="$RUBY/bin:$PATH"
 
-	eval $(ruby -e "require 'rbconfig'; puts \"RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}\"; puts \"RUBY_VERSION=#{RUBY_VERSION}\"; puts \"RUBY_API_VERSION=#{RbConfig::CONFIG['ruby_version']}\"")
-
-	export RUBY_PATH="$1"
+	eval `ruby - <<EOF
+require 'rubygems'
+puts "RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}"
+puts "RUBY_VERSION=#{RUBY_VERSION}"
+puts "GEM_ROOT=\"#{Gem.default_dir}\""
+EOF`
 
 	if [[ ! $UID -eq 0 ]]; then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
-		export GEM_PATH="$RUBY_PATH/lib/ruby/gems/$RUBY_API_VERSION"
-
-		export PATH="$GEM_HOME/bin:$GEM_PATH/bin:$PATH"
-		export GEM_PATH="$GEM_HOME:$GEM_PATH"
+		export GEM_PATH="$GEM_HOME:$GEM_ROOT"
+		export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$PATH"
 	fi
 }
 
@@ -44,7 +47,7 @@ function chruby()
 			;;
 		"")
 			for ruby_path in ${RUBIES[@]}; do
-				if [[ "$ruby_path" == "$RUBY_PATH" ]]; then
+				if [[ "$ruby_path" == "$RUBY" ]]; then
 					echo -n " * "
 				else
 					echo -n "   "
