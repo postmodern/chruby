@@ -10,7 +10,7 @@ Simple Ruby switcher.
   * Root: gems are installed directly into `/path/to/$ruby/lib/ruby/gems/$version`.
 * Adds `$GEM_HOME` and `$GEM_PATH` to `$PATH`.
 * Optionally sets `$RUBYOPT` is a second argument is given (ex: `--1.9`).
-* Additionally sets `$RUBY_PATH`, `$RUBY_VERSION` and `$RUBY_ENGINE`.
+* Additionally sets `$RUBY`, `$RUBY_VERSION` and `$RUBY_ENGINE`.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
