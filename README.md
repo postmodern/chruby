@@ -43,7 +43,7 @@ not tampered with:
 
 ## Configuration
 
-Add the lines following to your `~/.bashrc` or `~/.profile` file:
+Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
     . /usr/local/etc/profile.d/chruby.sh
     
