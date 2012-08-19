@@ -1,4 +1,4 @@
-### 0.1.0 / 2012-09-18
+### 0.1.0 / 2012-08-18
 
 * Added support for [zsh].
 * Renamed the `$RUBY_PATH` variable to `$RUBY`.
