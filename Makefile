@@ -34,7 +34,7 @@ all: $(PKG) $(SIG)
 
 tag:
 	git push
-	git tag v$(VERSION)
+	git tag -s -m "Tagging $(VERSION)" v$(VERSION)
 	git push --tags
 
 release: $(PKG) $(SIG) tag
