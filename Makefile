@@ -33,6 +33,7 @@ clean:
 all: $(PKG) $(SIG)
 
 tag:
+	git push
 	git tag v$(VERSION)
 	git push --tags
 
