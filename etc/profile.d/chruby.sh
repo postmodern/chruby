@@ -5,7 +5,7 @@ function chruby_reset()
 	[[ -z "$RUBY" ]] && return
 
 	export PATH=`sed -e "s|$RUBY/bin:||g" <<< $PATH`
-	unset RUBY RUBYOPT
+	unset RUBY RUBY_ENGINE RUBY_VERSION RUBYOPT
 
 	if [[ -n "$GEM_HOME" ]] && [[ -n "$GEM_ROOT" ]]; then
 		export PATH=`sed -e "s|$GEM_HOME/bin:||g; s|$GEM_ROOT/bin:||g" <<< $PATH`
