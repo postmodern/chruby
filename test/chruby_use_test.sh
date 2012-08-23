@@ -2,10 +2,13 @@
 
 . test/helper.sh
 
-function test_chruby_use()
+function setUp()
 {
 	chruby_use $TEST_RUBY
+}
 
+function test_chruby_use()
+{
 	assertEquals "invalid RUBY" "$TEST_RUBY" "$RUBY"
 	assertEquals "invalid RUBY_ENGINE"  "$TEST_RUBY_ENGINE" "$RUBY_ENGINE"
 	assertEquals "invalid RUBY_VERSION" "$TEST_RUBY_VERSION" "$RUBY_VERSION"
@@ -14,4 +17,9 @@ function test_chruby_use()
 	assertEquals "invalid GEM_PATH" "$GEM_HOME:$GEM_ROOT" "$GEM_PATH"
 
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY/bin/ruby" `which ruby`
+}
+
+function tearDown()
+{
+	chruby_reset
 }
