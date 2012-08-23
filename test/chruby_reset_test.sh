@@ -17,6 +17,7 @@ test_chruby_reset()
 {
 	before_chruby_reset
 
+	chruby_use "$TEST_RUBY"
 	chruby_reset
 
 	assertNull "RUBY was not unset"          "$RUBY"
