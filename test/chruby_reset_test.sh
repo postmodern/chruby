@@ -20,10 +20,10 @@ test_chruby_reset()
 
 	chruby_reset
 
-	assertNull "RUBY was not unset",         $RUBY
-	assertNull "RUBY_ENGINE was not unset",  $RUBY_ENGINE
-	assertNull "RUBY_VERSION was not unset", $RUBY_VERSION
-	assertNull "RUBYOPT was not unset",      $RUBYOPT
-	assertNull "GEM_HOME was not unset",     $GEM_HOME
-	assertNull "GEM_PATH was not unset",     $GEM_PATH
+	assertNull "RUBY was not unset"          $RUBY
+	assertNull "RUBY_ENGINE was not unset"   $RUBY_ENGINE
+	assertNull "RUBY_VERSION was not unset"  $RUBY_VERSION
+	assertNull "RUBYOPT was not unset"       $RUBYOPT
+	assertNull "GEM_HOME was not unset"      $GEM_HOME
+	assertNull "GEM_PATH was not unset"      $GEM_PATH
 }
