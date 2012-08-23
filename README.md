@@ -14,6 +14,7 @@ Simple Ruby switcher.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
+* Has tests.
 * Small (~80 LOC).
 
 ## Anti-Features
