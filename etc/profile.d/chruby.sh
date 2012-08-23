@@ -4,11 +4,11 @@ function chruby_reset()
 {
 	[[ -z "$RUBY" ]] && return
 
-	export PATH=`sed -e "s|$RUBY/bin:||" <<< $PATH`
+	export PATH=`sed -e "s|:$RUBY/bin:||; s|^:||; s|:$||" <<< :$PATH:`
 	unset RUBY RUBYOPT
 
 	if [[ -n "$GEM_HOME" ]] && [[ -n "$GEM_ROOT" ]]; then
-		export PATH=`sed -e "s|$GEM_HOME/bin:||; s|$GEM_ROOT/bin:||" <<< $PATH`
+		export PATH=`sed -e "s|:$GEM_HOME/bin:|:|; s|:$GEM_ROOT/bin:|:|; s|^:||; s|:$||" <<< :$PATH:`
 		unset GEM_ROOT GEM_HOME GEM_PATH
 	fi
 
