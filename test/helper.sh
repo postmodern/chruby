@@ -4,6 +4,7 @@
 RUBIES=($TEST_RUBY)
 
 chruby_reset
+
 TEST_PATH="$PATH"
 TEST_RUBY_ENGINE="ruby"
 TEST_RUBY_VERSION="1.9.3"
