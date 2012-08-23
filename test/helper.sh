@@ -1,7 +1,6 @@
 #!/bin/sh
 
 . ./etc/profile.d/chruby.sh
-RUBIES=($TEST_RUBY)
 
 chruby_reset
 
@@ -11,3 +10,5 @@ TEST_RUBY_VERSION="1.9.3"
 TEST_RUBY_PATCHLEVEL="194"
 TEST_RUBY_API="1.9.1"
 TEST_RUBY="/usr/local/ruby-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
+
+RUBIES=($TEST_RUBY)
