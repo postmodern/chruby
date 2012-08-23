@@ -26,9 +26,9 @@ function chruby_use()
 
 	eval `ruby - <<EOF
 require 'rubygems'
-puts "RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}"
-puts "RUBY_VERSION=#{RUBY_VERSION}"
-puts "GEM_ROOT=\"#{Gem.default_dir}\""
+puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}"
+puts "export RUBY_VERSION=#{RUBY_VERSION}"
+puts "export GEM_ROOT=\"#{Gem.default_dir}\""
 EOF`
 
 	if [[ ! $UID -eq 0 ]]; then
