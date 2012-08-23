@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/share/shunit2/shunit2
 
 . test/helper.sh
 
