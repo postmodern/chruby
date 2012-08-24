@@ -1,7 +1,7 @@
 ### 0.1.1 / 2012-08-24
 
 * Added unit-tests using [shunit2](http://code.google.com/p/shunit2/)
-* Improved sanitization of `$PATH` in `chruby_reset`. (thanks mpapis)
+* Improved sanitation of `$PATH` in `chruby_reset`. (thanks mpapis)
 * If the desired Ruby is already in use, immediately return from `chruby_use`.
 * Export `$RUBY_ENGINE`, `$RUBY_VERSION`, `$GEM_ROOT` in `chruby_use`.
 
