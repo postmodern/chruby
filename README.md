@@ -14,8 +14,9 @@ Simple Ruby switcher.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
-* Has tests.
+* Supports [bash] and [zsh].
 * Small (~80 LOC).
+* Has tests.
 
 ## Anti-Features
 
@@ -109,3 +110,6 @@ Switch to an arbitrary Ruby on the fly:
 * [RVM](https://rvm.io/)
 * [rbenv](https://github.com/sstephenson/rbenv#readme)
 * [rbfu](https://github.com/hmans/rbfu#readme)
+
+[bash]: http://www.gnu.org/software/bash/
+[zsh]: http://www.zsh.org/
