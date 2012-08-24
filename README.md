@@ -28,9 +28,9 @@ Simple Ruby switcher.
 
 ## Install
 
-    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.1.0.tar.bz2
-    tar -xjvf chruby-0.1.0.tar.bz2
-    cd chrub-0.1.0/
+    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.1.1.tar.bz2
+    tar -xjvf chruby-0.1.1.tar.bz2
+    cd chrub-0.1.1/
     make install
 
 ### PGP
@@ -40,8 +40,8 @@ for security. Instructions on how to import my PGP key can be found on my
 [blog](http://postmodern.github.com/contact.html). To verify that a release was 
 not tampered with:
 
-    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.1.0.tar.bz2.asc
-    gpg --verify chruby-0.1.0.tar.bz2.asc chruby-0.1.0.tar.bz2
+    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.1.1.tar.bz2.asc
+    gpg --verify chruby-0.1.1.tar.bz2.asc chruby-0.1.1.tar.bz2
 
 ## Configuration
 
