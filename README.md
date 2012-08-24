@@ -35,10 +35,9 @@ Simple Ruby switcher.
 
 ### PGP
 
-All releases are [PGP](http://en.wikipedia.org/wiki/Pretty_Good_Privacy) signed 
-for security. Instructions on how to import my PGP key can be found on my
-[blog](http://postmodern.github.com/contact.html). To verify that a release was 
-not tampered with:
+All releases are [PGP] signed for security. Instructions on how to import my
+PGP key can be found on my [blog][1]. To verify that a release was not tampered 
+with:
 
     wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.1.1.tar.bz2.asc
     gpg --verify chruby-0.1.1.tar.bz2.asc chruby-0.1.1.tar.bz2
@@ -113,3 +112,6 @@ Switch to an arbitrary Ruby on the fly:
 
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
+[PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
+
+[1]: http://postmodern.github.com/contact.html#pgp
