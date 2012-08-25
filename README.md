@@ -1,6 +1,6 @@
 # chruby
 
-Simple Ruby switcher.
+Changes the current Ruby.
 
 ## Features
 
