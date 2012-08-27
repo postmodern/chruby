@@ -18,7 +18,7 @@ function chruby_reset()
 
 function chruby_use()
 {
-	[[ "$RUBY" == "$1" ]] && return
+	[[ "$RUBY" == "$1" && "$RUBYOPT" == "$2" ]] && return
 	[[ -n "$RUBY" ]] && chruby_reset
 
 	export RUBY="$1"
