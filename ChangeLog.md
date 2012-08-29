@@ -1,3 +1,9 @@
+### 0.1.2 / 2012-08-29
+
+* Check if `$RUBY` _and_ `$RUBYOPT` are different from the arguments passed to
+  `chruby_use`.
+* Fixed a spelling error in the README (thanks Ian Barnett).
+
 ### 0.1.1 / 2012-08-24
 
 * Added unit-tests using [shunit2](http://code.google.com/p/shunit2/)
