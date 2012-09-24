@@ -8,7 +8,7 @@ EXTRA_DOC_FILES=*.{md,tt,txt}
 
 PKG_DIR=pkg
 PKG_NAME=$(NAME)-$(VERSION)
-PKG=$(PKG_DIR)/$(PKG_NAME).tar.bz2
+PKG=$(PKG_DIR)/$(PKG_NAME).tar.gz
 SIG=$(PKG_DIR)/$(PKG_NAME).asc
 
 PREFIX=/usr/local
@@ -18,7 +18,7 @@ pkg:
 	mkdir -p $(PKG_DIR)
 
 $(PKG): pkg $(FILES)
-	tar -cjvf $(PKG) --transform 's|^|$(PKG_NAME)/|' $(FILES)
+	git archive --output=$(PKG) --prefix=$(PKG_NAME)/ master
 
 build: $(PKG)
 
