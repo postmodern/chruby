@@ -30,7 +30,7 @@ Changes the current Ruby.
 
     wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.1.2.tar.bz2
     tar -xjvf chruby-0.1.2.tar.bz2
-    cd chrub-0.1.2/
+    cd chruby-0.1.2/
     make install
 
 ### PGP
