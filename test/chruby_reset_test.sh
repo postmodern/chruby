@@ -1,6 +1,6 @@
 #!/usr/share/shunit2/shunit2
 
-. test/helper.sh
+. ./test/helper.sh
 
 function setUp()
 {
