@@ -110,6 +110,10 @@ Switch to an arbitrary Ruby on the fly:
 * [rbenv](https://github.com/sstephenson/rbenv#readme)
 * [rbfu](https://github.com/hmans/rbfu#readme)
 
+## Credits
+
+* [mpapis](https://github.com/mpapis) for reviewing the code.
+
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
