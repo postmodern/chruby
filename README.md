@@ -46,7 +46,7 @@ with:
 
 Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
-    . /usr/local/etc/profile.d/chruby.sh
+    . /usr/local/share/chruby/chruby.sh
     
     RUBIES=~/src/{ruby,jruby,rubinius}*
 
@@ -54,7 +54,7 @@ Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
 Create a `/etc/profile.d/chruby.sh` file, containing the following:
 
-    . /usr/local/etc/profile.d/chruby.sh
+    . /usr/local/share/chruby/chruby.sh
     
     RUBIES=(
       /usr/local/ruby-1.8.7-p370
