@@ -1,4 +1,4 @@
-### 0.2.0 / 2012-10-15
+### 0.2.0 / 2012-10-16
 
 * Install `chruby.sh` into `$PREFIX/share/chruby/`.
 
