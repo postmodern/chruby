@@ -10,9 +10,9 @@ function chruby_reset()
 		export PATH=`sed -e "s|:$GEM_HOME/bin:|:|g; s|:$GEM_ROOT/bin:|:|g" <<< $PATH`
 	fi
 
-	unset RUBY RUBY_ENGINE RUBY_VERSION RUBYOPT GEM_ROOT GEM_HOME GEM_PATH
-
 	export PATH=`sed -e "s|^:*||; s|:*$||" <<< $PATH`
+
+	unset RUBY RUBY_ENGINE RUBY_VERSION RUBYOPT GEM_ROOT GEM_HOME GEM_PATH
 	hash -r
 }
 
