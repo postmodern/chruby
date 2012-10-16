@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./etc/profile.d/chruby.sh
+. ./share/chruby/chruby.sh
 
 chruby_reset
 
