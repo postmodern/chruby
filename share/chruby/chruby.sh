@@ -48,14 +48,14 @@ function chruby()
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		"")
+			local star
+
 			for ruby_path in ${RUBIES[@]}; do
-				if [[ "$ruby_path" == "$RUBY" ]]; then
-					echo -n " * "
-				else
-					echo -n "   "
+				if [[ "$ruby_path" == "$RUBY" ]]; then star="*"
+				else                                   star=" "
 				fi
 
-				echo `basename "$ruby_path"`
+				echo " $star $(basename "$ruby_path")"
 			done
 			;;
 		system) chruby_reset ;;
