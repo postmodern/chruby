@@ -1,3 +1,7 @@
+### 0.2.0 / 2012-10-15
+
+* Install `chruby.sh` into `$PREFIX/share/chruby/`.
+
 ### 0.1.2 / 2012-08-29
 
 * Check if `$RUBY` _and_ `$RUBYOPT` are different from the arguments passed to
