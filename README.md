@@ -42,6 +42,12 @@ with:
     wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.2.0.tar.bz2.asc
     gpg --verify chruby-0.2.0.tar.bz2.asc chruby-0.2.0.tar.bz2
 
+### Homebrew
+
+chruby can also be installed with homebrew:
+
+    brew install https://raw.github.com/postmodern/chruby/homebrew/homebrew/chruby.rb
+
 ## Configuration
 
 Add the following lines to your `~/.bashrc` or `~/.profile` file:
