@@ -40,7 +40,7 @@ tag:
 release: $(PKG) $(SIG) tag
 
 install:
-	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do install -d $$file $(PREFIX)/$$file; done
+	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do install -D $$file $(PREFIX)/$$file; done
 	install -d $(DOC_DIR)
 	cp -r $(DOC_FILES) $(DOC_DIR)/ 2>/dev/null || true
 	cp -r $(EXTRA_DOC_FILES) $(DOC_DIR)/ 2>/dev/null || true
