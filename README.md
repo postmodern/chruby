@@ -123,5 +123,6 @@ Switch to an arbitrary Ruby on the fly:
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
+[homebrew]: http://mxcl.github.com/homebrew/
 
 [1]: http://postmodern.github.com/contact.html#pgp
