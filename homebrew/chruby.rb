@@ -4,7 +4,7 @@ class Chruby < Formula
 
   url 'https://github.com/downloads/postmodern/chruby/chruby-0.2.1.tar.gz'
   homepage 'https://github.com/postmodern/chruby#readme'
-  md5 '6b6424e0455101e9f071fd72515c3b38'
+  md5 '8ed8b855e95a495417c56553afc7b347'
   head 'https://github.com/postmodern/chruby.git'
 
   def install
