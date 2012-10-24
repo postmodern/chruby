@@ -43,8 +43,7 @@ install:
 	for dir in `find $(INSTALL_DIRS) -type d 2>/dev/null`; do install -d $(PREFIX)/$$file; done
 	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do install $$file $(PREFIX)/$$file; done
 	install -d $(DOC_DIR)
-	cp -r $(DOC_FILES) $(DOC_DIR)/ 2>/dev/null || true
-	cp -r $(EXTRA_DOC_FILES) $(DOC_DIR)/ 2>/dev/null || true
+	cp -r $(DOC_FILES) $(EXTRA_DOC_FILES) $(DOC_DIR)/ 2>/dev/null || true
 
 uninstall:
 	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do rm -f $(PREFIX)/$$file; done
