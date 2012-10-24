@@ -1,3 +1,8 @@
+### 0.2.1 / 2012-10-23
+
+* Fixed `make install` to work on OS X.
+* Added a [homebrew] recipe.
+
 ### 0.2.0 / 2012-10-16
 
 * Install `chruby.sh` into `$PREFIX/share/chruby/`.
@@ -36,3 +41,4 @@
 
 [zsh]: http://www.zsh.org/
 [Rubinius]: http://rubini.us/
+[homebrew]: http://mxcl.github.com/homebrew/
