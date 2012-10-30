@@ -4,11 +4,11 @@ Changes the current Ruby.
 
 ## Features
 
-* Simply modifies `$PATH`.
+* Updates `$PATH`.
+  * Also adds RubyGems `bin/` directories to `$PATH`.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
   * Users: gems are installed into `~/.gem/$ruby/$version`.
   * Root: gems are installed directly into `/path/to/$ruby/$gemdir`.
-* Adds RubyGems `bin/` directories to `$PATH`.
 * Optionally sets `$RUBYOPT` is a second argument is given.
 * Additionally sets `$RUBY`, `$RUBY_ENGINE`, `$RUBY_VERSION` and `$GEM_ROOT`.
 * Calls `hash -r` to clear the command-lookup hash-table.
