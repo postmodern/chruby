@@ -28,7 +28,7 @@ Changes the current Ruby.
 
 ## Install
 
-    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.2.1.tar.bz2
+    wget https://github.com/downloads/postmodern/chruby/chruby-0.2.1.tar.gz
     tar -xjvf chruby-0.2.1.tar.bz2
     cd chruby-0.2.1/
     make install
@@ -39,8 +39,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-    wget http://cloud.github.com/downloads/postmodern/chruby/chruby-0.2.1.tar.bz2.asc
-    gpg --verify chruby-0.2.1.tar.bz2.asc chruby-0.2.1.tar.bz2
+    wget https://github.com/downloads/postmodern/chruby/chruby-0.2.1.tar.gz.asc
+    gpg --verify chruby-0.2.1.tar.gz.asc chruby-0.2.1.tar.gz
 
 ### Homebrew
 
