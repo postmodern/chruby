@@ -29,7 +29,7 @@ Changes the current Ruby.
 ## Install
 
     wget https://github.com/downloads/postmodern/chruby/chruby-0.2.1.tar.gz
-    tar -xzvf chruby-0.2.1.tar.bz2
+    tar -xzvf chruby-0.2.1.tar.gz
     cd chruby-0.2.1/
     make install
 
