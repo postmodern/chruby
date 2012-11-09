@@ -112,9 +112,16 @@ Switch to an arbitrary Ruby on the fly:
 
 ## Alternatives
 
-* [RVM](https://rvm.io/)
-* [rbenv](https://github.com/sstephenson/rbenv#readme)
-* [rbfu](https://github.com/hmans/rbfu#readme)
+* [RVM]
+* [rbenv]
+* [rbfu]
+
+## Endorsements
+
+> yeah `chruby` is nice, does the limited thing of switching really good,
+> the only hope it never grows 
+
+-- [Michal Papis](https://twitter/mpapis) of [RVM].
 
 ## Credits
 
@@ -124,5 +131,9 @@ Switch to an arbitrary Ruby on the fly:
 [zsh]: http://www.zsh.org/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
+
+[RVM]: https://rvm.io/
+[rbenv]: https://github.com/sstephenson/rbenv#readme
+[rbfu]: https://github.com/hmans/rbfu#readme
 
 [1]: http://postmodern.github.com/contact.html#pgp
