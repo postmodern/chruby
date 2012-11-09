@@ -121,7 +121,7 @@ Switch to an arbitrary Ruby on the fly:
 > yeah `chruby` is nice, does the limited thing of switching really good,
 > the only hope it never grows 
 
--- [Michal Papis](https://twitter/mpapis) of [RVM].
+-- [Michal Papis](https://twitter.com/mpapis/status/258049391791841280) of [RVM]
 
 ## Credits
 
