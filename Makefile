@@ -1,7 +1,7 @@
 NAME=chruby
 VERSION=0.2.1
 
-FILES=$(shell git ls-files)
+FILES=$(shell git ls-files 2>/dev/null)
 INSTALL_DIRS={etc,lib,bin,sbin,share}
 DOC_FILES=doc/*
 EXTRA_DOC_FILES=*.{md,tt,txt}
