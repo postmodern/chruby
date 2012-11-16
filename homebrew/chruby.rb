@@ -14,7 +14,7 @@ class Chruby < Formula
   def caveats
     alternatives = {
       'RVM'   => '~/.rvm/rubies',
-      'rbenv' => '~/.rbenv/rubies',
+      'rbenv' => '~/.rbenv/versions',
       'rbfu'  => '~/.rbfu/rubies'
     }
 
