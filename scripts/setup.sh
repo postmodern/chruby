@@ -20,8 +20,8 @@ RUBINIUS_VERSION="2.0.0-rc1"
 RUBINIUS_PATH="$PREFIX/rubinius-$RUBINIUS_VERSION"
 
 function log() {
-	if [ -t 1 ]; then echo -e "\e[1m\e[32m>>>\e[0m \e[1m\e[37m$1\e[0m"
-	else              echo ">>> $1"
+	if [[ -t 1 ]]; then echo -e "\e[1m\e[32m>>>\e[0m \e[1m\e[37m$1\e[0m"
+	else                echo ">>> $1"
 	fi
 }
 
