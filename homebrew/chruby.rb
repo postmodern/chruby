@@ -22,6 +22,7 @@ class Chruby < Formula
       )
 
     For system-wide installation, add the above text to /etc/profile.d/chruby.sh
+    or /etc/profile.
 
     EOS
   end
