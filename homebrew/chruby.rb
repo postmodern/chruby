@@ -19,6 +19,7 @@ class Chruby < Formula
       RUBIES=(
         /usr/local/ruby-1.9.3
         /opt/jruby-1.7.0
+        /Users/username/.rbenv/versions/2.0.0-preview1
       )
 
     For system-wide installation, add the above text to /etc/profile.
