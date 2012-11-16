@@ -36,8 +36,6 @@ if [[ $(type -t brew) == "file" ]]; then
 	brew install https://raw.github.com/postmodern/chruby/master/homebrew/chruby.rb
 else
 	# *nix
-	cd $SRC_DIR/
-
 	log "Downloading ruby-build $RUBY_BUILD_VERSION ..."
 	sudo wget https://github.com/sstephenson/ruby-build/archive/v$RUBY_BUILD_VERSION.tar.gz -O $SRC_DIR/ruby-build-$RUBY_BUILD_VERSION.tar.gz
 	sudo tar -C $SRC_DIR/ -xzvf $SRC_DIR/ruby-build-$RUBY_BUILD_VERSION.tar.gz
