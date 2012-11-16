@@ -17,10 +17,15 @@ class Chruby < Formula
       . #{prefix}/share/chruby/chruby.sh
 
       RUBIES=(
-        /usr/local/ruby-1.9.3
-        /opt/jruby-1.7.0
-        /Users/username/.rbenv/versions/2.0.0-preview1
+        # Examples:
+        #
+        # /usr/local/ruby-1.9.3
+        # /opt/jruby-1.7.0
+        # #{ENV['HOME']}/.rbenv/versions/2.0.0-preview1
+        # #{ENV['HOME']}/.rvm/gems/rbx-2.0.0-rc1
       )
+
+    $RUBIES should contain a list of existing Ruby installation paths.
 
     For system-wide installation, add the above text to /etc/profile.
 
