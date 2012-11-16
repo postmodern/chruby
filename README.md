@@ -74,7 +74,7 @@ Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
 * [RVM]: `RUBIES=~/.rvm/rubies/*`
-* [rbenv]: `RUBIES=~/.rbenv/rubies/*`
+* [rbenv]: `RUBIES=~/.rbenv/versions/*`
 * [rbfu]: `RUBIES=~/.rbfu/rubies/*`
 
 ## Examples
