@@ -21,8 +21,7 @@ class Chruby < Formula
         /opt/jruby-1.7.0
       )
 
-    For system-wide installation, add the above text to /etc/profile.d/chruby.sh
-    or /etc/profile.
+    For system-wide installation, add the above text to /etc/profile.
 
     EOS
   end
