@@ -54,7 +54,7 @@ Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
     . /usr/local/share/chruby/chruby.sh
     
-    RUBIES=~/src/{ruby,jruby,rubinius}*
+    RUBIES=(~/src/{ruby,jruby,rubinius}*)
 
 ### System Wide
 
@@ -73,9 +73,9 @@ Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
 
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
-* [RVM]: `RUBIES=~/.rvm/rubies/*`
-* [rbenv]: `RUBIES=~/.rbenv/versions/*`
-* [rbfu]: `RUBIES=~/.rbfu/rubies/*`
+* [RVM]: `RUBIES=(~/.rvm/rubies/*)`
+* [rbenv]: `RUBIES=(~/.rbenv/versions/*)`
+* [rbfu]: `RUBIES=(~/.rbfu/rubies/*)`
 
 ## Examples
 
