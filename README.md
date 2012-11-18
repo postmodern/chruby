@@ -14,7 +14,7 @@ Changes the current Ruby.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
-* Supports [bash], [zsh] and [dash].
+* Supports [bash] and [zsh].
 * Small (~80 LOC).
 * Has tests.
 
@@ -137,8 +137,6 @@ Switch to an arbitrary Ruby on the fly:
 
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
-[dash]: http://gondor.apana.org.au/~herbert/dash/
-
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
 
