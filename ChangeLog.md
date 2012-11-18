@@ -1,3 +1,8 @@
+### 0.2.2 / 2012-11-17
+
+* Use `typeset` to declare `RUBIES` as an indexed Array.
+* Use the correct globbed Array syntax for both [zsh] and [bash].
+
 ### 0.2.1 / 2012-10-23
 
 * Fixed `make install` to work on OS X.
