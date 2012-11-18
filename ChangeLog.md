@@ -2,6 +2,8 @@
 
 * Use `typeset` to declare `RUBIES` as an indexed Array.
 * Use the correct globbed Array syntax for both [zsh] and [bash].
+* Improved the post-installation message in the [homebrew] recipe to auto-detect
+  [RVM], [rbenv] and [rbfu].
 
 ### 0.2.1 / 2012-10-23
 
@@ -47,3 +49,7 @@
 [zsh]: http://www.zsh.org/
 [Rubinius]: http://rubini.us/
 [homebrew]: http://mxcl.github.com/homebrew/
+
+[RVM]: https://rvm.io/
+[rbenv]: https://github.com/sstephenson/rbenv#readme
+[rbfu]: https://github.com/hmans/rbfu#readme
