@@ -1,0 +1,17 @@
+#!/bin/sh
+
+function log() {
+	if [[ -t 1 ]]; then echo -e "\e[1m\e[32m>>>\e[0m \e[1m\e[37m$1\e[0m"
+	else                echo ">>> $1"
+	fi
+}
+
+SHELLS=(bash zsh)
+
+for shell in ${SHELLS[@]}; do
+	log "Running tests under $shell ..."
+
+	for test in $(dirname $0)/*_test.sh; do
+		$shell -c $test
+	done
+done
