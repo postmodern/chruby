@@ -30,7 +30,7 @@ class Chruby < Formula
 
     if rubies_dir
       message << %{
-      RUBIES=#{rubies_dir}/*
+      RUBIES=(#{rubies_dir}/*)
       }
     else
       message << %{
