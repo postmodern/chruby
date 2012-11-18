@@ -1,5 +1,5 @@
 NAME=chruby
-VERSION=0.2.1
+VERSION=0.2.2
 
 FILES=$(shell git ls-files 2>/dev/null)
 INSTALL_DIRS={etc,lib,bin,sbin,share}
