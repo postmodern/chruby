@@ -1,3 +1,5 @@
+typeset -a RUBIES
+
 function chruby_reset()
 {
 	[[ -z "$RUBY" ]] && return
