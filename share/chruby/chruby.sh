@@ -1,5 +1,3 @@
-[[ -z "$RUBIES" ]] && RUBIES=()
-
 function chruby_reset()
 {
 	[[ -z "$RUBY" ]] && return
