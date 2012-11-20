@@ -1,13 +1,13 @@
-#!/usr/share/shunit2/shunit2
+#!/bin/sh
 
 . ./test/helper.sh
 
-function setUp()
+setUp()
 {
 	chruby_use $TEST_RUBY
 }
 
-function test_chruby_use()
+test_chruby_use()
 {
 	assertEquals "invalid RUBY" "$TEST_RUBY" "$RUBY"
 	assertEquals "invalid RUBY_ENGINE"  "$TEST_RUBY_ENGINE" "$RUBY_ENGINE"
@@ -19,7 +19,8 @@ function test_chruby_use()
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY/bin/ruby" `which ruby`
 }
 
-function tearDown()
-{
+tearDown() {
 	chruby_reset
 }
+
+SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2

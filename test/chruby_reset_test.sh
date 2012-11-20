@@ -1,8 +1,8 @@
-#!/usr/share/shunit2/shunit2
+#!/bin/sh
 
 . ./test/helper.sh
 
-function setUp()
+setUp()
 {
 	export RUBY_VERSION="$TEST_RUBY_VERSION"
 	export RUBY_ENGINE="$TEST_RUBY_ENGINE"
@@ -27,3 +27,5 @@ test_chruby_reset()
 
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
+
+SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2

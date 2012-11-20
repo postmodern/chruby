@@ -1,4 +1,4 @@
-#!/usr/share/shunit2/shunit2
+#!/bin/sh
 
 . ./test/helper.sh
 
@@ -21,3 +21,5 @@ function test_chruby_system()
 
 	assertNull "did not reset the Ruby" "$RUBY"
 }
+
+SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2
