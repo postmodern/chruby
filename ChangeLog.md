@@ -1,3 +1,8 @@
+### 0.2.3 / 2012-11-19
+
+* Updated the Makefile to be compatible with the [dash] shell.
+* Use inline substring substitutions instead of `sed`.
+
 ### 0.2.2 / 2012-11-17
 
 * Use `typeset` to declare `RUBIES` as an indexed Array.
@@ -46,7 +51,9 @@
 
 * Initial release.
 
+[dash]: http://gondor.apana.org.au/~herbert/dash/
 [zsh]: http://www.zsh.org/
+
 [Rubinius]: http://rubini.us/
 [homebrew]: http://mxcl.github.com/homebrew/
 
