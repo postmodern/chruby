@@ -2,9 +2,9 @@ require 'formula'
 
 class Chruby < Formula
 
-  url 'https://github.com/downloads/postmodern/chruby/chruby-0.2.2.tar.gz'
+  url 'https://github.com/downloads/postmodern/chruby/chruby-0.2.3.tar.gz'
   homepage 'https://github.com/postmodern/chruby#readme'
-  md5 'a2741ccd09948efaece08301ec7021d3'
+  md5 '5e10ea4a538e3b5ba34ce139fab5d7b7'
   head 'https://github.com/postmodern/chruby.git'
 
   def install
