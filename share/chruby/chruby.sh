@@ -5,11 +5,11 @@ function chruby_reset()
 	[[ -z "$RUBY" ]] && return
 
 	export PATH=":$PATH:"
-	export PATH=${PATH/:$RUBY\/bin:/:}
+	export PATH=${PATH//:$RUBY\/bin:/:}
 
 	if [[ -n "$GEM_HOME" ]] && [[ -n "$GEM_ROOT" ]]; then
-		export PATH=${PATH/:$GEM_HOME\/bin:/:}
-		export PATH=${PATH/:$GEM_ROOT\/bin:/:}
+		export PATH=${PATH//:$GEM_HOME\/bin:/:}
+		export PATH=${PATH//:$GEM_ROOT\/bin:/:}
 	fi
 
 	export PATH=${PATH#:}
