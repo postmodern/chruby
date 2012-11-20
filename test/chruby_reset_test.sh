@@ -38,4 +38,22 @@ test_chruby_reset_duplicate_path()
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
 
+test_chruby_reset_leading_colons()
+{
+	export PATH=":::$PATH"
+
+	chruby_reset
+
+	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
+}
+
+test_chruby_reset_trailing_colons()
+{
+	export PATH="$PATH:::"
+
+	chruby_reset
+
+	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
+}
+
 SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2
