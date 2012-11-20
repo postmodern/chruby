@@ -2,9 +2,9 @@ NAME=chruby
 VERSION=0.2.2
 
 FILES=$(shell git ls-files 2>/dev/null)
-INSTALL_DIRS={etc,lib,bin,sbin,share}
-DOC_FILES=doc/*
-EXTRA_DOC_FILES=*.{md,tt,txt}
+INSTALL_DIRS=$(shell find etc lib bin sbin share -type d 2>/dev/null)
+INSTALL_FILES=$(shell find etc lib bin sbin share -type f 2>/dev/null)
+DOC_FILES=$(shell find *.md *.tt *.txt 2>/dev/null)
 
 PKG_DIR=pkg
 PKG_NAME=$(NAME)-$(VERSION)
@@ -40,11 +40,11 @@ tag:
 release: $(PKG) $(SIG) tag
 
 install:
-	for dir in `find $(INSTALL_DIRS) -type d 2>/dev/null`; do install -d $(PREFIX)/$$dir; done
-	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do install $$file $(PREFIX)/$$file; done
+	for dir in $(INSTALL_DIRS); do install -d $(PREFIX)/$$dir; done
+	for file in $(INSTALL_FILES); do install $$file $(PREFIX)/$$file; done
 	install -d $(DOC_DIR)
-	cp -r $(DOC_FILES) $(EXTRA_DOC_FILES) $(DOC_DIR)/ 2>/dev/null || true
+	cp -r $(DOC_FILES) $(DOC_DIR)/
 
 uninstall:
-	for file in `find $(INSTALL_DIRS) -type f 2>/dev/null`; do rm -f $(PREFIX)/$$file; done
+	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
 	rm -rf $(DOC_DIR)
