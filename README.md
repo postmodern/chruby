@@ -123,6 +123,7 @@ Switch to an arbitrary Ruby on the fly:
 * [RVM]
 * [rbenv]
 * [rbfu]
+* [ry]
 
 ## Endorsements
 
@@ -143,5 +144,6 @@ Switch to an arbitrary Ruby on the fly:
 [RVM]: https://rvm.io/
 [rbenv]: https://github.com/sstephenson/rbenv#readme
 [rbfu]: https://github.com/hmans/rbfu#readme
+[ry]: https://github.com/jayferd/ry#readme
 
 [1]: http://postmodern.github.com/contact.html#pgp
