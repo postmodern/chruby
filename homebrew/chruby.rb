@@ -25,7 +25,7 @@ class Chruby < Formula
     message = %{
     Add chruby to ~/.bashrc or ~/.profile:
 
-      . #{prefix}/share/chruby/chruby.sh
+      . /usr/local/opt/chruby/share/chruby/chruby.sh
     }
 
     if rubies_dir
