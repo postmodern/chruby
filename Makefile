@@ -32,6 +32,10 @@ clean:
 
 all: $(PKG) $(SIG)
 
+test:
+	SHELL=`which bash` ./test/runner
+	SHELL=`which zsh` ./test/runner
+
 tag:
 	git push
 	git tag -s -m "Tagging $(VERSION)" v$(VERSION)
@@ -49,4 +53,4 @@ uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
 	rm -rf $(DOC_DIR)
 
-.PHONY: build sign clean tag release install uninstall all
+.PHONY: build sign clean test tag release install uninstall all

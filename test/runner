@@ -6,12 +6,8 @@ function log() {
 	fi
 }
 
-SHELLS=(bash zsh)
+log "Running tests under $SHELL ..."
 
-for shell in ${SHELLS[@]}; do
-	log "Running tests under $shell ..."
-
-	for test in $(dirname $0)/*_test.sh; do
-		$shell $test
-	done
+for test in $(dirname $0)/*_test.sh; do
+	$SHELL $test
 done
