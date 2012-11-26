@@ -12,6 +12,12 @@ class Chruby < Formula
   end
 
   def caveats
+    config_file = case File.basename(ENV['SHELL'])
+                  when 'bash' then '~/.bashrc'
+                  when 'zsh'  then '~/.zshrc'
+                  else             '~/.profile'
+                  end
+
     alternatives = {
       'RVM'   => '~/.rvm/rubies',
       'rbenv' => '~/.rbenv/versions',
@@ -23,7 +29,7 @@ class Chruby < Formula
     end
 
     message = %{
-    Add chruby to ~/.bashrc or ~/.profile:
+    Add chruby to #{config_file}
 
       . /usr/local/opt/chruby/share/chruby/chruby.sh
     }
