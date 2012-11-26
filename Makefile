@@ -1,10 +1,10 @@
 NAME=chruby
 VERSION=0.2.3
 
-FILES=$(shell git ls-files 2>/dev/null)
-INSTALL_DIRS=$(shell find etc lib bin sbin share -type d 2>/dev/null)
-INSTALL_FILES=$(shell find etc lib bin sbin share -type f 2>/dev/null)
-DOC_FILES=$(shell find *.md *.tt *.txt 2>/dev/null)
+DIRS=etc lib bin sbin share
+INSTALL_DIRS=`find $(DIRS) -type d 2>/dev/null`
+INSTALL_FILES=`find $(DIRS) -type f 2>/dev/null`
+DOC_FILES=*.md *.txt
 
 PKG_DIR=pkg
 PKG_NAME=$(NAME)-$(VERSION)
@@ -17,8 +17,8 @@ DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
 pkg:
 	mkdir -p $(PKG_DIR)
 
-$(PKG): pkg $(FILES)
-	git archive --output=$(PKG) --prefix=$(PKG_NAME)/ master
+$(PKG): pkg
+	git archive --output=$(PKG) --prefix=$(PKG_NAME)/ HEAD
 
 build: $(PKG)
 
@@ -48,3 +48,5 @@ install:
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
 	rm -rf $(DOC_DIR)
+
+.PHONY: build sign clean tag release install uninstall all
