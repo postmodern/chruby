@@ -106,6 +106,12 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 * [rbenv]: `RUBIES=(~/.rbenv/versions/*)`
 * [rbfu]: `RUBIES=(~/.rbfu/rubies/*)`
 
+### Default Ruby
+
+If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc`:
+
+    chruby 1.9.3
+
 ## Examples
 
 List available Rubies:
