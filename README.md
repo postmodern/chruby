@@ -52,30 +52,36 @@ chruby can also be installed with [homebrew]:
 
 Once chruby has been installed, you will probably want to install additional
 Rubies. This can be done by copying and pasting the following commands,
-or via [ruby-build](https://github.com/sstephenson/ruby-build#readme).
+or via [ruby-build].
 
 ### MRI
 
-    wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p327.tar.gz
-    tar -xzvf ruby-1.9.3-p327.tar.gz
-    cd ruby-1.9.3-p327
-    ./configure --prefix=/usr/local/ruby-1.9.3-p237
-    make
-    make install
+* Requirements: [libyaml], [zlib], [openssl] and [readline].
+
+        wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p327.tar.gz
+        tar -xzvf ruby-1.9.3-p327.tar.gz
+        cd ruby-1.9.3-p327
+        ./configure --prefix=/usr/local/ruby-1.9.3-p237
+        make
+        make install
 
 ### JRuby
 
-    wget http://jruby.org.s3.amazonaws.com/downloads/1.7.0/jruby-bin-1.7.0.tar.gz
-    tar -xzvf jruby-bin-1.7.0.tar.gz -C /usr/local
+* Requirements: [Java]
+
+        wget http://jruby.org.s3.amazonaws.com/downloads/1.7.0/jruby-bin-1.7.0.tar.gz
+        tar -xzvf jruby-bin-1.7.0.tar.gz -C /usr/local
 
 ### Rubinius
 
-    wget -O rubinius-release-2.0.0-rc1.tar.gz https://github.com/rubinius/rubinius/archive/release-2.0.0-rc1.tar.gz
-    tar -xzvf rubinius-release-2.0.0-rc1.tar.gz
-    cd rubinius-release-2.0.0-rc1
-    ./configure --prefix=/usr/local/rubinius-2.0.0-rc1
-    rake
-    rake install
+* [Requirements](http://rubini.us/doc/en/getting-started/requirements/)
+
+        wget -O rubinius-release-2.0.0-rc1.tar.gz https://github.com/rubinius/rubinius/archive/release-2.0.0-rc1.tar.gz
+        tar -xzvf rubinius-release-2.0.0-rc1.tar.gz
+        cd rubinius-release-2.0.0-rc1
+        ./configure --prefix=/usr/local/rubinius-2.0.0-rc1
+        rake
+        rake install
 
 ## Configuration
 
@@ -175,10 +181,19 @@ Switch to an arbitrary Ruby on the fly:
 [zsh]: http://www.zsh.org/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
+[ruby-build]: https://github.com/sstephenson/ruby-build#readme
 
 [RVM]: https://rvm.io/
 [rbenv]: https://github.com/sstephenson/rbenv#readme
 [rbfu]: https://github.com/hmans/rbfu#readme
 [ry]: https://github.com/jayferd/ry#readme
+
+[flex]: http://flex.sourceforge.net/
+[bison]: http://www.gnu.org/software/bison/
+[zlib]: http://www.zlib.net/
+[libyaml]: http://pyyaml.org/wiki/LibYAML
+[openssl]: http://www.openssl.org/
+[readline]: http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+[Java]: http://www.java.com/en/download/index.jsp
 
 [1]: http://postmodern.github.com/contact.html#pgp
