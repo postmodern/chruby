@@ -89,7 +89,7 @@ Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
     . /usr/local/share/chruby/chruby.sh
     
-    RUBIES=(~/src/{ruby,jruby,rubinius}*)
+    RUBIES=(/usr/local/{ruby,jruby,rubinius}*)
 
 ### System Wide
 
@@ -98,10 +98,9 @@ Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
     . /usr/local/share/chruby/chruby.sh
     
     RUBIES=(
-      /usr/local/ruby-1.8.7-p370
-      /usr/local/ruby-1.9.3-p194
-      /usr/local/jruby-1.6.7.2
-      /usr/local/rubinius
+      /usr/local/ruby-1.9.3-p237
+      /usr/local/jruby-1.7.0
+      /usr/local/rubinius-2.0.0-rc1
     )
 
 ### Migrating
@@ -123,31 +122,29 @@ If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc`:
 List available Rubies:
 
     $ chruby
-       ruby-1.8.7-p370
-       ruby-1.9.3-p194
-       jruby-1.6.7.2
-       rubinius
+       ruby-1.9.3-p237
+       jruby-1.7.0
+       rubinius-2.0.0-rc1
 
 Select a Ruby:
 
-    $ chruby 1.8
+    $ chruby 1.9.3
     $ chruby
-     * ruby-1.8.7-p370
-       ruby-1.9.3-p194
-       jruby-1.6.7.2
-       rubinius
+     * ruby-1.9.3-p237
+       jruby-1.7.0
+       rubinius-2.0.0-rc1
     $ echo $PATH
-    /home/hal/.gem/ruby/1.8.7/bin:/usr/local/ruby-1.8.7-p370/lib/ruby/gems/1.8/bin:/usr/local/ruby-1.8.7-p370/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hal/bin
+    /home/hal/.gem/ruby/1.9.3/bin:/usr/local/ruby-1.9.3-p327/lib/ruby/gems/1.9.1/bin:/usr/local/ruby-1.9.3-p327/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
     $ echo $GEM_HOME
-    /home/hal/.gem/ruby/1.8.7
+    /home/hal/.gem/ruby/1.9.3
     $ echo $GEM_PATH
-    /home/hal/.gem/ruby/1.8.7:/usr/local/ruby-1.8.7-p370/lib/ruby/gems/1.8
+    /home/hal/.gem/ruby/1.9.3:/usr/local/ruby-1.9.3-p327/lib/ruby/gems/1.9.1
 
 Switch to JRuby in 1.9 mode:
 
     $ chruby jruby --1.9
     $ ruby -v
-    jruby 1.6.7.2 (ruby-1.9.2-p312) (2012-05-01 26e08ba) (OpenJDK 64-Bit Server VM 1.6.0_24) [linux-amd64-java]
+    jruby 1.7.0 (1.9.3p203) 2012-10-22 ff1ebbe on OpenJDK 64-Bit Server VM 1.7.0_09-icedtea-mockbuild_2012_10_17_15_53-b00 [linux-amd64]
 
 Switch back to system Ruby:
 
