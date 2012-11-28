@@ -71,6 +71,8 @@ or via [ruby-build].
 
         wget http://jruby.org.s3.amazonaws.com/downloads/1.7.0/jruby-bin-1.7.0.tar.gz
         tar -xzvf jruby-bin-1.7.0.tar.gz -C /usr/local
+        cd /usr/local/jruby-1.7.0/bin
+        ln -s jruby ruby
 
 ### Rubinius
 
