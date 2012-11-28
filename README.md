@@ -170,6 +170,11 @@ Switch to an arbitrary Ruby on the fly:
 
 -- [Michal Papis](https://twitter.com/mpapis/status/258049391791841280) of [RVM]
 
+> I just looooove [chruby](#readme) For the first time I'm in total control of
+> all aspects of my Ruby installation. 
+
+-- [Marius Mathiesen](https://twitter.com/zmalltalker/status/271192206268829696)
+
 ## Credits
 
 * [mpapis](https://github.com/mpapis) for reviewing the code.
