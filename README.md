@@ -74,6 +74,11 @@ or via [ruby-build].
         cd /usr/local/jruby-1.7.0/bin
         ln -s jruby ruby
 
+* For improved load times, install the [jruby-launcher] gem:
+
+        chruby jruby
+        gem install jruby-launcher
+
 ### Rubinius
 
 * [Requirements](http://rubini.us/doc/en/getting-started/requirements/)
@@ -199,5 +204,6 @@ Switch to an arbitrary Ruby on the fly:
 [openssl]: http://www.openssl.org/
 [readline]: http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
 [Java]: http://www.java.com/en/download/index.jsp
+[jruby-launcher]: https://github.com/jruby/jruby-launcher
 
 [1]: http://postmodern.github.com/contact.html#pgp
