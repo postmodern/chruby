@@ -89,6 +89,16 @@ or via [ruby-build].
         ./configure --prefix=/usr/local/rubinius-2.0.0-rc1
         rake
         rake install
+        
+### MRuby
+
+* Requirements: [Bison]
+
+        git clone https://github.com/mruby/mruby.git /usr/local/mruby-dev
+        cd /usr/local/mruby-dev
+        make
+
+(MRuby commands are mirb (irb), mrbc (compile to C), and mruby (ruby). MRuby does not support RubyGems.)
 
 ## Configuration
 
