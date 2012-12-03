@@ -7,6 +7,11 @@ case "$1" in
 		;;
 esac
 
+if [[ $# -eq 0 ]]; then
+	echo "chruby-exec: RUBY and COMMAND required" >&2
+	exit 1
+fi
+
 argv=()
 
 for arg in $@; do
