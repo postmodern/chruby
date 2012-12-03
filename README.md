@@ -167,7 +167,7 @@ Switch to an arbitrary Ruby on the fly:
 
 Select a Ruby within a cron job:
 
-    30 18 * * *   bash -c "chruby 1.9.3 && /path/to/script"
+    30 18 * * *   bash -lc "chruby 1.9.3 && /path/to/script"
 
 ## Alternatives
 
