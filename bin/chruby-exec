@@ -1,0 +1,25 @@
+#!/bin/sh -l
+
+case "$1" in
+	-h|--help)
+		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
+		exit
+		;;
+esac
+
+argv=()
+
+for arg in $@; do
+	shift
+
+	[[ "$arg" == "--" ]] && break
+
+	argv+=($arg)
+done
+
+if [[ $# -eq 0 ]]; then
+	echo "chruby-exec: COMMAND required" >&2
+	exit 1
+fi
+
+chruby $argv && eval $@
