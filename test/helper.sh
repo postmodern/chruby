@@ -3,7 +3,10 @@
 [[ -z "$SHUNIT2"     ]] && SHUNIT2=/usr/share/shunit2/shunit2
 [[ -n "$ZSH_VERSION" ]] && setopt shwordsplit
 
+<<<<<<< HEAD
 . ./share/chruby/chruby.sh
+export PATH="$PWD/bin:$PATH"
+
 chruby_reset
 
 TEST_PATH="$PATH"
@@ -13,7 +16,7 @@ TEST_RUBY_PATCHLEVEL="327"
 TEST_RUBY_API="1.9.1"
 TEST_RUBY="/opt/rubies/ruby-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
 
-RUBIES=($TEST_RUBY)
+export RUBIES=($TEST_RUBY)
 
 setUp() { return; }
 tearDown() { return; }
