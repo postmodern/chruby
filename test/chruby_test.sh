@@ -22,4 +22,11 @@ function test_chruby_system()
 	assertNull "did not reset the Ruby" "$RUBY"
 }
 
+function test_chruby_unknown()
+{
+	chruby "foo" 2>/dev/null
+
+	assertEquals "did not return 1" $? 1
+}
+
 SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2
