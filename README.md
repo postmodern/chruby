@@ -163,6 +163,12 @@ Switch to an arbitrary Ruby on the fly:
 
     $ chruby_use /path/to/ruby
 
+### Cron
+
+Select a Ruby within a cron job:
+
+    30 18 * * *   bash -c "chruby 1.9.3 && /path/to/script"
+
 ## Alternatives
 
 * [RVM]
