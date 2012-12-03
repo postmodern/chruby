@@ -61,7 +61,7 @@ or via [ruby-build].
         wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p327.tar.gz
         tar -xzvf ruby-1.9.3-p327.tar.gz
         cd ruby-1.9.3-p327
-        ./configure --prefix=/usr/local/ruby-1.9.3-p237
+        ./configure --prefix=/usr/local/ruby-1.9.3-p327
         make
         make install
 
