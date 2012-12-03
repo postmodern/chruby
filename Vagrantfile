@@ -2,6 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
+  config.vm.define :debian do |debian|
+    debian.vm.box = 'debian-squeeze-amd64'
+  end
+
   config.vm.define :ubuntu do |ubuntu|
     ubuntu.vm.box = 'ubuntu-12.04-amd64'
   end
