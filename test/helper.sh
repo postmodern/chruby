@@ -16,7 +16,7 @@ TEST_RUBY_PATCHLEVEL="327"
 TEST_RUBY_API="1.9.1"
 TEST_RUBY="/opt/rubies/ruby-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
 
-export RUBIES=($TEST_RUBY)
+RUBIES=($TEST_RUBY)
 
 setUp() { return; }
 tearDown() { return; }
