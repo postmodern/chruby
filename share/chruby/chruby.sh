@@ -42,6 +42,17 @@ EOF`
 	fi
 }
 
+__complete_chruby() {
+  local cur rubie basenames
+  typeset -a basenames
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  for rubie in ${RUBIES[@]}; do
+    basenames+=($(basename $rubie))
+  done
+  COMPREPLY=( $(compgen -W "${basenames[*]}" -- ${cur}) )
+}
+complete -F __complete_chruby chruby
+
 function chruby()
 {
 	local ruby_path
