@@ -12,12 +12,12 @@ setUp()
 
 	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY/bin:$TEST_PATH"
 
-	chruby_use "$TEST_RUBY"
+	__chruby_use "$TEST_RUBY"
 }
 
-test_chruby_reset()
+test___chruby_reset()
 {
-	chruby_reset
+	__chruby_reset
 
 	assertNull "RUBY was not unset"          "$RUBY"
 	assertNull "RUBY_ENGINE was not unset"   "$RUBY_ENGINE"
@@ -29,11 +29,11 @@ test_chruby_reset()
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
 
-test_chruby_reset_duplicate_path()
+test___chruby_reset_duplicate_path()
 {
 	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY/bin"
 
-	chruby_reset
+	__chruby_reset
 
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }

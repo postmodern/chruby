@@ -4,7 +4,7 @@
 
 . ./share/chruby/chruby.sh
 
-chruby_reset
+__chruby_reset
 
 TEST_PATH="$PATH"
 TEST_RUBY_ENGINE="ruby"
