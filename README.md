@@ -105,7 +105,7 @@ Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
     . /usr/local/share/chruby/chruby.sh
     
     RUBIES=(
-      /usr/local/ruby-1.9.3-p237
+      /usr/local/ruby-1.9.3-p327
       /usr/local/jruby-1.7.0
       /usr/local/rubinius-2.0.0-rc1
     )
@@ -129,7 +129,7 @@ If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc`:
 List available Rubies:
 
     $ chruby
-       ruby-1.9.3-p237
+       ruby-1.9.3-p327
        jruby-1.7.0
        rubinius-2.0.0-rc1
 
@@ -137,7 +137,7 @@ Select a Ruby:
 
     $ chruby 1.9.3
     $ chruby
-     * ruby-1.9.3-p237
+     * ruby-1.9.3-p327
        jruby-1.7.0
        rubinius-2.0.0-rc1
     $ echo $PATH
