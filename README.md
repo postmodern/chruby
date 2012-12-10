@@ -142,6 +142,7 @@ Select a Ruby within a cron job:
 * [rbenv]
 * [rbfu]
 * [ry]
+* [ruby-version]
 
 ## Endorsements
 
@@ -169,6 +170,7 @@ Select a Ruby within a cron job:
 [rbenv]: https://github.com/sstephenson/rbenv#readme
 [rbfu]: https://github.com/hmans/rbfu#readme
 [ry]: https://github.com/jayferd/ry#readme
+[ruby-version]: https://github.com/wilmoore/ruby-version#readme
 
 [flex]: http://flex.sourceforge.net/
 [bison]: http://www.gnu.org/software/bison/
