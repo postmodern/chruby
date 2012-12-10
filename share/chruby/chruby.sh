@@ -1,6 +1,6 @@
 typeset -a RUBIES
 
-function chruby_reset()
+function __chruby_reset()
 {
 	[[ -z "$RUBY" ]] && return
 
@@ -19,10 +19,10 @@ function chruby_reset()
 	hash -r
 }
 
-function chruby_use()
+function __chruby_use()
 {
 	[[ "$RUBY" == "$1" && "$RUBYOPT" == "$2" ]] && return
-	[[ -n "$RUBY" ]] && chruby_reset
+	[[ -n "$RUBY" ]] && __chruby_reset
 
 	export RUBY="$1"
 	export RUBYOPT="$2"
@@ -41,6 +41,17 @@ EOF`
 		export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$PATH"
 	fi
 }
+
+__complete_chruby() {
+  local cur rubie basenames
+  typeset -a basenames
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  for rubie in ${RUBIES[@]}; do
+    basenames+=($(basename $rubie))
+  done
+  COMPREPLY=( $(compgen -W "${basenames[*]}" -- ${cur}) )
+}
+complete -F __complete_chruby chruby
 
 function chruby()
 {
@@ -61,12 +72,12 @@ function chruby()
 				echo " $star $(basename "$ruby_path")"
 			done
 			;;
-		system) chruby_reset ;;
+		system) __chruby_reset ;;
 		*)
 			for ruby_path in ${RUBIES[@]}; do
 				if [[ `basename "$ruby_path"` == *$1* ]]; then
 					shift
-					chruby_use "$ruby_path" "$*"
+					__chruby_use "$ruby_path" "$*"
 					return
 				fi
 			done

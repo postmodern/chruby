@@ -4,17 +4,17 @@
 
 tearDown()
 {
-	chruby_reset
+	__chruby_reset
 }
 
-test_chruby_1_9()
+test___chruby_1_9()
 {
 	chruby "1.9"
 
 	assertEquals "did not match $TEST_RUBY with 1.9" "$TEST_RUBY" "$RUBY"
 }
 
-test_chruby_system()
+test___chruby_system()
 {
 	chruby "$TEST_RUBY_VERSION"
 	chruby system
@@ -22,7 +22,7 @@ test_chruby_system()
 	assertNull "did not reset the Ruby" "$RUBY"
 }
 
-test_chruby_unknown()
+test___chruby_unknown()
 {
 	chruby "foo" 2>/dev/null
 

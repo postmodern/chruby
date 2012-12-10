@@ -4,10 +4,10 @@
 
 setUp()
 {
-	chruby_use $TEST_RUBY
+	__chruby_use $TEST_RUBY
 }
 
-test_chruby_use()
+test___chruby_use()
 {
 	assertEquals "invalid RUBY" "$TEST_RUBY" "$RUBY"
 	assertEquals "invalid RUBY_ENGINE"  "$TEST_RUBY_ENGINE" "$RUBY_ENGINE"
@@ -20,7 +20,7 @@ test_chruby_use()
 }
 
 tearDown() {
-	chruby_reset
+	__chruby_reset
 }
 
 SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2
