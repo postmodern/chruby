@@ -9,8 +9,8 @@ Changes the current Ruby.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
   * Users: gems are installed into `~/.gem/$ruby/$version`.
   * Root: gems are installed directly into `/path/to/$ruby/$gemdir`.
-* Optionally sets `$RUBYOPT` is a second argument is given.
 * Additionally sets `$RUBY`, `$RUBY_ENGINE`, `$RUBY_VERSION` and `$GEM_ROOT`.
+* Optionally sets `$RUBYOPT` if second argument is given.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
