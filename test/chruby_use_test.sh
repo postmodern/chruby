@@ -23,4 +23,4 @@ tearDown() {
 	chruby_reset
 }
 
-SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2
+SHUNIT_PARENT=$0 . $SHUNIT_BIN
