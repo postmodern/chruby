@@ -52,7 +52,7 @@ make install
 #
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
 #
-log "Installing dependencies for Ruby ..."
+log "Installing dependencies for Ruby $RUBY_VERSION ..."
 
 case "$PACKAGE_MANAGER" in
 	apt) apt-get install -y build-essential zlib1g-dev libyaml-dev \
