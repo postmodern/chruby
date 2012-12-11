@@ -6,10 +6,13 @@ function chruby_reset()
 
 	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY\/bin:/:}
 
-	[[ -n "$GEM_HOME" ]] && export PATH=${PATH//:$GEM_HOME\/bin:/:}
-	[[ -n "$GEM_ROOT" ]] && export PATH=${PATH//:$GEM_ROOT\/bin:/:}
+	if [[ -n "$GEM_HOME" ]] && [[ -n "$GEM_ROOT" ]]; then
+		export PATH=${PATH//:$GEM_HOME\/bin:/:}
+		export PATH=${PATH//:$GEM_ROOT\/bin:/:}
+	fi
 
 	export PATH=${PATH#:}; export PATH=${PATH%:}
+
 	unset RUBY RUBY_ENGINE RUBY_VERSION RUBYOPT GEM_ROOT GEM_HOME GEM_PATH
 	hash -r
 }
