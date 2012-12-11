@@ -38,4 +38,4 @@ test_chruby_reset_duplicate_path()
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
 
-SHUNIT_PARENT=$0 . $SHUNIT_BIN
+SHUNIT_PARENT=$0 . $SHUNIT2

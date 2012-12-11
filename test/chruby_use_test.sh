@@ -23,4 +23,4 @@ tearDown() {
 	chruby_reset
 }
 
-SHUNIT_PARENT=$0 . $SHUNIT_BIN
+SHUNIT_PARENT=$0 . $SHUNIT2
