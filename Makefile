@@ -13,6 +13,7 @@ SIG=$(PKG_DIR)/$(PKG_NAME).asc
 
 PREFIX?=/usr/local
 DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
+SHUNIT_BIN?=/usr/share/shunit2/shunit2
 
 pkg:
 	mkdir -p $(PKG_DIR)
@@ -33,8 +34,8 @@ clean:
 all: $(PKG) $(SIG)
 
 test:
-	SHELL=`which bash` ./test/runner
-	SHELL=`which zsh` ./test/runner
+	SHELL=`which bash` SHUNIT_BIN=$(SHUNIT_BIN) ./test/runner
+	SHELL=`which zsh`  SHUNIT_BIN=$(SHUNIT_BIN) ./test/runner
 
 tag:
 	git push

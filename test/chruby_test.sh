@@ -29,4 +29,4 @@ test_chruby_unknown()
 	assertEquals "did not return 1" $? 1
 }
 
-SHUNIT_PARENT=$0 . /usr/share/shunit2/shunit2
+SHUNIT_PARENT=$0 . $SHUNIT_BIN
