@@ -17,9 +17,9 @@ argv=()
 for arg in $@; do
 	shift
 
-	[[ "$arg" == "--" ]] && break
-
-	argv+=($arg)
+	if [[ "$arg" == "--" ]]; then break
+	else                          argv+=($arg)
+	fi
 done
 
 if [[ $# -eq 0 ]]; then
