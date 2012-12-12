@@ -1,7 +1,7 @@
 typeset -a RUBIES
 
-for rubies in /usr/rubies /usr/local/rubies /opt/rubies "$HOME"/.rubies; do
-	[[ -d "$rubies" ]] && RUBIES+=("$rubies"/*)
+for rubies in /opt/rubies "$HOME"/.rubies; do
+	[[ -d "$rubies"]] && RUBIES+=("$rubies"/*)
 done
 
 function chruby_reset()
