@@ -41,9 +41,9 @@ class Chruby < Formula
     else
       message << %{
       RUBIES=(
-        /usr/local/ruby-1.9.3-p327
-        /usr/local/jruby-1.7.0
-        /usr/local/rubinius-2.0.0-rc1
+        /opt/ruby-1.9.3-p327
+        /opt/jruby-1.7.0
+        /opt/rubinius-2.0.0-rc1
       )
       }
     end
