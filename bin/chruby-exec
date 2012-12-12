@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/sh
 
 case "$1" in
 	-h|--help)
@@ -27,4 +27,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-chruby $argv && eval $@
+exec $SHELL -lc "chruby $argv && $*"
