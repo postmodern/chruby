@@ -14,13 +14,8 @@ if [[ -n "$ZSH_VERSION" ]]; then
 	chpwd_functions=(${chpwd_functions[@]} "chruby_auto")
 else
 	function cd() { 
-		if
-			builtin cd "$@"
-		then
-			chruby_auto
-			return 0
-		else
-			return $?
+		if builtin cd "$@"; then chruby_auto; return 0
+		else                     return $?
 		fi
 	}
 fi
