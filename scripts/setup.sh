@@ -2,22 +2,22 @@
 
 set -e
 
-export PREFIX="/opt/rubies"
-export SRC_DIR="$PREFIX/src"
+export RUBIES_DIR="/opt/rubies"
+export SRC_DIR="$RUBIES_DIR/src"
 
 CHRUBY_VERSION="0.2.1"
 
 RUBY_BUILD_VERSION="20121110"
-RUBY_BUILD="$PREFIX/bin/ruby-build"
+RUBY_BUILD="$RUBIES_DIR/bin/ruby-build"
 
 MRI_VERSION="1.9.3-p327"
-MRI_PATH="$PREFIX/ruby-$MRI_VERSION"
+MRI_PATH="$RUBIES_DIR/ruby-$MRI_VERSION"
 
 JRUBY_VERSION="1.7.0"
-JRUBY_PATH="$PREFIX/jruby-$JRUBY_VERSION"
+JRUBY_PATH="$RUBIES_DIR/jruby-$JRUBY_VERSION"
 
 RUBINIUS_VERSION="2.0.0-rc1"
-RUBINIUS_PATH="$PREFIX/rubinius-$RUBINIUS_VERSION"
+RUBINIUS_PATH="$RUBIES_DIR/rubinius-$RUBINIUS_VERSION"
 
 function log() {
 	if [[ -t 1 ]]; then echo -e "\e[1m\e[32m>>>\e[0m \e[1m\e[37m$1\e[0m"
