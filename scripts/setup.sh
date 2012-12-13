@@ -49,7 +49,7 @@ fi
 log "Installing chruby ..."
 make install
 
-[[ ! -d "$PREFIX" ]] && sudo install -d $PREFIX
+[[ ! -d "$PREFIX" ]] && sudo install -d "$PREFIX"
 
 #
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
@@ -76,7 +76,7 @@ tar -xzvf ruby-$MRI_VERSION.tar.gz
 cd ruby-$MRI_VERSION
 
 log "Configuring Ruby $MRI_VERSION ..."
-./configure --prefix=$PREFIX/ruby-$MRI_VERSION
+./configure --prefix="$PREFIX/ruby-$MRI_VERSION"
 
 log "Compiling Ruby $MRI_VERSION ..."
 make
@@ -103,8 +103,8 @@ log "Downloading JRuby $JRUBY_VERSION ..."
 wget http://jruby.org.s3.amazonaws.com/downloads/$JRUBY_VERSION/jruby-bin-$JRUBY_VERSION.tar.gz
 
 log "Installing JRuby $JRUBY_VERSION ..."
-tar -xzvf jruby-bin-$JRUBY_VERSION.tar.gz -C $PREFIX
-ln -s jruby $PREFIX/jruby-$JRUBY_VERSION/bin/ruby
+tar -xzvf jruby-bin-$JRUBY_VERSION.tar.gz -C "$PREFIX"
+ln -s jruby "$PREFIX/jruby-$JRUBY_VERSION/bin/ruby"
 
 #
 # Install Rubinius (https://github.com/postmodern/chruby/wiki/Rubinius)
