@@ -10,7 +10,7 @@ JRUBY_VERSION="1.7.0"
 RUBINIUS_VERSION="2.0.0-rc1"
 
 [[ -z "$RUBIES_DIR"  ]] && export RUBIES_DIR="/opt/rubies"
-[[ -z "$SRC_DIR" ]] && export SRC_DIR="$RUBIES_DIR/src"
+[[ -z "$SRC_DIR" ]] && export SRC_DIR="/usr/local/src"
 
 #
 # Functions
