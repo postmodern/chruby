@@ -39,6 +39,8 @@ function warning() {
 if   [[ $(type -t apt-get) == "file" ]]; then PACKAGE_MANAGER="apt"
 elif [[ $(type -t yum)     == "file" ]]; then PACKAGE_MANAGER="yum"
 elif [[ $(type -t brew)    == "file" ]]; then PACKAGE_MANAGER="homebrew"
+else
+	warning "Could not determine Package Manager. Proceeding anyways."
 fi
 
 #
