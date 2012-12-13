@@ -32,15 +32,7 @@ function error() {
 #
 if   [[ $(type -t apt-get) == "file" ]]; then PACKAGE_MANAGER="apt"
 elif [[ $(type -t yum)     == "file" ]]; then PACKAGE_MANAGER="yum"
-elif [[ $(type -t brew)    == "file" ]]; then
-	PACKAGE_MANAGER="homebrew"
-
-	if [[ $(type -t cc) != "file" ]] || [[ $(type -t cpp) != "file" ]]; then
-		error "Could not find a C/C++ compiler"
-		error "Please install Command Line Tools:"
-		error "  https://developer.apple.com/downloads/index.action"
-		exit 1
-	fi
+elif [[ $(type -t brew)    == "file" ]]; then PACKAGE_MANAGER="homebrew"
 fi
 
 #
