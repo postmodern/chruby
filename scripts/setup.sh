@@ -32,7 +32,7 @@ function error() {
 #
 if   [[ $(type -t apt-get) == "file" ]]; then PACKAGE_MANAGER="apt"
 elif [[ $(type -t yum)     == "file" ]]; then PACKAGE_MANAGER="yum"
-elif [[ $(type -t brew)    == "file" ]];
+elif [[ $(type -t brew)    == "file" ]]; then
 	PACKAGE_MANAGER="homebrew"
 
 	if [[ $(type -t cc) != "file" ]] || [[ $(type -t cpp) != "file" ]]; then
