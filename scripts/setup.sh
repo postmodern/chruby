@@ -2,7 +2,7 @@
 
 set -e
 
-export PREFIX="/usr/local"
+export PREFIX="/opt/rubies"
 export SRC_DIR="$PREFIX/src"
 
 CHRUBY_VERSION="0.2.1"

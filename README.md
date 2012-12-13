@@ -72,9 +72,9 @@ Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
     . /usr/local/share/chruby/chruby.sh
     
     RUBIES=(
-      /opt/ruby-1.9.3-p327
-      /opt/jruby-1.7.0
-      /opt/rubinius-2.0.0-rc1
+      /opt/rubies/ruby-1.9.3-p327
+      /opt/rubies/jruby-1.7.0
+      /opt/rubies/rubinius-2.0.0-rc1
     )
 
 ### Migrating
@@ -108,11 +108,11 @@ Select a Ruby:
        jruby-1.7.0
        rubinius-2.0.0-rc1
     $ echo $PATH
-    /home/hal/.gem/ruby/1.9.3/bin:/opt/ruby-1.9.3-p327/lib/ruby/gems/1.9.1/bin:/opt/ruby-1.9.3-p327/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
+    /home/hal/.gem/ruby/1.9.3/bin:/opt/rubies/ruby-1.9.3-p327/lib/ruby/gems/1.9.1/bin:/opt/rubies/ruby-1.9.3-p327/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
     $ echo $GEM_HOME
     /home/hal/.gem/ruby/1.9.3
     $ echo $GEM_PATH
-    /home/hal/.gem/ruby/1.9.3:/opt/ruby-1.9.3-p327/lib/ruby/gems/1.9.1
+    /home/hal/.gem/ruby/1.9.3:/opt/rubies/ruby-1.9.3-p327/lib/ruby/gems/1.9.1
 
 Switch to JRuby in 1.9 mode:
 
