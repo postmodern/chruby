@@ -49,6 +49,8 @@ fi
 log "Installing chruby ..."
 make install
 
+[[ ! -d "$PREFIX" ]] && sudo install -d $PREFIX
+
 #
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
 #
