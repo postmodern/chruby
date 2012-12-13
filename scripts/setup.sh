@@ -22,8 +22,14 @@ function log() {
 }
 
 function error() {
-	if [[ -t 1 ]]; then echo -e "\e[1m\e[33m!!!\e[0m \e[1m\e[37m$1\e[0m" >&2
+	if [[ -t 1 ]]; then echo -e "\e[1m\e[31m!!!\e[0m \e[1m\e[37m$1\e[0m" >&2
 	else		    echo "!!! $1" >&2
+	fi
+}
+
+function warning() {
+	if [[ -t 1 ]]; then echo -e "\e[1m\e[33m***\e[0m \e[1m\e[37m$1\e[0m" >&2
+	else		    echo "*** $1" >&2
 	fi
 }
 
