@@ -41,6 +41,7 @@ fi
 log "Installing chruby ..."
 make install
 
+install -d "$SRC_DIR"
 install -d "$RUBIES_DIR"
 
 #
