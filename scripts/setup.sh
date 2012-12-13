@@ -49,7 +49,7 @@ fi
 log "Installing chruby ..."
 make install
 
-[[ ! -d "$RUBIES_DIR" ]] && install -d "$RUBIES_DIR"
+install -d "$RUBIES_DIR"
 
 #
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
