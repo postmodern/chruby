@@ -3,7 +3,7 @@
 set -e
 
 export RUBIES_DIR="/opt/rubies"
-export SRC_DIR="$RUBIES_DIR/src"
+export SRC_DIR="/usr/local/src"
 
 CHRUBY_VERSION="0.2.1"
 
