@@ -10,7 +10,7 @@ JRUBY_VERSION="1.7.0"
 RUBINIUS_VERSION="2.0.0-rc1"
 
 [[ -z "$RUBIES_DIR"  ]] && export RUBIES_DIR="/opt/rubies"
-[[ -z "$SRC_DIR" ]] && export SRC_DIR="/usr/local/src"
+[[ -z "$SRC_DIR"     ]] && export SRC_DIR="/usr/local/src"
 
 #
 # Functions
@@ -84,9 +84,6 @@ log "Installing dependencies for JRuby ..."
 case "$PACKAGE_MANAGER" in
 	apt)	apt-get install -y openjdk-7-jdk ;;
 	yum)	yum install -y java-1.7.0-openjdk ;;
-	homebrew)
-		# prompt user to install OracleJDK
-		;;
 esac
 
 cd $SRC_DIR
@@ -107,8 +104,8 @@ case "$PACKAGE_MANAGER" in
 	apt)
 		# Debian
 		apt-get install -y gcc g++ automake flex bison ruby-dev rake \
-		zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev \
-		libncurses5-dev
+		                   zlib1g-dev libyaml-dev libssl-dev \
+				   libgdbm-dev libreadline-dev libncurses5-dev
 
 		# Ubuntu
 		apt-get install -y gcc g++ automake flex bison ruby-dev rake \
@@ -117,10 +114,12 @@ case "$PACKAGE_MANAGER" in
 				   libncurses5-dev
 		update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-3.0 30
 		;;
-	yum)	yum install -y gcc gcc-c++ automake flex bison ruby-devel \
+	yum)
+		yum install -y gcc gcc-c++ automake flex bison ruby-devel \
 		               rubygems rubygem-rake llvm-devel zlib-devel \
 			       libyaml-devel openssl-devel gdbm-devel \
-			       readline-devel ncurses-devel ;;
+			       readline-devel ncurses-devel
+		;;
 	homebrew)	brew install libyaml gdbm ;;
 esac
 
