@@ -7,7 +7,7 @@ function chruby_auto() {
 }
 
 if [[ -n "$ZSH_VERSION" ]]; then
-	precmd_functions=(${precmd_functions[@]} "chruby_auto")
+	precmd_functions+=("chruby_auto")
 else
 	PROMPT_COMMAND="chruby_auto; $PROMPT_COMMAND"
 fi
