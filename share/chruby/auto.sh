@@ -1,21 +1,13 @@
 function chruby_auto() {
-	local version_file="$PWD/.ruby-version"
-
-	if   [[ -f "$version_file"   ]]; then
-		chruby $(cat "$version_file")
-		export RUBY_VERSIONED_DIRECTORY="$PWD"
-	elif [[ "$PWD" != "$RUBY_VERSIONED_DIRECTORY"/* ]]; then
-		chruby_reset
-		unset RUBY_VERSIONED_DIRECTORY
+	if [[ -f .ruby-version ]]; then
+		chruby $(cat .ruby-version) && export RUBY_VERSIONED_DIR="$PWD"
+	elif [[ "$PWD" != "$RUBY_VERSIONED_DIR"/* ]]; then
+		chruby_reset; unset RUBY_VERSIONED_DIR
 	fi
 }
 
 if [[ -n "$ZSH_VERSION" ]]; then
-	chpwd_functions=(${chpwd_functions[@]} "chruby_auto")
+	precmd_functions=(${precmd_functions[@]} "chruby_auto")
 else
-	function cd() { 
-		if builtin cd "$@"; then chruby_auto; return 0
-		else                     return $?
-		fi
-	}
+	PROMPT_COMMAND="chruby_auto; $PROMPT_COMMAND"
 fi
