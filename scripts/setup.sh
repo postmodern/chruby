@@ -163,3 +163,17 @@ else
 fi
 
 log "Setup complete! Please restart the shell"
+
+#
+# Post Install
+#
+case "$PACKAGE_MANAGER" in
+	apt)	;;
+	yum)	;;
+	homebrew)
+		log
+		log "In order to use JRuby you must install OracleJDK:"
+		log "  http://www.oracle.com/technetwork/java/javase/downloads/index.html"
+		log
+		;;
+esac
