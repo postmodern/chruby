@@ -42,12 +42,6 @@ with:
     wget https://github.com/downloads/postmodern/chruby/chruby-0.2.3.tar.gz.asc
     gpg --verify chruby-0.2.3.tar.gz.asc chruby-0.2.3.tar.gz
 
-### Homebrew
-
-chruby can also be installed with [homebrew]:
-
-    brew install https://raw.github.com/postmodern/chruby/master/homebrew/chruby.rb
-
 ### setup.sh
 
 chruby also includes a `setup.sh` script, which includes chruby and the latest
@@ -55,6 +49,12 @@ releases of [MRI], [JRuby] and [Rubinius]. Simply run the script as root
 or via `sudo`:
 
     $ sudo ./scripts/setup.sh
+
+### Homebrew
+
+chruby can also be installed with [homebrew]:
+
+    brew install https://raw.github.com/postmodern/chruby/master/homebrew/chruby.rb
 
 ### Rubies
 
