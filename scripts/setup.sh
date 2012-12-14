@@ -188,9 +188,7 @@ case "$PACKAGE_MANAGER" in
 	apt)	;;
 	yum)	;;
 	brew)
-		log
-		log "In order to use JRuby you must install OracleJDK:"
-		log "  http://www.oracle.com/technetwork/java/javase/downloads/index.html"
-		log
+		warning "In order to use JRuby you must install OracleJDK:"
+		warning "  http://www.oracle.com/technetwork/java/javase/downloads/index.html"
 		;;
 esac
