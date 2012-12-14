@@ -1,8 +1,7 @@
 typeset -a RUBIES
 
-for rubies in /opt/rubies "$HOME"/.rubies; do
-	[[ -d "$rubies"]] && RUBIES+=("$rubies"/*)
-done
+[[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
+[[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/*)
 
 function chruby_reset()
 {
