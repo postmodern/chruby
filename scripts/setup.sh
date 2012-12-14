@@ -38,7 +38,7 @@ function warning() {
 #
 if   [[ $(type -t apt-get) == "file" ]]; then PACKAGE_MANAGER="apt"
 elif [[ $(type -t yum)     == "file" ]]; then PACKAGE_MANAGER="yum"
-elif [[ $(type -t brew)    == "file" ]]; then PACKAGE_MANAGER="homebrew"
+elif [[ $(type -t brew)    == "file" ]]; then PACKAGE_MANAGER="brew"
 else
 	warning "Could not determine Package Manager. Proceeding anyways."
 fi
@@ -59,7 +59,7 @@ log "Synching the Package Manager"
 case "$PACKAGE_MANAGER" in
 	apt)	apt-get update ;;
 	yum)	yum updateinfo ;;
-	homebrew) brew update ;;
+	brew)	brew update ;;
 esac
 
 #
@@ -68,13 +68,13 @@ esac
 log "Installing dependencies for Ruby $RUBY_VERSION ..."
 
 case "$PACKAGE_MANAGER" in
-	apt) apt-get install -y build-essential zlib1g-dev libyaml-dev \
-			        libssl-dev libgdbm-dev libreadline-dev \
-				libncurses5-dev libffi-dev ;;
-	yum) yum install -y gcc automake zlib-devel libyaml-devel \
-			    openssl-devel gdbm-devel readline-devel \
-			    ncurses-devel libffi-devel ;;
-	homebrew) brew install libyaml gdbm libffi ;;
+	apt)	apt-get install -y build-essential zlib1g-dev libyaml-dev \
+			           libssl-dev libgdbm-dev libreadline-dev \
+				   libncurses5-dev libffi-dev ;;
+	yum)	yum install -y gcc automake zlib-devel libyaml-devel \
+			       openssl-devel gdbm-devel readline-devel \
+			       ncurses-devel libffi-devel ;;
+	brew)	brew install libyaml gdbm libffi ;;
 esac
 
 cd $SRC_DIR
@@ -139,7 +139,7 @@ case "$PACKAGE_MANAGER" in
 			       libyaml-devel openssl-devel gdbm-devel \
 			       readline-devel ncurses-devel
 		;;
-	homebrew)	brew install libyaml gdbm ;;
+	brew)	brew install libyaml gdbm ;;
 esac
 
 log "Downloading Rubinius $RUBINIUS_VERSION ..."
@@ -188,7 +188,7 @@ log "Setup complete! Please restart the shell"
 case "$PACKAGE_MANAGER" in
 	apt)	;;
 	yum)	;;
-	homebrew)
+	brew)
 		log
 		log "In order to use JRuby you must install OracleJDK:"
 		log "  http://www.oracle.com/technetwork/java/javase/downloads/index.html"
