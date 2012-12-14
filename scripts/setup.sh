@@ -173,10 +173,10 @@ EOS`
 log "Configuring chruby ..."
 
 if [[ -d /etc/profile.d/ ]]; then
-	# GNU/Linux
+	# Bash/Zsh
 	echo "$CHRUBY_CONFIG" > /etc/profile.d/chruby.sh
 else
-	# *nix
+	# Other
 	echo "$CHRUBY_CONFIG" >> /etc/profile
 fi
 
