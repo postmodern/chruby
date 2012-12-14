@@ -161,7 +161,7 @@ rake install
 CHRUBY_CONFIG=`cat <<EOS
 #!/bin/sh
 
-. $RUBIES_DIR/share/chruby/chruby.sh
+source $RUBIES_DIR/share/chruby/chruby.sh
 
 RUBIES=(
   $RUBIES_DIR/ruby-$MRI_VERSION
