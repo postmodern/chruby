@@ -157,7 +157,7 @@ Select a Ruby within a cron job:
 -- [Marius Mathiesen](https://twitter.com/zmalltalker/status/271192206268829696)
 
 > Written by Postmodern, it's basically the simplest possible thing that can
-> work. As in, [76 lines of shell script](https://github.com/postmodern/chruby/blob/master/share/chruby/chruby.sh).
+> work.
 
 -- [Steve Klabnik](http://blog.steveklabnik.com/posts/2012-12-13-getting-started-with-chruby)
 
