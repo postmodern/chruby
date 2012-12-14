@@ -102,6 +102,7 @@ log "Installing dependencies for JRuby ..."
 case "$PACKAGE_MANAGER" in
 	apt)	apt-get install -y openjdk-7-jdk ;;
 	yum)	yum install -y java-1.7.0-openjdk ;;
+	brew)	;;
 esac
 
 cd $SRC_DIR
