@@ -41,7 +41,7 @@ tag:
 	git tag -s -m "Tagging $(VERSION)" v$(VERSION)
 	git push --tags
 
-release: $(PKG) $(SIG) tag
+release: build tag
 
 install:
 	for dir in $(INSTALL_DIRS); do install -d $(PREFIX)/$$dir; done
