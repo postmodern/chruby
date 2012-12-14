@@ -58,8 +58,8 @@ chruby can also be installed with [homebrew]:
 
 ### Rubies
 
-Once chruby has been installed, you will probably want to install additional
-Rubies. This can be done with the [ruby-build] utility or manually:
+Once chruby has been installed, you may want to install additional Rubies:
+This can be done with the [ruby-build] utility or manually:
 
 * [MRI](https://github.com/postmodern/chruby/wiki/MRI)
 * [JRuby](https://github.com/postmodern/chruby/wiki/JRuby)
