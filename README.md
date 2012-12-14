@@ -61,7 +61,7 @@ Rubies. This can be done with the [ruby-build] utility or manually:
 
 Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
-    . /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/chruby.sh
     
     RUBIES=(/opt/rubies/*)
 
@@ -69,7 +69,7 @@ Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
 Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
 
-    . /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/chruby.sh
     
     RUBIES=(
       /opt/rubies/ruby-1.9.3-p327
