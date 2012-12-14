@@ -49,8 +49,18 @@ fi
 log "Installing chruby ..."
 make install
 
+#
+# Pre Install
+#
 install -d "$SRC_DIR"
 install -d "$RUBIES_DIR"
+
+log "Synching the Package Manager"
+case "$PACKAGE_MANAGER" in
+	apt)	apt-get update ;;
+	yum)	yum updateinfo ;;
+	homebrew) brew update ;;
+esac
 
 #
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
