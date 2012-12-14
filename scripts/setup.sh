@@ -9,8 +9,9 @@ MRI_VERSION="1.9.3-p327"
 JRUBY_VERSION="1.7.0"
 RUBINIUS_VERSION="2.0.0-rc1"
 
-[[ -z "$RUBIES_DIR"  ]] && export RUBIES_DIR="/opt/rubies"
+[[ -z "$PREFIX"      ]] && export PREFIX="/usr/local"
 [[ -z "$SRC_DIR"     ]] && export SRC_DIR="/usr/local/src"
+[[ -z "$RUBIES_DIR"  ]] && export RUBIES_DIR="/opt/rubies"
 
 #
 # Functions
@@ -161,7 +162,7 @@ rake install
 CHRUBY_CONFIG=`cat <<EOS
 #!/bin/sh
 
-source $RUBIES_DIR/share/chruby/chruby.sh
+source $PREFIX/share/chruby/chruby.sh
 
 RUBIES=(
   $RUBIES_DIR/ruby-$MRI_VERSION
