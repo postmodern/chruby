@@ -153,7 +153,7 @@ log "Configuring Rubinius $RUBINIUS_VERSION ..."
 ./configure --prefix=/usr/local/rubinius-$RUBINIUS_VERSION
 
 log "Compiling Rubinius $RUBINIUS_VERSION ..."
-rake || true
+rake build
 
 log "Installing Rubinius $RUBINIUS_VERSION ..."
 rake install
