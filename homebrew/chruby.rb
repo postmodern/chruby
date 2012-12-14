@@ -31,7 +31,7 @@ class Chruby < Formula
     message = %{
     Add chruby to #{config_file}
 
-      . #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
+      source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
     }
 
     if rubies_dir
