@@ -164,11 +164,7 @@ CHRUBY_CONFIG=`cat <<EOS
 
 source $PREFIX/share/chruby/chruby.sh
 
-RUBIES=(
-  $RUBIES_DIR/ruby-$MRI_VERSION
-  $RUBIES_DIR/jruby-$JRUBY_VERSION
-  $RUBIES_DIR/rubinius-$RUBINIUS_VERSION
-)
+RUBIES=($RUBIES_DIR/*)
 EOS`
 
 log "Configuring chruby ..."
