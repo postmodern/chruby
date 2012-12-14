@@ -189,13 +189,4 @@ Select a Ruby within a cron job:
 [JRuby]: http://jruby.org/
 [Rubinius]: http://rubini.us/
 
-[flex]: http://flex.sourceforge.net/
-[bison]: http://www.gnu.org/software/bison/
-[zlib]: http://www.zlib.net/
-[libyaml]: http://pyyaml.org/wiki/LibYAML
-[openssl]: http://www.openssl.org/
-[readline]: http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
-[Java]: http://www.java.com/en/download/index.jsp
-[jruby-launcher]: https://github.com/jruby/jruby-launcher
-
 [1]: http://postmodern.github.com/contact.html#pgp
