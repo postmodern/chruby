@@ -1,6 +1,27 @@
+### 0.2.4 / 2012-12-13
+
+* Added a `Vagrantfile` for testing chruby in various environments.
+* Changed all code and examples to reference `/opt/rubies/`.
+* Ensure all error messages are printed to stderr.
+* Refactored `scripts/setup.sh` to manually install all Rubies and install any
+  dependencies via the System Package Manager.
+* PGP signatures are now stored in `pkg/`.
+
+#### Makefile
+
+* Updated the `Makefile` to be compatible with BSD automake.
+* Do not override `PREFIX`.
+* Added a `test` task.
+
+#### Homebrew
+
+* Use `HOMEBREW_PREFIX`.
+* Use `sha1` instead of `md5` (deprecated).
+* No longer dynamically generate the example configuration.
+
 ### 0.2.3 / 2012-11-19
 
-* Updated the Makefile to be compatible with the [dash] shell.
+* Updated the `Makefile` to be compatible with the [dash] shell.
 * Use inline substring substitutions instead of `sed`.
 
 ### 0.2.2 / 2012-11-17
