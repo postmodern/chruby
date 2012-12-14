@@ -172,12 +172,14 @@ log "Configuring chruby ..."
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
 	echo "$CHRUBY_CONFIG" > /etc/profile.d/chruby.sh
+	log "Setup complete! Please restart the shell"
 else
-	# Other
-	echo "$CHRUBY_CONFIG" >> /etc/profile
+	warning "Could not determine where to add chruby configuration."
+	warning "Please add the following configuration where appropriate:"
+	echo
+	echo "$CHRUBY_CONFIG"
+	echo
 fi
-
-log "Setup complete! Please restart the shell"
 
 #
 # Post Install
