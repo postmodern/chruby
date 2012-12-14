@@ -123,11 +123,7 @@ case "$PACKAGE_MANAGER" in
 			           zlib1g-dev libyaml-dev libssl-dev \
 				   libgdbm-dev libreadline-dev libncurses5-dev
 
-		if [[ $(lsb_release -si) == "Ubuntu" ]]; then
-			apt-get install -y llvm-3.0-dev
-			update-alternatives --install /usr/bin/llvm-config \
-				llvm-config /usr/bin/llvm-config-3.0 30
-		fi
+		(apt-get install -y llvm-3.0-dev && update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-3.0 30) || true
 		;;
 	yum)
 		yum install -y gcc gcc-c++ automake flex bison ruby-devel \
