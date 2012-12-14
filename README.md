@@ -75,7 +75,7 @@ Add the following lines to your `~/.bashrc` or `~/.profile` file:
 
 ### System Wide
 
-Add the following to `/etc/profile.d/chruby.sh` or `/etc/profile`:
+Add the following to `/etc/profile.d/chruby.sh`:
 
     source /usr/local/share/chruby/chruby.sh
     
