@@ -11,48 +11,30 @@ class Chruby < Formula
     system 'make', 'install', "PREFIX=#{prefix}"
   end
 
-  def caveats
-    config_file = case File.basename(ENV['SHELL'])
-                  when 'bash' then '~/.bashrc'
-                  when 'zsh'  then '~/.zshrc'
-                  else             '~/.profile'
-                  end
+  def caveats; <<-EOS.undent
+    For a system wide install, add the following to /etc/profile.d/chruby.sh.
 
-    alternatives = {
-      'RVM'   => '~/.rvm/rubies',
-      'rbenv' => '~/.rbenv/versions',
-      'rbfu'  => '~/.rbfu/rubies'
-    }
-
-    ruby_manager, rubies_dir = alternatives.find do |name,dir|
-      File.directory?(File.expand_path(dir))
-    end
-
-    message = %{
-    Add chruby to #{config_file}
+      #!/bin/sh
 
       source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
-    }
 
-    if rubies_dir
-      message << %{
-      RUBIES=(#{rubies_dir}/*)
-      }
-    else
-      message << %{
-      RUBIES=(
-        /opt/ruby-1.9.3-p327
-        /opt/jruby-1.7.0
-        /opt/rubinius-2.0.0-rc1
-      )
-      }
-    end
+      RUBIES=(/opt/rubies/*)
 
-    message << %{
-    For system-wide installation, add the above text to /etc/profile.
+    For a local install, add the following to ~/.bashrc or ~/.zshrc.
 
-    }
+      #!/bin/sh
 
-    return message.undent
+      source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
+
+      RUBIES=(~/.rubies/*)
+
+    To use existing Rubies installed by RVM, rbenv or rbfu, set RUBIES to
+    the following:
+
+      RVM:   RUBIES=(~/.rvm/rubies/*)
+      rbenv: RUBIES=(~/.rbenv/versions/*)
+      rbfu:  RUBIES=('~/.rbfu/rubies/*)
+
+    EOS
   end
 end
