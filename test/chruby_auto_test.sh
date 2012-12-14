@@ -10,12 +10,20 @@ setUp()
 	chruby_reset
 }
 
-test_chruby_auto_enter_dir()
+test_chruby_auto_enter_project_dir()
 {
 	cd "$PROJECT_DIR" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
 		     "$TEST_RUBY" "$RUBY"
+}
+
+test_chruby_auto_skip_project_dir()
+{
+	cd "$PROJECT_DIR/dir1" && chruby_auto
+
+	assertNull "did switch Ruby when not explicitly entering the project" \
+		   "$RUBY"
 }
 
 test_chruby_auto_enter_subdir()
@@ -27,7 +35,7 @@ test_chruby_auto_enter_subdir()
 		     "$TEST_RUBY" "$RUBY"
 }
 
-test_chruby_auto_leave_dir()
+test_chruby_auto_leave_project_dir()
 {
 	cd "$PROJECT_DIR" && chruby_auto
 	cd dir1/dir2
