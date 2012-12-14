@@ -117,10 +117,28 @@ Select a Ruby:
        rubinius-2.0.0-rc1
     $ echo $PATH
     /home/hal/.gem/ruby/1.9.3/bin:/opt/rubies/ruby-1.9.3-p327/lib/ruby/gems/1.9.1/bin:/opt/rubies/ruby-1.9.3-p327/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
-    $ echo $GEM_HOME
-    /home/hal/.gem/ruby/1.9.3
-    $ echo $GEM_PATH
-    /home/hal/.gem/ruby/1.9.3:/opt/rubies/ruby-1.9.3-p327/lib/ruby/gems/1.9.1
+    $ gem env
+    RubyGems Environment:
+      - RUBYGEMS VERSION: 1.8.23
+      - RUBY VERSION: 1.9.3 (2012-11-10 patchlevel 327) [x86_64-linux]
+      - INSTALLATION DIRECTORY: /home/hal/.gem/ruby/1.9.3
+      - RUBY EXECUTABLE: /opt/rubies/ruby-1.9.3-p327/bin/ruby
+      - EXECUTABLE DIRECTORY: /home/hal/.gem/ruby/1.9.3/bin
+      - RUBYGEMS PLATFORMS:
+        - ruby
+        - x86_64-linux
+      - GEM PATHS:
+         - /home/hal/.gem/ruby/1.9.3
+         - /opt/rubies/ruby-1.9.3-p327/lib/ruby/gems/1.9.1
+      - GEM CONFIGURATION:
+         - :update_sources => true
+         - :verbose => true
+         - :benchmark => false
+         - :backtrace => false
+         - :bulk_threshold => 1000
+         - "gem" => "--no-rdoc"
+      - REMOTE SOURCES:
+         - http://rubygems.org/
 
 Switch to JRuby in 1.9 mode:
 
