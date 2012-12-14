@@ -154,6 +154,11 @@ rake build
 log "Installing Rubinius $RUBINIUS_VERSION ..."
 rake install
 
+#
+# Configuration
+#
+log "Configuring chruby ..."
+
 CHRUBY_CONFIG=`cat <<EOS
 #!/bin/sh
 
@@ -162,7 +167,6 @@ source $PREFIX/share/chruby/chruby.sh
 RUBIES=($RUBIES_DIR/*)
 EOS`
 
-log "Configuring chruby ..."
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
 	echo "$CHRUBY_CONFIG" > /etc/profile.d/chruby.sh
