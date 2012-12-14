@@ -44,9 +44,9 @@ with:
 
 ### setup.sh
 
-chruby also includes a `setup.sh` script, which includes chruby and the latest
-releases of [MRI], [JRuby] and [Rubinius]. Simply run the script as root
-or via `sudo`:
+chruby also includes a `setup.sh` script, which installs chruby and the latest
+releases of [MRI], [JRuby] and [Rubinius]. Simply run the script as root or 
+via `sudo`:
 
     $ sudo ./scripts/setup.sh
 
