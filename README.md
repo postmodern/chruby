@@ -98,7 +98,7 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc` or
 `~/.zshrc`:
 
-    chruby 1.9.3
+    chruby ruby-1.9
 
 ## Examples
 
