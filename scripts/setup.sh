@@ -67,7 +67,6 @@ esac
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
 #
 log "Installing dependencies for Ruby $RUBY_VERSION ..."
-
 case "$PACKAGE_MANAGER" in
 	apt)	apt-get install -y build-essential zlib1g-dev libyaml-dev \
 			           libssl-dev libgdbm-dev libreadline-dev \
@@ -99,7 +98,6 @@ make install
 #
 # Install JRuby (https://github.com/postmodern/chruby/wiki/JRuby)
 #
-
 log "Installing dependencies for JRuby ..."
 case "$PACKAGE_MANAGER" in
 	apt)	apt-get install -y openjdk-7-jdk ;;
@@ -118,7 +116,6 @@ ln -s jruby "$RUBIES_DIR/jruby-$JRUBY_VERSION/bin/ruby"
 #
 # Install Rubinius (https://github.com/postmodern/chruby/wiki/Rubinius)
 #
-
 log "Installing dependencies for Rubinius ..."
 case "$PACKAGE_MANAGER" in
 	apt)
@@ -166,7 +163,6 @@ RUBIES=($RUBIES_DIR/*)
 EOS`
 
 log "Configuring chruby ..."
-
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
 	echo "$CHRUBY_CONFIG" > /etc/profile.d/chruby.sh
