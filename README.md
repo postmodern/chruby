@@ -48,6 +48,14 @@ chruby can also be installed with [homebrew]:
 
     brew install https://raw.github.com/postmodern/chruby/master/homebrew/chruby.rb
 
+### setup.sh
+
+chruby also includes a `setup.sh` script, which includes chruby and the latest
+releases of [MRI], [JRuby] and [Rubinius]. Simply run the script as root
+or via `sudo`:
+
+    $ sudo ./scripts/setup.sh
+
 ### Rubies
 
 Once chruby has been installed, you will probably want to install additional
@@ -176,6 +184,10 @@ Select a Ruby within a cron job:
 [rbfu]: https://github.com/hmans/rbfu#readme
 [ry]: https://github.com/jayferd/ry#readme
 [ruby-version]: https://github.com/wilmoore/ruby-version#readme
+
+[MRI]: http://www.ruby-lang.org/en/
+[JRuby]: http://jruby.org/
+[Rubinius]: http://rubini.us/
 
 [flex]: http://flex.sourceforge.net/
 [bison]: http://www.gnu.org/software/bison/
