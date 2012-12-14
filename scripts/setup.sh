@@ -122,17 +122,15 @@ ln -s jruby "$RUBIES_DIR/jruby-$JRUBY_VERSION/bin/ruby"
 log "Installing dependencies for Rubinius ..."
 case "$PACKAGE_MANAGER" in
 	apt)
-		# Debian
 		apt-get install -y gcc g++ automake flex bison ruby-dev rake \
-		                   zlib1g-dev libyaml-dev libssl-dev \
+			           zlib1g-dev libyaml-dev libssl-dev \
 				   libgdbm-dev libreadline-dev libncurses5-dev
 
-		# Ubuntu
-		apt-get install -y gcc g++ automake flex bison ruby-dev rake \
-			           llvm-3.0-dev zlib1g-dev libyaml-dev \
-				   libssl-dev libgdbm-dev libreadline-dev \
-				   libncurses5-dev
-		update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-3.0 30
+		if [[ $(lsb_release -si) == "Ubuntu" ]]; then
+			apt-get install -y llvm-3.0-dev
+			update-alternatives --install /usr/bin/llvm-config \
+				llvm-config /usr/bin/llvm-config-3.0 30
+		fi
 		;;
 	yum)
 		yum install -y gcc gcc-c++ automake flex bison ruby-devel \
