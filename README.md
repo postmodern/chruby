@@ -28,7 +28,7 @@ Changes the current Ruby.
 
 ## Install
 
-    wget https://github.com/postmodern/chruby/archive/v0.2.3.tar.gz -O chruby-0.2.3.tar.gz
+    wget -O chruby-0.2.3.tar.gz https://github.com/postmodern/chruby/archive/v0.2.3.tar.gz
     tar -xzvf chruby-0.2.3.tar.gz
     cd chruby-0.2.3/
     make install
