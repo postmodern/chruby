@@ -55,7 +55,7 @@ make install
 install -d "$SRC_DIR"
 install -d "$RUBIES_DIR"
 
-log "Synching the Package Manager"
+log "Synching Package Manager"
 case "$PACKAGE_MANAGER" in
 	apt)	apt-get update ;;
 	yum)	yum updateinfo ;;
