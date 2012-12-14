@@ -56,7 +56,7 @@ install_ruby "rbx-$RUBINIUS_VERSION" "$RUBINIUS_PATH"
 CHRUBY_CONFIG=`cat <<EOS
 #!/bin/sh
 
-. /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/chruby.sh
 
 RUBIES=(
   $MRI_PATH
