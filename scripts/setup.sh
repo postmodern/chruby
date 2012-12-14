@@ -151,7 +151,7 @@ tar -xzvf rubinius-release-$RUBINIUS_VERSION.tar.gz
 cd rubinius-release-$RUBINIUS_VERSION
 
 log "Configuring Rubinius $RUBINIUS_VERSION ..."
-./configure --prefix=/usr/local/rubinius-$RUBINIUS_VERSION
+./configure --prefix="$RUBIES_DIR/rubinius-$RUBINIUS_VERSION"
 
 log "Compiling Rubinius $RUBINIUS_VERSION ..."
 rake build
