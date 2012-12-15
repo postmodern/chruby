@@ -9,12 +9,11 @@ function chruby_reset()
 	if [[ ! $UID -eq 0 ]]; then
 		export PATH=${PATH//:$GEM_HOME\/bin:/:}
 		export PATH=${PATH//:$GEM_ROOT\/bin:/:}
+		unset GEM_ROOT GEM_HOME GEM_PATH
 	fi
 
 	export PATH=${PATH#:}; export PATH=${PATH%:}
-
 	unset RUBY_DIR RUBY_ENGINE RUBY_VERSION RUBYOPT
-	[[ ! $UID -eq 0 ]] && unset GEM_ROOT GEM_HOME GEM_PATH
 	hash -r
 }
 
