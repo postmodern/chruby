@@ -3,7 +3,7 @@ require 'formula'
 class Chruby < Formula
 
   homepage 'https://github.com/postmodern/chruby#readme'
-  url 'https://github.com/downloads/postmodern/chruby/chruby-0.2.4.tar.gz'
+  url 'https://github.com/postmodern/chruby/archive/v0.2.4.tar.gz'
   sha1 'c89d4a4732d63515b1948a3d0dd0e3a2d4ed1057'
   head 'https://github.com/postmodern/chruby.git'
 
