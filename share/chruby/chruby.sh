@@ -2,9 +2,9 @@ typeset -a RUBIES
 
 function chruby_reset()
 {
-	[[ -z "$RUBY_DIR" ]] && return
+	[[ -z "$RUBY_ROOT" ]] && return
 
-	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY_DIR\/bin:/:}
+	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY_ROOT\/bin:/:}
 
 	if [[ ! $UID -eq 0 ]]; then
 		export PATH=${PATH//:$GEM_HOME\/bin:/:}
@@ -13,18 +13,18 @@ function chruby_reset()
 	fi
 
 	export PATH=${PATH#:}; export PATH=${PATH%:}
-	unset RUBY_DIR RUBY_ENGINE RUBY_VERSION RUBYOPT
+	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT
 	hash -r
 }
 
 function chruby_use()
 {
-	[[ "$RUBY_DIR" == "$1" && "$RUBYOPT" == "$2" ]] && return
-	[[ -n "$RUBY_DIR" ]] && chruby_reset
+	[[ "$RUBY_ROOT" == "$1" && "$RUBYOPT" == "$2" ]] && return
+	[[ -n "$RUBY_ROOT" ]] && chruby_reset
 
-	export RUBY_DIR="$1"
+	export RUBY_ROOT="$1"
 	export RUBYOPT="$2"
-	export PATH="$RUBY_DIR/bin:$PATH"
+	export PATH="$RUBY_ROOT/bin:$PATH"
 
 	eval `ruby - <<EOF
 require 'rubygems'
@@ -52,8 +52,8 @@ function chruby()
 			local star
 
 			for dir in ${RUBIES[@]}; do
-				if [[ "$dir" == "$RUBY_DIR" ]]; then star="*"
-				else                                 star=" "
+				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
+				else                                  star=" "
 				fi
 
 				echo " $star $(basename "$dir")"

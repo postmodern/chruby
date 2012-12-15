@@ -9,7 +9,7 @@ Changes the current Ruby.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
   * Users: gems are installed into `~/.gem/$ruby/$version`.
   * Root: gems are installed directly into `/path/to/$ruby/$gemdir`.
-* Additionally sets `$RUBY_DIR`, `$RUBY_ENGINE`, `$RUBY_VERSION` and
+* Additionally sets `$RUBY_ROOT`, `$RUBY_ENGINE`, `$RUBY_VERSION` and
   `$GEM_ROOT`.
 * Optionally sets `$RUBYOPT` if second argument is given.
 * Calls `hash -r` to clear the command-lookup hash-table.

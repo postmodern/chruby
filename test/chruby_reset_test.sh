@@ -6,20 +6,20 @@ setUp()
 {
 	export RUBY_VERSION="$TEST_RUBY_VERSION"
 	export RUBY_ENGINE="$TEST_RUBY_ENGINE"
-	export RUBY_DIR="/usr/local/$TEST_RUBY_ENGINE-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
-	export GEM_ROOT="$TEST_RUBY_DIR/lib/ruby/gems/$TEST_RUBY_API"
+	export RUBY_ROOT="/usr/local/$TEST_RUBY_ENGINE-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
+	export GEM_ROOT="$TEST_RUBY_ROOT/lib/ruby/gems/$TEST_RUBY_API"
 	export GEM_HOME="$HOME/.gem/$TEST_RUBY_ENGINE/$TEST_RUBY_VERSION"
 
-	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_DIR/bin:$TEST_PATH"
+	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$TEST_PATH"
 
-	chruby_use "$TEST_RUBY_DIR"
+	chruby_use "$TEST_RUBY_ROOT"
 }
 
 test_chruby_reset()
 {
 	chruby_reset
 
-	assertNull "RUBY_DIR was not unset"      "$RUBY_DIR"
+	assertNull "RUBY_ROOT was not unset"      "$RUBY_ROOT"
 	assertNull "RUBY_ENGINE was not unset"   "$RUBY_ENGINE"
 	assertNull "RUBY_VERSION was not unset"  "$RUBY_VERSION"
 	assertNull "RUBYOPT was not unset"       "$RUBYOPT"
@@ -31,7 +31,7 @@ test_chruby_reset()
 
 test_chruby_reset_duplicate_path()
 {
-	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_DIR/bin"
+	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
 
 	chruby_reset
 
