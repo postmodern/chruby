@@ -2,9 +2,9 @@ typeset -a RUBIES
 
 function chruby_reset()
 {
-	[[ -z "$RUBY" ]] && return
+	[[ -z "$RUBY_DIR" ]] && return
 
-	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY\/bin:/:}
+	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY_DIR\/bin:/:}
 
 	if [[ -n "$GEM_HOME" ]] && [[ -n "$GEM_ROOT" ]]; then
 		export PATH=${PATH//:$GEM_HOME\/bin:/:}
@@ -13,18 +13,19 @@ function chruby_reset()
 
 	export PATH=${PATH#:}; export PATH=${PATH%:}
 
-	unset RUBY RUBY_ENGINE RUBY_VERSION RUBYOPT GEM_ROOT GEM_HOME GEM_PATH
+	unset RUBY_DIR RUBY_ENGINE RUBY_VERSION RUBYOPT
+	unset GEM_ROOT GEM_HOME GEM_PATH
 	hash -r
 }
 
 function chruby_use()
 {
-	[[ "$RUBY" == "$1" && "$RUBYOPT" == "$2" ]] && return
-	[[ -n "$RUBY" ]] && chruby_reset
+	[[ "$RUBY_DIR" == "$1" && "$RUBYOPT" == "$2" ]] && return
+	[[ -n "$RUBY_DIR" ]] && chruby_reset
 
-	export RUBY="$1"
+	export RUBY_DIR="$1"
 	export RUBYOPT="$2"
-	export PATH="$RUBY/bin:$PATH"
+	export PATH="$RUBY_DIR/bin:$PATH"
 
 	eval `ruby - <<EOF
 require 'rubygems'
@@ -51,20 +52,20 @@ function chruby()
 		"")
 			local star
 
-			for ruby_path in ${RUBIES[@]}; do
-				if [[ "$ruby_path" == "$RUBY" ]]; then star="*"
-				else                                   star=" "
+			for dir in ${RUBIES[@]}; do
+				if [[ "$dir" == "$RUBY_DIR" ]]; then star="*"
+				else                                 star=" "
 				fi
 
-				echo " $star $(basename "$ruby_path")"
+				echo " $star $(basename "$dir")"
 			done
 			;;
 		system) chruby_reset ;;
 		*)
-			for ruby_path in ${RUBIES[@]}; do
-				if [[ `basename "$ruby_path"` == *$1* ]]; then
+			for dir in ${RUBIES[@]}; do
+				if [[ `basename "$dir"` == *$1* ]]; then
 					shift
-					chruby_use "$ruby_path" "$*"
+					chruby_use "$dir" "$*"
 					return
 				fi
 			done

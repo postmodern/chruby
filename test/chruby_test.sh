@@ -11,7 +11,7 @@ test_chruby_1_9()
 {
 	chruby "1.9"
 
-	assertEquals "did not match $TEST_RUBY with 1.9" "$TEST_RUBY" "$RUBY"
+	assertEquals "did not match 1.9" "$TEST_RUBY_DIR" "$RUBY_DIR"
 }
 
 test_chruby_system()
@@ -19,7 +19,7 @@ test_chruby_system()
 	chruby "$TEST_RUBY_VERSION"
 	chruby system
 
-	assertNull "did not reset the Ruby" "$RUBY"
+	assertNull "did not reset the Ruby" "$RUBY_DIR"
 }
 
 test_chruby_unknown()
