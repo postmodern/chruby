@@ -24,7 +24,7 @@ function chruby_use()
 
 	export RUBY_ROOT="$1"
 	export RUBYOPT="$2"
-	export PATH="$RUBY_ROOT/bin:$PATH"
+	export PATH="$PATH:$RUBY_ROOT/bin"
 
 	eval `ruby - <<EOF
 require 'rubygems'
@@ -36,7 +36,7 @@ EOF`
 	if [[ ! $UID -eq 0 ]]; then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		export GEM_PATH="$GEM_HOME:$GEM_ROOT"
-		export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$PATH"
+		export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin"
 	fi
 }
 
