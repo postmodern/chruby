@@ -1,3 +1,9 @@
+### 0.2.5 / 2012-12-15
+
+* Renamed the `RUBY` environment variable to `RUBY_ROOT` to avoid breaking
+  [rake](http://rake.rubyforge.org/).
+* Do not unset `GEM_HOME`, `GEM_PATH`, `GEM_ROOT` if running under root.
+
 ### 0.2.4 / 2012-12-13
 
 * Added a `Vagrantfile` for testing chruby in various environments.
