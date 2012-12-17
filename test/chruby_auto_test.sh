@@ -66,7 +66,7 @@ test_chruby_auto_leave_project_dir()
 test_chruby_auto_invalid_ruby_version()
 {
 	cd "$PROJECT_DIR" && chruby_auto
-	cd bad            && chruby_auto
+	cd bad            && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$TEST_RUBY" "$RUBY"
