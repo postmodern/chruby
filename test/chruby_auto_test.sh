@@ -8,7 +8,7 @@ PROJECT_DIR="$PWD/test/project"
 setUp()
 {
 	chruby_reset
-	unset RUBY_VERSIONED_DIR
+	unset RUBY_VERSION_FILE
 }
 
 test_chruby_auto_enter_project_dir()
@@ -34,6 +34,15 @@ test_chruby_auto_enter_subdir()
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
 		     "$TEST_RUBY" "$RUBY"
+}
+
+test_chruby_auto_enter_subdir_with_ruby_version()
+{
+	cd "$PROJECT_DIR" && chruby_auto
+	cd sub_versioned  && chruby_auto
+
+	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
+		   "$RUBY"
 }
 
 test_chruby_auto_leave_project_dir()

@@ -1,25 +1,24 @@
 function chruby_auto() {
-	if [[ -n "$RUBY_VERSIONED_DIR" ]]; then
-		if [[ "$PWD" != "$RUBY_VERSIONED_DIR"/* ]]; then
-			chruby_reset
-			unset RUBY_VERSIONED_DIR
+	local dir="$PWD"
+	local version_file
+
+	until [[ "$dir" == / ]]; do
+		version_file="$dir/.ruby-version"
+
+		if   [[ "$version_file" == "$RUBY_VERSION_FILE" ]]; then return
+		elif [[ -f "$version_file" ]]; then
+			chruby $(cat "$version_file") || return 1
+
+			export RUBY_VERSION_FILE="$version_file"
+			return
 		fi
-	else
-		local dir="$PWD"
-		local version_file
 
-		until [[ "$dir" == / ]]; do
-			version_file="$dir/.ruby-version"
+		dir=$(dirname "$dir")
+	done
 
-			if [[ -f "$version_file" ]]; then
-				chruby $(cat "$version_file") || return 1
-
-				export RUBY_VERSIONED_DIR="$dir"
-				break
-			fi
-
-			dir=$(dirname "$dir")
-		done
+	if [[ -n "$RUBY_VERSION_FILE" ]]; then
+		chruby_reset
+		unset RUBY_VERSION_FILE
 	fi
 }
 
