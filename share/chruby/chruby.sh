@@ -69,7 +69,7 @@ function chruby()
 				fi
 			done
 
-			echo "Unknown Ruby: $1" >&2
+			echo "chruby: unknown Ruby: $1" >&2
 			return 1
 			;;
 	esac
