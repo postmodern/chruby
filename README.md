@@ -14,6 +14,7 @@ Changes the current Ruby.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
+* Optionally supports auto-switching and the `.ruby-version` file.
 * Supports [bash] and [zsh].
 * Small (~80 LOC).
 * Has tests.
@@ -23,7 +24,7 @@ Changes the current Ruby.
 * Does not hook `cd`.
 * Does not install executable shims.
 * Does not require Rubies be installed into your home directory.
-* Does not automatically switch Rubies upon login or when changing directories.
+* Does not automatically switch Rubies by default.
 * Does not require write-access to the Ruby directory in order to install gems.
 
 ## Install
@@ -90,6 +91,13 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc`:
 
     chruby 1.9.3
+
+### Auto-Switching
+
+If you want to enable auto-switching of Rubies via `.ruby-version` files,
+load `auto.sh`:
+
+    . /usr/local/share/chruby/auto.sh
 
 ## Examples
 
