@@ -45,6 +45,14 @@ test_chruby_auto_enter_subdir_with_ruby_version()
 		   "$RUBY"
 }
 
+test_chruby_auto_overriding_ruby_version()
+{
+	cd "$PROJECT_DIR" && chruby_auto
+	chruby system     && chruby_auto
+
+	assertNull "did not override the Ruby set in .ruby-version" "$RUBY"
+}
+
 test_chruby_auto_leave_project_dir()
 {
 	cd "$PROJECT_DIR" && chruby_auto
