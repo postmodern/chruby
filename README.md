@@ -46,7 +46,7 @@ with:
 
 chruby can also be installed with [homebrew]:
 
-    brew install https://raw.github.com/postmodern/chruby/master/homebrew/chruby.rb
+    brew install chruby
 
 ### Rubies
 
