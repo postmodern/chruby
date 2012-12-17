@@ -2,7 +2,7 @@ function chruby_auto() {
 	local dir="$PWD"
 	local version_file
 
-	until [[ "$dir" == / ]]; do
+	until [[ -z "$dir" ]]; do
 		version_file="$dir/.ruby-version"
 
 		if   [[ "$version_file" == "$RUBY_VERSION_FILE" ]]; then return
@@ -13,7 +13,7 @@ function chruby_auto() {
 			return
 		fi
 
-		dir=$(dirname "$dir")
+		dir="${dir%/*}"
 	done
 
 	if [[ -n "$RUBY_VERSION_FILE" ]]; then
