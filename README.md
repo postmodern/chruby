@@ -94,11 +94,15 @@ If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc`:
 
 ### Auto-Switching
 
-If you want to enable auto-switching of Rubies via `.ruby-version` files,
-simply load `auto.sh` after `chruby.sh`:
+If you want chruby to auto-switch the current version of Ruby when you `cd`
+between your different projects, load `auto.sh` after `chruby.sh`:
 
     . /usr/local/share/chruby/chruby.sh
     . /usr/local/share/chruby/auto.sh
+
+chruby will check the current and parent directories for a `.ruby-version`
+file. Other Ruby switchers also understand this file:
+https://gist.github.com/1912050
 
 ## Examples
 
