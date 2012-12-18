@@ -8,16 +8,16 @@
 * Quote all String variables.
 * Prefer single-line expressions where appropriate:
 
-      [[ -n "$foo" ]] && other command
+        [[ -n "$foo" ]] && other command
 
-      if   [[ "$foo" == "bar" ]]; then command
-      elif [[ "$foo" == "baz" ]]; then other_command
-      fi
+        if   [[ "$foo" == "bar" ]]; then command
+        elif [[ "$foo" == "baz" ]]; then other_command
+        fi
 
-      case "$foo" in
-             bar) command ;;
-	     baz) other_command ;;
-      esac
+        case "$foo" in
+               bar) command ;;
+	       baz) other_command ;;
+        esac
 
 ## Pull Request Guidelines
 
