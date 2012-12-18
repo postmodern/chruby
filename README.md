@@ -101,6 +101,14 @@ If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc` or
 
     chruby ruby-1.9
 
+### Integration
+
+For instructions on using chruby with other tools, please see the [wiki]:
+
+* [Cron](https://github.com/postmodern/chruby/wiki/Cron)
+* [Capistrano](https://github.com/postmodern/chruby/wiki/Capistrano)
+* [Pow](https://github.com/postmodern/chruby/wiki/Pow)
+
 ## Examples
 
 List available Rubies:
@@ -158,12 +166,6 @@ Switch to an arbitrary Ruby on the fly:
 
     $ chruby_use /path/to/ruby
 
-### Cron
-
-Select a Ruby within a cron job:
-
-    30 18 * * *   bash -lc "chruby 1.9.3 && /path/to/script"
-
 ## Alternatives
 
 * [RVM]
@@ -192,6 +194,8 @@ Select a Ruby within a cron job:
 ## Credits
 
 * [mpapis](https://github.com/mpapis) for reviewing the code.
+
+[wiki]: https://github.com/postmodern/chruby/wiki
 
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
