@@ -1,3 +1,8 @@
+### 0.2.6 / 2012-12-18
+
+* Forcibly switch to system Ruby when loading `share/chruby/chruby.sh`.
+  This fixes switching issues for [tmux] users.
+
 ### 0.2.5 / 2012-12-15
 
 * Renamed the `RUBY` environment variable to `RUBY_ROOT` to avoid breaking
@@ -80,6 +85,7 @@
 
 [dash]: http://gondor.apana.org.au/~herbert/dash/
 [zsh]: http://www.zsh.org/
+[tmux]: http://tmux.sourceforge.net/
 
 [Rubinius]: http://rubini.us/
 [homebrew]: http://mxcl.github.com/homebrew/
