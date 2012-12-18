@@ -22,6 +22,12 @@ function chruby_auto() {
 	fi
 }
 
-if [[ -n "$ZSH_VERSION" ]]; then precmd_functions+=("chruby_auto")
-else                             PROMPT_COMMAND="chruby_auto; $PROMPT_COMMAND"
+if [[ -n "$ZSH_VERSION" ]]; then
+	precmd_functions+=("chruby_auto")
+else
+	if [[ -n "$PROMPT_COMMAND" ]]; then
+		PROMPT_COMMAND="$PROMPT_COMMAND; chruby_auto"
+	else
+		PROMPT_COMMAND="chruby_auto"
+	fi
 fi
