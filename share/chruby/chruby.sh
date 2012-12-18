@@ -74,5 +74,3 @@ function chruby()
 			;;
 	esac
 }
-
-chruby system
