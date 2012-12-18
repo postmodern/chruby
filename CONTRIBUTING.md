@@ -24,7 +24,7 @@
 * Additional features should go in separate files within `share/chruby/`.
 * All new code must have [shunit2] unit-tests.
 * If a feature is out of scope or does more than switches Rubies,
-  it should become their own project. Simply copy the generic [Makefile]
+  it should become its own project. Simply copy the generic [Makefile]
   for shell script projects.
 
 ### What Will Not Be Accepted
@@ -34,8 +34,8 @@
   gemset like behavior.
 * Sub-commands: this tends to promote bloat. It was first popularized by [RVM]
   and then copied by [rbenv].
-* [Bash][bash]/[Zsh][zsh] only features: chruby must fully support [bash] _and_ 
-  [zsh].
+* [Bash][bash] or [Zsh][zsh] only features: chruby must fully support both
+  [bash] and [zsh].
 * New `.files`: we should strive to prevent dotfile proliferation, and instead
   support common dotfiles which other Ruby Switchers could support.
 * New environment variables: much like with dotfile proliferation,
