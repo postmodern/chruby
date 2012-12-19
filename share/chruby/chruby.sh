@@ -19,7 +19,6 @@ function chruby_reset()
 
 function chruby_use()
 {
-	[[ "$RUBY_ROOT" == "$1" && "$RUBYOPT" == "$2" ]] && return
 	[[ -n "$RUBY_ROOT" ]] && chruby_reset
 
 	export RUBY_ROOT="$1"
