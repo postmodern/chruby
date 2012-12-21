@@ -1,5 +1,8 @@
 typeset -a RUBIES
 
+[[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
+[[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/*)
+
 function chruby_reset()
 {
 	[[ -z "$RUBY_ROOT" ]] && return

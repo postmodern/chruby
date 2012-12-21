@@ -15,6 +15,7 @@ Changes the current Ruby.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
+* Optionally supports auto-switching and the `.ruby-version` file.
 * Supports [bash] and [zsh].
 * Small (~80 LOC).
 * Has tests.
@@ -24,14 +25,14 @@ Changes the current Ruby.
 * Does not hook `cd`.
 * Does not install executable shims.
 * Does not require Rubies be installed into your home directory.
-* Does not automatically switch Rubies upon login or when changing directories.
+* Does not automatically switch Rubies by default.
 * Does not require write-access to the Ruby directory in order to install gems.
 
 ## Install
 
-    wget -O chruby-0.2.5.tar.gz https://github.com/postmodern/chruby/archive/v0.2.5.tar.gz
-    tar -xzvf chruby-0.2.5.tar.gz
-    cd chruby-0.2.5/
+    wget -O chruby-0.3.0.tar.gz https://github.com/postmodern/chruby/archive/v0.3.0.tar.gz
+    tar -xzvf chruby-0.3.0.tar.gz
+    cd chruby-0.3.0/
     make install
 
 ### PGP
@@ -40,8 +41,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.2.5.tar.gz.asc
-    gpg --verify chruby-0.2.5.tar.gz.asc chruby-0.2.5.tar.gz
+    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.0.tar.gz.asc
+    gpg --verify chruby-0.3.0.tar.gz.asc chruby-0.3.0.tar.gz
 
 ### setup.sh
 
@@ -108,6 +109,18 @@ For instructions on using chruby with other tools, please see the [wiki]:
 * [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Capistrano](https://github.com/postmodern/chruby/wiki/Capistrano)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
+
+### Auto-Switching
+
+If you want chruby to auto-switch the current version of Ruby when you `cd`
+between your different projects, load `auto.sh` after `chruby.sh`:
+
+    . /usr/local/share/chruby/chruby.sh
+    . /usr/local/share/chruby/auto.sh
+
+chruby will check the current and parent directories for a `.ruby-version`
+file. Other Ruby switchers also understand this file:
+https://gist.github.com/1912050
 
 ## Examples
 

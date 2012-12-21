@@ -4,6 +4,8 @@
 [[ -n "$ZSH_VERSION" ]] && setopt shwordsplit
 
 . ./share/chruby/chruby.sh
+export PATH="$PWD/bin:$PATH"
+
 chruby_reset
 
 TEST_PATH="$PATH"
