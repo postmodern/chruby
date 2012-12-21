@@ -7,6 +7,8 @@
 * Added `share/chruby/auto.sh`, which provides support for auto-switching
   to Rubies specified in the [.ruby-version](https://gist.github.com/1912050)
   file.
+* Removed the "short circuit" check in `chruby_use`, to allow forcibly
+  switching to the current Ruby, in case `PATH` or `GEM_PATH` become corrupted.
 
 ### 0.2.6 / 2012-12-18
 
