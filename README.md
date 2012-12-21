@@ -89,21 +89,6 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 * [rbenv]: `RUBIES=(~/.rbenv/versions/*)`
 * [rbfu]: `RUBIES=(~/.rbfu/rubies/*)`
 
-### Default Ruby
-
-If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc` or
-`~/.zshrc`:
-
-    chruby ruby-1.9
-
-### Integration
-
-For instructions on using chruby with other tools, please see the [wiki]:
-
-* [Cron](https://github.com/postmodern/chruby/wiki/Cron)
-* [Capistrano](https://github.com/postmodern/chruby/wiki/Capistrano)
-* [Pow](https://github.com/postmodern/chruby/wiki/Pow)
-
 ### Auto-Switching
 
 If you want chruby to auto-switch the current version of Ruby when you `cd`
@@ -115,6 +100,25 @@ between your different projects, load `auto.sh` after `chruby.sh`:
 chruby will check the current and parent directories for a `.ruby-version`
 file. Other Ruby switchers also understand this file:
 https://gist.github.com/1912050
+
+### Default Ruby
+
+If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc` or
+`~/.zshrc`:
+
+    chruby ruby-1.9
+
+If you have enabled auto-switching, simply create a `.ruby-version` file:
+
+    echo "ruby-1.9" > ~/.ruby-version
+
+### Integration
+
+For instructions on using chruby with other tools, please see the [wiki]:
+
+* [Cron](https://github.com/postmodern/chruby/wiki/Cron)
+* [Capistrano](https://github.com/postmodern/chruby/wiki/Capistrano)
+* [Pow](https://github.com/postmodern/chruby/wiki/Pow)
 
 ## Examples
 
