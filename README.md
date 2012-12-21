@@ -29,9 +29,9 @@ Changes the current Ruby.
 
 ## Install
 
-    wget https://github.com/downloads/postmodern/chruby/chruby-0.2.3.tar.gz
-    tar -xzvf chruby-0.2.3.tar.gz
-    cd chruby-0.2.3/
+    wget https://github.com/downloads/postmodern/chruby/chruby-0.3.0.tar.gz
+    tar -xzvf chruby-0.3.0.tar.gz
+    cd chruby-0.3.0/
     make install
 
 ### PGP
@@ -40,8 +40,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-    wget https://github.com/downloads/postmodern/chruby/chruby-0.2.3.tar.gz.asc
-    gpg --verify chruby-0.2.3.tar.gz.asc chruby-0.2.3.tar.gz
+    wget https://github.com/downloads/postmodern/chruby/chruby-0.3.0.tar.gz.asc
+    gpg --verify chruby-0.3.0.tar.gz.asc chruby-0.3.0.tar.gz
 
 ### Homebrew
 
