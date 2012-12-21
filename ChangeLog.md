@@ -1,3 +1,13 @@
+### 0.3.0 / 2012-12-20
+
+* Added the `chruby-exec` binary for use in `crontab` or with Continuous
+  Integration (CI).
+* Added support for auto-detecting Rubies installed into `/opt/rubies/` or
+  `~/.rubies/`.
+* Added `share/chruby/auto.sh`, which provides support for auto-switching
+  to Rubies specified in the [.ruby-version](https://gist.github.com/1912050)
+  file.
+
 ### 0.2.3 / 2012-11-19
 
 * Updated the Makefile to be compatible with the [dash] shell.
