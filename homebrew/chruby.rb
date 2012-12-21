@@ -12,24 +12,22 @@ class Chruby < Formula
   end
 
   def caveats; <<-EOS.undent
-    For a system wide install, add the following to /etc/profile.d/chruby.sh.
 
-      #!/bin/sh
-
-      source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
-
-      RUBIES=(/opt/rubies/*)
-
-    For a local install, add the following to ~/.bashrc or ~/.zshrc.
-
-      #!/bin/sh
+    Add the following to the /etc/profile.d/chruby.sh, ~/.bashrc or
+    ~/.zshrc file:
 
       source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
 
-      RUBIES=(~/.rubies/*)
+    By default chruby will search for Rubies installed into /opt/rubies/ or
+    ~/.rubies/. For non-standard installation locations, simply set the RUBIES
+    variable:
 
-    To use existing Rubies installed by RVM, rbenv or rbfu, set RUBIES to
-    the following:
+      RUBIES=(
+        /opt/jruby-1.7.0
+        $HOME/src/rubinius
+      )
+
+    If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
       RVM:   RUBIES=(~/.rvm/rubies/*)
       rbenv: RUBIES=(~/.rbenv/versions/*)

@@ -69,25 +69,19 @@ This can be done with the [ruby-build] utility or manually:
 
 ## Configuration
 
-Add the following lines to your `~/.bashrc` or `~/.profile` file:
+Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
+`~/.zshrc` file:
 
     source /usr/local/share/chruby/chruby.sh
-    
-    RUBIES=(/opt/rubies/*)
 
-### System Wide
+By default chruby will search for Rubies installed into `/opt/rubies/` or
+`~/.rubies/`. For non-standard installation locations, simply set the
+`RUBIES` variable:
 
-Add the following to `/etc/profile.d/chruby.sh`:
-
-    source /usr/local/share/chruby/chruby.sh
-    
     RUBIES=(
-      /opt/rubies/ruby-1.9.3-p327
-      /opt/rubies/jruby-1.7.0
-      /opt/rubies/rubinius-2.0.0-rc1
+      /opt/jruby-1.7.0
+      $HOME/src/rubinius
     )
-
-### Migrating
 
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
