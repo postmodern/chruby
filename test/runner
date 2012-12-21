@@ -9,5 +9,7 @@ log() {
 log "Running tests under $SHELL ..."
 
 for test in $(dirname $0)/*_test.sh; do
+	log "Running $test ..."
 	$SHELL $test
+	echo
 done
