@@ -94,8 +94,8 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 If you want chruby to auto-switch the current version of Ruby when you `cd`
 between your different projects, load `auto.sh` after `chruby.sh`:
 
-    . /usr/local/share/chruby/chruby.sh
-    . /usr/local/share/chruby/auto.sh
+    source /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/auto.sh
 
 chruby will check the current and parent directories for a `.ruby-version`
 file. Other Ruby switchers also understand this file:
