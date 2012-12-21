@@ -97,7 +97,7 @@ between your different projects, load `auto.sh` after `chruby.sh`:
     source /usr/local/share/chruby/chruby.sh
     source /usr/local/share/chruby/auto.sh
 
-chruby will check the current and parent directories for a `.ruby-version`
+chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
 https://gist.github.com/1912050
 
@@ -213,6 +213,7 @@ Switch to an arbitrary Ruby on the fly:
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
 [ruby-build]: https://github.com/sstephenson/ruby-build#readme
+[.ruby-version]: https://gist.github.com/1912050
 
 [RVM]: https://rvm.io/
 [rbenv]: https://github.com/sstephenson/rbenv#readme
