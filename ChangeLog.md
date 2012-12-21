@@ -1,6 +1,6 @@
 ### 0.3.0 / 2012-12-20
 
-* Added the `chruby-exec` binary for use in `crontab` or with Continuous
+* Added the `chruby-exec` utility for use in `crontab` or with Continuous
   Integration (CI).
 * Added support for auto-detecting Rubies installed into `/opt/rubies/` or
   `~/.rubies/`.
