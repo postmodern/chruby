@@ -32,7 +32,7 @@ function chruby_use()
 require 'rubygems'
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}"
 puts "export RUBY_VERSION=#{RUBY_VERSION}"
-puts "export GEM_ROOT=\"#{Gem.default_dir}\""
+puts "export GEM_ROOT=#{Gem.default_dir.inspect}"
 EOF`
 
 	if [[ ! $UID -eq 0 ]]; then
