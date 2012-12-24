@@ -157,7 +157,7 @@ rake install
 log "Configuring chruby ..."
 
 CHRUBY_CONFIG=`cat <<EOS
-#!/bin/sh
+[ -n "\\\$BASH_VERSION" ] || [ -n "\\\$ZSH_VERSION" ] || return
 
 source $PREFIX/share/chruby/chruby.sh
 
