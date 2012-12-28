@@ -5,7 +5,7 @@ set -e
 #
 # Constants
 #
-MRI_VERSION="1.9.3-p327"
+MRI_VERSION="1.9.3-p362"
 JRUBY_VERSION="1.7.0"
 RUBINIUS_VERSION="2.0.0-rc1"
 
