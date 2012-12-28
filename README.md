@@ -205,6 +205,7 @@ Switch to an arbitrary Ruby on the fly:
 ## Credits
 
 * [mpapis](https://github.com/mpapis) for reviewing the code.
+* `#bash`, `#zsh`, `#machomebrew` for answering all my questions.
 
 [wiki]: https://github.com/postmodern/chruby/wiki
 
