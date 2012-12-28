@@ -28,7 +28,7 @@ function chruby_use()
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
-	eval `ruby - <<EOF
+	eval `$RUBY_ROOT/bin/ruby - <<EOF
 require 'rubygems'
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
