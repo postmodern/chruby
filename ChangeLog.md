@@ -1,8 +1,7 @@
 ### 0.3.1 / 2012-12-28
 
 * Fixed the auto-detection of `~/.rubies/*`.
-* Have `chruby_use` call `ruby` with an absolute path, for when JRuby
-  does not symlink `bin/ruby` to `jruby`.
+* Check if `bin/ruby` exists and is executable before switching to a Ruby.
 * Prevent `export=""` from accidently being set under [zsh].
 * Prevent `script/setup.sh` from exiting if a `brew install` fails because all
   packages are already installed.

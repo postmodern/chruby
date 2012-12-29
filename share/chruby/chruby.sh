@@ -22,13 +22,18 @@ function chruby_reset()
 
 function chruby_use()
 {
+	if [[ ! -x "$RUBY_ROOT/bin/ruby" ]]; then
+		echo "chruby: $RUBY_ROOT/bin/ruby not found" >&2
+		return 1
+	fi
+
 	[[ -n "$RUBY_ROOT" ]] && chruby_reset
 
 	export RUBY_ROOT="$1"
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
-	eval `$RUBY_ROOT/bin/ruby - <<EOF
+	eval `ruby - <<EOF
 require 'rubygems'
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
