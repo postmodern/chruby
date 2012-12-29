@@ -2,7 +2,7 @@
 
 * Fixed the auto-detection of `~/.rubies/*`.
 * Check if `bin/ruby` exists and is executable before switching to a Ruby.
-* Prevent `export=""` from accidently being set under [zsh].
+* Prevent `export=""` from accidentally being set under [zsh].
 * Prevent `script/setup.sh` from exiting if a `brew install` fails because all
   packages are already installed.
 * Updated the example `/etc/profile.d/chruby.sh` to only load under [bash]
