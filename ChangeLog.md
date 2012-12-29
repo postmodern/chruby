@@ -1,3 +1,14 @@
+### 0.3.1 / 2012-12-28
+
+* Fixed the auto-detection of `~/.rubies/*`.
+* Have `chruby_use` call `ruby` with an absolute path, for when JRuby
+  does not symlink `bin/ruby` to `jruby`.
+* Prevent `export=""` from accidently being set under [zsh].
+* Prevent `script/setup.sh` from exiting if a `brew install` fails because all
+  packages are already installed.
+* Updated the example `/etc/profile.d/chruby.sh` to only load under [bash]
+  and [zsh].
+
 ### 0.3.0 / 2012-12-20
 
 * Added the `chruby-exec` utility for use in `crontab` or with Continuous
