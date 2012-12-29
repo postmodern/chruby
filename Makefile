@@ -1,5 +1,5 @@
 NAME=chruby
-VERSION=0.3.0
+VERSION=0.3.1
 
 DIRS=etc lib bin sbin share
 INSTALL_DIRS=`find $(DIRS) -type d 2>/dev/null`
