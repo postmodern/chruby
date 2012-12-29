@@ -1,4 +1,4 @@
-### 0.3.1 / 2012-12-28
+### 0.3.1 / 2012-12-29
 
 * Fixed the auto-detection of `~/.rubies/*`.
 * Check if `bin/ruby` exists and is executable before switching to a Ruby.
