@@ -26,7 +26,7 @@ test_chruby_unknown()
 {
 	chruby "foo" 2>/dev/null
 
-	assertEquals "did not return 1" $? 1
+	assertEquals "did not return 1" 1 $?
 }
 
 test_chruby_invalid_ruby()
@@ -35,7 +35,7 @@ test_chruby_invalid_ruby()
 
 	chruby "jruby" 2>/dev/null
 
-	assertEquals "did not return 1" $? 1
+	assertEquals "did not return 1" 1 $?
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
