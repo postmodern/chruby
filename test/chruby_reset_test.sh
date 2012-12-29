@@ -4,15 +4,9 @@
 
 setUp()
 {
-	export RUBY_VERSION="$TEST_RUBY_VERSION"
-	export RUBY_ENGINE="$TEST_RUBY_ENGINE"
-	export RUBY_ROOT="/usr/local/$TEST_RUBY_ENGINE-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
-	export GEM_ROOT="$TEST_RUBY_ROOT/lib/ruby/gems/$TEST_RUBY_API"
-	export GEM_HOME="$HOME/.gem/$TEST_RUBY_ENGINE/$TEST_RUBY_VERSION"
+	chruby_use "$TEST_RUBY_ROOT"
 
 	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$TEST_PATH"
-
-	chruby_use "$TEST_RUBY_ROOT"
 }
 
 test_chruby_reset()
