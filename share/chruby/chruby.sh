@@ -22,8 +22,8 @@ function chruby_reset()
 
 function chruby_use()
 {
-	if [[ ! -x "$RUBY_ROOT/bin/ruby" ]]; then
-		echo "chruby: $RUBY_ROOT/bin/ruby not executable" >&2
+	if [[ ! -x "$1/bin/ruby" ]]; then
+		echo "chruby: $1/bin/ruby not executable" >&2
 		return 1
 	fi
 
