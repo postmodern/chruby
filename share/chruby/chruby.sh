@@ -23,7 +23,7 @@ function chruby_reset()
 function chruby_use()
 {
 	if [[ ! -x "$RUBY_ROOT/bin/ruby" ]]; then
-		echo "chruby: $RUBY_ROOT/bin/ruby not found" >&2
+		echo "chruby: $RUBY_ROOT/bin/ruby not executable" >&2
 		return 1
 	fi
 
