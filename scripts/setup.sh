@@ -74,7 +74,7 @@ case "$PACKAGE_MANAGER" in
 	yum)	yum install -y gcc automake zlib-devel libyaml-devel \
 			       openssl-devel gdbm-devel readline-devel \
 			       ncurses-devel libffi-devel ;;
-	brew)	brew install libyaml gdbm libffi || true;;
+	brew)	brew install libyaml gdbm libffi || true ;;
 esac
 
 cd $SRC_DIR
@@ -132,7 +132,7 @@ case "$PACKAGE_MANAGER" in
 			       libyaml-devel openssl-devel gdbm-devel \
 			       readline-devel ncurses-devel
 		;;
-	brew)	brew install libyaml gdbm || true;;
+	brew)	brew install libyaml gdbm || true ;;
 esac
 
 log "Downloading Rubinius $RUBINIUS_VERSION ..."
