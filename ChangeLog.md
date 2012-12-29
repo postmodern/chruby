@@ -106,6 +106,7 @@
 * Initial release.
 
 [dash]: http://gondor.apana.org.au/~herbert/dash/
+[bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
 [tmux]: http://tmux.sourceforge.net/
 
