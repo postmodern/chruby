@@ -72,7 +72,7 @@ function chruby()
 				if [[ `basename "$dir"` == *$1* ]]; then
 					shift
 					chruby_use "$dir" "$*"
-					return
+					return $?
 				fi
 			done
 
