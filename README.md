@@ -83,11 +83,22 @@ By default chruby will search for Rubies installed into `/opt/rubies/` or
       $HOME/src/rubinius
     )
 
+### Migrating
+
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
 * [RVM]: `RUBIES=(~/.rvm/rubies/*)`
 * [rbenv]: `RUBIES=(~/.rbenv/versions/*)`
 * [rbfu]: `RUBIES=(~/.rbfu/rubies/*)`
+
+### System Wide
+
+If you wish to enable chruby system-wide, add the following to
+`/etc/profile.d/chruby.sh`:
+
+    [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return
+    
+    source /usr/local/share/chruby/chruby.sh
 
 ### Auto-Switching
 
