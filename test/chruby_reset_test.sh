@@ -13,7 +13,7 @@ test_chruby_reset()
 {
 	chruby_reset
 
-	assertNull "RUBY_ROOT was not unset"      "$RUBY_ROOT"
+	assertNull "RUBY_ROOT was not unset"     "$RUBY_ROOT"
 	assertNull "RUBY_ENGINE was not unset"   "$RUBY_ENGINE"
 	assertNull "RUBY_VERSION was not unset"  "$RUBY_VERSION"
 	assertNull "RUBYOPT was not unset"       "$RUBYOPT"
