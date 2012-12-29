@@ -1,7 +1,6 @@
 require 'formula'
 
 class Chruby < Formula
-
   homepage 'https://github.com/postmodern/chruby#readme'
   url 'https://github.com/postmodern/chruby/archive/v0.3.1.tar.gz'
   sha1 '90c3fce7a512acc8b60d5efd3e6a2eeadcd5a238'
