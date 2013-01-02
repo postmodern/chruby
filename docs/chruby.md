@@ -5,7 +5,7 @@
 `chruby` [RUBY|VERSION|system] [RUBY_OPTS]
 
 ## DESCRIPTION
-Changes the current Ruby version by correctly setting the appropriate environment variables. Additional documentation available at [https://github.com/postmodern/chruby/blob/master/README.md](https://github.com/postmodern/chruby/blob/master/README.md).
+Changes the current Ruby version by correctly setting the appropriate environment variables. Additional documentation available at <https://github.com/postmodern/chruby/blob/master/README.md>.
 
 ## OPTIONS
 
@@ -60,7 +60,7 @@ GEM_ROOT
 RUBYOPT Optionally set if second arguement is given.
 
 ##AUTHORS
-Designed and implemented by Postmodern <postmodern.mod3@gmail.com>.
+Designed and implemented by Postmodern <postmodern.mod3\@gmail.com>.
 
 ##SEE ALSO
 ruby(1), gem(1)
