@@ -1,3 +1,13 @@
+### 0.3.1 / 2012-12-29
+
+* Fixed the auto-detection of `~/.rubies/*`.
+* Check if `bin/ruby` exists and is executable before switching to a Ruby.
+* Prevent `export=""` from accidentally being set under [zsh].
+* Prevent `script/setup.sh` from exiting if a `brew install` fails because all
+  packages are already installed.
+* Updated the example `/etc/profile.d/chruby.sh` to only load under [bash]
+  and [zsh].
+
 ### 0.3.0 / 2012-12-20
 
 * Added the `chruby-exec` utility for use in `crontab` or with Continuous
@@ -96,6 +106,7 @@
 * Initial release.
 
 [dash]: http://gondor.apana.org.au/~herbert/dash/
+[bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
 [tmux]: http://tmux.sourceforge.net/
 

@@ -30,9 +30,9 @@ Changes the current Ruby.
 
 ## Install
 
-    wget -O chruby-0.3.0.tar.gz https://github.com/postmodern/chruby/archive/v0.3.0.tar.gz
-    tar -xzvf chruby-0.3.0.tar.gz
-    cd chruby-0.3.0/
+    wget -O chruby-0.3.1.tar.gz https://github.com/postmodern/chruby/archive/v0.3.1.tar.gz
+    tar -xzvf chruby-0.3.1.tar.gz
+    cd chruby-0.3.1/
     make install
 
 ### PGP
@@ -41,8 +41,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.0.tar.gz.asc
-    gpg --verify chruby-0.3.0.tar.gz.asc chruby-0.3.0.tar.gz
+    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.1.tar.gz.asc
+    gpg --verify chruby-0.3.1.tar.gz.asc chruby-0.3.1.tar.gz
 
 ### setup.sh
 
@@ -83,11 +83,22 @@ By default chruby will search for Rubies installed into `/opt/rubies/` or
       $HOME/src/rubinius
     )
 
+### Migrating
+
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
 * [RVM]: `RUBIES=(~/.rvm/rubies/*)`
 * [rbenv]: `RUBIES=(~/.rbenv/versions/*)`
 * [rbfu]: `RUBIES=(~/.rbfu/rubies/*)`
+
+### System Wide
+
+If you wish to enable chruby system-wide, add the following to
+`/etc/profile.d/chruby.sh`:
+
+    [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return
+    
+    source /usr/local/share/chruby/chruby.sh
 
 ### Auto-Switching
 
@@ -205,6 +216,8 @@ Switch to an arbitrary Ruby on the fly:
 ## Credits
 
 * [mpapis](https://github.com/mpapis) for reviewing the code.
+* [havenn](https://github.com/havenwood) for handling the homebrew formula.
+* `#bash`, `#zsh`, `#machomebrew` for answering all my questions.
 
 [wiki]: https://github.com/postmodern/chruby/wiki
 

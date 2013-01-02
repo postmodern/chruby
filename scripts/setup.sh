@@ -5,8 +5,8 @@ set -e
 #
 # Constants
 #
-MRI_VERSION="1.9.3-p327"
-JRUBY_VERSION="1.7.0"
+MRI_VERSION="1.9.3-p362"
+JRUBY_VERSION="1.7.1"
 RUBINIUS_VERSION="2.0.0-rc1"
 
 [[ -z "$PREFIX"      ]] && export PREFIX="/usr/local"
@@ -74,7 +74,7 @@ case "$PACKAGE_MANAGER" in
 	yum)	yum install -y gcc automake zlib-devel libyaml-devel \
 			       openssl-devel gdbm-devel readline-devel \
 			       ncurses-devel libffi-devel ;;
-	brew)	brew install libyaml gdbm libffi ;;
+	brew)	brew install libyaml gdbm libffi || true ;;
 esac
 
 cd $SRC_DIR
@@ -112,7 +112,7 @@ wget http://jruby.org.s3.amazonaws.com/downloads/$JRUBY_VERSION/jruby-bin-$JRUBY
 
 log "Installing JRuby $JRUBY_VERSION ..."
 tar -xzvf jruby-bin-$JRUBY_VERSION.tar.gz -C "$RUBIES_DIR"
-ln -s jruby "$RUBIES_DIR/jruby-$JRUBY_VERSION/bin/ruby"
+ln -fs jruby "$RUBIES_DIR/jruby-$JRUBY_VERSION/bin/ruby"
 
 #
 # Install Rubinius (https://github.com/postmodern/chruby/wiki/Rubinius)
@@ -132,7 +132,7 @@ case "$PACKAGE_MANAGER" in
 			       libyaml-devel openssl-devel gdbm-devel \
 			       readline-devel ncurses-devel
 		;;
-	brew)	brew install libyaml gdbm ;;
+	brew)	brew install libyaml gdbm || true ;;
 esac
 
 log "Downloading Rubinius $RUBINIUS_VERSION ..."

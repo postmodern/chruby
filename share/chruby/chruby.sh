@@ -1,7 +1,7 @@
 typeset -a RUBIES
 
 [[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
-[[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/*)
+[[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/.rubies/*)
 
 function chruby_reset()
 {
@@ -22,6 +22,11 @@ function chruby_reset()
 
 function chruby_use()
 {
+	if [[ ! -x "$1/bin/ruby" ]]; then
+		echo "chruby: $1/bin/ruby not executable" >&2
+		return 1
+	fi
+
 	[[ -n "$RUBY_ROOT" ]] && chruby_reset
 
 	export RUBY_ROOT="$1"
@@ -67,7 +72,7 @@ function chruby()
 				if [[ `basename "$dir"` == *$1* ]]; then
 					shift
 					chruby_use "$dir" "$*"
-					return
+					return $?
 				fi
 			done
 

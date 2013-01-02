@@ -1,5 +1,7 @@
 NAME=chruby
-VERSION=0.3.0
+VERSION=0.3.1
+AUTHOR=postmodern
+URL=https://github.com/$(AUTHOR)/$(NAME)
 
 DIRS=etc lib bin sbin share
 INSTALL_DIRS=`find $(DIRS) -type d 2>/dev/null`
@@ -15,17 +17,21 @@ PREFIX?=/usr/local
 DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
 
 pkg:
-	mkdir -p $(PKG_DIR)
+	mkdir $(PKG_DIR)
 
-$(PKG): pkg
+download: pkg
+	wget -O $(PKG) $(URL)/archive/v$(VERSION).tar.gz
+
+build: pkg
 	git archive --output=$(PKG) --prefix=$(PKG_NAME)/ HEAD
 
-build: $(PKG)
-
-$(SIG): $(PKG)
+sign: $(PKG)
 	gpg --sign --detach-sign --armor $(PKG)
+	git commit $(PKG).asc -m "Added PGP signature for v$(VERSION)"
+	git push
 
-sign: $(SIG)
+verify: $(PKG) $(SIG)
+	gpg --verify $(SIG) $(PKG)
 
 clean:
 	rm -f $(PKG) $(SIG)
@@ -41,7 +47,7 @@ tag:
 	git tag -s -m "Tagging $(VERSION)" v$(VERSION)
 	git push --tags
 
-release: build tag
+release: tag download sign
 
 install:
 	for dir in $(INSTALL_DIRS); do install -d $(PREFIX)/$$dir; done
@@ -53,4 +59,4 @@ uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
 	rm -rf $(DOC_DIR)
 
-.PHONY: build sign clean test tag release install uninstall all
+.PHONY: build download sign verify clean test tag release install uninstall all
