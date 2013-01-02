@@ -27,7 +27,7 @@ build: pkg
 
 sign: $(PKG)
 	gpg --sign --detach-sign --armor $(PKG)
-	git commit $(PKG).asc -m "Added PGP signature for $(VERSION)"
+	git commit $(PKG).asc -m "Added PGP signature for v$(VERSION)"
 	git push
 
 verify: $(PKG) $(SIG)
