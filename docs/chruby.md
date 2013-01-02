@@ -4,6 +4,16 @@
 
 `chruby` [RUBY|VERSION|system] [RUBY_OPTS]
 
+## ARGUMENTS
+
+RUBY Fuzzy matching of Rubies by name.
+
+VERSION Ruby version.
+
+system System ruby.
+
+RUBY_OPTS Additional optional arguements to pass to Ruby.
+
 ## DESCRIPTION
 Changes the current Ruby version by correctly setting the appropriate environment variables.
 
@@ -17,9 +27,9 @@ Changes the current Ruby version by correctly setting the appropriate environmen
 
 List available Rubies:
     $ chruby
-     ruby-1.9.3-p327
-     jruby-1.7.0
-     rubinius-2.0.0-rc1
+       ruby-1.9.3-p327
+       jruby-1.7.0
+       rubinius-2.0.0-rc1
 
 Select a Ruby:
     $ chruby 1.9.3
@@ -38,6 +48,12 @@ Switch to an arbitrary Ruby on the fly:
     $ chruby_use /path/to/ruby
 
 ##FILES
+
+/opt/rubies
+
+/etc/profile.d/chruby.sh
+
+~/.rubies/
 
 ~/.gem/$ruby/$version
 
