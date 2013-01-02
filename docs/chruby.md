@@ -2,26 +2,27 @@
 
 ## SYNOPSIS
 
-`chruby` [RUBY|VERSION|system] [RUBY_OPTS]
+`chruby` [<RUBY|VERSION|system>] [<RUBY_OPTS>]
 
 ## ARGUMENTS
 
-RUBY Fuzzy matching of Rubies by name.
+*RUBY|VERSION*
+  Change Ruby version based on fuzzy matching of Ruby name or version.
 
-VERSION Ruby version.
+*system*
+  Change current Ruby to system Ruby.
 
-system System ruby.
+*RUBY_OPTS*
+  Additional optional arguements to pass to Ruby.
 
-RUBY_OPTS Additional optional arguements to pass to Ruby.
+## OPTIONS
+
+`-h`, `--help`
 
 ## DESCRIPTION
 Changes the current Ruby version by correctly setting the appropriate environment variables.
 
 [https://github.com/postmodern/chruby/blob/master/README.md](https://github.com/postmodern/chruby/blob/master/README.md)
-
-## OPTIONS
-
-`-h`, `--help`
 
 ## EXAMPLES
 
@@ -49,33 +50,33 @@ Switch to an arbitrary Ruby on the fly:
 
 ##FILES
 
-/opt/rubies
+*/opt/rubies*
 
-/etc/profile.d/chruby.sh
+*/etc/profile.d/chruby.sh*
 
-~/.rubies/
+*~/.rubies/*
 
-~/.gem/$ruby/$version
-
-/path/to/$ruby/$gemdir
+*~/.gem/$ruby/$version*
 
 ##ENVIRONMENT
 
-PATH Updated to include Rubies and RubyGems bin/ directories.
+*PATH*
+  Updated to include Rubies and RubyGems bin/ directories.
 
-GEM_HOME
+*GEM_HOME*
 
-GEM_PATH
+*GEM_PATH*
 
-RUBY_ROOT
+*RUBY_ROOT*
 
-RUBY_ENGINE
+*RUBY_ENGINE*
 
-RUBY_VERSION
+*RUBY_VERSION*
 
-GEM_ROOT
+*GEM_ROOT*
 
-RUBYOPT Optionally set if second arguement is given.
+*RUBYOPT*
+  Optionally set if second arguement is given.
 
 ##AUTHOR
 Postmodern <postmodern.mod3\@gmail.com>
