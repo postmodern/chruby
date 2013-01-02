@@ -59,8 +59,8 @@ GEM_ROOT
 
 RUBYOPT Optionally set if second arguement is given.
 
-##AUTHORS
-Designed and implemented by Postmodern <postmodern.mod3\@gmail.com>.
+##AUTHOR
+Postmodern <postmodern.mod3\@gmail.com>
 
 ##SEE ALSO
 ruby(1), gem(1)
