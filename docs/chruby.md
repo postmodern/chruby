@@ -5,7 +5,9 @@
 `chruby` [RUBY|VERSION|system] [RUBY_OPTS]
 
 ## DESCRIPTION
-Changes the current Ruby version by correctly setting the appropriate environment variables. Additional documentation available at <https://github.com/postmodern/chruby/blob/master/README.md>.
+Changes the current Ruby version by correctly setting the appropriate environment variables.
+
+[https://github.com/postmodern/chruby/blob/master/README.md](https://github.com/postmodern/chruby/blob/master/README.md)
 
 ## OPTIONS
 
