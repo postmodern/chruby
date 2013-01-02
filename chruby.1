@@ -1,71 +1,67 @@
-.TH "CHRUBY" "1" "January 2013" "" ""
-.
-.SH "NAME"
-\fBchruby\fR \- Changes the current Ruby\.
-.
-.SH "SYNOPSIS"
-\fBchruby\fR [RUBY|VERSION|system] [RUBY_OPTS]
-.
-.SH "EXAMPLES"
+.TH "CHRUBY" "1" "January 2013" "postmodern" "Ruby Programmers Reference Guide"
+.BR chruby (1) 
+\-\- Changes the current Ruby.
+.SH SYNOPSIS
+.PP
+\fB\fCchruby\fR [RUBY|VERSION|system] [RUBY_OPTS]
+.SH DESCRIPTION
+.PP
+Changes the current Ruby version by correctly setting the appropriate environment variables. Additional documentation available at https://github.com/postmodern/chruby/blob/master/README.md
+.UR https://github.com/postmodern/chruby/blob/master/README.md
+.UE .
+.SH OPTIONS
+.PP
+\fB\fC-h\fR, \fB\fC--help\fR
+.SH EXAMPLES
+.PP
 List available Rubies:
-.IP "" 4
-$ chruby
- ruby\-1\.9\.3\-p327
- jruby\-1\.7\.0
- rubinius\-2\.0\.0\-rc1
-.fi
-.IP "" 0
+    $ chruby
+     ruby\-1.9.3\-p327
+     jruby\-1.7.0
+     rubinius\-2.0.0\-rc1
+.PP
 Select a Ruby:
-.IP "" 4
-$ chruby 1\.9\.3
-$ chruby
- * ruby\-1\.9\.3\-p327
-   jruby\-1\.7\.0
-   rubinius\-2\.0\.0\-rc1
-$ echo $PATH
-/home/hal/\.gem/ruby/1\.9\.3/bin:/opt/rubies/ruby\-1\.9\.3\-p327/lib/ruby/gems/1\.9\.1/bin:/opt/rubies/ruby\-1\.9\.3\-p327/bin:/usr/lib64/qt\-3\.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
-$ gem env
-RubyGems Environment:
-  \- RUBYGEMS VERSION: 1\.8\.23
-  \- RUBY VERSION: 1\.9\.3 (2012\-11\-10 patchlevel 327) [x86_64\-linux]
-  \- INSTALLATION DIRECTORY: /home/hal/\.gem/ruby/1\.9\.3
-  \- RUBY EXECUTABLE: /opt/rubies/ruby\-1\.9\.3\-p327/bin/ruby
-  \- EXECUTABLE DIRECTORY: /home/hal/\.gem/ruby/1\.9\.3/bin
-  \- RUBYGEMS PLATFORMS:
-    \- ruby
-    \- x86_64\-linux
-  \- GEM PATHS:
-     \- /home/hal/\.gem/ruby/1\.9\.3
-     \- /opt/rubies/ruby\-1\.9\.3\-p327/lib/ruby/gems/1\.9\.1
-  \- GEM CONFIGURATION:
-     \- :update_sources => true
-     \- :verbose => true
-     \- :benchmark => false
-     \- :backtrace => false
-     \- :bulk_threshold => 1000
-     \- "gem" => "\-\-no\-rdoc"
-  \- REMOTE SOURCES:
-     \- http://rubygems\.org/
-.fi
-.IP "" 0
-Switch to JRuby in 1\.9 mode:
-.IP "" 4
-$ chruby jruby \-\-1\.9
-$ ruby \-v
-jruby 1\.7\.0 (1\.9\.3p203) 2012\-10\-22 ff1ebbe on OpenJDK 64\-Bit Server VM 1\.7\.0_09\-icedtea\-mockbuild_2012_10_17_15_53\-b00 [linux\-amd64]
-.fi
-.IP "" 0
+    $ chruby 1.9.3
+    $ chruby
+     * ruby\-1.9.3\-p327
+       jruby\-1.7.0
+       rubinius\-2.0.0\-rc1
+.PP
+Switch to JRuby in 1.9 mode:
+    $ chruby jruby \-\-1.9
+.PP
 Switch back to system Ruby:
-.IP "" 4
-$ chruby system
-$ echo $PATH
-/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hal/bin
-.fi
-.IP "" 0
+    $ chruby system
+.PP
 Switch to an arbitrary Ruby on the fly:
-.IP "" 4
-$ chruby_use /path/to/ruby
-.fi
-.IP "" 0
-.SH "SEE ALSO"
-ruby(1), gem(1)
+    $ chruby_use /path/to/ruby
+.SH FILES
+.PP
+~/.gem/$ruby/$version
+.PP
+/path/to/$ruby/$gemdir
+.SH ENVIRONMENT
+.PP
+PATH Updated to include Rubies and RubyGems bin/ directories.
+.PP
+GEM_HOME
+.PP
+GEM_PATH
+.PP
+RUBY_ROOT
+.PP
+RUBY_ENGINE
+.PP
+RUBY_VERSION
+.PP
+GEM_ROOT
+.PP
+RUBYOPT Optionally set if second arguement is given.
+.SH AUTHORS
+.PP
+Designed and implemented by Postmodern postmodern\.mod3@gmail\.com
+.ME .
+.SH SEE ALSO
+.PP
+.BR ruby (1), 
+.BR gem (1)
