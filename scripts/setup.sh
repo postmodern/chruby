@@ -87,7 +87,16 @@ tar -xzvf ruby-$MRI_VERSION.tar.gz
 cd ruby-$MRI_VERSION
 
 log "Configuring Ruby $MRI_VERSION ..."
-./configure --prefix="$RUBIES_DIR/ruby-$MRI_VERSION"
+if [[ "$PACKAGE_MANAGER" == "brew" ]]; then
+	./configure --prefix="$RUBIES_DIR/ruby-$MRI_VERSION" \
+		    --with-openssl-dir=`brew --prefix openssl` \
+		    --with-readline-dir=`brew --prefix readline` \
+		    --with-yaml-dir=`brew --prefix yaml` \
+		    --with-gdbm-dir=`brew --prefix gdbm` \
+		    --with-libffi-dir=`brew --prefix libffi`
+else
+	./configure --prefix="$RUBIES_DIR/ruby-$MRI_VERSION"
+fi
 
 log "Compiling Ruby $MRI_VERSION ..."
 make
