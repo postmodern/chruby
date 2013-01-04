@@ -74,7 +74,7 @@ case "$PACKAGE_MANAGER" in
 	yum)	yum install -y gcc automake zlib-devel libyaml-devel \
 			       openssl-devel gdbm-devel readline-devel \
 			       ncurses-devel libffi-devel ;;
-	brew)	brew install libyaml gdbm libffi || true ;;
+	brew)	brew install openssl readline libyaml gdbm libffi || true ;;
 esac
 
 cd $SRC_DIR
