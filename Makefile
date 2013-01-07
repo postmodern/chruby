@@ -1,5 +1,5 @@
 NAME=chruby
-VERSION=0.3.1
+VERSION=0.3.2
 AUTHOR=postmodern
 URL=https://github.com/$(AUTHOR)/$(NAME)
 
@@ -50,9 +50,9 @@ tag:
 release: tag download sign
 
 install:
-	for dir in $(INSTALL_DIRS); do install -d $(PREFIX)/$$dir; done
-	for file in $(INSTALL_FILES); do install $$file $(PREFIX)/$$file; done
-	install -d $(DOC_DIR)
+	for dir in $(INSTALL_DIRS); do mkdir -p $(PREFIX)/$$dir; done
+	for file in $(INSTALL_FILES); do cp $$file $(PREFIX)/$$file; done
+	mkdir -p $(DOC_DIR)
 	cp -r $(DOC_FILES) $(DOC_DIR)/
 
 uninstall:

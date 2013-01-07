@@ -12,8 +12,8 @@ class Chruby < Formula
 
   def caveats; <<-EOS.undent
 
-    Add the following to the /etc/profile.d/chruby.sh, ~/.bashrc or
-    ~/.zshrc file:
+    Add the following to the /etc/profile.d/chruby.sh, ~/.bash_profile or
+    ~/.zprofile file:
 
       source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
 
