@@ -112,6 +112,12 @@ chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
 https://gist.github.com/1912050
 
+### Single Command
+
+A single command can be run under particular Ruby with `chruby-exec`:
+
+    chruby-exec jruby -- gem update
+
 ### Default Ruby
 
 If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc` or
