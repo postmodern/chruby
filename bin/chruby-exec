@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 case "$1" in
 	-h|--help)
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
