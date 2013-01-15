@@ -21,6 +21,7 @@ function test_chruby_use_env_variables()
 	assertEquals "invalid RUBY_ROOT"    "$test_ruby_root" "$RUBY_ROOT"
 	assertEquals "invalid RUBY_ENGINE"  "$test_ruby_engine" "$RUBY_ENGINE"
 	assertEquals "invalid RUBY_VERSION" "$test_ruby_version" "$RUBY_VERSION"
+	assertEquals "invalid RUBY_PATCHLEVEL" "$test_ruby_patchlevel" "$RUBY_PATCHLEVEL"
 	assertEquals "invalid GEM_ROOT"     "$test_ruby_root/lib/ruby/gems/$test_ruby_api" "$GEM_ROOT"
 	assertEquals "invalid GEM_HOME"     "$test_gem_home" "$GEM_HOME"
 	assertEquals "invalid GEM_PATH"     "$GEM_HOME:$GEM_ROOT" "$GEM_PATH"
