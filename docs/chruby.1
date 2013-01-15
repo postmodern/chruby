@@ -1,0 +1,94 @@
+.TH 
+.BR chruby (1) 
+\-\- Changes the current Ruby.
+.SH SYNOPSIS
+.PP
+\fB\fCchruby\fR [<RUBY|VERSION|system>] [<RUBY_OPTS>]
+.SH ARGUMENTS
+.PP
+\fIRUBY|VERSION\fP
+    Change current Ruby based on fuzzy matching of Ruby by name.
+.PP
+\fIsystem\fP
+    Change current Ruby to system Ruby.
+.PP
+\fIRUBY_OPTS\fP
+    Additional optional arguements to pass to Ruby.
+.SH OPTIONS
+.PP
+\fB\fC-h\fR, \fB\fC--help\fR
+.SH DESCRIPTION
+.PP
+Changes the current Ruby version by correctly setting the appropriate environment variables.
+.PP
+https://github.com/postmodern/chruby/blob/master/README.md
+.UR https://github.com/postmodern/chruby/blob/master/README.md
+.UE
+.SH EXAMPLES
+.PP
+List available Rubies:
+    $ chruby
+       ruby\-1.9.3\-p362
+       jruby\-1.7.2
+       rubinius\-2.0.0\-rc1
+.PP
+Select a Ruby:
+    $ chruby 1.9.3
+    $ chruby
+     * ruby\-1.9.3\-p362
+       jruby\-1.7.2
+       rubinius\-2.0.0\-rc1
+.PP
+Switch to JRuby in 1.9 mode:
+    $ chruby jruby \-\-1.9
+.PP
+Switch back to system Ruby:
+    $ chruby system
+.PP
+Switch to an arbitrary Ruby on the fly:
+    $ chruby_use /path/to/ruby
+.SH FILES
+.PP
+\fI/opt/rubies\fP
+    Primary default Ruby install location.
+.PP
+\fI~/.rubies/\fP
+    Secondary default Ruby install location.
+.PP
+\fI/etc/profile.d/chruby.sh\fP
+    Application environment settings for chruby.
+.PP
+\fI~/.gem/$ruby/$version\fP
+    Default gem install location.
+.SH ENVIRONMENT
+.PP
+\fIPATH\fP
+    Updates the PATH environment variable to include Rubies and RubyGems bin/ directories.
+.PP
+\fIGEM_HOME\fP
+    Default repository location for gem installation.
+.PP
+\fIGEM_PATH\fP
+    A colon\-separated list of gem repository directories.
+.PP
+\fIGEM_ROOT\fP
+.PP
+\fIRUBY_ROOT\fP
+.PP
+\fIRUBY_ENGINE\fP
+    Name of Ruby implementation.
+.PP
+\fIRUBY_VERSION\fP
+    Ruby version number.
+.PP
+\fIRUBYOPT\fP
+    Optionally set if additional Ruby options are given.
+.SH AUTHOR
+.PP
+Postmodern postmodern.mod3\@gmail.com
+.MT postmodern.mod3@gmail.com
+.ME .
+.SH SEE ALSO
+.PP
+.BR ruby (1), 
+.BR gem (1)
