@@ -37,6 +37,7 @@ function chruby_use()
 require 'rubygems'
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
+puts "export RUBY_PATCHLEVEL=#{RUBY_PATCHLEVEL};"
 puts "export GEM_ROOT=#{Gem.default_dir.inspect};"
 EOF`
 
