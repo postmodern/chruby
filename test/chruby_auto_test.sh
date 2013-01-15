@@ -11,6 +11,21 @@ setUp()
 	unset RUBY_VERSION_FILE
 }
 
+test_chruby_auto_loaded_twice()
+{
+	. ./share/chruby/auto.sh
+
+	if [[ -n "$ZSH_VERSION" ]]; then
+		assertNotEquals "should not add chruby_auto twice" \
+			        "$precmd_functions" \
+				"chruby_auto chruby_auto"
+	else
+		assertNotEquals "should not add chruby_auto twice" \
+			        "$PROMPT_COMMAND" \
+		                "chruby_auto; chruby_auto"
+	fi
+}
+
 test_chruby_auto_enter_project_dir()
 {
 	cd "$PROJECT_DIR" && chruby_auto
