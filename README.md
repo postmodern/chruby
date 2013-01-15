@@ -184,6 +184,10 @@ Switch back to system Ruby:
     $ echo $PATH
     /usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hal/bin
 
+Run a command under a Ruby with `chruby-exec`:
+
+    $ chruby-exec jruby -- gem update
+
 Switch to an arbitrary Ruby on the fly:
 
     $ chruby_use /path/to/ruby
