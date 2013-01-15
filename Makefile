@@ -1,5 +1,5 @@
 NAME=chruby
-VERSION=0.3.9
+VERSION=0.4.0
 AUTHOR=postmodern
 URL=https://github.com/$(AUTHOR)/$(NAME)
 
