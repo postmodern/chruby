@@ -7,13 +7,13 @@
 ## ARGUMENTS
 
 *RUBY|VERSION*
-  Change Ruby version based on fuzzy matching of Ruby name or version.
+    Change current Ruby based on fuzzy matching of Ruby by name.
 
 *system*
-  Change current Ruby to system Ruby.
+    Change current Ruby to system Ruby.
 
 *RUBY_OPTS*
-  Additional optional arguements to pass to Ruby.
+    Additional optional arguements to pass to Ruby.
 
 ## OPTIONS
 
@@ -28,15 +28,15 @@ Changes the current Ruby version by correctly setting the appropriate environmen
 
 List available Rubies:
     $ chruby
-       ruby-1.9.3-p327
-       jruby-1.7.0
+       ruby-1.9.3-p362
+       jruby-1.7.2
        rubinius-2.0.0-rc1
 
 Select a Ruby:
     $ chruby 1.9.3
     $ chruby
-     * ruby-1.9.3-p327
-       jruby-1.7.0
+     * ruby-1.9.3-p362
+       jruby-1.7.2
        rubinius-2.0.0-rc1
 
 Switch to JRuby in 1.9 mode:
@@ -51,35 +51,43 @@ Switch to an arbitrary Ruby on the fly:
 ##FILES
 
 */opt/rubies*
+    Primary default Ruby install location.
+    
+*~/.rubies/*
+    Secondary default Ruby install location.
 
 */etc/profile.d/chruby.sh*
-
-*~/.rubies/*
+    Application environment settings for chruby.
 
 *~/.gem/$ruby/$version*
+    Default gem install location.
 
 ##ENVIRONMENT
 
 *PATH*
-  Updated to include Rubies and RubyGems bin/ directories.
+    Updates the PATH environment variable to include Rubies and RubyGems bin/ directories.
 
 *GEM_HOME*
+    Default repository location for gem installation.
 
 *GEM_PATH*
+    A colon-separated list of gem repository directories.
+    
+*GEM_ROOT*
 
 *RUBY_ROOT*
 
 *RUBY_ENGINE*
+    Name of Ruby implementation.
 
 *RUBY_VERSION*
-
-*GEM_ROOT*
+    Ruby version number.
 
 *RUBYOPT*
-  Optionally set if second arguement is given.
+    Optionally set if additional Ruby options are given.
 
 ##AUTHOR
-Postmodern <postmodern.mod3\@gmail.com>
+Postmodern [postmodern.mod3\@gmail.com](mailto:postmodern.mod3\@gmail.com).
 
 ##SEE ALSO
 ruby(1), gem(1)
