@@ -1,6 +1,7 @@
 ### 0.3.2 / 2013-01-15
 
 * Prevent `auto.sh` from being loaded more than once.
+* Recommend using `~/.bash_profile` and `~/.zprofile`.
 * Use `cp` and `mkdir` instead of `install` in the `Makefile`.
 
 #### chruby-exec
