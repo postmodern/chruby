@@ -1,3 +1,19 @@
+### 0.3.2 / 2013-01-15
+
+* Prevent `auto.sh` from being loaded more than once.
+* Use `cp` and `mkdir` instead of `install` in the `Makefile`.
+
+#### chruby-exec
+
+* Run under [bash], to avoid the [dash] shell.
+* Invoke `$SHELL` with the `-i` option, so [zsh] will load shell configuration.
+
+#### scripts/setup.sh
+
+* Install [JRuby] 1.7.2.
+* Use special `./configure` options for [homebrew].
+* Also install openssl and readline via homebrew.
+
 ### 0.3.1 / 2012-12-29
 
 * Fixed the auto-detection of `~/.rubies/*`.
@@ -116,3 +132,7 @@
 [RVM]: https://rvm.io/
 [rbenv]: https://github.com/sstephenson/rbenv#readme
 [rbfu]: https://github.com/hmans/rbfu#readme
+
+[MRI]: http://www.ruby-lang.org/en/
+[JRuby]: http://jruby.org/
+[Rubinius]: http://rubini.us/
