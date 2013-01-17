@@ -17,19 +17,19 @@ RUBINIUS_VERSION="2.0.0-rc1"
 # Functions
 #
 function log() {
-	if [[ -t 1 ]]; then echo -e "\e[1m\e[32m>>>\e[0m \e[1m\e[37m$1\e[0m"
+	if [[ -t 1 ]]; then echo -e "[1m[32m>>>[0m [1m[37m$1[0m"
 	else                echo ">>> $1"
 	fi
 }
 
 function error() {
-	if [[ -t 1 ]]; then echo -e "\e[1m\e[31m!!!\e[0m \e[1m\e[37m$1\e[0m" >&2
+	if [[ -t 1 ]]; then echo -e "[1m[31m!!![0m [1m[37m$1[0m" >&2
 	else		    echo "!!! $1" >&2
 	fi
 }
 
 function warning() {
-	if [[ -t 1 ]]; then echo -e "\e[1m\e[33m***\e[0m \e[1m\e[37m$1\e[0m" >&2
+	if [[ -t 1 ]]; then echo -e "[1m[33m***[0m [1m[37m$1[0m" >&2
 	else		    echo "*** $1" >&2
 	fi
 }
