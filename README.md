@@ -58,6 +58,12 @@ chruby can also be installed with [homebrew]:
 
     brew install chruby
 
+### Arch Linux
+
+chruby is already included in the [AUR](https://aur.archlinux.org/):
+
+    pacman -S devel/chruby
+
 ### Rubies
 
 Once chruby has been installed, you may want to install additional Rubies:
