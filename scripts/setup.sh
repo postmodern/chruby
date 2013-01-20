@@ -17,20 +17,26 @@ RUBINIUS_VERSION="2.0.0-rc1"
 # Functions
 #
 function log() {
-	if [[ -t 1 ]]; then echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
-	else                echo ">>> $1"
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+	else
+		echo ">>> $1"
 	fi
 }
 
 function error() {
-	if [[ -t 1 ]]; then echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
-	else		    echo "!!! $1" >&2
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+	else
+		echo "!!! $1" >&2
 	fi
 }
 
 function warning() {
-	if [[ -t 1 ]]; then echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
-	else		    echo "*** $1" >&2
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+	else
+		echo "*** $1" >&2
 	fi
 }
 
