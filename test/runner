@@ -1,8 +1,10 @@
 #!/bin/sh
 
 log() {
-	if [[ -t 1 ]]; then echo -e "\e[1m\e[32m>>>\e[0m \e[1m\e[37m$1\e[0m"
-	else                echo ">>> $1"
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+	else
+		echo ">>> $1"
 	fi
 }
 
