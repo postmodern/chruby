@@ -62,7 +62,7 @@ chruby can also be installed with [homebrew]:
 
 chruby is already included in the [AUR](https://aur.archlinux.org/):
 
-    pacman -S devel/chruby
+    yaourt -S devel/chruby
 
 ### Rubies
 
