@@ -54,4 +54,5 @@ if [[ -f .ruby-version ]]; then
 fi
 
 print_section "Aliases"
+
 alias | sed 's/^/    /'
