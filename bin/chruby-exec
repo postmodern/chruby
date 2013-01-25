@@ -5,6 +5,10 @@ case "$1" in
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
 		exit
 		;;
+	-v|--version)
+		echo "chruby version 0.3.2"
+		exit
+		;;
 esac
 
 if [[ $# -eq 0 ]]; then
