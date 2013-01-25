@@ -19,19 +19,26 @@ function print_variable()
 	fi
 }
 
+function print_version()
+{
+	if [[ -n $(which $1) ]]; then
+		indent "$($1 --version | head -n 1) ($(which $1))"
+	fi
+}
+
 print_section "System"
 
-echo "    $(uname -a)"
-[[ -n "$BASH_VERSION" ]] && indent "Bash $BASH_VERSION"
-[[ -n "$ZSH_VERSION"  ]] && indent "Zsh $ZSH_VERSION"
+indent "$(uname -a)"
+print_version "bash"
+print_version "zsh"
+print_version "ruby"
+print_version "bundle"
 
 print_section "Environment"
 
 print_variable "SHELL"
 print_variable "PATH"
 [[ -n "$PROMPT_COMMAND" ]] && print_variable "PROMPT_COMMAND"
-
-print_section "Ruby"
 
 [[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[*]})"
 [[ -n "$FUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
