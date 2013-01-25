@@ -1,3 +1,5 @@
+CHRUBY_VERSION="0.3.2"
+
 typeset -a RUBIES
 
 [[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
@@ -57,7 +59,7 @@ function chruby()
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		-v|--version)
-			echo "chruby version 0.3.2"
+			echo "chruby version $CHRUBY_VERSION"
 			;;
 		"")
 			local star
