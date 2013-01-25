@@ -1,7 +1,6 @@
 CHRUBY_VERSION="0.3.2"
 
-typeset -a RUBIES
-
+RUBIES=()
 [[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
 [[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/.rubies/*)
 
