@@ -80,7 +80,7 @@ Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
 
     source /usr/local/share/chruby/chruby.sh
 
-By default chruby will search for Rubies installed into `/opt/rubies/` or
+By default chruby will search for Rubies installed into `/opt/rubies/`, `/usr/local/opt/rubies/`, or
 `~/.rubies/`. For non-standard installation locations, simply set the
 `RUBIES` variable:
 

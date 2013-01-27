@@ -2,6 +2,7 @@ CHRUBY_VERSION="0.3.2"
 
 RUBIES=()
 [[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
+[[ -d /usr/local/opt/rubies/    ]] && RUBIES+=(/usr/local/opt/rubies/*)
 [[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/.rubies/*)
 
 function chruby_reset()
