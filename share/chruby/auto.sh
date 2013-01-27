@@ -35,3 +35,5 @@ else
 		PROMPT_COMMAND="chruby_auto"
 	fi
 fi
+
+unset RUBY_VERSION_FILE
