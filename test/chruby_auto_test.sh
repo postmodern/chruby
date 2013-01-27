@@ -13,6 +13,7 @@ setUp()
 
 test_chruby_auto_loaded_twice()
 {
+	RUBY_VERSION_FILE="dirty"
 	. ./share/chruby/auto.sh
 
 	if [[ -n "$ZSH_VERSION" ]]; then
@@ -24,6 +25,8 @@ test_chruby_auto_loaded_twice()
 			        "$PROMPT_COMMAND" \
 		                "chruby_auto; chruby_auto"
 	fi
+
+	assertNull "RUBY_VERSION_FILE was not unset" "$RUBY_VERSION_FILE"
 }
 
 test_chruby_auto_enter_project_dir()
