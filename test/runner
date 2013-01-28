@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 log() {
 	if [[ -t 1 ]]; then

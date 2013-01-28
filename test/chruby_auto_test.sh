@@ -1,5 +1,3 @@
-#!/bin/sh
-
 . ./share/chruby/auto.sh
 . ./test/helper.sh
 
