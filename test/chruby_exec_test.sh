@@ -1,5 +1,3 @@
-#!/bin/sh
-
 . ./test/helper.sh
 
 test_chruby_exec_no_arguments()

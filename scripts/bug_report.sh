@@ -1,5 +1,3 @@
-#!/bin/sh -il
-
 function print_section()
 {
 	echo
