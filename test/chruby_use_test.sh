@@ -1,5 +1,3 @@
-#!/bin/sh
-
 . ./test/helper.sh
 
 setUp()
