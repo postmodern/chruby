@@ -39,7 +39,7 @@ print_variable "PATH"
 [[ -n "$PROMPT_COMMAND" ]] && print_variable "PROMPT_COMMAND"
 
 [[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[*]})"
-[[ -n "$FUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
+[[ -n "$RUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
 [[ -n "$RUBY_VERSION" ]] && print_variable "RUBY_VERSION"
 [[ -n "$RUBY_ENGINE"  ]] && print_variable "RUBY_ENGINE"
 [[ -n "$GEM_ROOT"     ]] && print_variable "GEM_HOME"
