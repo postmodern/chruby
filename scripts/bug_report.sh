@@ -1,3 +1,5 @@
+[[ -z "$PS1" ]] && exec $SHELL -i -l $0
+
 function print_section()
 {
 	echo
