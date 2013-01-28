@@ -1,4 +1,4 @@
-CHRUBY_VERSION="0.3.2"
+CHRUBY_VERSION="0.3.3"
 
 RUBIES=()
 [[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)

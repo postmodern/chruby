@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CHRUBY_VERSION="0.3.2"
+CHRUBY_VERSION="0.3.3"
 
 case "$1" in
 	-h|--help)
