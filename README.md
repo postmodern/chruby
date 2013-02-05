@@ -52,6 +52,11 @@ via `sudo`:
 
     sudo ./scripts/setup.sh
 
+In case you'd like chruby to not sync your package manager, you can use
+the `SKIP_SYNC` flag:
+
+    sudo SKIP_SYNC=1 ./scripts/setup.sh
+
 ### Homebrew
 
 chruby can also be installed with [homebrew]:
