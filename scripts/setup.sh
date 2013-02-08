@@ -62,12 +62,16 @@ make install
 install -d "$SRC_DIR"
 install -d "$RUBIES_DIR"
 
-log "Synching Package Manager"
-case "$PACKAGE_MANAGER" in
-	apt)	apt-get update ;;
-	yum)	yum updateinfo ;;
-	brew)	brew update ;;
-esac
+if [[ $SKIP_SYNC -eq 1  ]]; then
+  log "(SKIP) Synching Package Manager"
+else
+  log "Synching Package Manager"
+  case "$PACKAGE_MANAGER" in
+    apt)	apt-get update ;;
+    yum)	yum updateinfo ;;
+    brew)	brew update ;;
+  esac
+fi
 
 #
 # Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
