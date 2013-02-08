@@ -44,7 +44,7 @@ print_variable "PATH"
 [[ -n "$RUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
 [[ -n "$RUBY_VERSION" ]] && print_variable "RUBY_VERSION"
 [[ -n "$RUBY_ENGINE"  ]] && print_variable "RUBY_ENGINE"
-[[ -n "$GEM_ROOT"     ]] && print_variable "GEM_HOME"
+[[ -n "$GEM_ROOT"     ]] && print_variable "GEM_ROOT"
 [[ -n "$GEM_HOME"     ]] && print_variable "GEM_HOME"
 [[ -n "$GEM_PATH"     ]] && print_variable "GEM_PATH"
 
