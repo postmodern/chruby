@@ -9,7 +9,7 @@ set -e
 #
 # Constants
 #
-MRI_VERSION="1.9.3-p385"
+RUBY_VERSION="1.9.3-p385"
 JRUBY_VERSION="1.7.2"
 RUBINIUS_VERSION="2.0.0-rc1"
 
@@ -89,29 +89,29 @@ esac
 
 cd $SRC_DIR
 
-log "Downloading Ruby $MRI_VERSION ..."
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$MRI_VERSION.tar.gz
+log "Downloading Ruby $RUBY_VERSION ..."
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.gz
 
-log "Extracting Ruby $MRI_VERSION ..."
-tar -xzvf ruby-$MRI_VERSION.tar.gz
-cd ruby-$MRI_VERSION
+log "Extracting Ruby $RUBY_VERSION ..."
+tar -xzvf ruby-$RUBY_VERSION.tar.gz
+cd ruby-$RUBY_VERSION
 
-log "Configuring Ruby $MRI_VERSION ..."
+log "Configuring Ruby $RUBY_VERSION ..."
 if [[ "$PACKAGE_MANAGER" == "brew" ]]; then
-	./configure --prefix="$RUBIES_DIR/ruby-$MRI_VERSION" \
+	./configure --prefix="$RUBIES_DIR/ruby-$RUBY_VERSION" \
 		    --with-openssl-dir=`brew --prefix openssl` \
 		    --with-readline-dir=`brew --prefix readline` \
 		    --with-yaml-dir=`brew --prefix yaml` \
 		    --with-gdbm-dir=`brew --prefix gdbm` \
 		    --with-libffi-dir=`brew --prefix libffi`
 else
-	./configure --prefix="$RUBIES_DIR/ruby-$MRI_VERSION"
+	./configure --prefix="$RUBIES_DIR/ruby-$RUBY_VERSION"
 fi
 
-log "Compiling Ruby $MRI_VERSION ..."
+log "Compiling Ruby $RUBY_VERSION ..."
 make
 
-log "Installing Ruby $MRI_VERSION ..."
+log "Installing Ruby $RUBY_VERSION ..."
 make install
 
 #
