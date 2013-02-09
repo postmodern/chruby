@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# chruby script which installs the latest stable versions of Ruby, JRuby
+# and Rubinius into /opt/rubies.
+#
 
 set -e
 
