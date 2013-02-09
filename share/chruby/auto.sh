@@ -22,6 +22,9 @@ function chruby_auto() {
 		dir="${dir%/*}"
 	done
 
+	chruby_auto_use "$HOME"
+	[[ $? == 2 ]] || return $?
+
 	if [[ -n "$RUBY_VERSION_FILE" ]]; then
 		chruby_reset
 		unset RUBY_VERSION_FILE

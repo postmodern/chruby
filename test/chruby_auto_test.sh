@@ -126,4 +126,13 @@ test_chruby_auto_invalid_ruby_version()
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
+test_chruby_default()
+{
+	cd "$PROJECT_DIR/sub_dir" && chruby_auto
+	cd ../..                  && HOME="$PROJECT_DIR" chruby_auto
+
+	assertEquals "did not use ~/.ruby-version when leaving a versioned directory" \
+		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2
