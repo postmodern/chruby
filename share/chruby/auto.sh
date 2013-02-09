@@ -1,20 +1,24 @@
 unset RUBY_VERSION_FILE
 
+function chruby_auto_use() {
+	local version_file="$1/.ruby-version"
+
+	if   [[ "$version_file" == "$RUBY_VERSION_FILE" ]]; then return
+	elif [[ -f "$version_file" ]]; then
+		chruby $(cat "$version_file") || return 1
+
+		export RUBY_VERSION_FILE="$version_file"
+		return
+	fi
+	return 2
+}
+
 function chruby_auto() {
 	local dir="$PWD"
-	local version_file
 
 	until [[ -z "$dir" ]]; do
-		version_file="$dir/.ruby-version"
-
-		if   [[ "$version_file" == "$RUBY_VERSION_FILE" ]]; then return
-		elif [[ -f "$version_file" ]]; then
-			chruby $(cat "$version_file") || return 1
-
-			export RUBY_VERSION_FILE="$version_file"
-			return
-		fi
-
+		chruby_auto_use "$dir"
+		[[ $? == 2 ]] || return $?
 		dir="${dir%/*}"
 	done
 
