@@ -74,7 +74,7 @@ case "$PACKAGE_MANAGER" in
 esac
 
 #
-# Install MRI (https://github.com/postmodern/chruby/wiki/MRI)
+# Install Ruby (https://github.com/postmodern/chruby/wiki/MRI)
 #
 log "Installing dependencies for Ruby $RUBY_VERSION ..."
 case "$PACKAGE_MANAGER" in
