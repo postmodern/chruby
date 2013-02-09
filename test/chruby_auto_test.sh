@@ -95,7 +95,7 @@ test_chruby_auto_enter_subdir_with_ruby_version()
 	cd "$PROJECT_DIR" && chruby_auto
 	cd sub_versioned  && chruby_auto
 
-	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
+	assertNull "did not switch the Ruby when entering a sub-versioned directory" \
 		   "$RUBY_ROOT"
 }
 
