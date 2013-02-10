@@ -42,7 +42,10 @@ print_section "Environment"
 
 print_variable "SHELL"
 print_variable "PATH"
-[[ -n "$PROMPT_COMMAND" ]] && print_variable "PROMPT_COMMAND"
+
+[[ -n "$PROMPT_COMMAND"    ]] && print_variable "PROMPT_COMMAND"
+[[ -n "$preexec_functions" ]] && print_variable "preexec_functions"
+[[ -n "$precmd_functions"  ]] && print_variable "precmd_functions"
 
 [[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[*]})"
 [[ -n "$RUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
