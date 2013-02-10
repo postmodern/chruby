@@ -1,3 +1,21 @@
+### 0.3.3 / 2013-02-08
+
+* Added `-v` `--version` options to `chruby` and `chruby-exec`.
+* Added `scripts/bug_report.sh` for collecting environment information
+  for bug reports.
+* Initialize `RUBIES` to `()` to avoid double-loading `chruby.sh`.
+* Invoke `ruby` using the absolute path to avoid shell aliases.
+  This fixes a bug caused by [ohmyzsh] aliases.
+
+#### auto.sh
+
+* Unset `RUBY_VERSION_FILE` on initial load for [tmux].
+
+#### scripts/setup.sh
+
+* Bump MRI version to 1.9.3-p385.
+* Use `\x1b` instead of `\e` for OSX.
+
 ### 0.3.2 / 2013-01-15
 
 * Prevent `auto.sh` from being loaded more than once.
@@ -126,6 +144,7 @@
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
 [tmux]: http://tmux.sourceforge.net/
+[ohmyzsh]: https://github.com/robbyrussell/oh-my-zsh#readme
 
 [Rubinius]: http://rubini.us/
 [homebrew]: http://mxcl.github.com/homebrew/
