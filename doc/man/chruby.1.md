@@ -19,6 +19,8 @@
 
 `-h`, `--help`
 
+`-v`, `--version`
+
 ## DESCRIPTION
 Changes the current Ruby version by correctly setting the appropriate environment variables.
 
