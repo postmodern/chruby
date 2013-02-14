@@ -223,6 +223,11 @@ Switch to an arbitrary Ruby on the fly:
 
 -- [Steve Klabnik](http://blog.steveklabnik.com/posts/2012-12-13-getting-started-with-chruby)
 
+> I wrote ruby-version; however, chruby is already what ruby-version wanted to
+> be. I've deprecated ruby-version in favor of chruby.
+
+-- [Wil Moore III](https://github.com/wilmoore)
+
 ## Credits
 
 * [mpapis](https://github.com/mpapis) for reviewing the code.
