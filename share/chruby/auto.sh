@@ -29,7 +29,9 @@ if [[ -n "$ZSH_VERSION" ]]; then
 		precmd_functions+=("chruby_auto")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
-	PROMPT_COMMAND="${PROMPT_COMMAND%% }"
-	PROMPT_COMMAND="${PROMPT_COMMAND%%;}"
-	PROMPT_COMMAND="$PROMPT_COMMAND; chruby_auto"
+	if [[ ! "$PROMPT_COMMAND" == *chruby_auto* ]]; then
+		PROMPT_COMMAND="${PROMPT_COMMAND%% }"
+		PROMPT_COMMAND="${PROMPT_COMMAND%%;}"
+		PROMPT_COMMAND="$PROMPT_COMMAND; chruby_auto"
+	fi
 fi

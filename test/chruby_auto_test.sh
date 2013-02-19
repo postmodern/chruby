@@ -36,13 +36,15 @@ test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon_and_whitespace()
 test_chruby_auto_loaded_twice()
 {
 	RUBY_VERSION_FILE="dirty"
+	PROMPT_COMMAND="chruby_auto"
+
 	. ./share/chruby/auto.sh
 
 	if [[ -n "$ZSH_VERSION" ]]; then
 		assertNotEquals "should not add chruby_auto twice" \
 			        "$precmd_functions" \
 				"chruby_auto chruby_auto"
-	else
+	elif [[ -n "$BASH_VERSION" ]]; then
 		assertNotEquals "should not add chruby_auto twice" \
 			        "$PROMPT_COMMAND" \
 		                "chruby_auto; chruby_auto"
