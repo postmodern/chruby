@@ -1,4 +1,4 @@
-### 0.3.3 / 2013-02-08
+### 0.3.3 / 2013-02-18
 
 * Added `-v` `--version` options to `chruby` and `chruby-exec`.
 * Added `scripts/bug_report.sh` for collecting environment information
@@ -10,6 +10,8 @@
 #### auto.sh
 
 * Unset `RUBY_VERSION_FILE` on initial load for [tmux].
+* Remove trailing `;` and whitespace from `PROMPT_COMMAND` before
+  appending `; chruby_auto`.
 
 #### scripts/setup.sh
 
