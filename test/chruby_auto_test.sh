@@ -9,6 +9,30 @@ setUp()
 	unset RUBY_VERSION_FILE
 }
 
+test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon()
+{
+	if [[ -n "$BASH_VERSION" ]]; then
+		PROMPT_COMMAND="update_terminal_cwd;"
+		. ./share/chruby/auto.sh
+
+		assertEquals "did not remove tailing ';' and whitespace" \
+			     "update_terminal_cwd; chruby_auto" \
+			     "$PROMPT_COMMAND"
+	fi
+}
+
+test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon_and_whitespace()
+{
+	if [[ -n "$BASH_VERSION" ]]; then
+		PROMPT_COMMAND="update_terminal_cwd; "
+		. ./share/chruby/auto.sh
+	
+		assertEquals "did not remove tailing ';' and whitespace" \
+			     "update_terminal_cwd; chruby_auto" \
+			     "$PROMPT_COMMAND"
+	fi
+}
+
 test_chruby_auto_loaded_twice()
 {
 	RUBY_VERSION_FILE="dirty"
