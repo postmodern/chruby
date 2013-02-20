@@ -9,6 +9,18 @@ setUp()
 	unset RUBY_VERSION_FILE
 }
 
+test_chruby_auto_setting_blank_PROMPT_COMMAND()
+{
+	if [[ -n "$BASH_VERSION" ]]; then
+		PROMPT_COMMAND=""
+		. ./share/chruby/auto.sh
+
+		assertEquals "has syntax error" \
+			     "chruby_auto" \
+			     "$PROMPT_COMMAND"
+	fi
+}
+
 test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon()
 {
 	if [[ -n "$BASH_VERSION" ]]; then
