@@ -142,7 +142,7 @@ For instructions on using chruby with other tools, please see the [wiki]:
 List available Rubies:
 
     $ chruby
-       ruby-1.9.3-p385
+       ruby-1.9.3-p392
        jruby-1.7.0
        rubinius-2.0.0-rc1
 
@@ -150,24 +150,24 @@ Select a Ruby:
 
     $ chruby 1.9.3
     $ chruby
-     * ruby-1.9.3-p385
+     * ruby-1.9.3-p392
        jruby-1.7.0
        rubinius-2.0.0-rc1
     $ echo $PATH
-    /home/hal/.gem/ruby/1.9.3/bin:/opt/rubies/ruby-1.9.3-p385/lib/ruby/gems/1.9.1/bin:/opt/rubies/ruby-1.9.3-p385/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
+    /home/hal/.gem/ruby/1.9.3/bin:/opt/rubies/ruby-1.9.3-p392/lib/ruby/gems/1.9.1/bin:/opt/rubies/ruby-1.9.3-p392/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
     $ gem env
     RubyGems Environment:
       - RUBYGEMS VERSION: 1.8.23
       - RUBY VERSION: 1.9.3 (2013-02-06 patchlevel 385) [x86_64-linux]
       - INSTALLATION DIRECTORY: /home/hal/.gem/ruby/1.9.3
-      - RUBY EXECUTABLE: /opt/rubies/ruby-1.9.3-p385/bin/ruby
+      - RUBY EXECUTABLE: /opt/rubies/ruby-1.9.3-p392/bin/ruby
       - EXECUTABLE DIRECTORY: /home/hal/.gem/ruby/1.9.3/bin
       - RUBYGEMS PLATFORMS:
         - ruby
         - x86_64-linux
       - GEM PATHS:
          - /home/hal/.gem/ruby/1.9.3
-         - /opt/rubies/ruby-1.9.3-p385/lib/ruby/gems/1.9.1
+         - /opt/rubies/ruby-1.9.3-p392/lib/ruby/gems/1.9.1
       - GEM CONFIGURATION:
          - :update_sources => true
          - :verbose => true
