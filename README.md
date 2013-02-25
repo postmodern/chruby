@@ -75,9 +75,9 @@ This can be done with the [ruby-build] utility or manually:
 
 Here are some examples of using ruby-build to install different rubies:
 
-    ruby-build 1.8.7-p352 $HOME/.rbfu/rubies/1.8.7-p352
-    ruby-build 1.9.2-p290 $HOME/.rbfu/rubies/1.9.2-p290
-    ruby-build 1.9.3-p194 $HOME/.rbfu/rubies/1.9.3-p194
+    ruby-build 1.8.7-p352 $HOME/.rubies/1.8.7-p352
+    ruby-build 1.9.2-p290 $HOME/.rubies/1.9.2-p290
+    ruby-build 1.9.3-p194 $HOME/.rubies/1.9.3-p194
 
 ## Configuration
 
