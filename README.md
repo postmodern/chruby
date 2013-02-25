@@ -202,9 +202,11 @@ Switch to an arbitrary Ruby on the fly:
 
 * [RVM]
 * [rbenv]
-* [rbfu]
+* [rbfu]*
 * [ry]
-* [ruby-version]
+* [ruby-version]*
+
+\* *Deprecated in favor of chruby.*
 
 ## Endorsements
 
