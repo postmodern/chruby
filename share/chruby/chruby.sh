@@ -13,7 +13,12 @@ function chruby_reset()
 	if [[ ! $UID -eq 0 ]]; then
 		export PATH=${PATH//:$GEM_HOME\/bin:/:}
 		export PATH=${PATH//:$GEM_ROOT\/bin:/:}
-		unset GEM_ROOT GEM_HOME GEM_PATH
+
+		export GEM_PATH=":$GEM_PATH:"
+		export GEM_PATH=${GEM_PATH//:$GEM_HOME:/:}
+		export GEM_PATH=${GEM_PATH//:$GEM_ROOT:/:}
+		export GEM_PATH=${GEM_PATH#:}; export GEM_PATH=${GEM_PATH%:}
+		unset GEM_ROOT GEM_HOME
 	fi
 
 	export PATH=${PATH#:}; export PATH=${PATH%:}

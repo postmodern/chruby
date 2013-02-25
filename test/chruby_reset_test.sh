@@ -30,4 +30,15 @@ test_chruby_reset_duplicate_path()
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
 
+test_chruby_reset_modified_gem_path()
+{
+	local gem_dir="$HOME/gems"
+
+	export GEM_PATH="$GEM_PATH:$gem_dir"
+
+	chruby_reset
+
+	assertEquals "$GEM_PATH was unset" "$gem_dir" "$GEM_PATH"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2
