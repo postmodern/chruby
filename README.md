@@ -73,6 +73,21 @@ This can be done with the [ruby-build] utility or manually:
 * [JRuby](https://github.com/postmodern/chruby/wiki/JRuby)
 * [Rubinius](https://github.com/postmodern/chruby/wiki/Rubinius)
 
+Here are some examples of using ruby-build to install different rubies:
+
+Installing to `~/.rubies`:
+
+    ruby-build ruby-1.9.3-p392 $HOME/.rubies/ruby-1.9.3-p392
+    ruby-build jruby-1.7.2 $HOME/.rubies/jruby-1.7.2
+    ruby-build rbx-2.0.0-rc1 $HOME/.rubies/rbx-2.0.0-rc1
+
+Installing to `/opt/rubies`:
+
+    ruby-build ruby-1.9.3-p392 /opt/rubies/ruby-1.8.7-p352
+    ruby-build jruby-1.7.2 /opt/rubies/jruby-1.7.2
+    ruby-build rbx-2.0.0-rc1 /opt/rubies/rbx-2.0.0-rc1
+
+
 ## Configuration
 
 Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
