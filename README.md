@@ -80,7 +80,7 @@ You can also use [ruby-build] to install additional Rubies:
 
 Installing to `/opt/rubies`:
 
-    ruby-build ruby-1.9.3-p392 /opt/rubies/ruby-1.8.7-p352
+    ruby-build ruby-1.9.3-p392 /opt/rubies/ruby-1.9.3-p392
     ruby-build jruby-1.7.2 /opt/rubies/jruby-1.7.2
     ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
 
