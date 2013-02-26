@@ -77,15 +77,15 @@ Here are some examples of using ruby-build to install different rubies:
 
 Installing to `~/.rubies`:
 
-    ruby-build 1.8.7-p352 $HOME/.rubies/ruby-1.8.7-p352
-    ruby-build 1.9.2-p290 $HOME/.rubies/ruby-1.9.2-p290
-    ruby-build 1.9.3-p194 $HOME/.rubies/ruby-1.9.3-p194
+    ruby-build ruby-1.9.3-p392 $HOME/.rubies/ruby-1.9.3-p392
+    ruby-build jruby-1.7.2 $HOME/.rubies/jruby-1.7.2
+    ruby-build rbx-2.0.0-rc1 $HOME/.rubies/rbx-2.0.0-rc1
 
 Installing to `/opt/rubies`:
 
-    ruby-build 1.8.7-p352 /opt/rubies/ruby-1.8.7-p352
-    ruby-build 1.9.2-p290 /opt/rubies/ruby-1.9.2-p290
-    ruby-build 1.9.3-p194 /opt/rubies/ruby-1.9.3-p194
+    ruby-build ruby-1.9.3-p392 /opt/rubies/ruby-1.8.7-p352
+    ruby-build jruby-1.7.2 /opt/rubies/jruby-1.7.2
+    ruby-build rbx-2.0.0-rc1 /opt/rubies/rbx-2.0.0-rc1
 
 
 ## Configuration
