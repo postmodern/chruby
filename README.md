@@ -66,26 +66,23 @@ chruby is already included in the [AUR](https://aur.archlinux.org/):
 
 ### Rubies
 
-Once chruby has been installed, you may want to install additional Rubies:
-This can be done with the [ruby-build] utility or manually:
+#### Manually
+
+Chruby provides detailed instructions for installing additional Rubies:
 
 * [MRI](https://github.com/postmodern/chruby/wiki/MRI)
 * [JRuby](https://github.com/postmodern/chruby/wiki/JRuby)
 * [Rubinius](https://github.com/postmodern/chruby/wiki/Rubinius)
 
-Here are some examples of using ruby-build to install different rubies:
+#### ruby-build
 
-Installing to `~/.rubies`:
-
-    ruby-build ruby-1.9.3-p392 $HOME/.rubies/ruby-1.9.3-p392
-    ruby-build jruby-1.7.2 $HOME/.rubies/jruby-1.7.2
-    ruby-build rbx-2.0.0-rc1 $HOME/.rubies/rbx-2.0.0-rc1
+You can also use [ruby-build] to install additional Rubies:
 
 Installing to `/opt/rubies`:
 
     ruby-build ruby-1.9.3-p392 /opt/rubies/ruby-1.8.7-p352
     ruby-build jruby-1.7.2 /opt/rubies/jruby-1.7.2
-    ruby-build rbx-2.0.0-rc1 /opt/rubies/rbx-2.0.0-rc1
+    ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
 
 
 ## Configuration
