@@ -40,6 +40,7 @@ print_version "bundle"
 
 print_section "Environment"
 
+print_variable "CHRUBY_VERSION"
 print_variable "SHELL"
 print_variable "PATH"
 
