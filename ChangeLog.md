@@ -1,3 +1,19 @@
+### 0.3.4 / 2013-02-28
+
+* Prepend the new gem paths to `GEM_PATH` in `chruby_use`, instead of
+  overriding the variable. This allows users to add common gem paths to
+  `GEM_PATH` in `~/.bashrc`.
+* Only remove the gem paths used by the Ruby in `chruby_reset`.
+
+#### auto.sh
+
+* Detect when `PROMPT_COMMAND=" "` before checking if `PROMPT_COMMAND` is an
+  empty String. This appears to only happen on OSX Mountain Lion.
+
+#### scripts/bug_report.sh
+
+* Include `CHRUBY_VERSION` in the output.
+
 ### 0.3.3 / 2013-02-18
 
 * Added `-v` `--version` options to `chruby` and `chruby-exec`.
