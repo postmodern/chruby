@@ -170,7 +170,7 @@ Select a Ruby:
     $ gem env
     RubyGems Environment:
       - RUBYGEMS VERSION: 1.8.23
-      - RUBY VERSION: 1.9.3 (2013-02-06 patchlevel 385) [x86_64-linux]
+      - RUBY VERSION: 1.9.3 (2013-02-22 patchlevel 392) [x86_64-linux]
       - INSTALLATION DIRECTORY: /home/hal/.gem/ruby/1.9.3
       - RUBY EXECUTABLE: /opt/rubies/ruby-1.9.3-p392/bin/ruby
       - EXECUTABLE DIRECTORY: /home/hal/.gem/ruby/1.9.3/bin
