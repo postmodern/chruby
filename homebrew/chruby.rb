@@ -21,16 +21,16 @@ class Chruby < Formula
     ~/.rubies/. For non-standard installation locations, simply set the RUBIES
     variable:
 
-      RUBIES=(
+      RUBIES="
         /opt/rubies/jruby-1.7.0
         $HOME/src/rubinius
-      )
+      "
 
     If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
-      RVM:   RUBIES=(~/.rvm/rubies/*)
-      rbenv: RUBIES=(~/.rbenv/versions/*)
-      rbfu:  RUBIES=('~/.rbfu/rubies/*)
+      RVM:   RUBIES="$HOME/.rvm/rubies/*"
+      rbenv: RUBIES="$HOME/.rbenv/versions/*"
+      rbfu:  RUBIES="$HOME/.rbfu/rubies/*"
 
     To enable auto-switching of Rubies specified by .ruby-version files:
 

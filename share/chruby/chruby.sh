@@ -1,8 +1,6 @@
 CHRUBY_VERSION="0.3.4"
 
-RUBIES=()
-[[ -d /opt/rubies/    ]] && RUBIES+=(/opt/rubies/*)
-[[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/.rubies/*)
+RUBIES="/opt/rubies/* $HOME/.rubies/*"
 
 function chruby_reset()
 {
@@ -67,18 +65,20 @@ function chruby()
 		"")
 			local star
 
-			for dir in ${RUBIES[@]}; do
-				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
-				else                                  star=" "
-				fi
+			for dir in $RUBIES; do
+				if [[ -d "$dir" ]]; then
+					if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
+					else                                  star=" "
+					fi
 
-				echo " $star $(basename "$dir")"
+					echo " $star $(basename "$dir")"
+				fi
 			done
 			;;
 		system) chruby_reset ;;
 		*)
-			for dir in ${RUBIES[@]}; do
-				if [[ `basename "$dir"` == *$1* ]]; then
+			for dir in $RUBIES; do
+				if [[ `basename "$dir"` == *$1* ]] && [[ -d "$dir" ]]; then
 					shift
 					chruby_use "$dir" "$*"
 					return $?
