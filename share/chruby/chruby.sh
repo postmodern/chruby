@@ -1,6 +1,9 @@
 CHRUBY_VERSION="0.3.4"
 
-RUBIES="/opt/rubies/* $HOME/.rubies/*"
+RUBIES=(
+	"/opt/rubies/*"
+	"$HOME/.rubies/*"
+)
 
 function chruby_reset()
 {
@@ -65,24 +68,28 @@ function chruby()
 		"")
 			local star
 
-			for dir in $RUBIES; do
-				if [[ -d "$dir" ]]; then
-					if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
-					else                                  star=" "
-					fi
+			for glob in ${RUBIES[@]}; do
+				for dir in $glob; do
+					if [[ -d "$dir" ]]; then
+						if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
+						else                                  star=" "
+						fi
 
-					echo " $star $(basename "$dir")"
-				fi
+						echo " $star $(basename "$dir")"
+					fi
+				done
 			done
 			;;
 		system) chruby_reset ;;
 		*)
-			for dir in $RUBIES; do
-				if [[ `basename "$dir"` == *$1* ]] && [[ -d "$dir" ]]; then
-					shift
-					chruby_use "$dir" "$*"
-					return $?
-				fi
+			for glob in ${RUBIES[@]}; do
+				for dir in $glob; do
+					if [[ `basename "$dir"` == *$1* ]] && [[ -d "$dir" ]]; then
+						shift
+						chruby_use "$dir" "$*"
+						return $?
+					fi
+				done
 			done
 
 			echo "chruby: unknown Ruby: $1" >&2

@@ -29,7 +29,7 @@ test_chruby_unknown()
 
 test_chruby_invalid_ruby()
 {
-	RUBIES="/does/not/exist/jruby"
+	RUBIES=(/does/not/exist/jruby)
 
 	chruby "jruby" 2>/dev/null
 
@@ -38,7 +38,7 @@ test_chruby_invalid_ruby()
 
 test_chruby_does_not_output_globs()
 {
-	RUBIES="/unsuccessful/glob/*"
+	RUBIES=("/unsuccessful/glob/*")
 
 	local output=$(chruby)
 
@@ -50,7 +50,7 @@ test_chruby_expands_globs_at_runtime()
 	local rubies_dir="$HOME/.rubies"
 	local fake_ruby="ruby-0.0.0-p0"
 
-	RUBIES="$rubies_dir/*"
+	RUBIES=("$rubies_dir/*")
 
 	local output=$(chruby)
 

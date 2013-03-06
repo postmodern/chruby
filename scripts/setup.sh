@@ -180,7 +180,7 @@ CHRUBY_CONFIG=`cat <<EOS
 
 source $PREFIX/share/chruby/chruby.sh
 
-RUBIES="$RUBIES_DIR/*"
+RUBIES=("$RUBIES_DIR/*")
 EOS`
 
 if [[ -d /etc/profile.d/ ]]; then

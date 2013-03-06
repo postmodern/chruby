@@ -96,18 +96,18 @@ By default chruby will search for Rubies installed into `/opt/rubies/` or
 `~/.rubies/`. For non-standard installation locations, simply set the
 `RUBIES` variable:
 
-    RUBIES="
+    RUBIES=(
       /opt/jruby-1.7.0
       $HOME/src/rubinius
-	"
+    )
 
 ### Migrating
 
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
-* [RVM]: `RUBIES="$HOME/.rvm/rubies/*"`
-* [rbenv]: `RUBIES="$HOME/.rbenv/versions/*"`
-* [rbfu]: `RUBIES="$HOME/.rbfu/rubies/*"`
+* [RVM]: `RUBIES=("$HOME/.rvm/rubies/*")`
+* [rbenv]: `RUBIES=("$HOME/.rbenv/versions/*")`
+* [rbfu]: `RUBIES=("$HOME/.rbfu/rubies/*")`
 
 ### System Wide
 
