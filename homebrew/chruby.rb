@@ -28,9 +28,9 @@ class Chruby < Formula
 
     If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
-      RVM:   RUBIES=(~/.rvm/rubies/*)
-      rbenv: RUBIES=(~/.rbenv/versions/*)
-      rbfu:  RUBIES=('~/.rbfu/rubies/*)
+      RVM:   RUBIES=("$HOME/.rvm/rubies/*")
+      rbenv: RUBIES=("$HOME/.rbenv/versions/*")
+      rbfu:  RUBIES=("$HOME/.rbfu/rubies/*")
 
     To enable auto-switching of Rubies specified by .ruby-version files:
 

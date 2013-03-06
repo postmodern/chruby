@@ -105,9 +105,9 @@ By default chruby will search for Rubies installed into `/opt/rubies/` or
 
 If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
-* [RVM]: `RUBIES=(~/.rvm/rubies/*)`
-* [rbenv]: `RUBIES=(~/.rbenv/versions/*)`
-* [rbfu]: `RUBIES=(~/.rbfu/rubies/*)`
+* [RVM]: `RUBIES=("$HOME/.rvm/rubies/*")`
+* [rbenv]: `RUBIES=("$HOME/.rbenv/versions/*")`
+* [rbfu]: `RUBIES=("$HOME/.rbfu/rubies/*")`
 
 ### System Wide
 
