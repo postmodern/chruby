@@ -47,45 +47,45 @@ function warning() {
 #
 # Detect the Package Manager
 #
-if   [[ $(type -t apt-get) == "file" ]]; then PACKAGE_MANAGER="apt"
-elif [[ $(type -t yum)     == "file" ]]; then PACKAGE_MANAGER="yum"
-elif [[ $(type -t brew)    == "file" ]]; then PACKAGE_MANAGER="brew"
-else
-	warning "Could not determine Package Manager. Proceeding anyways."
-fi
+# if   [[ $(type -t apt-get) == "file" ]]; then PACKAGE_MANAGER="apt"
+# elif [[ $(type -t yum)     == "file" ]]; then PACKAGE_MANAGER="yum"
+# elif [[ $(type -t brew)    == "file" ]]; then PACKAGE_MANAGER="brew"
+# else
+# 	warning "Could not determine Package Manager. Proceeding anyways."
+# fi
 
-#
-# Install chruby
-#
-log "Installing chruby ..."
-make install
+# #
+# # Install chruby
+# #
+# log "Installing chruby ..."
+# make install
 
-#
-# Pre Install
-#
-install -d "$SRC_DIR"
-install -d "$RUBIES_DIR"
+# #
+# # Pre Install
+# #
+# install -d "$SRC_DIR"
+# install -d "$RUBIES_DIR"
 
-log "Synching Package Manager"
-case "$PACKAGE_MANAGER" in
-	apt)	apt-get update ;;
-	yum)	yum updateinfo ;;
-	brew)	brew update ;;
-esac
+# log "Synching Package Manager"
+# case "$PACKAGE_MANAGER" in
+# 	apt)	apt-get update ;;
+# 	yum)	yum updateinfo ;;
+# 	brew)	brew update ;;
+# esac
 
-#
-# Install Ruby (https://github.com/postmodern/chruby/wiki/MRI)
-#
-log "Installing dependencies for Ruby $RUBY_VERSION ..."
-case "$PACKAGE_MANAGER" in
-	apt)	apt-get install -y build-essential zlib1g-dev libyaml-dev \
-			           libssl-dev libgdbm-dev libreadline-dev \
-				   libncurses5-dev libffi-dev ;;
-	yum)	yum install -y gcc automake zlib-devel libyaml-devel \
-			       openssl-devel gdbm-devel readline-devel \
-			       ncurses-devel libffi-devel ;;
-	brew)	brew install openssl readline libyaml gdbm libffi || true ;;
-esac
+# #
+# # Install Ruby (https://github.com/postmodern/chruby/wiki/MRI)
+# #
+# log "Installing dependencies for Ruby $RUBY_VERSION ..."
+# case "$PACKAGE_MANAGER" in
+# 	apt)	apt-get install -y build-essential zlib1g-dev libyaml-dev \
+# 			           libssl-dev libgdbm-dev libreadline-dev \
+# 				   libncurses5-dev libffi-dev ;;
+# 	yum)	yum install -y gcc automake zlib-devel libyaml-devel \
+# 			       openssl-devel gdbm-devel readline-devel \
+# 			       ncurses-devel libffi-devel ;;
+# 	brew)	brew install openssl readline libyaml gdbm libffi || true ;;
+# esac
 
 cd $SRC_DIR
 
