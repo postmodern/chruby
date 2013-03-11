@@ -28,8 +28,10 @@ function chruby_reset()
 
 function chruby_use()
 {
-	if [[ ! -x "$1/bin/ruby" ]]; then
-		echo "chruby: $1/bin/ruby not executable" >&2
+	local ruby_path="$1/bin/ruby"
+
+	if [[ ! -x "$ruby_path" && ! -x $(find $(dirname "$ruby_path") -name $(readlink "$ruby_path") -print) ]]; then
+		echo "chruby: $ruby_path not executable" >&2
 		return 1
 	fi
 
@@ -55,8 +57,6 @@ EOF`
 
 function chruby()
 {
-	local ruby_path
-
 	case "$1" in
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
