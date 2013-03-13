@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+CHRUBY_VERSION="0.3.4"
+
 case "$1" in
 	-h|--help)
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
@@ -29,4 +33,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-chruby $argv && eval $*
+exec $SHELL -l -i -c "chruby $argv && $*"
