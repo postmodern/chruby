@@ -1,5 +1,3 @@
-source "$(dirname $(dirname $0))/share/chruby/chruby.sh"
-
 case "$1" in
 	-h|--help)
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
