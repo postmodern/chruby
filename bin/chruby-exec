@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-CHRUBY_VERSION="0.3.4"
+source "$(dirname $(dirname $0))/share/chruby/chruby.sh"
 
 case "$1" in
 	-h|--help)
@@ -33,4 +31,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-exec $SHELL -l -i -c "chruby $argv && $*"
+chruby $argv && eval $*
