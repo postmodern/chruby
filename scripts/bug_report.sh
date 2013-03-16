@@ -34,6 +34,7 @@ print_section "System"
 
 indent "$(uname -a)"
 print_version "bash"
+print_version "tmux"
 print_version "zsh"
 print_version "ruby"
 print_version "bundle"
