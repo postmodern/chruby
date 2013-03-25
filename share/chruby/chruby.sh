@@ -52,7 +52,7 @@ EOF`
 	if [[ ! $UID -eq 0 ]]; then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		export GEM_PATH="$GEM_HOME"
-		if [[ "$GEM_ROOT" -ne "" ]]; then
+		if [[ -n "$GEM_ROOT" ]]; then
 			export GEM_PATH="$GEM_PATH:$GEM_ROOT${GEM_PATH:+:}${GEM_PATH:-}"
 			export PATH="$GEM_ROOT/bin:$PATH"
 		fi
