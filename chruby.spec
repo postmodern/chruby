@@ -5,16 +5,17 @@
 %define buildroot %{_topdir}/BUILDROOT
 
 BuildRoot: %{buildroot}
-Source0: %{name}-%{version}.tar.gz
-Summary: It's chruby!
+Source0: https://github.com/postmodern/%{name}/archive/v%{version}.tar.gz
+Summary: Changes the current Ruby.
 Name: %{name}
 Version: %{version}
 Release: %{release}
-License: Other
+License: MIT
 AutoReqProv: no
 BuildArch: noarch
 
 %description
+Changes the current Ruby.
 
 %prep
 %setup -q
@@ -28,4 +29,5 @@ make install PREFIX=%{buildroot}/usr
 %defattr(-,root,root)
 /usr/bin/chruby-exec
 /usr/share/%{name}/*
+%doc
 /usr/share/doc/%{name}-%{version}/*
