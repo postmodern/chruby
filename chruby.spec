@@ -6,11 +6,12 @@
 
 BuildRoot: %{buildroot}
 Source0: https://github.com/postmodern/%{name}/archive/v%{version}.tar.gz
-Summary: Changes the current Ruby.
+Summary: Changes the current Ruby
 Name: %{name}
 Version: %{version}
 Release: %{release}
 License: MIT
+URL: https://github.com/postmodern/chruby#readme
 AutoReqProv: no
 BuildArch: noarch
 
@@ -31,3 +32,7 @@ make install PREFIX=%{buildroot}/usr
 /usr/share/%{name}/*
 %doc
 /usr/share/doc/%{name}-%{version}/*
+
+%changelog
+* Sun Mar 24 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.4-1
+- Rebuilt for version 0.3.4.
