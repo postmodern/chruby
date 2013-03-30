@@ -55,8 +55,6 @@ EOF`
 
 function chruby()
 {
-	local ruby_path
-
 	case "$1" in
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
