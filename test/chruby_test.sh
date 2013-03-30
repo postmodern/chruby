@@ -12,6 +12,15 @@ test_chruby_1_9()
 	assertEquals "did not match 1.9" "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
+test_chruby_multiple_matches()
+{
+	RUBIES=(/path/to/ruby-1.9.0 "$TEST_RUBY_ROOT")
+
+	chruby "1.9"
+
+	assertEquals "did not use the last match" "$TEST_RUBY_ROOT" "$RUBY_ROOT"
+}
+
 test_chruby_system()
 {
 	chruby "$TEST_RUBY_VERSION"

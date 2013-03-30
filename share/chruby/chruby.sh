@@ -76,16 +76,20 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
+			local match
+
 			for dir in ${RUBIES[@]}; do
-				if [[ `basename "$dir"` == *$1* ]]; then
-					shift
-					chruby_use "$dir" "$*"
-					return $?
-				fi
+				[[ `basename "$dir"` == *$1* ]] && match="$dir"
 			done
 
-			echo "chruby: unknown Ruby: $1" >&2
-			return 1
+			if [[ -z "$match" ]]; then
+				echo "chruby: unknown Ruby: $1" >&2
+				return 1
+			fi
+
+			shift
+			chruby_use "$match" "$*"
+			return $?
 			;;
 	esac
 }
