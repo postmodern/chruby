@@ -1,19 +1,19 @@
-# chruby(1) -- Changes the current Ruby.
+# chruby-exec(1) -- Run a command with selected Ruby.
 
 ## SYNOPSIS
 
-`chruby` [<RUBY|VERSION|system>] [<RUBY_OPTS>]
+`chruby-exec` RUBY [RUBYOPTS] -- COMMAND
 
 ## ARGUMENTS
 
-*RUBY|VERSION*
+*RUBY*
     Change current Ruby based on fuzzy matching of Ruby by name.
 
-*system*
-    Change current Ruby to system Ruby.
-
-*RUBY_OPTS*
+*RUBYOPTS*
     Additional optional arguements to pass to Ruby.
+
+*COMMAND*
+    Command to run under the selected Ruby.
 
 ## OPTIONS
 
@@ -22,33 +22,14 @@
 `-v`, `--version`
 
 ## DESCRIPTION
-Changes the current Ruby version by correctly setting the appropriate environment variables.
+Run a command with the selected Ruby version by correctly setting the appropriate environment variables.
 
 [https://github.com/postmodern/chruby/blob/master/README.md](https://github.com/postmodern/chruby/blob/master/README.md)
 
 ## EXAMPLES
 
-List available Rubies:
-    $ chruby
-       ruby-1.9.3-p362
-       jruby-1.7.2
-       rubinius-2.0.0-rc1
-
-Select a Ruby:
-    $ chruby 1.9.3
-    $ chruby
-     * ruby-1.9.3-p362
-       jruby-1.7.2
-       rubinius-2.0.0-rc1
-
-Switch to JRuby in 1.9 mode:
-    $ chruby jruby --1.9
-
-Switch back to system Ruby:
-    $ chruby system
-
-Switch to an arbitrary Ruby on the fly:
-    $ chruby_use /path/to/ruby
+Run the command `gem update` under JRuby:
+    $ chruby-exec jruby -- gem update
 
 ##FILES
 
@@ -92,4 +73,4 @@ Switch to an arbitrary Ruby on the fly:
 Postmodern [postmodern.mod3\@gmail.com](mailto:postmodern.mod3\@gmail.com).
 
 ##SEE ALSO
-chruby-exec(1), ruby(1), gem(1)
+chruby(1), ruby(1), gem(1)
