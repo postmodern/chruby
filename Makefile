@@ -25,9 +25,15 @@ pkg:
 share/man/man1/chruby.1: doc/man/chruby.1.md
 	md2man doc/man/chruby.1.md > share/man/man1/chruby.1
 
+share/man/man1/chruby-exec.1: doc/man/chruby-exec.1.md
+	md2man doc/man/chruby-exec.1.md > share/man/man1/chruby-exec.1
+
 man: share/man/man1/chruby.1
 	git commit -m "Updated the man pages" doc/man/chruby.1.md share/man/man1/chruby.1
 
+man: share/man/man1/chruby-exec.1
+	git commit -m "Updated the man pages" doc/man/chruby-exec.1.md share/man/man1/chruby-exec.1
+	
 download: pkg
 	wget -O $(PKG) $(URL)/archive/v$(VERSION).tar.gz
 
