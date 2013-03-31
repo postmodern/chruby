@@ -15,8 +15,8 @@
         fi
 
         case "$foo" in
-               bar) command ;;
-	       baz) other_command ;;
+		bar) command ;;
+		baz) other_command ;;
         esac
 
 ## Pull Request Guidelines
