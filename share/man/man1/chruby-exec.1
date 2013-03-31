@@ -1,0 +1,78 @@
+.TH 
+.BR chruby-exec (1) 
+\-\- Run a command with selected Ruby.
+.SH SYNOPSIS
+.PP
+\fB\fCchruby-exec\fR RUBY [RUBYOPTS] \-\- COMMAND
+.SH ARGUMENTS
+.PP
+\fIRUBY\fP
+    Change current Ruby based on fuzzy matching of Ruby by name.
+.PP
+\fIRUBYOPTS\fP
+    Additional optional arguements to pass to Ruby.
+.PP
+\fICOMMAND\fP
+    Command to run under the selected Ruby.
+.SH OPTIONS
+.PP
+\fB\fC-h\fR, \fB\fC--help\fR
+.PP
+\fB\fC-v\fR, \fB\fC--version\fR
+.SH DESCRIPTION
+.PP
+Run a command with the selected Ruby version by correctly setting the appropriate environment variables.
+.PP
+https://github.com/postmodern/chruby/blob/master/README.md
+.UR https://github.com/postmodern/chruby/blob/master/README.md
+.UE
+.SH EXAMPLES
+.PP
+Run the command \fB\fCgem update\fR under JRuby:
+    $ chruby\-exec jruby \-\- gem update
+.SH FILES
+.PP
+\fI/opt/rubies\fP
+    Primary default Ruby install location.
+.PP
+\fI~/.rubies/\fP
+    Secondary default Ruby install location.
+.PP
+\fI/etc/profile.d/chruby.sh\fP
+    Application environment settings for chruby.
+.PP
+\fI~/.gem/$ruby/$version\fP
+    Default gem install location.
+.SH ENVIRONMENT
+.PP
+\fIPATH\fP
+    Updates the PATH environment variable to include Rubies and RubyGems bin/ directories.
+.PP
+\fIGEM_HOME\fP
+    Default repository location for gem installation.
+.PP
+\fIGEM_PATH\fP
+    A colon\-separated list of gem repository directories.
+.PP
+\fIGEM_ROOT\fP
+.PP
+\fIRUBY_ROOT\fP
+.PP
+\fIRUBY_ENGINE\fP
+    Name of Ruby implementation.
+.PP
+\fIRUBY_VERSION\fP
+    Ruby version number.
+.PP
+\fIRUBYOPT\fP
+    Optionally set if additional Ruby options are given.
+.SH AUTHOR
+.PP
+Postmodern postmodern.mod3\@gmail.com
+.MT postmodern.mod3@gmail.com
+.ME .
+.SH SEE ALSO
+.PP
+.BR chruby (1), 
+.BR ruby (1), 
+.BR gem (1)
