@@ -92,4 +92,4 @@ Switch to an arbitrary Ruby on the fly:
 Postmodern [postmodern.mod3\@gmail.com](mailto:postmodern.mod3\@gmail.com).
 
 ##SEE ALSO
-ruby(1), gem(1)
+chruby-exec(1), ruby(1), gem(1)
