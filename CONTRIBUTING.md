@@ -14,10 +14,10 @@
         elif [[ "$foo" == "baz" ]]; then other_command
         fi
 
-	case "$foo" in
-		bar) command ;;
-		baz) other_command ;;
-	esac
+        case "$foo" in
+        	bar) command ;;
+        	baz) other_command ;;
+        esac
 
 ## Pull Request Guidelines
 
