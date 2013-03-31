@@ -148,6 +148,7 @@ For instructions on using chruby with other tools, please see the [wiki]:
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Capistrano](https://github.com/postmodern/chruby/wiki/Capistrano)
+* [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
 
 ## Examples
