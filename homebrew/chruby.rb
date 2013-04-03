@@ -32,7 +32,8 @@ class Chruby < Formula
       rbenv: RUBIES=(~/.rbenv/versions/*)
       rbfu:  RUBIES=('~/.rbfu/rubies/*)
 
-    To enable auto-switching of Rubies specified by .ruby-version files:
+    To enable auto-switching of Rubies specified by .ruby-version files,
+    add the following to ~/.bash_profile or ~/.zshrc:
 
       source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/auto.sh
 
