@@ -88,7 +88,7 @@ Installing to `/opt/rubies`:
 ## Configuration
 
 Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
-`~/.zshrc` file:
+`~/.zshenv` file:
 
     source /usr/local/share/chruby/chruby.sh
 
