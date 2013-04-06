@@ -36,19 +36,19 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-argv=()
+ruby_args=()
 
 for arg in $@; do
 	shift
 
 	if [[ "$arg" == "--" ]]; then break
-	else                          argv+=($arg)
+	else                          ruby_args+=($arg)
 	fi
 done
 
-[[ ! "$argv" ]] && argv=$(chruby_version_from_file)
+[[ ! "$ruby_args" ]] && ruby_args=$(chruby_version_from_file)
 
-if [[ ! $argv ]]; then
+if [[ ! $ruby_args ]]; then
 	echo "chruby-exec: RUBY (or .ruby-version file) required" >&2
 	exit 1
 fi
@@ -58,4 +58,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-exec $SHELL -l -i -c "chruby $argv && $*"
+exec $SHELL -l -i -c "chruby $ruby_args && $*"
