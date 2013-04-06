@@ -46,9 +46,9 @@ for arg in $@; do
 	fi
 done
 
-[[ ! "$ruby_args" ]] && ruby_args=$(chruby_version_from_file)
+[[ -z "$ruby_args" ]] && ruby_args=$(chruby_version_from_file)
 
-if [[ ! $ruby_args ]]; then
+if [[ -z $ruby_args ]]; then
 	echo "chruby-exec: RUBY (or .ruby-version file) required" >&2
 	exit 1
 fi
