@@ -60,7 +60,7 @@ chruby can also be installed with [homebrew]:
 
 ### Arch Linux
 
-chruby is already included in the [AUR](https://aur.archlinux.org/):
+chruby is already included in the [AUR]:
 
     yaourt -S chruby
 
@@ -257,6 +257,7 @@ Switch to an arbitrary Ruby on the fly:
 [zsh]: http://www.zsh.org/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
+[AUR]: https://aur.archlinux.org/packages/chruby/
 [ruby-build]: https://github.com/sstephenson/ruby-build#readme
 [.ruby-version]: https://gist.github.com/1912050
 
