@@ -55,6 +55,8 @@ EOF`
 
 function chruby()
 {
+	local result
+
 	case "$1" in
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
@@ -80,7 +82,7 @@ function chruby()
 					shift
 					chruby_use "$dir" "$*"
 					result=$?
-					[ $result ] && echo -e "\x1b\033[01mUsing $(echo $RUBY_ROOT | sed 's/^.*\///')\x1b[0m"
+					[ "$result" -eq "0" ] && echo -e "\x1b\033[01mUsing $(echo $RUBY_ROOT | sed 's/^.*\///')\x1b[0m"
 					return $result
 				fi
 			done
