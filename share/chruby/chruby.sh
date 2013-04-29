@@ -79,7 +79,9 @@ function chruby()
 				if [[ `basename "$dir"` == *$1* ]]; then
 					shift
 					chruby_use "$dir" "$*"
-					return $?
+					result=$?
+					[ $result ] && echo -e "\x1b\033[01mUsing $(echo $RUBY_ROOT | sed 's/^.*\///')\x1b[0m"
+					return $result
 				fi
 			done
 
