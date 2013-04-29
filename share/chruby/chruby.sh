@@ -82,7 +82,7 @@ function chruby()
 					shift
 					chruby_use "$dir" "$*"
 					result=$?
-					[ "$result" -eq "0" ] && echo -e "\x1b\033[01mUsing $(echo $RUBY_ROOT | sed 's/^.*\///')\x1b[0m"
+					[ "$result" -eq "0" ] && echo -e "Using $(echo $RUBY_ROOT | sed 's/^.*\///')"
 					return $result
 				fi
 			done
