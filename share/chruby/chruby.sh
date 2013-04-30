@@ -57,6 +57,8 @@ EOF`
 
 function chruby()
 {
+	local result
+
 	case "$1" in
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
@@ -81,7 +83,9 @@ function chruby()
 				if [[ `basename "$dir"` == *$1* ]]; then
 					shift
 					chruby_use "$dir" "$*"
-					return $?
+					result=$?
+					[ "$result" -eq "0" ] && echo -e "Using $(echo $RUBY_ROOT | sed 's/^.*\///')"
+					return $result
 				fi
 			done
 
