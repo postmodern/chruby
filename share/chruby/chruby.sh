@@ -77,7 +77,9 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			for dir in ${RUBIES[@]}; do
+			local sorted
+			sorted=($(printf '%s\n' "${RUBIES[@]}" | sort -r))
+			for dir in ${sorted[@]}; do
 				if [[ `basename "$dir"` == *$1* ]]; then
 					shift
 					chruby_use "$dir" "$*"
