@@ -47,7 +47,7 @@ with:
 ### setup.sh
 
 chruby also includes a `setup.sh` script, which installs chruby and the latest
-releases of [MRI], [JRuby] and [Rubinius]. Simply run the script as root or 
+releases of [Ruby], [JRuby] and [Rubinius]. Simply run the script as root or 
 via `sudo`:
 
     sudo ./scripts/setup.sh
@@ -70,7 +70,7 @@ chruby is already included in the [AUR]:
 
 Chruby provides detailed instructions for installing additional Rubies:
 
-* [MRI](https://github.com/postmodern/chruby/wiki/MRI)
+* [Ruby](https://github.com/postmodern/chruby/wiki/Ruby)
 * [JRuby](https://github.com/postmodern/chruby/wiki/JRuby)
 * [Rubinius](https://github.com/postmodern/chruby/wiki/Rubinius)
 
@@ -267,7 +267,7 @@ Switch to an arbitrary Ruby on the fly:
 [ry]: https://github.com/jayferd/ry#readme
 [ruby-version]: https://github.com/wilmoore/ruby-version#readme
 
-[MRI]: http://www.ruby-lang.org/en/
+[Ruby]: http://www.ruby-lang.org/en/
 [JRuby]: http://jruby.org/
 [Rubinius]: http://rubini.us/
 
