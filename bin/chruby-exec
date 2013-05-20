@@ -2,9 +2,27 @@
 
 CHRUBY_VERSION="0.3.4"
 
+function chruby_version_from_file() {
+	local dir="$PWD"
+	local version_file
+
+	until [[ -z "$dir" ]]; do
+		version_file="$dir/.ruby-version"
+
+		if [[ -f "$version_file" ]]; then
+			echo $(cat "$version_file")
+			return
+		fi
+
+		dir="${dir%/*}"
+	done
+}
+
 case "$1" in
 	-h|--help)
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
+		echo "   or: chruby-exec -- COMMAND"
+		echo "  (in second form, will attempt to use .ruby-version file)"
 		exit
 		;;
 	-v|--version)
@@ -18,19 +36,26 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-argv=()
+ruby_args=()
 
 for arg in $@; do
 	shift
 
 	if [[ "$arg" == "--" ]]; then break
-	else                          argv+=($arg)
+	else                          ruby_args+=($arg)
 	fi
 done
+
+[[ -z "$ruby_args" ]] && ruby_args=$(chruby_version_from_file)
+
+if [[ -z $ruby_args ]]; then
+	echo "chruby-exec: RUBY (or .ruby-version file) required" >&2
+	exit 1
+fi
 
 if [[ $# -eq 0 ]]; then
 	echo "chruby-exec: COMMAND required" >&2
 	exit 1
 fi
 
-exec $SHELL -l -i -c "chruby $argv && $*"
+exec $SHELL -l -i -c "chruby $ruby_args && $*"
