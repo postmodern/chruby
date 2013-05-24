@@ -41,4 +41,15 @@ test_chruby_reset_modified_gem_path()
 	assertEquals "$GEM_PATH was unset" "$gem_dir" "$GEM_PATH"
 }
 
+test_chruby_reset_no_gem_root_or_gem_home()
+{
+	export GEM_HOME=""
+	export GEM_ROOT=""
+	export PATH="$TEST_PATH:/bin"
+
+	chruby_reset
+
+	assertEquals "PATH was messed up" "$TEST_PATH:/bin" "$PATH"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2
