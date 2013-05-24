@@ -9,7 +9,7 @@ function chruby_auto() {
 
 		if   [[ "$version_file" == "$RUBY_VERSION_FILE" ]]; then return
 		elif [[ -f "$version_file" ]]; then
-			chruby $(cat "$version_file") || return 1
+			chruby "$(cat "$version_file")" || return 1
 
 			export RUBY_VERSION_FILE="$version_file"
 			return
