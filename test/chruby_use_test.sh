@@ -20,7 +20,8 @@ test_chruby_use()
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY_ROOT/bin/ruby" `which ruby`
 }
 
-tearDown() {
+tearDown()
+{
 	chruby_reset
 }
 
