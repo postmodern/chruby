@@ -1,3 +1,16 @@
+### 0.3.5 / 2013-05-28
+
+* Added a RPM spec.
+* Respect `PREFIX` when auto-detecting `/opt/rubies/*`.
+* Do not set `GEM_ROOT` if rubygems is not installed.
+* `chruby_use` now echos the select ruby and the version.
+* `chruby_reset` no longer accidentally removes `/bin` if `GEM_HOME` or
+  `GEM_ROOT` are empty.
+
+#### scripts/setup.sh
+
+* Do not assume bash is installed at `/bin/bash`.
+
 ### 0.3.4 / 2013-02-28
 
 * Prepend the new gem paths to `GEM_PATH` in `chruby_use`, instead of
