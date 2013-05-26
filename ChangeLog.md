@@ -16,6 +16,24 @@
     non-interactive sessions.
   * bash: use `trap DEBUG` which runs before every command, in both interactive
     and non-interactive mode. `PROMPT_COMMAND` only runs in interactive mode.
+* Fixed a serious design flaw, where `chruby_auto` passed the contents of
+  `.ruby-version` as multiple arguments to the `chruby` function. Originally,
+  this allowed for `.ruby-version` files to specify additional `RUBYOPT` options
+  (ex: `jruby --1.8`). However, an attacker could craft a malicious
+  `.ruby-version` file that would require arbitrary code
+  (ex: `1.9.3 -r./evil.rb`). The `./evil.rb` file would then be required when
+  `ruby` is invoked by `chruby_use` in order to determine `RUBY_ENGINE`,
+  `RUBY_VERSION`, `GEM_ROOT`.
+
+  In order to prevent the abuse of this feature, `chruby_auto` now passes the
+  entire contents of `.ruby-version` as a first and only argument to the
+  `chruby` function.
+
+  If you have `auto.sh` enabled, it is recommended that you upgrade.
+  If you cannot upgrade, consider disabling `auto.sh`.
+  If you want to scan your entire system for malicious `.ruby-version` files:
+
+        find / -name .ruby-version 2>/dev/null | xargs -i{} grep -H " " {}
 
 #### scripts/setup.sh
 
