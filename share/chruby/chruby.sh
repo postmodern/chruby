@@ -77,10 +77,10 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			for dir in ${RUBIES[@]}; do
-				if [[ `basename "$dir"` == *$1* ]]; then
+			for ((i=${#RUBIES[@]}-1; i>=0; i--)); do
+				if [[ `basename "${RUBIES[$i]}"` == *$1* ]]; then
 					shift
-					chruby_use "$dir" "$*"
+					chruby_use "${RUBIES[$i]}" "$*"
 					return $?
 				fi
 			done
