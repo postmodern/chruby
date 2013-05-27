@@ -28,10 +28,10 @@ make install PREFIX=%{buildroot}/usr
 
 %files
 %defattr(-,root,root)
-/usr/bin/chruby-exec
-/usr/share/%{name}/*
+%{_bindir}/chruby-exec
+%{_datadir}/%{name}/*
 %doc
-/usr/share/doc/%{name}-%{version}/*
+%{_defaultdocdir}/%{name}-%{version}/*
 
 %changelog
 * Sun Mar 24 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.4-1
