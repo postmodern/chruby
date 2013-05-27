@@ -20,25 +20,36 @@ test_chruby_use()
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY_ROOT/bin/ruby" `which ruby`
 }
 
-test_chruby_echo_selected()
+test_chruby_use_echo_selected_in_interactive_mode()
 {
 	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
 
 	if [[ $SHELL == *bash ]]; then
-		local interactive_output=$("$SHELL" -norc -i -c "$command")
-		local non_interactive_output=$("$SHELL" -norc -c "$command")
+		local output=$("$SHELL" -norc -i -c "$command")
 	elif [[ $SHELL == *zsh ]]; then
-		local interactive_output=$("$SHELL" -d -f -i -c "$command")
-		local non_interactive_output=$("$SHELL" -d -f -c "$command")
+		local output=$("$SHELL" -d -f -i -c "$command")
 	else
 		fail "Unknown shell '$SHELL'"; startSkipping
 	fi
 
 	assertEquals "should have echoed selected ruby" \
 		     "Using $TEST_RUBY_ENGINE-$TEST_RUBY_VERSION" \
-		     "$interactive_output"
+		     "$output"
+}
 
-	assertNull "should not have echoed selected ruby" "$non_interactive_output"
+test_chruby_use_echo_selected_in_non_interactive_mode()
+{
+	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
+
+	if [[ $SHELL == *bash ]]; then
+		local output=$("$SHELL" -norc -c "$command")
+	elif [[ $SHELL == *zsh ]]; then
+		local output=$("$SHELL" -d -f -c "$command")
+	else
+		fail "Unknown shell '$SHELL'"; startSkipping
+	fi
+
+	assertNull "should not have echoed selected ruby" "$output"
 }
 
 tearDown()
