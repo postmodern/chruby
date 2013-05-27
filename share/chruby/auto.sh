@@ -34,7 +34,7 @@ elif [[ -n "$BASH_VERSION" ]]; then
 	if [[ -n "$PROMPT_COMMAND" ]]; then
 		if [[ ! "$PROMPT_COMMAND" == *chruby_auto* ]]; then
 			PROMPT_COMMAND="${PROMPT_COMMAND%%;}"
-			PROMPT_COMMAND="$PROMPT_COMMAND; chruby_auto"
+			PROMPT_COMMAND="${PROMPT_COMMAND%%;}; chruby_auto"
 		fi
 	else
 		PROMPT_COMMAND="chruby_auto"
