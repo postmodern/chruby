@@ -16,6 +16,11 @@ class Chruby < Formula
     ~/.zshenv file:
 
       source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
+      
+    Add the following to the ~/.bash_profile file if you intend to start 
+    from a login shell (Terminal's default):
+    
+      source ~/.bashrc
 
     By default chruby will search for Rubies installed into /opt/rubies/ or
     ~/.rubies/. For non-standard installation locations, simply set the RUBIES
