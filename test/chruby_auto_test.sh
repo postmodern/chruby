@@ -93,7 +93,7 @@ test_chruby_auto_enter_subdir()
 test_chruby_auto_enter_subdir_with_ruby_version()
 {
 	cd "$PROJECT_DIR" && chruby_auto
-	cd sub_versioned  && chruby_auto
+	cd sub_versioned/ && chruby_auto
 
 	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
 		   "$RUBY_ROOT"
@@ -109,9 +109,8 @@ test_chruby_auto_overriding_ruby_version()
 
 test_chruby_auto_leave_project_dir()
 {
-	cd "$PROJECT_DIR" && chruby_auto
-	cd sub_dir
-	cd ../../..       && chruby_auto
+	cd "$PROJECT_DIR"    && chruby_auto
+	cd "$PROJECT_DIR/.." && chruby_auto
 
 	assertNull "did not reset the Ruby when leaving a versioned directory" \
 		   "$RUBY_ROOT"
@@ -120,10 +119,16 @@ test_chruby_auto_leave_project_dir()
 test_chruby_auto_invalid_ruby_version()
 {
 	cd "$PROJECT_DIR" && chruby_auto
-	cd bad            && chruby_auto 2>/dev/null
+	cd bad/           && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
+}
+
+tearDown()
+{
+	chruby_reset
+	unset RUBY_VERSION_FILE
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
