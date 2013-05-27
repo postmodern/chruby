@@ -28,8 +28,8 @@ test_chruby_echo_selected()
 		local interactive_output=$("$SHELL" -norc -i -c "$command")
 		local non_interactive_output=$("$SHELL" -norc -c "$command")
 	elif [[ $SHELL == *zsh ]]; then
-		local interactive_output=$("$SHELL" -d -i -c "$command")
-		local non_interactive_output=$("$SHELL" -d -c "$command")
+		local interactive_output=$("$SHELL" -d -f -i -c "$command")
+		local non_interactive_output=$("$SHELL" -d -f -c "$command")
 	else
 		fail "Unknown shell '$SHELL'"; startSkipping
 	fi
