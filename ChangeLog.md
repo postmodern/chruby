@@ -3,9 +3,11 @@
 * Added a RPM spec.
 * Respect `PREFIX` when auto-detecting `/opt/rubies/*`.
 * Do not set `GEM_ROOT` if rubygems is not installed.
-* `chruby_use` now echos the select ruby and the version.
+* `chruby_use` now echos the select ruby and the version, only if the shell is
+  in interactive mode.
 * `chruby_reset` no longer accidentally removes `/bin` if `GEM_HOME` or
   `GEM_ROOT` are empty.
+* `chruby` now selects the last lexical match for the given ruby.
 
 #### scripts/setup.sh
 
