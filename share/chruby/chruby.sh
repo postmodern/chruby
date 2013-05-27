@@ -53,6 +53,7 @@ EOF`
 	fi
 
 	[[ $- == *i* ]] && echo "Using $RUBY_ENGINE-$RUBY_VERSION"
+	return 0
 }
 
 function chruby()
