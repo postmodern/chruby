@@ -36,25 +36,4 @@ test_chruby_invalid_ruby()
 	assertEquals "did not return 1" 1 $?
 }
 
-test_chruby_echo_selected()
-{
-	local command="source ./test/helper.sh && chruby $TEST_RUBY_VERSION"
-
-	if [[ $SHELL == *bash ]]; then
-		local interactive_output=$("$SHELL" -norc -i -c "$command")
-		local non_interactive_output=$("$SHELL" -norc -c "$command")
-	elif [[ $SHELL == *zsh ]]; then
-		local interactive_output=$("$SHELL" -d -i -c "$command")
-		local non_interactive_output=$("$SHELL" -d -c "$command")
-	else
-		fail "Unknown shell '$SHELL'"; startSkipping
-	fi
-
-	assertEquals "should have echoed selected ruby" \
-		"Using $TEST_RUBY_ENGINE-$TEST_RUBY_VERSION" \
-		"$interactive_output"
-
-	assertNull "should not have echoed selected ruby" "$non_interactive_output"
-}
-
 SHUNIT_PARENT=$0 . $SHUNIT2
