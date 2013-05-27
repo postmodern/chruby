@@ -89,7 +89,6 @@ function chruby()
 
 			shift
 			chruby_use "$match" "$*"
-			return $?
 			;;
 	esac
 }
