@@ -24,9 +24,9 @@ test_chruby_use_echo_selected_in_interactive_mode()
 {
 	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
 
-	if [[ $SHELL == *bash ]]; then
+	if [[ $(basename "$SHELL") == bash ]]; then
 		local output=$("$SHELL" -norc -i -c "$command")
-	elif [[ $SHELL == *zsh ]]; then
+	elif [[ $(basename "$SHELL") == zsh ]]; then
 		local output=$("$SHELL" -d -f -i -c "$command")
 	else
 		fail "Unknown shell '$SHELL'"; startSkipping
@@ -41,9 +41,9 @@ test_chruby_use_echo_selected_in_non_interactive_mode()
 {
 	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
 
-	if [[ $SHELL == *bash ]]; then
+	if [[ $(basename "$SHELL") == bash ]]; then
 		local output=$("$SHELL" -norc -c "$command")
-	elif [[ $SHELL == *zsh ]]; then
+	elif [[ $(basename "$SHELL") == zsh ]]; then
 		local output=$("$SHELL" -d -f -c "$command")
 	else
 		fail "Unknown shell '$SHELL'"; startSkipping
