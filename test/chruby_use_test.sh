@@ -22,7 +22,7 @@ test_chruby_use()
 
 test_chruby_use_echo_selected_in_non_interactive_mode()
 {
-	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
+	local command=". ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
 
 	if [[ $(basename "$SHELL") == bash ]]; then
 		local output=$("$SHELL" -norc -c "$command")
