@@ -9,6 +9,14 @@
   `GEM_ROOT` are empty.
 * `chruby` now selects the last lexical match for the given ruby.
 
+#### auto.sh
+
+* Ensure that auto-switching works in non-interactive mode:
+  * zsh: use `preexec_functions` which runs in both interactive and
+    non-interactive sessions.
+  * bash: use `trap DEBUG` which runs before every command, in both interactive
+    and non-interactive mode. `PROMPT_COMMAND` only runs in interactive mode.
+
 #### scripts/setup.sh
 
 * Do not assume bash is installed at `/bin/bash`.
