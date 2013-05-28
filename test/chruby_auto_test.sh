@@ -11,49 +11,47 @@ setUp()
 
 test_chruby_auto_setting_preexec_functions()
 {
-	if [[ -n "$ZSH_VERSION" ]]; then
-		. ./share/chruby/auto.sh
+	[[ -n "$ZSH_VERSION" ]] || return
 
-		assertEquals "did not add chruby_auto to preexec_functions" \
-			     "chruby_auto" \
-			     "$preexec_functions"
-	fi
+	assertEquals "did not add chruby_auto to preexec_functions" \
+		     "chruby_auto" \
+		     "$preexec_functions"
 }
 
 test_chruby_auto_setting_blank_PROMPT_COMMAND()
 {
-	if [[ -n "$BASH_VERSION" ]]; then
-		PROMPT_COMMAND=""
-		. ./share/chruby/auto.sh
+	[[ -n "$BASH_VERSION" ]] && [[ $- == *i* ]] || return
 
-		assertEquals "has syntax error" \
-			     "chruby_auto" \
-			     "$PROMPT_COMMAND"
-	fi
+	PROMPT_COMMAND=""
+	. ./share/chruby/auto.sh
+
+	assertEquals "has syntax error" \
+		     "chruby_auto" \
+		     "$PROMPT_COMMAND"
 }
 
 test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon()
 {
-	if [[ -n "$BASH_VERSION" ]]; then
-		PROMPT_COMMAND="update_terminal_cwd;"
-		. ./share/chruby/auto.sh
+	[[ -n "$BASH_VERSION" ]] && [[ $- == *i* ]] || return
 
-		assertEquals "did not remove tailing ';'" \
-			     "update_terminal_cwd; chruby_auto" \
-			     "$PROMPT_COMMAND"
-	fi
+	PROMPT_COMMAND="update_terminal_cwd;"
+	. ./share/chruby/auto.sh
+
+	assertEquals "did not remove tailing ';'" \
+		     "update_terminal_cwd; chruby_auto" \
+		     "$PROMPT_COMMAND"
 }
 
 test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon_and_whitespace()
 {
-	if [[ -n "$BASH_VERSION" ]]; then
-		PROMPT_COMMAND="update_terminal_cwd;  "
-		. ./share/chruby/auto.sh
+	[[ -n "$BASH_VERSION" ]] && [[ $- == *i* ]] || return
+
+	PROMPT_COMMAND="update_terminal_cwd;  "
+	. ./share/chruby/auto.sh
 	
-		assertEquals "did not remove tailing ';' and whitespace" \
-			     "update_terminal_cwd; chruby_auto" \
-			     "$PROMPT_COMMAND"
-	fi
+	assertEquals "did not remove tailing ';' and whitespace" \
+		     "update_terminal_cwd; chruby_auto" \
+		     "$PROMPT_COMMAND"
 }
 
 test_chruby_auto_loaded_twice()
@@ -68,9 +66,11 @@ test_chruby_auto_loaded_twice()
 			        "$precmd_functions" \
 				"chruby_auto chruby_auto"
 	elif [[ -n "$BASH_VERSION" ]]; then
-		assertNotEquals "should not add chruby_auto twice" \
-			        "$PROMPT_COMMAND" \
-		                "chruby_auto; chruby_auto"
+		if [[ $- == *i* ]]; then
+			assertNotEquals "should not add chruby_auto twice" \
+				        "$PROMPT_COMMAND" \
+			                "chruby_auto; chruby_auto"
+		fi
 	fi
 
 	assertNull "RUBY_VERSION_FILE was not unset" "$RUBY_VERSION_FILE"
