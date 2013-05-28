@@ -4,7 +4,7 @@ setUp()
 {
 	TEST_PATH="$PATH"
 
-	chruby_use $TEST_RUBY_ROOT
+	chruby_use $TEST_RUBY_ROOT >/dev/null
 }
 
 test_chruby_use()

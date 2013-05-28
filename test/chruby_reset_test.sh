@@ -2,7 +2,7 @@
 
 setUp()
 {
-	chruby_use "$TEST_RUBY_ROOT"
+	chruby_use "$TEST_RUBY_ROOT" >/dev/null
 
 	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$TEST_PATH"
 }
