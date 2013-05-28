@@ -33,7 +33,7 @@ Changes the current Ruby.
     wget -O chruby-0.3.4.tar.gz https://github.com/postmodern/chruby/archive/v0.3.4.tar.gz
     tar -xzvf chruby-0.3.4.tar.gz
     cd chruby-0.3.4/
-    make install
+    sudo make install
 
 ### PGP
 
@@ -89,7 +89,6 @@ Installing to `/opt/rubies`:
     ruby-build 1.9.3-p392 /opt/rubies/ruby-1.9.3-p392
     ruby-build jruby-1.7.3 /opt/rubies/jruby-1.7.3
     ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
-
 
 ## Configuration
 
