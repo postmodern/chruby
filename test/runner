@@ -13,7 +13,7 @@ error=0
 
 for test in $(dirname $0)/*_test.sh; do
 	log "Running $test ..."
-	$SHELL -i $test || error=1
+	$SHELL $* -i $test || error=1
 	echo
 done
 
@@ -21,7 +21,7 @@ log "Running tests under $SHELL in non-interactive-mode ..."
 
 for test in $(dirname $0)/*_test.sh; do
 	log "Running $test ..."
-	$SHELL $test || error=1
+	$SHELL $* $test || error=1
 	echo
 done
 
