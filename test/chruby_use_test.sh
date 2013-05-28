@@ -20,23 +20,6 @@ test_chruby_use()
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY_ROOT/bin/ruby" `which ruby`
 }
 
-test_chruby_use_echo_selected_in_interactive_mode()
-{
-	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
-
-	if [[ $(basename "$SHELL") == bash ]]; then
-		local output=$("$SHELL" -norc -i -c "$command")
-	elif [[ $(basename "$SHELL") == zsh ]]; then
-		local output=$("$SHELL" -d -f -i -c "$command")
-	else
-		fail "Unknown shell '$SHELL'"; startSkipping
-	fi
-
-	assertEquals "should have echoed selected ruby" \
-		     "Using $TEST_RUBY_ENGINE-$TEST_RUBY_VERSION" \
-		     "$output"
-}
-
 test_chruby_use_echo_selected_in_non_interactive_mode()
 {
 	local command="source ./test/helper.sh && chruby_use $TEST_RUBY_ROOT"
