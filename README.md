@@ -33,7 +33,7 @@ Changes the current Ruby.
     wget -O chruby-0.3.4.tar.gz https://github.com/postmodern/chruby/archive/v0.3.4.tar.gz
     tar -xzvf chruby-0.3.4.tar.gz
     cd chruby-0.3.4/
-    sudo make install
+    make install
 
 ### PGP
 
@@ -63,6 +63,12 @@ chruby can also be installed with [homebrew]:
 chruby is already included in the [AUR]:
 
     yaourt -S chruby
+    
+### FreeBSD
+
+chruby is included in the official [FreeBSD ports collection]:
+
+    cd /usr/ports/devel/chruby/ && make install clean
 
 ### Rubies
 
@@ -83,6 +89,7 @@ Installing to `/opt/rubies`:
     ruby-build 1.9.3-p392 /opt/rubies/ruby-1.9.3-p392
     ruby-build jruby-1.7.3 /opt/rubies/jruby-1.7.3
     ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
+
 
 ## Configuration
 
@@ -257,6 +264,7 @@ Switch to an arbitrary Ruby on the fly:
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
 [AUR]: https://aur.archlinux.org/packages/chruby/
+[FreeBSD ports collection]: https://www.freshports.org/devel/chruby/
 [ruby-build]: https://github.com/sstephenson/ruby-build#readme
 [.ruby-version]: https://gist.github.com/1912050
 
