@@ -9,6 +9,17 @@ setUp()
 	unset RUBY_VERSION_FILE
 }
 
+test_chruby_auto_setting_preexec_functions()
+{
+	if [[ -n "$ZSH_VERSION" ]]; then
+		. ./share/chruby/auto.sh
+
+		assertEquals "did not add chruby_auto to preexec_functions" \
+			     "chruby_auto" \
+			     "$preexec_functions"
+	fi
+}
+
 test_chruby_auto_setting_blank_PROMPT_COMMAND()
 {
 	if [[ -n "$BASH_VERSION" ]]; then
