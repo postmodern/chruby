@@ -1,6 +1,7 @@
 . ./share/chruby/auto.sh
 . ./test/helper.sh
 
+TEST_DIR="$PWD"
 PROJECT_DIR="$PWD/test/project"
 
 setUp()
@@ -9,7 +10,7 @@ setUp()
 	unset RUBY_VERSION_FILE
 }
 
-test_chruby_auto_setting_preexec_functions()
+test_chruby_auto_loaded_in_zsh()
 {
 	[[ -n "$ZSH_VERSION" ]] || return
 
@@ -18,40 +19,25 @@ test_chruby_auto_setting_preexec_functions()
 		     "$preexec_functions"
 }
 
-test_chruby_auto_setting_blank_PROMPT_COMMAND()
+test_chruby_auto_loaded_in_bash()
 {
-	[[ -n "$BASH_VERSION" ]] && [[ $- == *i* ]] || return
+	[[ -n "$BASH_VERSION" ]] || return
 
-	PROMPT_COMMAND=""
-	. ./share/chruby/auto.sh
+	local output="$($SHELL -c ". ./share/chruby/auto.sh && trap -p DEBUG")"
 
-	assertEquals "has syntax error" \
-		     "chruby_auto" \
-		     "$PROMPT_COMMAND"
+	assertTrue "did not add a trap hook for chruby_auto" \
+		   '[[ "$output" == *chruby_auto* ]]'
 }
 
-test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon()
+test_chruby_auto_loaded_twice_in_zsh()
 {
-	[[ -n "$BASH_VERSION" ]] && [[ $- == *i* ]] || return
+	[[ -n "$ZSH_VERSION" ]] || return
 
-	PROMPT_COMMAND="update_terminal_cwd;"
 	. ./share/chruby/auto.sh
 
-	assertEquals "did not remove tailing ';'" \
-		     "update_terminal_cwd; chruby_auto" \
-		     "$PROMPT_COMMAND"
-}
-
-test_chruby_auto_setting_PROMPT_COMMAND_with_semicolon_and_whitespace()
-{
-	[[ -n "$BASH_VERSION" ]] && [[ $- == *i* ]] || return
-
-	PROMPT_COMMAND="update_terminal_cwd;  "
-	. ./share/chruby/auto.sh
-
-	assertEquals "did not remove tailing ';' and whitespace" \
-		     "update_terminal_cwd; chruby_auto" \
-		     "$PROMPT_COMMAND"
+	assertNotEquals "should not add chruby_auto twice" \
+		        "$preexec_functions" \
+			"chruby_auto chruby_auto"
 }
 
 test_chruby_auto_loaded_twice()
@@ -60,18 +46,6 @@ test_chruby_auto_loaded_twice()
 	PROMPT_COMMAND="chruby_auto"
 
 	. ./share/chruby/auto.sh
-
-	if [[ -n "$ZSH_VERSION" ]]; then
-		assertNotEquals "should not add chruby_auto twice" \
-			        "$precmd_functions" \
-				"chruby_auto chruby_auto"
-	elif [[ -n "$BASH_VERSION" ]]; then
-		if [[ $- == *i* ]]; then
-			assertNotEquals "should not add chruby_auto twice" \
-				        "$PROMPT_COMMAND" \
-			                "chruby_auto; chruby_auto"
-		fi
-	fi
 
 	assertNull "RUBY_VERSION_FILE was not unset" "$RUBY_VERSION_FILE"
 }
@@ -138,8 +112,7 @@ test_chruby_auto_invalid_ruby_version()
 
 tearDown()
 {
-	chruby_reset
-	unset RUBY_VERSION_FILE
+	cd "$TEST_DIR"
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
