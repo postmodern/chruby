@@ -33,7 +33,7 @@ Changes the current Ruby.
     wget -O chruby-0.3.4.tar.gz https://github.com/postmodern/chruby/archive/v0.3.4.tar.gz
     tar -xzvf chruby-0.3.4.tar.gz
     cd chruby-0.3.4/
-    make install
+    sudo make install
 
 ### PGP
 
