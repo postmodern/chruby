@@ -84,7 +84,6 @@ Installing to `/opt/rubies`:
     ruby-build jruby-1.7.3 /opt/rubies/jruby-1.7.3
     ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
 
-
 ## Configuration
 
 Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
