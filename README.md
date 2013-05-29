@@ -80,6 +80,16 @@ Chruby provides detailed instructions for installing additional Rubies:
 * [JRuby](https://github.com/postmodern/chruby/wiki/JRuby)
 * [Rubinius](https://github.com/postmodern/chruby/wiki/Rubinius)
 
+#### ruby-install
+
+You can also use [ruby-install] to install additional Rubies:
+
+Installing to `/opt/rubies` or `~/.rubies`:
+
+    ruby-install ruby
+    ruby-install jruby
+    ruby-install rubinius
+
 #### ruby-build
 
 You can also use [ruby-build] to install additional Rubies:
@@ -264,6 +274,7 @@ Switch to an arbitrary Ruby on the fly:
 [homebrew]: http://mxcl.github.com/homebrew/
 [AUR]: https://aur.archlinux.org/packages/chruby/
 [FreeBSD ports collection]: https://www.freshports.org/devel/chruby/
+[ruby-install]: https://github.com/postmodern/ruby-install#readme
 [ruby-build]: https://github.com/sstephenson/ruby-build#readme
 [.ruby-version]: https://gist.github.com/1912050
 
