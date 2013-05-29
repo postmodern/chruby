@@ -2,11 +2,11 @@
 
 * Added a RPM spec.
 * Respect `PREFIX` when auto-detecting `/opt/rubies/*`.
-* Do not set `GEM_ROOT` if rubygems is not installed.
+* Do not set `GEM_ROOT` if rubygems is not installed (Charlie Somerville).
 * `chruby_use` now echos the select ruby and the version, only if the shell is
-  in interactive mode.
+  in interactive mode (Brian D. Burns).
 * `chruby_reset` no longer accidentally removes `/bin` if `GEM_HOME` or
-  `GEM_ROOT` are empty.
+  `GEM_ROOT` are empty (David Grayson).
 * `chruby` now selects the last lexical match for the given ruby.
 
 #### auto.sh
@@ -35,9 +35,11 @@
 
         find / -name .ruby-version 2>/dev/null | xargs -i{} grep -H " " {}
 
+  Thanks to David Grayson for reporting this flaw.
+
 #### scripts/setup.sh
 
-* Do not assume bash is installed at `/bin/bash`.
+* Do not assume bash is installed at `/bin/bash` (Shannon Skipper).
 
 ### 0.3.4 / 2013-02-28
 
