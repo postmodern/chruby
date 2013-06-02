@@ -89,6 +89,7 @@ Installing to `/opt/rubies` or `~/.rubies`:
     ruby-install ruby
     ruby-install jruby
     ruby-install rubinius
+    ruby-install maglev
 
 #### ruby-build
 
