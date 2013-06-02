@@ -9,8 +9,8 @@ set -e
 #
 # Constants
 #
-RUBY_VERSION="1.9.3-p392"
-JRUBY_VERSION="1.7.3"
+RUBY_VERSION="1.9.3-p429"
+JRUBY_VERSION="1.7.4"
 RUBINIUS_VERSION="2.0.0-rc1"
 
 [[ -z "$PREFIX"      ]] && export PREFIX="/usr/local"
