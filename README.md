@@ -16,7 +16,7 @@ Changes the current Ruby.
 * Fuzzy matching of Rubies by name.
 * Defaults to the system Ruby.
 * Optionally supports auto-switching and the `.ruby-version` file.
-* Supports [bash] and [zsh].
+* Supports [bash], [zsh] and [fish].
 * Small (~90 LOC).
 * Has tests.
 
@@ -38,7 +38,7 @@ Changes the current Ruby.
 ### PGP
 
 All releases are [PGP] signed for security. Instructions on how to import my
-PGP key can be found on my [blog][1]. To verify that a release was not tampered 
+PGP key can be found on my [blog][1]. To verify that a release was not tampered
 with:
 
     wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.5.tar.gz.asc
@@ -47,7 +47,7 @@ with:
 ### setup.sh
 
 chruby also includes a `setup.sh` script, which installs chruby and the latest
-releases of [Ruby], [JRuby] and [Rubinius]. Simply run the script as root or 
+releases of [Ruby], [JRuby] and [Rubinius]. Simply run the script as root or
 via `sudo`:
 
     sudo ./scripts/setup.sh
@@ -63,7 +63,7 @@ chruby can also be installed with [homebrew]:
 chruby is already included in the [AUR]:
 
     yaourt -S chruby
-    
+
 ### FreeBSD
 
 chruby is included in the official [FreeBSD ports collection]:
@@ -102,6 +102,8 @@ Installing to `/opt/rubies`:
 
 ## Configuration
 
+### Bash and Zsh
+
 Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
 `~/.zshenv` file:
 
@@ -115,6 +117,19 @@ By default chruby will search for Rubies installed into `/opt/rubies/` or
       /opt/jruby-1.7.0
       $HOME/src/rubinius
     )
+
+### Fish shell
+
+Add the following to the `/etc/fish/config.fish` or `~/.config/fish/config.fish`
+file:
+
+    . /usr/local/share/chruby/chruby.fish
+
+Setting the `RUBIES` variable in Fish is done in a slightly different way. Add
+the following to the above mentioned `config.fish` file before you source
+`chruby.fish`:
+
+    set -xU RUBIES /opt/jruby-1.7.0 $HOME/src/rubinius
 
 ### Migrating
 
@@ -130,7 +145,7 @@ If you wish to enable chruby system-wide, add the following to
 `/etc/profile.d/chruby.sh`:
 
     [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return
-    
+
     source /usr/local/share/chruby/chruby.sh
 
 ### Auto-Switching
@@ -241,12 +256,12 @@ Switch to an arbitrary Ruby on the fly:
 ## Endorsements
 
 > yeah `chruby` is nice, does the limited thing of switching really good,
-> the only hope it never grows 
+> the only hope it never grows
 
 -- [Michal Papis](https://twitter.com/mpapis/status/258049391791841280) of [RVM]
 
 > I just looooove [chruby](#readme) For the first time I'm in total control of
-> all aspects of my Ruby installation. 
+> all aspects of my Ruby installation.
 
 -- [Marius Mathiesen](https://twitter.com/zmalltalker/status/271192206268829696)
 
@@ -270,6 +285,7 @@ Switch to an arbitrary Ruby on the fly:
 
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
+[fish]: http://fishshell.com/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://mxcl.github.com/homebrew/
 [AUR]: https://aur.archlinux.org/packages/chruby/
