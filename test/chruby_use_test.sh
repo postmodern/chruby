@@ -20,26 +20,6 @@ test_chruby_use()
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY_ROOT/bin/ruby" `which ruby`
 }
 
-test_chruby_use_echo_selected_in_interactive_mode()
-{
-	[[ $- == *i* ]] || return
-
-	local output="$(chruby_use "$TEST_RUBY_ROOT")"
-
-	assertEquals "should have echoed selected ruby" \
-		     "Using $TEST_RUBY_ENGINE-$TEST_RUBY_VERSION" \
-		     "$output"
-}
-
-test_chruby_use_echo_selected_in_non_interactive_mode()
-{
-	[[ ! $- == *i* ]] || return
-
-	local output="$(chruby_use "$TEST_RUBY_ROOT")"
-
-	assertNull "should not have echoed selected ruby" "$output"
-}
-
 tearDown()
 {
 	chruby_reset

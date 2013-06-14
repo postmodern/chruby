@@ -51,9 +51,6 @@ EOF`
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
 	fi
-
-	[[ $- == *i* ]] && echo "Using $RUBY_ENGINE-$RUBY_VERSION"
-	return 0
 }
 
 function chruby()

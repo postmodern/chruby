@@ -52,7 +52,7 @@ test_chruby_auto_loaded_twice()
 
 test_chruby_auto_enter_project_dir()
 {
-	cd "$PROJECT_DIR" && chruby_auto >/dev/null
+	cd "$PROJECT_DIR" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
@@ -60,7 +60,7 @@ test_chruby_auto_enter_project_dir()
 
 test_chruby_auto_enter_subdir_directly()
 {
-	cd "$PROJECT_DIR/sub_dir" && chruby_auto >/dev/null
+	cd "$PROJECT_DIR/sub_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when directly entering a sub-directory of a versioned directory" \
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
@@ -68,7 +68,7 @@ test_chruby_auto_enter_subdir_directly()
 
 test_chruby_auto_enter_subdir()
 {
-	cd "$PROJECT_DIR" && chruby_auto >/dev/null
+	cd "$PROJECT_DIR" && chruby_auto
 	cd sub_dir        && chruby_auto
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
@@ -77,7 +77,7 @@ test_chruby_auto_enter_subdir()
 
 test_chruby_auto_enter_subdir_with_ruby_version()
 {
-	cd "$PROJECT_DIR" && chruby_auto >/dev/null
+	cd "$PROJECT_DIR" && chruby_auto
 	cd sub_versioned/ && chruby_auto
 
 	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
@@ -86,7 +86,7 @@ test_chruby_auto_enter_subdir_with_ruby_version()
 
 test_chruby_auto_overriding_ruby_version()
 {
-	cd "$PROJECT_DIR" && chruby_auto >/dev/null
+	cd "$PROJECT_DIR" && chruby_auto
 	chruby system     && chruby_auto
 
 	assertNull "did not override the Ruby set in .ruby-version" "$RUBY_ROOT"
@@ -94,7 +94,7 @@ test_chruby_auto_overriding_ruby_version()
 
 test_chruby_auto_leave_project_dir()
 {
-	cd "$PROJECT_DIR"    && chruby_auto >/dev/null
+	cd "$PROJECT_DIR"    && chruby_auto
 	cd "$PROJECT_DIR/.." && chruby_auto
 
 	assertNull "did not reset the Ruby when leaving a versioned directory" \
@@ -103,7 +103,7 @@ test_chruby_auto_leave_project_dir()
 
 test_chruby_auto_invalid_ruby_version()
 {
-	cd "$PROJECT_DIR" && chruby_auto >/dev/null
+	cd "$PROJECT_DIR" && chruby_auto
 	cd bad/           && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
