@@ -13,7 +13,7 @@
     Change current Ruby to system Ruby.
 
 *RUBY_OPTS*
-    Additional optional arguements to pass to Ruby.
+    Additional optional arguments to pass to Ruby.
 
 ## OPTIONS
 
