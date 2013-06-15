@@ -10,7 +10,7 @@
     Change current Ruby based on fuzzy matching of Ruby by name.
 
 *RUBYOPTS*
-    Additional optional arguements to pass to Ruby.
+    Additional optional arguments to pass to Ruby.
 
 *COMMAND*
     Command to run under the selected Ruby.
