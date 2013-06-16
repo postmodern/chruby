@@ -3,24 +3,29 @@ unset RUBY_VERSION_FILE
 function chruby_auto() {
 	local dir="$PWD"
 	local version_file
+	local version
 
 	until [[ -z "$dir" ]]; do
 		version_file="$dir/.ruby-version"
 
-		if   [[ "$version_file" == "$RUBY_VERSION_FILE" ]]; then return
-		elif [[ -f "$version_file" ]]; then
-			chruby "$(cat "$version_file")" || return 1
+		if [[ -f "$version_file" ]]; then
+			version="$(cat "$version_file")"
 
-			export RUBY_VERSION_FILE="$version_file"
-			return
+			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
+			else
+				chruby "$version" || return 1
+
+				export RUBY_AUTO_VERSION="$version"
+				return
+			fi
 		fi
 
 		dir="${dir%/*}"
 	done
 
-	if [[ -n "$RUBY_VERSION_FILE" ]]; then
+	if [[ -n "$RUBY_AUTO_VERSION" ]]; then
 		chruby_reset
-		unset RUBY_VERSION_FILE
+		unset RUBY_AUTO_VERSION
 	fi
 }
 

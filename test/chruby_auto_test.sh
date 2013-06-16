@@ -7,7 +7,7 @@ PROJECT_DIR="$PWD/test/project"
 setUp()
 {
 	chruby_reset
-	unset RUBY_VERSION_FILE
+	unset RUBY_AUTO_VERSION
 }
 
 test_chruby_auto_loaded_in_zsh()
@@ -47,7 +47,7 @@ test_chruby_auto_loaded_twice()
 
 	. ./share/chruby/auto.sh
 
-	assertNull "RUBY_VERSION_FILE was not unset" "$RUBY_VERSION_FILE"
+	assertNull "RUBY_AUTO_VERSION was not unset" "$RUBY_AUTO_VERSION"
 }
 
 test_chruby_auto_enter_project_dir()
@@ -82,6 +82,15 @@ test_chruby_auto_enter_subdir_with_ruby_version()
 
 	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
 		   "$RUBY_ROOT"
+}
+
+test_chruby_auto_modified_ruby_version()
+{
+	cd "$PROJECT_DIR/modified_version" && chruby_auto
+	echo "1.9.3" > .ruby-version       && chruby_auto
+
+	assertEquals "did not detect the modified .ruby-version file" \
+		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
 test_chruby_auto_overriding_ruby_version()
