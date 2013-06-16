@@ -1,3 +1,12 @@
+### 0.3.6 / 2013-06-16
+
+* `chruby_use` no longer echos the selected Ruby.
+
+#### auto.sh
+
+* Record and compare the contents of `.ruby-version` files in order to detect
+  modifications, such as when switching between branches.
+
 ### 0.3.5 / 2013-05-28
 
 * Added a RPM spec.
