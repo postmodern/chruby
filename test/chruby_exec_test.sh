@@ -1,5 +1,10 @@
 . ./test/helper.sh
 
+setUp()
+{
+	export HOME="$PWD/test/home"
+}
+
 test_chruby_exec_no_arguments()
 {
 	chruby-exec 2>/dev/null
