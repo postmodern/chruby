@@ -39,7 +39,10 @@ clean:
 
 all: $(PKG) $(SIG)
 
-test:
+test/rubies:
+	./test/setup
+
+test: test/rubies
 	SHELL=`which bash` ./test/runner -norc 
 	SHELL=`which zsh`  ./test/runner -d -f
 
