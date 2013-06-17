@@ -33,4 +33,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-exec $SHELL -i -l -c "source $CHRUBY_ROOT/chruby.sh && chruby $argv >/dev/null && $*"
+exec $SHELL -i -l -c "source $CHRUBY_ROOT/chruby.sh && chruby $argv && $*"
