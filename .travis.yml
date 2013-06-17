@@ -4,6 +4,6 @@ install:
   - sudo apt-get install shunit2 zsh ruby
 
 before_script:
-  - rvm reset
+  - rvm implode
 
 script: make test
