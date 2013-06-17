@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+CHRUBY_ROOT="$(dirname $0)/../share/chruby"
 
-CHRUBY_VERSION="0.3.5"
+source "$CHRUBY_ROOT/chruby.sh"
 
 case "$1" in
 	-h|--help)
@@ -33,4 +33,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-exec $SHELL -l -i -c "chruby $argv >/dev/null && $*"
+exec $SHELL -i -l -c "source $CHRUBY_ROOT/chruby.sh && chruby $argv >/dev/null && $*"
