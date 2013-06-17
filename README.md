@@ -2,6 +2,8 @@
 
 Changes the current Ruby.
 
+[![Build Status](https://travis-ci.org/postmodern/chruby.png?branch=master)](https://travis-ci.org/postmodern/chruby)
+
 ## Features
 
 * Updates `$PATH`.
