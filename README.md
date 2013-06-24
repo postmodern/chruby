@@ -81,6 +81,7 @@ Chruby provides detailed instructions for installing additional Rubies:
 * [Ruby](https://github.com/postmodern/chruby/wiki/Ruby)
 * [JRuby](https://github.com/postmodern/chruby/wiki/JRuby)
 * [Rubinius](https://github.com/postmodern/chruby/wiki/Rubinius)
+* [MagLev](https://github.com/postmodern/chruby/wiki/MagLev)
 
 #### ruby-install
 
@@ -91,6 +92,7 @@ Installing to `/opt/rubies` or `~/.rubies`:
     ruby-install ruby
     ruby-install jruby
     ruby-install rubinius
+    ruby-install maglev
 
 #### ruby-build
 
@@ -101,6 +103,7 @@ Installing to `/opt/rubies`:
     ruby-build 1.9.3-p392 /opt/rubies/ruby-1.9.3-p392
     ruby-build jruby-1.7.3 /opt/rubies/jruby-1.7.3
     ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
+    ruby-build maglev-1.0.0 /opt/rubies/maglev-1.0.0
 
 ## Configuration
 
