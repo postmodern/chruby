@@ -1,4 +1,4 @@
-### 0.3.6 / 2013-06-16
+### 0.3.6 / 2013-06-23
 
 * `chruby_use` no longer echos the selected Ruby.
 
