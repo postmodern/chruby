@@ -2,6 +2,11 @@
 
 * `chruby_use` no longer echos the selected Ruby.
 
+#### chruby-exec
+
+* Now runs under bash.
+* Load `chruby.sh` for `CHRUBY_VERSION`.
+
 #### auto.sh
 
 * Record and compare the contents of `.ruby-version` files in order to detect
