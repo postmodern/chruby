@@ -112,11 +112,15 @@ test_chruby_auto_leave_project_dir()
 
 test_chruby_auto_invalid_ruby_version()
 {
+	local expected_auto_version=`cat $PROJECT_DIR/bad/.ruby-version`
+
 	cd "$PROJECT_DIR" && chruby_auto
 	cd bad/           && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
+	assertEquals "did not set RUBY_AUTO_VERSION" \
+		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
 
 tearDown()
