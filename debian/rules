@@ -13,11 +13,12 @@
 # This skips the doc files, which would otherwise get duplicated by the make
 # install task.
 override_dh_auto_install-indep:
-	dh_auto_install -- install_files
+	PREFIX=/usr DESTDIR=$$(pwd)/debian/chruby $(MAKE) install_files
 
 override_dh_auto_test-indep:
 
 override_dh_auto_build-indep:
 
+
 %:
-	PREFIX=/usr dh $@ 
+	dh $@
