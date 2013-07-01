@@ -48,7 +48,7 @@ test: test/rubies
 
 tag:
 	git push
-	git tag -s -m "Tagging $(VERSION)" v$(VERSION)
+	git tag -s -m "Releasing $(VERSION)" v$(VERSION)
 	git push --tags
 
 release: tag download sign
