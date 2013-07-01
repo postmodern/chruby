@@ -1,0 +1,5 @@
+chruby (0.3.6) unstable; urgency=low
+
+  * Initial package
+
+ -- Alex Young <alex@blackkettle.org>  Mon, 01 Jul 2013 10:20:24 +0100
