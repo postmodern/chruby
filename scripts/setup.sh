@@ -57,12 +57,14 @@ cd "$SRC_DIR"
 #
 # Install ruby-install (https://github.com/postmodern/ruby-install#readme)
 #
-log "Downloading ruby-install ..."
-wget -O ruby-install-0.2.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.2.1.tar.gz
+RUBY_INSTALL_VERSION="0.2.1"
 
-log "Extracting ruby-install ..."
-tar -xzvf ruby-install-0.2.1.tar.gz
-cd ruby-install-0.2.1/
+log "Downloading ruby-install ..."
+wget -O ruby-install-$RUBY_INSTALL_VERSION.tar.gz https://github.com/postmodern/ruby-install/archive/v$RUBY_INSTALL_VERSION.tar.gz
+
+log "Extracting ruby-install $RUBY_INSTALL_VERSION ..."
+tar -xzvf ruby-install-$RUBY_INSTALL_VERSION.tar.gz
+cd ruby-install-$RUBY_INSTALL_VERSION/
 
 log "Installing ruby-install and Rubies ..."
 ./setup.sh
