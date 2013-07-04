@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # chruby script that installs ruby-install which then installs the lastest
-# stable versions of Ruby, JRuby and Rubinius into /opt/rubies or ~/rubies.
+# stable versions of Ruby, JRuby and Rubinius into /opt/rubies or ~/.rubies.
 #
 
 set -e
