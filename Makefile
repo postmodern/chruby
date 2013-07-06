@@ -16,7 +16,7 @@ SIG=$(PKG).asc
 DESTDIR?=/
 PREFIX?=/usr/local
 INSTALL_PATH=$(DESTDIR)/$(PREFIX)
-DOC_DIR=$(INSTALL_PATH)/share/doc/$(PKG_NAME)
+DOC_DIR?=$(INSTALL_PATH)/share/doc/$(NAME)
 
 pkg:
 	mkdir $(PKG_DIR)
@@ -55,11 +55,9 @@ tag:
 
 release: tag download sign
 
-install_files:
+install:
 	for dir in $(INSTALL_DIRS); do mkdir -p $(INSTALL_PATH)/$$dir; done
 	for file in $(INSTALL_FILES); do cp $$file $(INSTALL_PATH)/$$file; done
-
-install: install_files
 	mkdir -p $(DOC_DIR)
 	cp -r $(DOC_FILES) $(DOC_DIR)/
 

@@ -9,16 +9,9 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-
-# This skips the doc files, which would otherwise get duplicated by the make
-# install task.
-override_dh_auto_install-indep:
-	PREFIX=/usr DESTDIR=$$(pwd)/debian/chruby $(MAKE) install_files
-
 override_dh_auto_test-indep:
 
 override_dh_auto_build-indep:
 
-
 %:
-	dh $@
+	PREFIX=/usr dh $@
