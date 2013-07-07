@@ -22,7 +22,7 @@ class Chruby < Formula
     variable:
 
       RUBIES=(
-        /opt/rubies/jruby-1.7.0
+        /opt/jruby-1.7.0
         $HOME/src/rubinius
       )
 
