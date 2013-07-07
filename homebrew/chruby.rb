@@ -4,7 +4,7 @@ class Chruby < Formula
   homepage 'https://github.com/postmodern/chruby#readme'
   url 'https://github.com/postmodern/chruby/archive/v0.3.6.tar.gz'
   sha1 'b492b1b5661a53c853f4e6ee8f5b67d4d75d0c39'
-  
+
   head 'https://github.com/postmodern/chruby.git'
 
   def install
@@ -12,7 +12,6 @@ class Chruby < Formula
   end
 
   def caveats; <<-EOS.undent
-
     Add the following to the /etc/profile.d/chruby.sh, ~/.bashrc or
     ~/.zshrc file:
 
@@ -37,7 +36,6 @@ class Chruby < Formula
     add the following to ~/.bash_profile or ~/.zshrc:
 
       source #{HOMEBREW_PREFIX}/opt/chruby/share/chruby/auto.sh
-
     EOS
   end
 end
