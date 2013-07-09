@@ -1,8 +1,6 @@
 CHRUBY_VERSION="0.3.6"
 
-RUBIES=()
-[[ -d "$PREFIX/opt/rubies/" ]] && RUBIES+=("$PREFIX"/opt/rubies/*)
-[[ -d "$HOME/.rubies"       ]] && RUBIES+=("$HOME"/.rubies/*)
+RUBIES=(`ls "$PREFIX/opt/rubies" 2>/dev/null` `ls "$HOME/.rubies" 2>/dev/null`)
 
 function chruby_reset()
 {
