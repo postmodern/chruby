@@ -1,6 +1,6 @@
 CHRUBY_VERSION="0.3.6"
 
-case "$SHELL" in
+case "$(basename $SHELL)" in
 	"bash")
 		RUBIES=(
 		`ls -d "$PREFIX"/opt/rubies/* 2>/dev/null`
