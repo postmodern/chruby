@@ -1,9 +1,20 @@
 CHRUBY_VERSION="0.3.6"
 
-RUBIES=(
-  `ls -d "$PREFIX"/opt/rubies/* 2>/dev/null`
-  `ls -d "$HOME"/.rubies/* 2>/dev/null`
-)
+case "$SHELL" in
+	"bash")
+		RUBIES=(
+		`ls -d "$PREFIX"/opt/rubies/* 2>/dev/null`
+		`ls -d "$HOME"/.rubies/* 2>/dev/null`
+		)
+		;;
+
+	"zsh")
+		RUBIES=(
+		$PREFIX/opt/rubies/*(N-/)
+		$HOME/.rubies/*(N-/)
+		)
+		;;
+esac
 
 function chruby_reset()
 {
