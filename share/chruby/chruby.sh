@@ -1,8 +1,8 @@
 CHRUBY_VERSION="0.3.6"
 
 RUBIES=(
-  `find "$PREFIX"/opt/rubies/ -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
-  `find "$HOME"/.rubies/ -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
+  `find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
+  `find "$HOME"/.rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
 )
 
 function chruby_reset()
