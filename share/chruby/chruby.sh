@@ -60,7 +60,7 @@ function chruby()
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
-		-v|--version)
+		-V|--version)
 			echo "chruby version $CHRUBY_VERSION"
 			;;
 		"")
