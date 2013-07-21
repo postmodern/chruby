@@ -141,8 +141,8 @@ If you wish to enable chruby system-wide, add the following to
 ### Auto-Switching
 
 If you want chruby to auto-switch the current version of Ruby when you `cd`
-between your different projects, simply load `auto.sh` in `~/.bash_profile`
-or `~/.zshrc`:
+between your different projects, simply load `auto.sh` in `~/.bashrc` or
+`~/.zshrc`:
 
     source /usr/local/share/chruby/auto.sh
 
