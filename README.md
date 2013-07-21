@@ -152,8 +152,8 @@ https://gist.github.com/1912050
 
 ### Default Ruby
 
-If you wish to set a default Ruby, simply call `chruby` in `~/.bashrc` or
-`~/.zshrc`:
+If you wish to set a default Ruby, simply call `chruby` in `~/.bash_profile` or
+`~/.zprofile`:
 
     chruby ruby-1.9
 
