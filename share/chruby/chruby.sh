@@ -1,4 +1,4 @@
-CHRUBY_VERSION="0.3.6"
+CHRUBY_VERSION="0.3.7"
 
 RUBIES=(
   `find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
