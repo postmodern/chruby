@@ -14,6 +14,7 @@ function chruby-install()
 			;;
 		-V|--version)
 			chruby --version
+			[[ $(type -t ruby-install ]] && ruby-install --version
 			;;
 		*)
 			if [[ ! $(type -t ruby-install) ]]; then
