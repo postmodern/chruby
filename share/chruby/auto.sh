@@ -1,4 +1,4 @@
-unset RUBY_VERSION_FILE
+unset RUBY_AUTO_VERSION
 
 function chruby_auto() {
 	local dir="$PWD"
