@@ -61,7 +61,7 @@ function chruby()
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		-V|--version)
-			echo "chruby version $CHRUBY_VERSION"
+			echo "chruby: $CHRUBY_VERSION"
 			;;
 		"")
 			local star
