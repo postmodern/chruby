@@ -17,7 +17,7 @@ function chruby-install()
 			;;
 		*)
 			if [[ ! $(type -t ruby-install) ]]; then
-				echo "Aborting, ruby-install not found ..."
+				echo "chruby-install: ruby-install could not be found"
 				return 1
 			fi
 
