@@ -165,7 +165,6 @@ If you have enabled auto-switching, simply create a `.ruby-version` file:
 
 For instructions on using chruby with other tools, please see the [wiki]:
 
-* [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Capistrano](https://github.com/postmodern/chruby/wiki/Capistrano)
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
