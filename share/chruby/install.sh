@@ -22,7 +22,6 @@ function chruby-install()
 			fi
 
 			ruby-install $@
-
 			chruby_reload
 			;;
 	esac
