@@ -14,10 +14,10 @@ function chruby-install()
 			;;
 		-V|--version)
 			chruby --version
-			[[ $(type -t ruby-install) ]] && ruby-install --version
+			[[ -n `command -v ruby-install` ]] && ruby-install --version
 			;;
 		*)
-			if [[ ! $(type -t ruby-install) ]]; then
+			if [[ -z `command -v ruby-install` ]]; then
 				echo "chruby-install: ruby-install could not be found" >&2
 				return 1
 			fi
