@@ -16,7 +16,7 @@ function chruby-install()
 			chruby --version
 			;;
 		*)
-			if [[ ! -x $(which ruby-install) ]]; then
+			if [[ ! $(type -t ruby-install) ]]; then
 				echo "Aborting, ruby-install not found ..."
 				return 1
 			fi
