@@ -1,5 +1,3 @@
-CHRUBY_VERSION="0.3.7"
-
 function chruby_reload()
 {
 	RUBIES=(
@@ -15,7 +13,7 @@ function chruby-install()
 			echo "usage: chruby-install [OPTIONS] [RUBY [VERSION]] [-- CONFIGURE_OPTS ...]"
 			;;
 		-V|--version)
-			echo "chruby version $CHRUBY_VERSION"
+			chruby --version
 			;;
 		*)
 			if [[ ! -x $(which ruby-install) ]]; then
