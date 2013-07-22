@@ -92,11 +92,13 @@ Chruby provides detailed instructions for installing additional Rubies:
 
 #### chruby-install
 
-If you'd like to use chruby-install to install Rubies, just install [ruby-install] and add the following to your `/etc/profile.d/chruby.sh`, `~/.bashrc` or `~/.zshrc` file:
+If you'd like to use chruby-install to install Rubies, just install
+[ruby-install] and add the following after where you have loaded `chruby.sh`:
 
     source /usr/local/share/chruby/install.sh
 
-You can then use chruby-install to install additional Rubies and automatically add them to chruby's known Rubies:
+You can then use chruby-install to install additional Rubies, making them
+immediately available to chruby.
 
 List Rubies for installation:
 
