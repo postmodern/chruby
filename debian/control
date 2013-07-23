@@ -1,0 +1,14 @@
+Source: chruby
+Section: devel
+Priority: extra
+Maintainer: Alex Young <alex@blackkettle.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: https://github.com/postmodern/chruby#readme
+
+Package: chruby
+Architecture: all
+Depends: ${misc:Depends}
+Description: Changes the current Ruby.
+  Updates $PATH, $GEM_HOME and $GEM_PATH to use rubies installed under 
+  /opt/rubies or $HOME/.rubies.

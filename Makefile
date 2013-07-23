@@ -13,8 +13,10 @@ PKG_NAME=$(NAME)-$(VERSION)
 PKG=$(PKG_DIR)/$(PKG_NAME).tar.gz
 SIG=$(PKG).asc
 
+DESTDIR?=/
 PREFIX?=/usr/local
-DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
+INSTALL_PATH=$(DESTDIR)/$(PREFIX)
+DOC_DIR?=$(INSTALL_PATH)/share/doc/$(NAME)
 
 pkg:
 	mkdir $(PKG_DIR)
@@ -54,13 +56,14 @@ tag:
 release: tag download sign
 
 install:
-	for dir in $(INSTALL_DIRS); do mkdir -p $(PREFIX)/$$dir; done
-	for file in $(INSTALL_FILES); do cp $$file $(PREFIX)/$$file; done
+	for dir in $(INSTALL_DIRS); do mkdir -p $(INSTALL_PATH)/$$dir; done
+	for file in $(INSTALL_FILES); do cp $$file $(INSTALL_PATH)/$$file; done
 	mkdir -p $(DOC_DIR)
 	cp -r $(DOC_FILES) $(DOC_DIR)/
 
 uninstall:
-	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
+	for file in $(INSTALL_FILES); do rm -f $(INSTALL_PATH)/$$file; done
 	rm -rf $(DOC_DIR)
 
-.PHONY: build download sign verify clean test tag release install uninstall all
+.PHONY: build download sign verify clean test tag release \
+	install_files install uninstall all
