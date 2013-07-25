@@ -11,7 +11,7 @@ done < <(paths=("$prefix/opt/rubies" "$HOME/.rubies")
 	find "${paths[@]}" "${args[@]}" 2>/dev/null
 	)
 
-chruby_reset() {
+function chruby_reset {
 	[[ -z $RUBY_ROOT ]] && return
 
 	PATH=:$PATH: PATH=${PATH//:$RUBY_ROOT\/bin:/:}
@@ -63,7 +63,7 @@ EOF)"
 	fi
 }
 
-chruby() {
+function chruby {
 	case $1 in
 		-h|--help)
 			printf '%s\n' "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"

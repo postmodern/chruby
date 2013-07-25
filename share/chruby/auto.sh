@@ -1,6 +1,6 @@
 unset RUBY_AUTO_VERSION
 
-chruby_auto() {
+function chruby_auto {
 	local dir=$PWD
 	local version_file
 	local version
