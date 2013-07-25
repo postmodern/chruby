@@ -1,6 +1,6 @@
 unset RUBY_AUTO_VERSION
 
-function chruby_auto() {
+function chruby_auto {
 	local dir="$PWD"
 	local version_file
 	local version
@@ -9,13 +9,13 @@ function chruby_auto() {
 		version_file="$dir/.ruby-version"
 
 		if [[ -f "$version_file" ]]; then
-			version=`cat "$version_file"`
+			read -r version < "$version_file"
 
 			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else
 				RUBY_AUTO_VERSION="$version"
 				chruby "$version"
-				return $?
+				return
 			fi
 		fi
 
@@ -29,7 +29,7 @@ function chruby_auto() {
 }
 
 if [[ -n "$ZSH_VERSION" ]]; then
-	if [[ ! "$preexec_functions" == *chruby_auto* ]]; then
+	if [[ "$preexec_functions" != *chruby_auto* ]]; then
 		preexec_functions+=("chruby_auto")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
