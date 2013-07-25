@@ -11,8 +11,7 @@ function chruby_auto {
 		if [[ -f "$version_file" ]]; then
 			read -r version < "$version_file"
 
-			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then
-				return
+			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else
 				RUBY_AUTO_VERSION="$version"
 				chruby "$version"
