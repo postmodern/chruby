@@ -24,10 +24,10 @@ function fail {
 }
 
 function download {
-	if type -P curl >/dev/null; then
-		curl -L -C - -o "$2" "$1"
-	elif type -P wget >/dev/null; then
+	if type -P wget >/dev/null; then
 		wget -c -O "$2" "$1"
+	elif type -P curl >/dev/null; then
+		curl -L -C - -o "$2" "$1"
 	else
 		error "Could not find curl or wget"
 		return 1
@@ -45,6 +45,7 @@ function read_release {
 			(PATCHLEVEL) system_version+=".$val" ;;
 		esac
 	done } < "$1"
+	printf '%s\n' "system_name=$system_name; system_version=$system_version"
 }
 
 function detect_system {
@@ -57,33 +58,42 @@ function detect_system {
     (Linux|GNU*)
       system_type="linux"
 
-
       for rls in /etc/*-release; do
-	if [[ -s "$rls" ]]; then
 	  rls_file="${rls#/etc/}"
 	  rls_file="${rls_file%-release}"
 	  case "${rls_file}" in
 	    (arch)
-	      system_name="arch"
+	      read_release /etc/os-release
 	      read -r line < <(ldd --version)
-	      system_version="${line##* }"
+	      system_version="libc-${line##* }"
+	      break
+	      ;;
 	    (centos)
 	      system_name="centos"
 	      read -r line < /etc/centos-release
 	      system_version="${line##* }"
-	    (lsb) read_release /etc/lsb_release ;;
+	      break
+	      ;;
+	    (lsb)
+	      read_release /etc/lsb-release
+	      break
+	      ;;
 	    (fedora)
 	      system_name="fedora"
 	      read -r line < /etc/fedora-release
 	      system_version="${line##* }"
+	      break
 	      ;;
 	    (gentoo)
 	      system_name="gentoo"
 	      read -r ver < /etc/gentoo-release
 	      system_version="${ver##* }"
+	      break
+	      ;;
 	    (os)
-	      read_release /etc/os-relase
+	      read_release /etc/os-release
 	      system_arch="$( dpkg --print-architecture )"
+	      break
 	      ;;
 	    (redhat)
 	      read -r line < /etc/redhat-release
@@ -93,23 +103,26 @@ function detect_system {
 		system_name="redhat"
 	      fi
 	      system_version="${line##* }"
+	      break
 	      ;;
 	    (SuSE)
 	      read_release /etc/SuSE-release
 	      system_name="suse"
+	      break
 	      ;;
 	    (system)
 	      read -r line < /etc/system-release
 	      system_version="${line##* }"
 	      [[ "$line" == *"Amazon Linux AMI"* ]] && system_name="amazon"
+	      break
 	      ;;
 	    (*)
 	      read -r system_version < <(ldd --version)
 	      system_version="${system_version##* }"
 	      ;;
 	  esac
-	fi
-      # special cases
+      done
+      special cases
       if [[ "$system_name" == "unknown" ]]; then
 	if [[ -s /etc/debian_version ]]; then
 	  system_name="debian"
@@ -128,10 +141,11 @@ function detect_system {
 	  system_name="mint"
 	  system_arch=$( dpkg --print-architecture )
 	  ;;
-	(ManjaroLinux) system_name="manjaro" ;;
+	(ManjaroLinux)
+	  system_name="manjaro"
+	  ;;
       esac
       ;;
-
     (SunOS)
       system_type="sunos"
       system_name="solaris"
