@@ -9,7 +9,8 @@ set -e
 #
 # Constants
 #
-export PREFIX="${PREFIX:-/usr/local}"
+PREFIX="${PREFIX:-/usr/local}"
+export PREFIX
 
 if ((! UID )); then src_dir="${src_dir:-/usr/local/src}"
 else                src_dir="${src_dir:-$HOME/src}"
@@ -60,11 +61,11 @@ cd "$src_dir"
 ruby_install_version="0.2.1"
 
 log "Downloading ruby-install ..."
-wget -O ruby-install-$ruby_install_version.tar.gz https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz
+wget -O "ruby-install-$ruby_install_version.tar.gz" "https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
 
 log "Extracting ruby-install $ruby_install_version ..."
-tar -xzvf ruby-install-$ruby_install_version.tar.gz
-cd ruby-install-$ruby_install_version/
+tar -xzvf "ruby-install-$ruby_install_version.tar.gz"
+cd "ruby-install-$ruby_install_version/"
 
 log "Installing ruby-install and Rubies ..."
 ./setup.sh
@@ -74,18 +75,16 @@ log "Installing ruby-install and Rubies ..."
 #
 log "Configuring chruby ..."
 
-chruby_config="$(cat <<EOS
-[ -n "\\\$BASH_VERSION" ] || [ -n "\\\$ZSH_VERSION" ] || return
-
-source "$PREFIX/share/chruby/chruby.sh"
-EOS)"
+chruby_config=(
+'[ -n "$BASH_VERSION" ] || [ -n "ZSH_VERSION" ] || return'
+"source $PREFIX/share/chruby/chruby.sh")
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
-	printf '%s\n' "$chruby_config" > /etc/profile.d/chruby.sh
+	printf '%s\n' "${chruby_config[@]}" > /etc/profile.d/chruby.sh
 	log "Setup complete! Please restart the shell"
 else
 	warning "Could not determine where to add chruby configuration."
 	warning "Please add the following configuration where appropriate:"
-	printf '\n%s\n' "$chruby_config"
+	printf '\n%s\n' "${chruby_config[@]}"
 fi
