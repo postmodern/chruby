@@ -8,7 +8,7 @@ done < <(paths=("$prefix/opt/rubies" "$HOME/.rubies")
 		-maxdepth 1
 		-type d
 	)
-	find "${paths[@]}" "${args[@]}"
+	find "${paths[@]}" "${args[@]}" 2>/dev/null
 	)
 
 chruby_reset() {
