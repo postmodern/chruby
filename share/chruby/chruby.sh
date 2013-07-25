@@ -1,4 +1,4 @@
-CHRUBY_VERSION=0.3.7
+chruby_version="0.3.7"
 
 while IFS= read -r rubypath; do
   rubies+=("$rubypath")
@@ -69,7 +69,7 @@ function chruby {
 			printf '%s\n' "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		-V|--version)
-			printf '%s\n' "chruby: $CHRUBY_VERSION"
+			printf '%s\n' "chruby: $chruby_version"
 			;;
 		"")
 			local star

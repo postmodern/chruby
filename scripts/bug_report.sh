@@ -22,7 +22,8 @@ function print_version {
 	which="$(type -p "$1")"
 	which="${which##* }"
 	if [[ -n "$which" ]]; then
-		indent "$("$1" --version | head -n 1) ($which)"
+		read -r ver < <("$1" --version)
+		indent "$ver ($which)"
 	fi
 }
 
@@ -37,7 +38,7 @@ print_version "bundle"
 
 print_section "Environment"
 
-print_variable "CHRUBY_VERSION"
+print_variable "chruby_version"
 print_variable "SHELL"
 print_variable "PATH"
 
