@@ -11,34 +11,34 @@ set -e
 #
 export PREFIX="${PREFIX:-/usr/local}"
 
-if [[ $UID -eq 0 ]]; then SRC_DIR="${SRC_DIR:-/usr/local/src}"
-else                      SRC_DIR="${SRC_DIR:-$HOME/src}"
+if ((! UID )); then SRC_DIR="${SRC_DIR:-/usr/local/src}"
+else                SRC_DIR="${SRC_DIR:-$HOME/src}"
 fi
 
 #
 # Functions
 #
-function log() {
+function log {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+		printf '%b\n' "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
 	else
-		echo ">>> $1"
+		printf '%s\n' ">>> $1"
 	fi
 }
 
-function error() {
+function error {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+		printf '%b\n' "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
 	else
-		echo "!!! $1" >&2
+		printf '%s\n' "!!! $1" >&2
 	fi
 }
 
-function warning() {
+function warning {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+		printf '%b\n' "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
 	else
-		echo "*** $1" >&2
+		printf '%s\n' "*** $1" >&2
 	fi
 }
 
@@ -74,11 +74,11 @@ log "Installing ruby-install and Rubies ..."
 #
 log "Configuring chruby ..."
 
-CHRUBY_CONFIG=`cat <<EOS
+CHRUBY_CONFIG=$(cat <<EOS
 [ -n "\\\$BASH_VERSION" ] || [ -n "\\\$ZSH_VERSION" ] || return
 
 source $PREFIX/share/chruby/chruby.sh
-EOS`
+EOS)
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
