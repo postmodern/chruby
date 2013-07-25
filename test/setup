@@ -24,14 +24,27 @@ function fail {
 }
 
 function download {
-	if [[ "$(type -t curl)" ]]; then
+	if type -P curl >/dev/null; then
 		curl -L -C - -o "$2" "$1"
-	elif [[ "$(type -t wget)" ]]; then
+	elif type -P wget >/dev/null; then
 		wget -c -O "$2" "$1"
 	else
 		error "Could not find curl or wget"
 		return 1
 	fi
+}
+
+function read_release {
+	{ IFS= read; while IFS== read -r ident val; do
+		case "${ident#DISTRIB_}" in
+			(ID) system_name="$val" ;;
+			(RELEASE) system_version="$val" ;;
+			# SuSE-release, os-release
+			(VERSION*) system_version="$val" ;;
+			# SuSE-release
+			(PATCHLEVEL) system_version+=".$val" ;;
+		esac
+	done } < "$1"
 }
 
 function detect_system {
@@ -44,71 +57,79 @@ function detect_system {
     (Linux|GNU*)
       system_type="linux"
 
-      if [[ -f /etc/lsb-release ]] &&
-	 [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=Ubuntu"* ]]
-      then
-        system_name="ubuntu"
-        system_version="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
-        system_arch="$(dpkg --print-architecture)"
-      elif [[ -f /etc/lsb-release ]] &&
-           [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=LinuxMint"* ]]
-      then
-        system_name="mint"
-        system_version="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
-        system_arch="$( dpkg --print-architecture )"
-      elif [[ -f /etc/lsb-release ]] &&
-           [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=ManjaroLinux"* ]]
-      then
-        system_name="manjaro"
-        system_version="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
-      elif [[ -f /etc/os-release ]] &&
-           [[ "$(< /etc/os-release)" == *"ID=opensuse"* ]]
-      then
-        system_name="opensuse"
-        system_version="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release)" #'
-      elif [[ -f /etc/SuSE-release ]]; then
-        system_name="suse"
-        system_version="$(
-          awk -F'=' '{gsub(/ /,"")} $1~/VERSION/ {version=$2} $1~/PATCHLEVEL/ {patch=$2} END {print version"."patch}' < /etc/SuSE-release
-        )"
-      elif [[ -f /etc/debian_version ]]; then
-        system_name="debian"
-        system_version="$(< /etc/debian_version | awk -F. '{print $1"."$2}')"
-        system_arch="$( dpkg --print-architecture )"
-      elif [[ -f /etc/os-release ]] &&
-           [[ "$(< /etc/os-release)" == *"ID=debian"* ]]
-      then
-        system_name="debian"
-        system_version="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release | awk -F. '{print $1"."$2}')" #'
-        system_arch="$( dpkg --print-architecture )"
-      elif [[ -f /etc/fedora-release ]]; then
-        system_name="fedora"
-        system_version="$(grep -Eo '[[:digit:]]+' /etc/fedora-release)"
-      elif [[ -f /etc/centos-release ]]; then
-        system_name="centos"
-        system_version="$(grep -Eo '[[:digit:]\.]+' /etc/centos-release | awk -F. '{print $1"."$2}')"
-      elif [[ -f /etc/redhat-release ]]; then
-        if [[ "$(< /etc/redhat-release)" == *"CentOS"* ]]; then
-		system_name="centos"
-        else
-		system_name="redhat"
-        fi
 
-        system_version="$(grep -Eo '[[:digit:]\.]+' /etc/redhat-release | awk -F. '{print $1"."$2}')"
-      elif [[ -f /etc/system-release ]] &&
-           [[ "$(< /etc/system-release)" == *"Amazon Linux AMI"* ]]
-      then
-        system_name="amazon"
-        system_version="$(grep -Eo '[[:digit:]\.]+' /etc/system-release | awk -F. '{print $1"."$2}')"
-      elif [[ -f /etc/gentoo-release ]]; then
-        system_name="gentoo"
-        system_version="base-$(< /etc/gentoo-release | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
-      elif [[ -f /etc/arch-release ]]; then
-        system_name="arch"
-        system_version="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
-      else
-        system_version="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
+      for rls in /etc/*-release; do
+	if [[ -s "$rls" ]]; then
+	  rls_file="${rls#/etc/}"
+	  rls_file="${rls_file%-release}"
+	  case "${rls_file}" in
+	    (arch)
+	      system_name="arch"
+	      read -r line < <(ldd --version)
+	      system_version="${line##* }"
+	    (centos)
+	      system_name="centos"
+	      read -r line < /etc/centos-release
+	      system_version="${line##* }"
+	    (lsb) read_release /etc/lsb_release ;;
+	    (fedora)
+	      system_name="fedora"
+	      read -r line < /etc/fedora-release
+	      system_version="${line##* }"
+	      ;;
+	    (gentoo)
+	      system_name="gentoo"
+	      read -r ver < /etc/gentoo-release
+	      system_version="${ver##* }"
+	    (os)
+	      read_release /etc/os-relase
+	      system_arch="$( dpkg --print-architecture )"
+	      ;;
+	    (redhat)
+	      read -r line < /etc/redhat-release
+	      if [[ "$name" == *"CentOS"* ]]; then
+		system_name="centos"
+	      else
+		system_name="redhat"
+	      fi
+	      system_version="${line##* }"
+	      ;;
+	    (SuSE)
+	      read_release /etc/SuSE-release
+	      system_name="suse"
+	      ;;
+	    (system)
+	      read -r line < /etc/system-release
+	      system_version="${line##* }"
+	      [[ "$line" == *"Amazon Linux AMI"* ]] && system_name="amazon"
+	      ;;
+	    (*)
+	      read -r system_version < <(ldd --version)
+	      system_version="${system_version##* }"
+	      ;;
+	  esac
+	fi
+      # special cases
+      if [[ "$system_name" == "unknown" ]]; then
+	if [[ -s /etc/debian_version ]]; then
+	  system_name="debian"
+	  read -r line < /etc/debian_version
+	  system_version="${line%.*}"
+	  system_arch="$( dpkg --print-architecture )"
+	fi
       fi
+      # names that need a little tweaking
+      case "$system_name" in
+	(Ubuntu)
+	  system_name="ubuntu"
+	  system_arch=$( dpkg --print-architecture )
+	  ;;
+	(LinuxMint)
+	  system_name="mint"
+	  system_arch=$( dpkg --print-architecture )
+	  ;;
+	(ManjaroLinux) system_name="manjaro" ;;
+      esac
       ;;
 
     (SunOS)
@@ -135,7 +156,7 @@ function detect_system {
       system_type="darwin"
       system_name="osx"
       system_version="$(sw_vers -productVersion)"
-      system_version="${system_version%.*}" # only major.minor - teeny is ignored
+      system_version="${system_version%.*}"
       ;;
 
     (FreeBSD)
@@ -155,14 +176,14 @@ function detect_system {
   system_version="${system_version//[ \/]/_}"
   system_arch="${system_arch//[ \/]/_}"
   system_arch="${system_arch/amd64/x86_64}"
-  system_arch="${system_arch/i[123456789]86/i386}"
+  system_arch="${system_arch/i[0-9]86/i386}"
 }
 
 detect_system || fail "Cannot auto-detect system type"
-[[ "$system_name" == "unknown"    ]] && fail "Could not detect system name"
-[[ "$system_version" == "unknown" ]] && fail "Could not detect system version"
-[[ "$system_arch" == "unknown"    ]] && fail "Could not detect system arch"
 
+[[ "$system_name" == "unknown" ]] && fail "Could not detect system name"
+[[ "$system_version" == "unknown" ]] && fail "Could not detect system version"
+[[ "$system_arch" == "unknown" ]] && fail "Could not detect system arch"
 test_ruby_archive="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel.tar.bz2"
 test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
 test_ruby_root="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel"
