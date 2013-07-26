@@ -45,4 +45,4 @@ test_chruby_invalid_ruby()
 	assertEquals "did not return 1" 1 $?
 }
 
-shunit_parent="$0" . "$shunit2"
+SHUNIT_PARENT="$0" . "$shunit2"

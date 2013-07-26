@@ -54,4 +54,4 @@ test_chruby_reset_no_gem_root_or_gem_home()
 	assertEquals "PATH was messed up" "$test_path:/bin" "$PATH"
 }
 
-shunit_parent="$0" . "$shunit2"
+SHUNIT_PARENT="$0" . "$shunit2"

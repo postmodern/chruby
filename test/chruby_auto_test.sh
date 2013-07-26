@@ -129,4 +129,4 @@ tearDown()
 	cd "$test_dir"
 }
 
-shunit_parent="$0" . "$shunit2"
+SHUNIT_PARENT="$0" . "$shunit2"

@@ -27,4 +27,4 @@ tearDown()
 	chruby_reset
 }
 
-shunit_parent="$0" . "$shunit2"
+SHUNIT_PARENT="$0" . "$shunit2"

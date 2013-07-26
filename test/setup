@@ -122,7 +122,7 @@ function detect_system {
 	      ;;
 	  esac
       done
-      special cases
+      # special cases
       if [[ "$system_name" == "unknown" ]]; then
 	if [[ -s /etc/debian_version ]]; then
 	  system_name="debian"
@@ -131,7 +131,7 @@ function detect_system {
 	  system_arch="$( dpkg --print-architecture )"
 	fi
       fi
-      # names that need a little tweaking
+      # sanitize some names
       case "$system_name" in
 	(Ubuntu)
 	  system_name="ubuntu"

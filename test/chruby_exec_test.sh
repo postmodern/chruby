@@ -27,4 +27,4 @@ test_chruby_exec()
 	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }
 
-shunit_parent="$0" . "$shunit2"
+SHUNIT_PARENT="$0" . "$shunit2"
