@@ -35,6 +35,7 @@ function download() {
 }
 
 function detect_system() {
+  # adapted from RVM: https://github.com/wayneeseguin/rvm/blob/master/scripts/functions/utility_system#L3
   SYSTEM_TYPE="unknown"
   SYSTEM_NAME="unknown"
   SYSTEM_VERSION="unknown"
