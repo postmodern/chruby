@@ -4,13 +4,13 @@
 TEST_DIR="$PWD"
 PROJECT_DIR="$PWD/test/project"
 
-setUp()
+function setUp()
 {
 	chruby_reset
 	unset RUBY_AUTO_VERSION
 }
 
-test_chruby_auto_loaded_in_zsh()
+function test_chruby_auto_loaded_in_zsh()
 {
 	[[ -n "$ZSH_VERSION" ]] || return
 
@@ -19,7 +19,7 @@ test_chruby_auto_loaded_in_zsh()
 		     "$preexec_functions"
 }
 
-test_chruby_auto_loaded_in_bash()
+function test_chruby_auto_loaded_in_bash()
 {
 	[[ -n "$BASH_VERSION" ]] || return
 
@@ -29,7 +29,7 @@ test_chruby_auto_loaded_in_bash()
 		   '[[ "$output" == *chruby_auto* ]]'
 }
 
-test_chruby_auto_loaded_twice_in_zsh()
+function test_chruby_auto_loaded_twice_in_zsh()
 {
 	[[ -n "$ZSH_VERSION" ]] || return
 
@@ -40,7 +40,7 @@ test_chruby_auto_loaded_twice_in_zsh()
 			"chruby_auto chruby_auto"
 }
 
-test_chruby_auto_loaded_twice()
+function test_chruby_auto_loaded_twice()
 {
 	RUBY_VERSION_FILE="dirty"
 	PROMPT_COMMAND="chruby_auto"
@@ -50,7 +50,7 @@ test_chruby_auto_loaded_twice()
 	assertNull "RUBY_AUTO_VERSION was not unset" "$RUBY_AUTO_VERSION"
 }
 
-test_chruby_auto_enter_project_dir()
+function test_chruby_auto_enter_project_dir()
 {
 	cd "$PROJECT_DIR" && chruby_auto
 
@@ -58,7 +58,7 @@ test_chruby_auto_enter_project_dir()
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
-test_chruby_auto_enter_subdir_directly()
+function test_chruby_auto_enter_subdir_directly()
 {
 	cd "$PROJECT_DIR/sub_dir" && chruby_auto
 
@@ -66,7 +66,7 @@ test_chruby_auto_enter_subdir_directly()
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
-test_chruby_auto_enter_subdir()
+function test_chruby_auto_enter_subdir()
 {
 	cd "$PROJECT_DIR" && chruby_auto
 	cd sub_dir        && chruby_auto
@@ -75,7 +75,7 @@ test_chruby_auto_enter_subdir()
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
-test_chruby_auto_enter_subdir_with_ruby_version()
+function test_chruby_auto_enter_subdir_with_ruby_version()
 {
 	cd "$PROJECT_DIR" && chruby_auto
 	cd sub_versioned/ && chruby_auto
@@ -84,7 +84,7 @@ test_chruby_auto_enter_subdir_with_ruby_version()
 		   "$RUBY_ROOT"
 }
 
-test_chruby_auto_modified_ruby_version()
+function test_chruby_auto_modified_ruby_version()
 {
 	cd "$PROJECT_DIR/modified_version" && chruby_auto
 	echo "1.9.3" > .ruby-version       && chruby_auto
@@ -93,7 +93,7 @@ test_chruby_auto_modified_ruby_version()
 		     "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 }
 
-test_chruby_auto_overriding_ruby_version()
+function test_chruby_auto_overriding_ruby_version()
 {
 	cd "$PROJECT_DIR" && chruby_auto
 	chruby system     && chruby_auto
@@ -101,7 +101,7 @@ test_chruby_auto_overriding_ruby_version()
 	assertNull "did not override the Ruby set in .ruby-version" "$RUBY_ROOT"
 }
 
-test_chruby_auto_leave_project_dir()
+function test_chruby_auto_leave_project_dir()
 {
 	cd "$PROJECT_DIR"    && chruby_auto
 	cd "$PROJECT_DIR/.." && chruby_auto
@@ -110,7 +110,7 @@ test_chruby_auto_leave_project_dir()
 		   "$RUBY_ROOT"
 }
 
-test_chruby_auto_invalid_ruby_version()
+function test_chruby_auto_invalid_ruby_version()
 {
 	local expected_auto_version=`cat $PROJECT_DIR/bad/.ruby-version`
 
@@ -123,7 +123,7 @@ test_chruby_auto_invalid_ruby_version()
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
 
-tearDown()
+function tearDown()
 {
 	cd "$TEST_DIR"
 }

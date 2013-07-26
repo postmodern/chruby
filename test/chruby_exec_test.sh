@@ -1,25 +1,25 @@
 . ./test/helper.sh
 
-setUp()
+function setUp()
 {
 	export HOME="$PWD/test/home"
 }
 
-test_chruby_exec_no_arguments()
+function test_chruby_exec_no_arguments()
 {
 	chruby-exec 2>/dev/null
 
 	assertEquals "did not exit with 1" 1 $?
 }
 
-test_chruby_exec_no_command()
+function test_chruby_exec_no_command()
 {
 	chruby-exec "$TEST_RUBY_VERSION" 2>/dev/null
 
 	assertEquals "did not exit with 1" 1 $?
 }
 
-test_chruby_exec()
+function test_chruby_exec()
 {
 	local command="ruby -e 'print RUBY_VERSION'"
 	local ruby_version=$(chruby-exec "$TEST_RUBY_VERSION" -- $command)

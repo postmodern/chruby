@@ -1,13 +1,13 @@
 . ./test/helper.sh
 
-setUp()
+function setUp()
 {
 	TEST_PATH="$PATH"
 
 	chruby_use $TEST_RUBY_ROOT >/dev/null
 }
 
-test_chruby_use()
+function test_chruby_use()
 {
 	assertEquals "invalid RUBY_ROOT"    "$TEST_RUBY_ROOT" "$RUBY_ROOT"
 	assertEquals "invalid RUBY_ENGINE"  "$TEST_RUBY_ENGINE" "$RUBY_ENGINE"
@@ -20,7 +20,7 @@ test_chruby_use()
 	assertEquals "could not find ruby in $PATH" "$TEST_RUBY_ROOT/bin/ruby" `which ruby`
 }
 
-tearDown()
+function tearDown()
 {
 	chruby_reset
 }

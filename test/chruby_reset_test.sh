@@ -1,13 +1,13 @@
 . ./test/helper.sh
 
-setUp()
+function setUp()
 {
 	chruby_use "$TEST_RUBY_ROOT" >/dev/null
 
 	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$TEST_PATH"
 }
 
-test_chruby_reset()
+function test_chruby_reset()
 {
 	chruby_reset
 
@@ -21,7 +21,7 @@ test_chruby_reset()
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
 
-test_chruby_reset_duplicate_path()
+function test_chruby_reset_duplicate_path()
 {
 	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
 
@@ -30,7 +30,7 @@ test_chruby_reset_duplicate_path()
 	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
 }
 
-test_chruby_reset_modified_gem_path()
+function test_chruby_reset_modified_gem_path()
 {
 	local gem_dir="$HOME/gems"
 
@@ -41,7 +41,7 @@ test_chruby_reset_modified_gem_path()
 	assertEquals "GEM_PATH was unset" "$gem_dir" "$GEM_PATH"
 }
 
-test_chruby_reset_no_gem_root_or_gem_home()
+function test_chruby_reset_no_gem_root_or_gem_home()
 {
 	export GEM_HOME=""
 	export GEM_ROOT=""
