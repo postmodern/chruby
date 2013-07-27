@@ -36,7 +36,7 @@ function test_chruby_auto_loaded_twice_in_zsh()
 	. ./share/chruby/auto.sh
 
 	assertNotEquals "should not add chruby_auto twice" \
-		        "$preexec_functions" \
+			"$preexec_functions" \
 			"chruby_auto chruby_auto"
 }
 
@@ -55,7 +55,7 @@ function test_chruby_auto_enter_project_dir()
 	cd "$project_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
-		     "$test_ruby_root" "$RUBY_ROOT"
+		      "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir_directly()
