@@ -55,7 +55,7 @@ function test_chruby_auto_enter_project_dir()
 	cd "$project_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
-		     "$test_ruby_root" "$ruby_root"
+		     "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir_directly()
@@ -63,7 +63,7 @@ function test_chruby_auto_enter_subdir_directly()
 	cd "$project_dir/sub_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when directly entering a sub-directory of a versioned directory" \
-		     "$test_ruby_root" "$ruby_root"
+		     "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir()
@@ -72,7 +72,7 @@ function test_chruby_auto_enter_subdir()
 	cd sub_dir        && chruby_auto
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
-		     "$test_ruby_root" "$ruby_root"
+		     "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir_with_ruby_version()
@@ -81,7 +81,7 @@ function test_chruby_auto_enter_subdir_with_ruby_version()
 	cd sub_versioned/ && chruby_auto
 
 	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
-		   "$ruby_root"
+		   "$RUBY_ROOT"
 }
 
 function test_chruby_auto_modified_ruby_version()
@@ -90,7 +90,7 @@ function test_chruby_auto_modified_ruby_version()
 	echo "1.9.3" > .ruby-version       && chruby_auto
 
 	assertEquals "did not detect the modified .ruby-version file" \
-		     "$test_ruby_root" "$ruby_root"
+		     "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_overriding_ruby_version()
@@ -107,7 +107,7 @@ function test_chruby_auto_leave_project_dir()
 	cd "$project_dir/.." && chruby_auto
 
 	assertNull "did not reset the Ruby when leaving a versioned directory" \
-		   "$ruby_root"
+		   "$RUBY_ROOT"
 }
 
 function test_chruby_auto_invalid_ruby_version()
@@ -119,8 +119,8 @@ function test_chruby_auto_invalid_ruby_version()
 	cd bad/           && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
-		     "$test_ruby_root" "$ruby_root"
-	assertEquals "did not set RUBY_AUTO_VERSION" \
+		     "$test_ruby_root" "$RUBY_ROOT"
+	assertEquals "did not set ruby_auto_version" \
 		     "$expected_auto_version" "$ruby_auto_version"
 }
 
