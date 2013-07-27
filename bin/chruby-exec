@@ -8,7 +8,7 @@ case "$1" in
 		exit
 		;;
 	-V|--version)
-		echo "chruby version $CHRUBY_VERSION"
+		echo "chruby version $chruby_version"
 		exit
 		;;
 esac
@@ -20,11 +20,11 @@ fi
 
 argv=()
 
-for arg in $@; do
+for arg in "$@"; do
 	shift
 
 	if [[ "$arg" == "--" ]]; then break
-	else                          argv+=($arg)
+	else                          argv+=("$arg")
 	fi
 done
 
@@ -33,4 +33,4 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-exec $SHELL -i -l -c "chruby $argv && $*"
+exec "$SHELL" -i -l -c 'chruby "$argv" && "$@"'

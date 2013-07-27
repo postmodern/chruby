@@ -2,7 +2,7 @@
 # chruby script to collect environment information for bug reports.
 #
 
-[[ -z "$PS1" ]] && exec $SHELL -i -l $0
+[[ -z "$PS1" ]] && exec "$SHELL" -i -l "$0"
 
 function print_section()
 {
@@ -26,7 +26,7 @@ function print_variable()
 function print_version()
 {
 	if [[ -n $(which $1 2>/dev/null) ]]; then
-		indent "$($1 --version | head -n 1) ($(which $1))"
+		indent "$("$1" --version | head -n 1) ($(which "$1"))"
 	fi
 }
 
@@ -49,7 +49,7 @@ print_variable "PATH"
 [[ -n "$preexec_functions" ]] && print_variable "preexec_functions"
 [[ -n "$precmd_functions"  ]] && print_variable "precmd_functions"
 
-[[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[*]})"
+[[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[@]})"
 [[ -n "$RUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
 [[ -n "$RUBY_VERSION" ]] && print_variable "RUBY_VERSION"
 [[ -n "$RUBY_ENGINE"  ]] && print_variable "RUBY_ENGINE"
@@ -59,7 +59,8 @@ print_variable "PATH"
 
 if [[ -f .ruby-version ]]; then
 	print_section ".ruby-version"
-	echo "    $(cat .ruby-version)"
+	read -r ruby_version < .ruby_version
+	echo "    $ruby_version"
 fi
 
 print_section "Aliases"

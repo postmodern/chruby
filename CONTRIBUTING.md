@@ -6,6 +6,7 @@
 * Keep code within 80 columns.
 * Use the `function` keyword for functions.
 * Quote all String variables.
+* Variables which do not belong in the environment must not be upper-case
 * Prefer single-line expressions where appropriate:
 
         [[ -n "$foo" ]] && other command

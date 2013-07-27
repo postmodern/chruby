@@ -2,9 +2,10 @@
 
 function setUp()
 {
-	chruby_use "$TEST_RUBY_ROOT" >/dev/null
+	chruby_use "$test_ruby_root" >/dev/null
 
-	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$TEST_PATH"
+	PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$test_path"
+	export PATH
 }
 
 function test_chruby_reset()
@@ -18,23 +19,25 @@ function test_chruby_reset()
 	assertNull "GEM_HOME was not unset"      "$GEM_HOME"
 	assertNull "GEM_PATH was not unset"      "$GEM_PATH"
 
-	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
+	assertEquals "PATH was not sanitized"    "$test_path" "$PATH"
 }
 
 function test_chruby_reset_duplicate_path()
 {
-	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
+	PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
+	export PATH
 
 	chruby_reset
 
-	assertEquals "PATH was not sanitized"    "$TEST_PATH" "$PATH"
+	assertEquals "PATH was not sanitized"    "$test_path" "$PATH"
 }
 
 function test_chruby_reset_modified_gem_path()
 {
 	local gem_dir="$HOME/gems"
 
-	export GEM_PATH="$GEM_PATH:$gem_dir"
+	GEM_PATH="$GEM_PATH:$gem_dir"
+	export GEM_PATH
 
 	chruby_reset
 
@@ -43,13 +46,12 @@ function test_chruby_reset_modified_gem_path()
 
 function test_chruby_reset_no_gem_root_or_gem_home()
 {
-	export GEM_HOME=""
-	export GEM_ROOT=""
-	export PATH="$TEST_PATH:/bin"
+	GEM_HOME="" GEM_ROOT="" PATH="$TEST_PATH:/bin"
+	export PATH GEM_HOME GEM_ROOT
 
 	chruby_reset
 
 	assertEquals "PATH was messed up" "$TEST_PATH:/bin" "$PATH"
 }
 
-SHUNIT_PARENT=$0 . $SHUNIT2
+SHUNIT_PARENT="$0" . "$SHUNIT2"
