@@ -1,4 +1,4 @@
-CHRUBY_VERSION="0.3.7"
+chruby_version="0.3.7"
 
 RUBIES=(
   `find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
@@ -61,12 +61,12 @@ function chruby()
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		-V|--version)
-			echo "chruby: $CHRUBY_VERSION"
+			echo "chruby: $chruby_version"
 			;;
 		"")
 			local star
 
-			for dir in ${RUBIES[@]}; do
+			for dir in "${RUBIES[@]}"; do
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
 				else                                  star=" "
 				fi
@@ -78,7 +78,7 @@ function chruby()
 		*)
 			local match
 
-			for dir in ${RUBIES[@]}; do
+			for dir in "${RUBIES[@]}"; do
 				[[ `basename "$dir"` == *$1* ]] && match="$dir"
 			done
 
