@@ -5,7 +5,7 @@
 #### chruby-exec
 
 * Now runs under bash.
-* Load `chruby.sh` for `CHRUBY_VERSION`.
+* Load `chruby.sh` for `chruby_version`.
 
 #### auto.sh
 
@@ -69,7 +69,7 @@
 
 #### scripts/bug_report.sh
 
-* Include `CHRUBY_VERSION` in the output.
+* Include `chruby_version` in the output.
 
 ### 0.3.3 / 2013-02-18
 
