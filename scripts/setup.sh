@@ -61,11 +61,11 @@ cd "$src_dir"
 ruby_install_version="0.2.1"
 
 log "Downloading ruby-install ..."
-wget -O ruby-install-$ruby_install_version.tar.gz https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz
+wget -O "ruby-install-$ruby_install_version.tar.gz https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
 
 log "Extracting ruby-install $ruby_install_version ..."
-tar -xzvf ruby-install-$ruby_install_version.tar.gz
-cd ruby-install-$ruby_install_version/
+tar -xzvf "ruby-install-$ruby_install_version.tar.gz"
+cd "ruby-install-$ruby_install_version/"
 
 log "Installing ruby-install and Rubies ..."
 ./setup.sh
