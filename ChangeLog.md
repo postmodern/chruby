@@ -1,11 +1,11 @@
 ### 0.3.6 / 2013-06-23
 
-* `chruby_use` no longer echos the selected Ruby.
+* `chruby_use` no longer prints the selected Ruby.
 
 #### chruby-exec
 
 * Now runs under bash.
-* Load `chruby.sh` for `CHRUBY_VERSION`.
+* Load `chruby.sh` for `chruby_version`.
 
 #### auto.sh
 
@@ -17,7 +17,7 @@
 * Added a RPM spec.
 * Respect `PREFIX` when auto-detecting `/opt/rubies/*`.
 * Do not set `GEM_ROOT` if rubygems is not installed (Charlie Somerville).
-* `chruby_use` now echos the select ruby and the version, only if the shell is
+* `chruby_use` now prints the select ruby and the version, only if the shell is
   in interactive mode (Brian D. Burns).
 * `chruby_reset` no longer accidentally removes `/bin` if `GEM_HOME` or
   `GEM_ROOT` are empty (David Grayson).
@@ -69,7 +69,7 @@
 
 #### scripts/bug_report.sh
 
-* Include `CHRUBY_VERSION` in the output.
+* Include `chruby_version` in the output.
 
 ### 0.3.3 / 2013-02-18
 

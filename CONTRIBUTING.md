@@ -2,22 +2,24 @@
 
 ## Code Style
 
-* Tab indent code.
+* 2-space indent code.
 * Keep code within 80 columns.
 * Use the `function` keyword for functions.
+* Use printf instead of echo.
 * Quote all String variables.
+* Variables which do not belong in the environment must not be upper-case.
 * Prefer single-line expressions where appropriate:
 
-        [[ -n "$foo" ]] && other command
+  [[ -n "$foo" ]] && other command
 
-        if   [[ "$foo" == "bar" ]]; then command
-        elif [[ "$foo" == "baz" ]]; then other_command
-        fi
+  if   [[ "$foo" == "bar" ]]; then command
+  elif [[ "$foo" == "baz" ]]; then other_command
+  fi
 
-        case "$foo" in
-        	bar) command ;;
-        	baz) other_command ;;
-        esac
+  case "$foo" in
+    bar) command ;;
+    baz) other_command ;;
+  esac
 
 ## Pull Request Guidelines
 
