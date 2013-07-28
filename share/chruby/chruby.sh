@@ -47,8 +47,8 @@ chruby_use() {
   puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
   puts "export RUBY_VERSION=#{RUBY_VERSION};"
   puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
-  EOF
-  )"
+EOF
+)"
 
   if (( ! UID == 0 )); then
     GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
