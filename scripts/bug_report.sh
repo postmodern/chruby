@@ -19,7 +19,7 @@ print_variable() {
 }
 
 print_version() {
-  if  which "$1" 2>/dev/null; then
+  if  which "$1" >/dev/null 2>&1; then
     read -r version < <( "$1" --version )
     indent "$version ($(which "$1"))"
   fi
