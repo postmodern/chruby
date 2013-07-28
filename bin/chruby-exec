@@ -3,33 +3,39 @@
 source "${0%/*}/../share/chruby/chruby.sh"
 
 case "$1" in
-	-h|--help)
-		printf '%s\n' "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
-		exit
-		;;
-	-V|--version)
-		printf '%s\n' "chruby version $chruby_version"
-		exit
-		;;
+  -h|--help)
+    printf '%s\n' "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
+    exit
+  ;;
+  -V|--version)
+    printf '%s\n' "chruby version $chruby_version"
+    exit
+  ;;
 esac
 
-if (( $# < 2 )); then
-	printf '%s\n' "chruby-exec: RUBY and COMMAND required" >&2
-	exit 1
+if (( $# == 0 )); then
+  printf '%s\n' "chruby-exec: RUBY and COMMAND required" >&2
+  exit 1
 fi
 
 argv=()
 
 for arg in "$@"; do
-	if [[ "$arg" == "--" ]]; then break
-	else                          argv+=("$arg")
-	fi
-	shift
+  shift
+
+  if [[ "$arg" == "--" ]]; then break
+  else                          argv+=("$arg")
+  fi
 done
 
-if (( $# )); then
-	printf '%s\n' "chruby-exec: COMMAND required" >&2
-	exit 1
+if (( $# == 0 )); then
+  printf '%s\n' "chruby-exec: COMMAND required" >&2
+  exit 1
 fi
 
-exec "$SHELL" -i -l -c 'chruby "$argv" && "$*"'
+exec "$SHELL" -i -l -c 'for arg; do
+			  shift
+			  [[ "$arg" == "--" ]] && break
+			  args+=("$arg")
+			done
+			chruby "${args[@]}" && "$@"' _ "${argv[@]}" -- "$@"
