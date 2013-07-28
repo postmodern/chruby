@@ -12,8 +12,8 @@ function chruby_reset()
 	PATH=":$PATH:" PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
 
 	if [[ ! $UID -eq 0 ]]; then
-		[[ -n "$GEM_HOME" ]] && PATH="${PATH//:$GEM_HOME\/bin:/:}"
-		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
+		[[ -n "$GEM_HOME" ]] && export PATH="${PATH//:$GEM_HOME\/bin:/:}"
+		[[ -n "$GEM_ROOT" ]] && export PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
 		GEM_PATH=":$GEM_PATH:"
 		GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
@@ -43,9 +43,9 @@ function chruby_use()
 
 	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
 begin; require 'rubygems'; rescue LoadError; end
-puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
-puts "export RUBY_VERSION=#{RUBY_VERSION};"
-puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
+puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}"
+puts "export RUBY_VERSION=#{RUBY_VERSION}"
+puts "export GEM_ROOT=#{Gem.default_dir.inspect}" if defined?(Gem)
 EOF
 )"
 
