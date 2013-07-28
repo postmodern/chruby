@@ -21,8 +21,9 @@ function test_chruby_exec_no_command()
 
 function test_chruby_exec()
 {
-	local -a command=(ruby -e 'print RUBY_VERSION')
-	local ruby_version=$(chruby-exec "$test_ruby_version" -- "${command[@]}")
+	local -a command
+	command=(ruby -e 'print RUBY_VERSION')
+	local ruby_version="$(chruby-exec "$test_ruby_version" -- "${command[@]}")"
 
 	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }

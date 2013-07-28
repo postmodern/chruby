@@ -1,6 +1,6 @@
 ### 0.3.6 / 2013-06-23
 
-* `chruby_use` no longer echos the selected Ruby.
+* `chruby_use` no longer prints the selected Ruby.
 
 #### chruby-exec
 
@@ -17,7 +17,7 @@
 * Added a RPM spec.
 * Respect `PREFIX` when auto-detecting `/opt/rubies/*`.
 * Do not set `GEM_ROOT` if rubygems is not installed (Charlie Somerville).
-* `chruby_use` now echos the select ruby and the version, only if the shell is
+* `chruby_use` now prints the select ruby and the version, only if the shell is
   in interactive mode (Brian D. Burns).
 * `chruby_reset` no longer accidentally removes `/bin` if `GEM_HOME` or
   `GEM_ROOT` are empty (David Grayson).
