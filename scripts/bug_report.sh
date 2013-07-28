@@ -6,27 +6,26 @@
 
 function print_section()
 {
-	echo
-	echo "## $1"
-	echo
+	printf '\n%s\n' "## $1"
 }
 
 function indent()
 {
-	echo "    $1"
+	printf '$s\n' "    $1"
 }
 
 function print_variable()
 {
-	if [[ -n "$2" ]]; then echo "    $1=$2"
-	else                   echo "    $1=$(eval "echo \$$1")"
+	if [[ -n "$2" ]]; then print '$s\n' "    $1=$2"
+	else                   print '$s\n' "    $1=$(eval "printf '%s\n' \$$1")"
 	fi
 }
 
 function print_version()
 {
-	if [[ -n $(which $1 2>/dev/null) ]]; then
-		indent "$("$1" --version | head -n 1) ($(which "$1"))"
+	if  which "$1" 2>/dev/null; then
+		read -r version < <("$1" --version)
+		indent "$version ($(which "$1"))"
 	fi
 }
 
@@ -60,7 +59,7 @@ print_variable "PATH"
 if [[ -f .ruby-version ]]; then
 	print_section ".ruby-version"
 	read -r ruby_version < .ruby_version
-	echo "    $ruby_version"
+	print '%s\n' "    $ruby_version"
 fi
 
 print_section "Aliases"

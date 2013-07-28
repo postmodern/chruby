@@ -1,9 +1,12 @@
 chruby_version="0.3.7"
 
-shopt -s nullglob
+${BASH_VERSION+shopt -s nullglob}
+${ZSH_VERSION+setopt nullglob}
 for rubydir in "$PREFIX"/opt/rubies/* "$HOME"/.rubies/*; do
   [[ -d "$rubydir/bin" ]] && RUBIES+=("$rubydir")
 done
+${BASH_VERSION+shopt -u nullglob}
+${ZSH_VERSION+setopt nonullglob}
 
 function chruby_reset()
 {
@@ -11,7 +14,7 @@ function chruby_reset()
 
 	PATH=":$PATH:" PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
 
-	if [[ ! $UID -eq 0 ]]; then
+	if (( ! UID == 0 )); then
 		[[ -n "$GEM_HOME" ]] && PATH="${PATH//:$GEM_HOME\/bin:/:}"
 		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
@@ -31,7 +34,7 @@ function chruby_reset()
 function chruby_use()
 {
 	if [[ ! -x "$1/bin/ruby" ]]; then
-		echo "chruby: $1/bin/ruby not executable" >&2
+		printf '%s\n' "chruby: $1/bin/ruby not executable" >&2
 		return 1
 	fi
 
@@ -41,8 +44,7 @@ function chruby_use()
 	RUBYOPT="$2"
 	PATH="$RUBY_ROOT/bin:$PATH"
 
-	eval "$(
-		"$RUBY_ROOT/bin/ruby" - <<EOF
+	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
 begin; require 'rubygems'; rescue LoadError; end
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
@@ -50,7 +52,7 @@ puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
 EOF
 )"
 
-	if [[ ! $UID -eq 0 ]]; then
+	if (( ! UID == 0 )); then
 		GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
@@ -62,10 +64,10 @@ function chruby()
 {
 	case "$1" in
 		-h|--help)
-			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
+			printf '%s\n' "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
 		-V|--version)
-			echo "chruby: $chruby_version"
+			printf '%s\n' "chruby: $chruby_version"
 			;;
 		"")
 			local star
@@ -75,7 +77,7 @@ function chruby()
 				else                                  star=" "
 				fi
 
-				echo " $star $(basename "$dir")"
+				printf '%s\n' " $star ${dir##*/}"
 			done
 			;;
 		system) chruby_reset ;;
@@ -83,16 +85,16 @@ function chruby()
 			local match
 
 			for dir in "${RUBIES[@]}"; do
-				[[ `basename "$dir"` == *$1* ]] && match="$dir"
+				[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
 			done
 
 			if [[ -z "$match" ]]; then
-				echo "chruby: unknown Ruby: $1" >&2
+				printf '%s\n' "chruby: unknown Ruby: $1" >&2
 				return 1
 			fi
 
 			shift
-			chruby_use "$match" "$*"
+			chruby_use "$match" "$@"
 			;;
 	esac
 }

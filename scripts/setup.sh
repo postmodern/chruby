@@ -12,8 +12,8 @@ set -e
 PREFIX="${PREFIX:-/usr/local}"
 export PREFIX
 
-if [[ $UID -eq 0 ]]; then src_dir="${src_dir:-/usr/local/src}"
-else                      src_dir="${src_dir:-$HOME/src}"
+if (( UID == 0 )); then src_dir="${src_dir:-/usr/local/src}"
+else                    src_dir="${src_dir:-$HOME/src}"
 fi
 
 #
@@ -21,25 +21,25 @@ fi
 #
 function log() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+		printf '%b\n' "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
 	else
-		echo ">>> $1"
+		printf '%s\n' ">>> $1"
 	fi
 }
 
 function error() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+		printf '%b\n' "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
 	else
-		echo "!!! $1" >&2
+		printf '%s\n' "!!! $1" >&2
 	fi
 }
 
 function warning() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+		printf '%b\n' "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
 	else
-		echo "*** $1" >&2
+		printf '%s\n' "*** $1" >&2
 	fi
 }
 
@@ -87,7 +87,5 @@ if [[ -d /etc/profile.d/ ]]; then
 else
 	warning "Could not determine where to add chruby configuration."
 	warning "Please add the following configuration where appropriate:"
-	echo
-	echo "$chruby_config"
-	echo
+	printf '\n%s\n' "${chruby_config[@]}"
 fi

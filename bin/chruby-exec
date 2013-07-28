@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-source "${0##*/}/../share/chruby/chruby.sh"
+source "${0%/*}/../share/chruby/chruby.sh"
 
 case "$1" in
 	-h|--help)
-		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
+		printf '%s\n' "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
 		exit
 		;;
 	-V|--version)
-		echo "chruby version $chruby_version"
+		printf '%s\n' "chruby version $chruby_version"
 		exit
 		;;
 esac
 
 if (( $# == 0 )); then
-	echo "chruby-exec: RUBY and COMMAND required" >&2
+	printf '%s\n' "chruby-exec: RUBY and COMMAND required" >&2
 	exit 1
 fi
 
@@ -29,7 +29,7 @@ for arg in "$@"; do
 done
 
 if (( $# == 0 )); then
-	echo "chruby-exec: COMMAND required" >&2
+	printf '%s\n' "chruby-exec: COMMAND required" >&2
 	exit 1
 fi
 
