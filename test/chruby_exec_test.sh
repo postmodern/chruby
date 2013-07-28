@@ -1,31 +1,28 @@
 . ./test/helper.sh
 
-function setUp()
-{
-	export HOME="$PWD/test/home"
+setUp() {
+  HOME="$PWD/test/home"
+  export HOME
 }
 
-function test_chruby_exec_no_arguments()
-{
-	chruby-exec 2>/dev/null
+test_chruby_exec_no_arguments() {
+  chruby-exec 2>/dev/null
 
-	assertEquals "did not exit with 1" 1 $?
+  assertEquals "did not exit with 1" 1 $?
 }
 
-function test_chruby_exec_no_command()
-{
-	chruby-exec "$test_ruby_version" 2>/dev/null
+test_chruby_exec_no_command() {
+  chruby-exec "$test_ruby_version" 2>/dev/null
 
-	assertEquals "did not exit with 1" 1 $?
+  assertEquals "did not exit with 1" 1 $?
 }
 
-function test_chruby_exec()
-{
-	local -a command
-	command=(ruby -e 'print RUBY_VERSION')
-	local ruby_version="$(chruby-exec "$test_ruby_version" -- "${command[@]}")"
+test_chruby_exec() {
+  local -a command
+  command=(ruby -e 'print RUBY_VERSION')
+  local ruby_version="$(chruby-exec "$test_ruby_version" -- "${command[@]}")"
 
-	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
+  assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }
 
 SHUNIT_PARENT="$0" . "$SHUNIT2"

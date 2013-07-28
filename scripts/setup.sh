@@ -19,28 +19,28 @@ fi
 #
 # Functions
 #
-function log() {
-	if [[ -t 1 ]]; then
-		printf '%b\n' "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
-	else
-		printf '%s\n' ">>> $1"
-	fi
+log() {
+  if [[ -t 1 ]]; then
+    printf '%b\n' "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+  else
+    printf '%s\n' ">>> $1"
+  fi
 }
 
-function error() {
-	if [[ -t 1 ]]; then
-		printf '%b\n' "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
-	else
-		printf '%s\n' "!!! $1" >&2
-	fi
+error() {
+  if [[ -t 1 ]]; then
+    printf '%b\n' "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+  else
+    printf '%s\n' "!!! $1" >&2
+  fi
 }
 
-function warning() {
-	if [[ -t 1 ]]; then
-		printf '%b\n' "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
-	else
-		printf '%s\n' "*** $1" >&2
-	fi
+warning() {
+  if [[ -t 1 ]]; then
+    printf '%b\n' "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+  else
+    printf '%s\n' "*** $1" >&2
+  fi
 }
 
 #
@@ -76,16 +76,16 @@ log "Installing ruby-install and Rubies ..."
 log "Configuring chruby ..."
 
 chruby_config=(
-	      '[[ -n "$BASH_VERSION" || -n "$ZSH_VERSION" ]] || return'
-	      "source \"$PREFIX/share/chruby/chruby.sh\""
-	      )
+'[[ -n "$BASH_VERSION" || -n "$ZSH_VERSION" ]] || return'
+"source \"$PREFIX/share/chruby/chruby.sh\""
+)
 
 if [[ -d /etc/profile.d/ ]]; then
-	# Bash/Zsh
-	printf '%s\n' "${chruby_config[@]}" > /etc/profile.d/chruby.sh
-	log "Setup complete! Please restart the shell"
+  # Bash/Zsh
+  printf '%s\n' "${chruby_config[@]}" > /etc/profile.d/chruby.sh
+  log "Setup complete! Please restart the shell"
 else
-	warning "Could not determine where to add chruby configuration."
-	warning "Please add the following configuration where appropriate:"
-	printf '\n%s\n' "${chruby_config[@]}"
+  warning "Could not determine where to add chruby configuration."
+  warning "Please add the following configuration where appropriate:"
+  printf '\n%s\n' "${chruby_config[@]}"
 fi

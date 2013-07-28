@@ -1,28 +1,28 @@
 #!/bin/bash
 
-function log() {
-	if [[ -t 1 ]]; then
-		printf '%b\n' "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
-	else
-		printf '%s\n' ">>> $1"
-	fi
+log() {
+  if [[ -t 1 ]]; then
+    printf '%b\n' "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+  else
+    printf '%s\n' ">>> $1"
+  fi
 }
 
 log "Running tests under $SHELL in interactive-mode ..."
 error=0
 
 for test in "${0%/*}"/*_test.sh; do
-	log "Running $test ..."
-	"$SHELL" "$@" -i "$test" || error=1
-	printf '%s\n'
+  log "Running $test ..."
+  "$SHELL" "$@" -i "$test" || error=1
+  printf '%s\n'
 done
 
 log "Running tests under $SHELL in non-interactive-mode ..."
 
 for test in "${0%/*}"/*_test.sh; do
-	log "Running $test ..."
-	"$SHELL" "$@" "$test" || error=1
-	printf '%s\n'
+  log "Running $test ..."
+  "$SHELL" "$@" "$test" || error=1
+  printf '%s\n'
 done
 
 exit $error
