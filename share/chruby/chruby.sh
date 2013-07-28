@@ -8,8 +8,7 @@ done
 ${BASH_VERSION+shopt -u nullglob}
 ${ZSH_VERSION+setopt nonullglob}
 
-function chruby_reset()
-{
+chruby_reset() {
   [[ -z "$RUBY_ROOT" ]] && return
 
   PATH=":$PATH:" PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
@@ -31,8 +30,7 @@ function chruby_reset()
   hash -r
 }
 
-function chruby_use()
-{
+chruby_use() {
   if [[ ! -x "$1/bin/ruby" ]]; then
     printf '%s\n' "chruby: $1/bin/ruby not executable" >&2
     return 1
@@ -60,15 +58,14 @@ function chruby_use()
   export RUBY_ROOT RUBYOPT GEM_HOME GEM_PATH PATH
 }
 
-function chruby()
-{
+chruby() {
   case "$1" in
     -h|--help)
       printf '%s\n' "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
-      ;;
+    ;;
     -V|--version)
       printf '%s\n' "chruby: $chruby_version"
-      ;;
+    ;;
     "")
       local star
 
@@ -79,22 +76,22 @@ function chruby()
 
 	printf '%s\n' " $star ${dir##*/}"
       done
-      ;;
-    system) chruby_reset ;;
-  *)
-    local match
-
-    for dir in "${RUBIES[@]}"; do
-      [[ "${dir##*/}" == *"$1"* ]] && match="$dir"
-    done
-
-    if [[ -z "$match" ]]; then
-      printf '%s\n' "chruby: unknown Ruby: $1" >&2
-      return 1
-    fi
-
-    shift
-    chruby_use "$match" "$@"
     ;;
-esac
+    system) chruby_reset ;;
+    *)
+      local match
+
+      for dir in "${RUBIES[@]}"; do
+	[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
+      done
+
+      if [[ -z "$match" ]]; then
+	printf '%s\n' "chruby: unknown Ruby: $1" >&2
+	return 1
+      fi
+
+      shift
+      chruby_use "$match" "$@"
+    ;;
+  esac
 }
