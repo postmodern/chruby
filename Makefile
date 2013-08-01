@@ -43,8 +43,8 @@ test/rubies:
 	./test/setup
 
 test: test/rubies
-	SHELL=`which bash` ./test/runner
-	SHELL=`which zsh`  ./test/runner
+	SHELL=`command -v bash` ./test/runner
+	SHELL=`command -v zsh`  ./test/runner
 
 tag:
 	git push
