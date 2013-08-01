@@ -42,7 +42,7 @@ function test_chruby_auto_loaded_twice_in_zsh()
 
 function test_chruby_auto_loaded_twice()
 {
-	RUBY_VERSION_FILE="dirty"
+	RUBY_AUTO_VERSION="dirty"
 	PROMPT_COMMAND="chruby_auto"
 
 	. ./share/chruby/auto.sh
