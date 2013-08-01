@@ -36,114 +36,114 @@ function download() {
 
 function detect_system() {
   # adapted from RVM: https://github.com/wayneeseguin/rvm/blob/master/scripts/functions/utility_system#L3
-  SYSTEM_TYPE="unknown"
-  SYSTEM_NAME="unknown"
-  SYSTEM_VERSION="unknown"
-  SYSTEM_ARCH="$(uname -m)"
+  system_type="unknown"
+  system_name="unknown"
+  system_version="unknown"
+  system_arch="$(uname -m)"
 
   case "$(uname)" in
     (Linux|GNU*)
-      SYSTEM_TYPE="linux"
+      system_type="linux"
 
       if [[ -f /etc/lsb-release ]] &&
 	 [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=Ubuntu"* ]]
       then
-        SYSTEM_NAME="ubuntu"
-        SYSTEM_VERSION="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
-        SYSTEM_ARCH="$(dpkg --print-architecture)"
+        system_name="ubuntu"
+        system_version="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
+        system_arch="$(dpkg --print-architecture)"
       elif [[ -f /etc/lsb-release ]] &&
            [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=LinuxMint"* ]]
       then
-        SYSTEM_NAME="mint"
-        SYSTEM_VERSION="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
-        SYSTEM_ARCH="$( dpkg --print-architecture )"
+        system_name="mint"
+        system_version="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
+        system_arch="$( dpkg --print-architecture )"
       elif [[ -f /etc/lsb-release ]] &&
            [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=ManjaroLinux"* ]]
       then
-        SYSTEM_NAME="manjaro"
-        SYSTEM_VERSION="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
+        system_name="manjaro"
+        system_version="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
       elif [[ -f /etc/os-release ]] &&
            [[ "$(< /etc/os-release)" == *"ID=opensuse"* ]]
       then
-        SYSTEM_NAME="opensuse"
-        SYSTEM_VERSION="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release)" #'
+        system_name="opensuse"
+        system_version="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release)" #'
       elif [[ -f /etc/SuSE-release ]]; then
-        SYSTEM_NAME="suse"
-        SYSTEM_VERSION="$(
+        system_name="suse"
+        system_version="$(
           awk -F'=' '{gsub(/ /,"")} $1~/VERSION/ {version=$2} $1~/PATCHLEVEL/ {patch=$2} END {print version"."patch}' < /etc/SuSE-release
         )"
       elif [[ -f /etc/debian_version ]]; then
-        SYSTEM_NAME="debian"
-        SYSTEM_VERSION="$(< /etc/debian_version | awk -F. '{print $1"."$2}')"
-        SYSTEM_ARCH="$( dpkg --print-architecture )"
+        system_name="debian"
+        system_version="$(< /etc/debian_version | awk -F. '{print $1"."$2}')"
+        system_arch="$( dpkg --print-architecture )"
       elif [[ -f /etc/os-release ]] &&
            [[ "$(< /etc/os-release)" == *"ID=debian"* ]]
       then
-        SYSTEM_NAME="debian"
-        SYSTEM_VERSION="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release | awk -F. '{print $1"."$2}')" #'
-        SYSTEM_ARCH="$( dpkg --print-architecture )"
+        system_name="debian"
+        system_version="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release | awk -F. '{print $1"."$2}')" #'
+        system_arch="$( dpkg --print-architecture )"
       elif [[ -f /etc/fedora-release ]]; then
-        SYSTEM_NAME="fedora"
-        SYSTEM_VERSION="$(grep -Eo '[[:digit:]]+' /etc/fedora-release)"
+        system_name="fedora"
+        system_version="$(grep -Eo '[[:digit:]]+' /etc/fedora-release)"
       elif [[ -f /etc/centos-release ]]; then
-        SYSTEM_NAME="centos"
-        SYSTEM_VERSION="$(grep -Eo '[[:digit:]\.]+' /etc/centos-release | awk -F. '{print $1"."$2}')"
+        system_name="centos"
+        system_version="$(grep -Eo '[[:digit:]\.]+' /etc/centos-release | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/redhat-release ]]; then
         if [[ "$(< /etc/redhat-release)" == *"CentOS"* ]]; then
-		SYSTEM_NAME="centos"
+		system_name="centos"
         else
-		SYSTEM_NAME="redhat"
+		system_name="redhat"
         fi
 
-        SYSTEM_VERSION="$(grep -Eo '[[:digit:]\.]+' /etc/redhat-release | awk -F. '{print $1"."$2}')"
+        system_version="$(grep -Eo '[[:digit:]\.]+' /etc/redhat-release | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/system-release ]] &&
            [[ "$(< /etc/system-release)" == *"Amazon Linux AMI"* ]]
       then
-        SYSTEM_NAME="amazon"
-        SYSTEM_VERSION="$(grep -Eo '[[:digit:]\.]+' /etc/system-release | awk -F. '{print $1"."$2}')"
+        system_name="amazon"
+        system_version="$(grep -Eo '[[:digit:]\.]+' /etc/system-release | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/gentoo-release ]]; then
-        SYSTEM_NAME="gentoo"
-        SYSTEM_VERSION="base-$(< /etc/gentoo-release | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
+        system_name="gentoo"
+        system_version="base-$(< /etc/gentoo-release | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/arch-release ]]; then
-        SYSTEM_NAME="arch"
-        SYSTEM_VERSION="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
+        system_name="arch"
+        system_version="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
       else
-        SYSTEM_VERSION="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
+        system_version="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
       fi
       ;;
 
     (SunOS)
-      SYSTEM_TYPE="sunos"
-      SYSTEM_NAME="solaris"
-      SYSTEM_VERSION="$(uname -v)"
+      system_type="sunos"
+      system_name="solaris"
+      system_version="$(uname -v)"
 
-      if [[ "${SYSTEM_VERSION}" == joyent* ]]; then
-        SYSTEM_NAME="smartos"
-        SYSTEM_VERSION="${SYSTEM_VERSION#* }"
-      elif [[ "${SYSTEM_VERSION}" == oi* ]]; then
-        SYSTEM_NAME="openindiana"
-        SYSTEM_VERSION="${SYSTEM_VERSION#* }"
+      if [[ "${system_version}" == joyent* ]]; then
+        system_name="smartos"
+        system_version="${system_version#* }"
+      elif [[ "${system_version}" == oi* ]]; then
+        system_name="openindiana"
+        system_version="${system_version#* }"
       fi
       ;;
 
     (OpenBSD)
-      SYSTEM_TYPE="bsd"
-      SYSTEM_NAME="openbsd"
-      SYSTEM_VERSION="$(uname -r)"
+      system_type="bsd"
+      system_name="openbsd"
+      system_version="$(uname -r)"
       ;;
 
     (Darwin)
-      SYSTEM_TYPE="darwin"
-      SYSTEM_NAME="osx"
-      SYSTEM_VERSION="$(sw_vers -productVersion)"
-      SYSTEM_VERSION="${SYSTEM_VERSION%.*}" # only major.minor - teeny is ignored
+      system_type="darwin"
+      system_name="osx"
+      system_version="$(sw_vers -productVersion)"
+      system_version="${system_version%.*}" # only major.minor - teeny is ignored
       ;;
 
     (FreeBSD)
-      SYSTEM_TYPE="bsd"
-      SYSTEM_NAME="freebsd"
-      SYSTEM_VERSION="$(uname -r)"
-      SYSTEM_VERSION="${SYSTEM_VERSION%%-*}"
+      system_type="bsd"
+      system_name="freebsd"
+      system_version="$(uname -r)"
+      system_version="${system_version%%-*}"
       ;;
 
     (*)
@@ -151,28 +151,28 @@ function detect_system() {
       ;;
   esac
 
-  SYSTEM_TYPE="${SYSTEM_TYPE//[ \/]/_}"
-  SYSTEM_NAME="${SYSTEM_NAME//[ \/]/_}"
-  SYSTEM_VERSION="${SYSTEM_VERSION//[ \/]/_}"
-  SYSTEM_ARCH="${SYSTEM_ARCH//[ \/]/_}"
-  SYSTEM_ARCH="${SYSTEM_ARCH/amd64/x86_64}"
-  SYSTEM_ARCH="${SYSTEM_ARCH/i[123456789]86/i386}"
+  system_type="${system_type//[ \/]/_}"
+  system_name="${system_name//[ \/]/_}"
+  system_version="${system_version//[ \/]/_}"
+  system_arch="${system_arch//[ \/]/_}"
+  system_arch="${system_arch/amd64/x86_64}"
+  system_arch="${system_arch/i[123456789]86/i386}"
 }
 
 detect_system || fail "Cannot auto-detect system type"
-[[ "$SYSTEM_NAME" == "unknown"    ]] && fail "Could not detect system name"
-[[ "$SYSTEM_VERSION" == "unknown" ]] && fail "Could not detect system version"
-[[ "$SYSTEM_ARCH" == "unknown"    ]] && fail "Could not detect system arch"
+[[ "$system_name" == "unknown"    ]] && fail "Could not detect system name"
+[[ "$system_version" == "unknown" ]] && fail "Could not detect system version"
+[[ "$system_arch" == "unknown"    ]] && fail "Could not detect system arch"
 
-TEST_RUBY_ARCHIVE="$TEST_RUBY_ENGINE-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL.tar.bz2"
-TEST_RUBY_URL="http://rvm.io/binaries/$SYSTEM_NAME/$SYSTEM_VERSION/$SYSTEM_ARCH/$TEST_RUBY_ARCHIVE"
-TEST_RUBY_ROOT="$TEST_RUBY_ENGINE-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
+test_ruby_archive="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel.tar.bz2"
+test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
+test_ruby_root="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel"
 
 mkdir -p test/rubies
 cd test/rubies
 
-log "Downloading $TEST_RUBY_URL ..."
-download "$TEST_RUBY_URL" "$TEST_RUBY_ARCHIVE" || fail "Download failed"
+log "Downloading $test_ruby_url ..."
+download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
 
-log "Unpacking $TEST_RUBY_ARCHIVE ..."
-tar -xjf "$TEST_RUBY_ARCHIVE" || fail "Unpacking failed"
+log "Unpacking $test_ruby_archive ..."
+tar -xjf "$test_ruby_archive" || fail "Unpacking failed"

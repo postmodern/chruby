@@ -7,19 +7,19 @@ export HOME="$PWD/test/home"
 . ./share/chruby/chruby.sh
 chruby_reset
 
-TEST_RUBY_ENGINE="ruby"
-TEST_RUBY_VERSION="1.9.3"
-TEST_RUBY_PATCHLEVEL="429"
-TEST_RUBY_API="1.9.1"
-TEST_RUBY_ROOT="$PWD/test/rubies/$TEST_RUBY_ENGINE-$TEST_RUBY_VERSION-p$TEST_RUBY_PATCHLEVEL"
+test_ruby_engine="ruby"
+test_ruby_version="1.9.3"
+test_ruby_patchlevel="429"
+test_ruby_api="1.9.1"
+test_ruby_root="$PWD/test/rubies/$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel"
 
-TEST_PATH="$PATH"
-TEST_GEM_HOME="$HOME/.gem/$TEST_RUBY_ENGINE/$TEST_RUBY_VERSION"
-TEST_GEM_ROOT="$TEST_RUBY_ROOT/lib/ruby/gems/$TEST_RUBY_API"
+test_path="$PATH"
+test_gem_home="$HOME/.gem/$test_ruby_engine/$test_ruby_version"
+test_gem_root="$test_ruby_root/lib/ruby/gems/$test_ruby_api"
 
-TEST_PROJECT_DIR="$PWD/test/project"
+test_project_dir="$PWD/test/project"
 
-RUBIES=($TEST_RUBY_ROOT)
+RUBIES=($test_ruby_root)
 
 setUp() { return; }
 tearDown() { return; }

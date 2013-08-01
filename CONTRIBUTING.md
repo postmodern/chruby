@@ -4,6 +4,7 @@
 
 * Tab indent code.
 * Keep code within 80 columns.
+* Global variables must be UPPERCASE. Temporary variables should be lowercase.
 * Use the `function` keyword for functions.
 * Quote all String variables.
 * Use `(( ))` for arithmetic expressions and `[[ ]]` otherwise.
