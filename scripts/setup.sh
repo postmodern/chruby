@@ -11,8 +11,8 @@ set -e
 #
 export PREFIX="${PREFIX:-/usr/local}"
 
-if [[ $UID -eq 0 ]]; then SRC_DIR="${SRC_DIR:-/usr/local/src}"
-else                      SRC_DIR="${SRC_DIR:-$HOME/src}"
+if (( $UID == 0 )); then SRC_DIR="${SRC_DIR:-/usr/local/src}"
+else                     SRC_DIR="${SRC_DIR:-$HOME/src}"
 fi
 
 #
