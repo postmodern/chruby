@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$(dirname $0)/../share/chruby/chruby.sh"
+source "${0%/*}/../share/chruby/chruby.sh"
 
 case "$1" in
 	-h|--help)
