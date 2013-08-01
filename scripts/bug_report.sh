@@ -59,7 +59,7 @@ print_variable "PATH"
 
 if [[ -f .ruby-version ]]; then
 	print_section ".ruby-version"
-	echo "    $(cat .ruby-version)"
+	echo "    $(< .ruby-version)"
 fi
 
 print_section "Aliases"

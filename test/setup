@@ -46,24 +46,24 @@ function detect_system() {
       SYSTEM_TYPE="linux"
 
       if [[ -f /etc/lsb-release ]] &&
-	 [[ "$(cat /etc/lsb-release)" == *"DISTRIB_ID=Ubuntu"* ]]
+	 [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=Ubuntu"* ]]
       then
         SYSTEM_NAME="ubuntu"
         SYSTEM_VERSION="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
         SYSTEM_ARCH="$(dpkg --print-architecture)"
       elif [[ -f /etc/lsb-release ]] &&
-           [[ "$(cat /etc/lsb-release)" == *"DISTRIB_ID=LinuxMint"* ]]
+           [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=LinuxMint"* ]]
       then
         SYSTEM_NAME="mint"
         SYSTEM_VERSION="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
         SYSTEM_ARCH="$( dpkg --print-architecture )"
       elif [[ -f /etc/lsb-release ]] &&
-           [[ "$(cat /etc/lsb-release)" == *"DISTRIB_ID=ManjaroLinux"* ]]
+           [[ "$(< /etc/lsb-release)" == *"DISTRIB_ID=ManjaroLinux"* ]]
       then
         SYSTEM_NAME="manjaro"
         SYSTEM_VERSION="$(awk -F'=' '$1=="DISTRIB_RELEASE"{print $2}' /etc/lsb-release)"
       elif [[ -f /etc/os-release ]] &&
-           [[ "$(cat /etc/os-release)" == *"ID=opensuse"* ]]
+           [[ "$(< /etc/os-release)" == *"ID=opensuse"* ]]
       then
         SYSTEM_NAME="opensuse"
         SYSTEM_VERSION="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release)" #'
@@ -74,10 +74,10 @@ function detect_system() {
         )"
       elif [[ -f /etc/debian_version ]]; then
         SYSTEM_NAME="debian"
-        SYSTEM_VERSION="$(cat /etc/debian_version | awk -F. '{print $1"."$2}')"
+        SYSTEM_VERSION="$(< /etc/debian_version | awk -F. '{print $1"."$2}')"
         SYSTEM_ARCH="$( dpkg --print-architecture )"
       elif [[ -f /etc/os-release ]] &&
-           [[ "$(cat /etc/os-release)" == *"ID=debian"* ]]
+           [[ "$(< /etc/os-release)" == *"ID=debian"* ]]
       then
         SYSTEM_NAME="debian"
         SYSTEM_VERSION="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release | awk -F. '{print $1"."$2}')" #'
@@ -89,7 +89,7 @@ function detect_system() {
         SYSTEM_NAME="centos"
         SYSTEM_VERSION="$(grep -Eo '[[:digit:]\.]+' /etc/centos-release | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/redhat-release ]]; then
-        if [[ "$(cat /etc/redhat-release)" == *"CentOS"* ]]; then
+        if [[ "$(< /etc/redhat-release)" == *"CentOS"* ]]; then
 		SYSTEM_NAME="centos"
         else
 		SYSTEM_NAME="redhat"
@@ -97,13 +97,13 @@ function detect_system() {
 
         SYSTEM_VERSION="$(grep -Eo '[[:digit:]\.]+' /etc/redhat-release | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/system-release ]] &&
-           [[ "$(cat /etc/system-release)" == *"Amazon Linux AMI"* ]]
+           [[ "$(< /etc/system-release)" == *"Amazon Linux AMI"* ]]
       then
         SYSTEM_NAME="amazon"
         SYSTEM_VERSION="$(grep -Eo '[[:digit:]\.]+' /etc/system-release | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/gentoo-release ]]; then
         SYSTEM_NAME="gentoo"
-        SYSTEM_VERSION="base-$(cat /etc/gentoo-release | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
+        SYSTEM_VERSION="base-$(< /etc/gentoo-release | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
       elif [[ -f /etc/arch-release ]]; then
         SYSTEM_NAME="arch"
         SYSTEM_VERSION="libc-$(ldd --version | awk 'NR==1 {print $NF}' | awk -F. '{print $1"."$2}')"
