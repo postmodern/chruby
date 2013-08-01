@@ -25,8 +25,8 @@ function print_variable()
 
 function print_version()
 {
-	if [[ -n $(which $1 2>/dev/null) ]]; then
-		indent "$($1 --version | head -n 1) ($(which $1))"
+	if [[ -n $(which "$1" 2>/dev/null) ]]; then
+		indent "$("$1" --version | head -n 1) ($(which "$1"))"
 	fi
 }
 
