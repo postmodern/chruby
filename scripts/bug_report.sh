@@ -25,8 +25,10 @@ function print_variable()
 
 function print_version()
 {
-	if [[ -n $(which "$1" 2>/dev/null) ]]; then
-		indent "$("$1" --version | head -n 1) ($(which "$1"))"
+	local path="$(which "$1" 2>/dev/null)"
+
+	if [[ -n "$path" ]]; then
+		indent "$("$1" --version | head -n 1) ($path)"
 	fi
 }
 
