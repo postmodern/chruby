@@ -112,7 +112,7 @@ function test_chruby_auto_leave_project_dir()
 
 function test_chruby_auto_invalid_ruby_version()
 {
-	local expected_auto_version=`cat $PROJECT_DIR/bad/.ruby-version`
+	local expected_auto_version="$(cat $PROJECT_DIR/bad/.ruby-version)"
 
 	cd "$PROJECT_DIR" && chruby_auto
 	cd bad/           && chruby_auto 2>/dev/null

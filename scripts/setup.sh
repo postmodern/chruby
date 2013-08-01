@@ -74,11 +74,9 @@ log "Installing ruby-install and Rubies ..."
 #
 log "Configuring chruby ..."
 
-CHRUBY_CONFIG=`cat <<EOS
-[ -n "\\\$BASH_VERSION" ] || [ -n "\\\$ZSH_VERSION" ] || return
+CHRUBY_CONFIG="[ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ] || return
 
-source $PREFIX/share/chruby/chruby.sh
-EOS`
+source $PREFIX/share/chruby/chruby.sh"
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh

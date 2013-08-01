@@ -17,7 +17,9 @@ function test_chruby_use()
 	assertEquals "invalid GEM_PATH"     "$GEM_HOME:$GEM_ROOT" "$GEM_PATH"
 	assertEquals "invalid PATH"         "$TEST_GEM_HOME/bin:$TEST_GEM_ROOT/bin:$TEST_RUBY_ROOT/bin:$TEST_PATH" "$PATH"
 
-	assertEquals "could not find ruby in $PATH" "$TEST_RUBY_ROOT/bin/ruby" `which ruby`
+	assertEquals "could not find ruby in $PATH" \
+		     "$TEST_RUBY_ROOT/bin/ruby" \
+		     "$(which ruby)"
 }
 
 function tearDown()

@@ -7,6 +7,7 @@
 * Use the `function` keyword for functions.
 * Quote all String variables.
 * Use `(( ))` for arithmetic expressions and `[[ ]]` otherwise.
+* Use `$(...)` instead of back-ticks.
 * Use `${path##*/}` instead of `$(basename $path)`.
 * Use `${path%/*}` instead of `$(dirname $path)`.
 * Prefer single-line expressions where appropriate:

@@ -1,8 +1,8 @@
 CHRUBY_VERSION="0.3.7"
 
 RUBIES=(
-  `find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
-  `find "$HOME"/.rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
+  "$(find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null)"
+  "$(find "$HOME"/.rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null)"
 )
 
 function chruby_reset()
@@ -40,12 +40,13 @@ function chruby_use()
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
-	eval `"$RUBY_ROOT/bin/ruby" - <<EOF
+	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
 begin; require 'rubygems'; rescue LoadError; end
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
 puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
-EOF`
+EOF
+)"
 
 	if (( $UID != 0 )); then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
