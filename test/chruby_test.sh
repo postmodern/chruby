@@ -5,6 +5,13 @@ function tearDown()
 	chruby_reset
 }
 
+function test_chruby_default_RUBIES()
+{
+	assertEquals "did not correctly populate RUBIES" \
+		     "$test_ruby_root" \
+		     "${RUBIES[*]}"
+}
+
 function test_chruby_1_9()
 {
 	chruby "1.9" >/dev/null

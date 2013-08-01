@@ -170,8 +170,8 @@ test_ruby_archive="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel.t
 test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
 test_ruby_root="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel"
 
-mkdir -p test/rubies
-cd test/rubies
+mkdir -p "$PREFIX/opt/rubies"
+cd "$PREFIX/opt/rubies"
 
 log "Downloading $test_ruby_url ..."
 download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"

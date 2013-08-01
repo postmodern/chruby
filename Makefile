@@ -39,10 +39,10 @@ clean:
 
 all: $(PKG) $(SIG)
 
-test/rubies:
+test/opt/rubies:
 	./test/setup
 
-test: test/rubies
+test: test/opt/rubies
 	SHELL=`command -v bash` ./test/runner
 	SHELL=`command -v zsh`  ./test/runner
 
