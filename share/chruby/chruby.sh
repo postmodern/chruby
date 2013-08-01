@@ -79,7 +79,7 @@ function chruby()
 			local match
 
 			for dir in ${RUBIES[@]}; do
-				[[ `basename "$dir"` == *$1* ]] && match="$dir"
+				[[ `basename "$dir"` == *"$1"* ]] && match="$dir"
 			done
 
 			if [[ -z "$match" ]]; then
