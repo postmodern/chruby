@@ -71,7 +71,7 @@ function chruby()
 				else                                  star=" "
 				fi
 
-				echo " $star $(basename "$dir")"
+				echo " $star ${dir##*/}"
 			done
 			;;
 		system) chruby_reset ;;
@@ -79,7 +79,7 @@ function chruby()
 			local match
 
 			for dir in ${RUBIES[@]}; do
-				[[ `basename "$dir"` == *"$1"* ]] && match="$dir"
+				[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
 			done
 
 			if [[ -z "$match" ]]; then

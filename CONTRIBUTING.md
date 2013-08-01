@@ -7,6 +7,7 @@
 * Use the `function` keyword for functions.
 * Quote all String variables.
 * Use `(( ))` for arithmetic expressions and `[[ ]]` otherwise.
+* Use `${path##*/}` instead of `$(basename $path)`.
 * Prefer single-line expressions where appropriate:
 
         [[ -n "$foo" ]] && other command
