@@ -31,7 +31,7 @@ function test_chruby_system()
 
 function test_chruby_unknown()
 {
-	chruby "foo" 2>/dev/null
+	chruby "does_not_exist" 2>/dev/null
 
 	assertEquals "did not return 1" 1 $?
 }
