@@ -33,4 +33,4 @@ if (( $# == 0 )); then
 	exit 1
 fi
 
-exec $SHELL -i -l -c "chruby $argv && $*"
+exec "$SHELL" -i -l -c "chruby $argv && $*"

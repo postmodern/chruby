@@ -21,7 +21,7 @@ function test_chruby_auto_loaded_in_bash()
 	[[ -n "$BASH_VERSION" ]] || return
 
 	local command=". $PWD/share/chruby/auto.sh && trap -p DEBUG"
-	local output="$($SHELL -c "$command")"
+	local output="$("$SHELL" -c "$command")"
 
 	assertTrue "did not add a trap hook for chruby_auto" \
 		   '[[ "$output" == *chruby_auto* ]]'

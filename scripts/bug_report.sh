@@ -2,7 +2,7 @@
 # chruby script to collect environment information for bug reports.
 #
 
-[[ -z "$PS1" ]] && exec $SHELL -i -l $0
+[[ -z "$PS1" ]] && exec "$SHELL" -i -l "$0"
 
 function print_section()
 {
