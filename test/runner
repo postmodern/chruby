@@ -2,9 +2,10 @@
 
 function log() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+		printf "%b>>>%b %b%s%b\n" "\x1b[1m\x1b[32m" "\x1b[0m" \
+		                          "\x1b[1m\x1b[37m" "$1" "\x1b[0m"
 	else
-		echo ">>> $1"
+		printf ">>> %s\n" "$1"
 	fi
 }
 
