@@ -1,9 +1,9 @@
 CHRUBY_VERSION="0.3.7"
 
-RUBIES=(
-  $(find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
-  $(find "$HOME"/.rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
-)
+RUBIES=()
+for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
+	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+done
 
 function chruby_reset()
 {

@@ -178,3 +178,6 @@ download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
 
 log "Unpacking $test_ruby_archive ..."
 tar -xjf "$test_ruby_archive" || fail "Unpacking failed"
+
+log "Cleaning up ..."
+rm -f "$test_ruby_archive"
