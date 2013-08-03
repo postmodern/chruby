@@ -11,8 +11,8 @@ set -e
 #
 export PREFIX="${PREFIX:-/usr/local}"
 
-if [[ $UID -eq 0 ]]; then SRC_DIR="${SRC_DIR:-/usr/local/src}"
-else                      SRC_DIR="${SRC_DIR:-$HOME/src}"
+if (( $UID == 0 )); then SRC_DIR="${SRC_DIR:-/usr/local/src}"
+else                     SRC_DIR="${SRC_DIR:-$HOME/src}"
 fi
 
 #
@@ -20,25 +20,28 @@ fi
 #
 function log() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+		printf "%b>>>%b %b%s%b\n" "\x1b[1m\x1b[32m" "\x1b[0m" \
+		                          "\x1b[1m\x1b[37m" "$1" "\x1b[0m"
 	else
-		echo ">>> $1"
+		printf ">>> %s\n" "$1"
 	fi
 }
 
 function error() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+		printf "%b!!!%b %b%s%b\n" "\x1b[1m\x1b[31m" "\x1b[0m" \
+		                          "\x1b[1m\x1b[37m" "$1" "\x1b[0m" >&2
 	else
-		echo "!!! $1" >&2
+		printf "!!! %s\n" "$1" >&2
 	fi
 }
 
 function warning() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m" >&2
+		printf "%b***%b %b%s%b\n" "\x1b[1m\x1b[33m" "\x1b[0m" \
+			                  "\x1b[1m\x1b[37m" "$1" "\x1b[0m" >&2
 	else
-		echo "*** $1" >&2
+		printf "*** %s\n" "$1" >&2
 	fi
 }
 
@@ -57,14 +60,14 @@ cd "$SRC_DIR"
 #
 # Install ruby-install (https://github.com/postmodern/ruby-install#readme)
 #
-RUBY_INSTALL_VERSION="0.2.1"
+ruby_install_version="0.2.1"
 
 log "Downloading ruby-install ..."
-wget -O ruby-install-$RUBY_INSTALL_VERSION.tar.gz https://github.com/postmodern/ruby-install/archive/v$RUBY_INSTALL_VERSION.tar.gz
+wget -O "ruby-install-$ruby_install_version.tar.gz" "https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
 
-log "Extracting ruby-install $RUBY_INSTALL_VERSION ..."
-tar -xzvf ruby-install-$RUBY_INSTALL_VERSION.tar.gz
-cd ruby-install-$RUBY_INSTALL_VERSION/
+log "Extracting ruby-install $ruby_install_version ..."
+tar -xzvf "ruby-install-$ruby_install_version.tar.gz"
+cd "ruby-install-$ruby_install_version/"
 
 log "Installing ruby-install and Rubies ..."
 ./setup.sh
@@ -74,20 +77,18 @@ log "Installing ruby-install and Rubies ..."
 #
 log "Configuring chruby ..."
 
-CHRUBY_CONFIG=`cat <<EOS
-[ -n "\\\$BASH_VERSION" ] || [ -n "\\\$ZSH_VERSION" ] || return
+config="[ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ] || return
 
-source $PREFIX/share/chruby/chruby.sh
-EOS`
+source $PREFIX/share/chruby/chruby.sh"
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
-	echo "$CHRUBY_CONFIG" > /etc/profile.d/chruby.sh
+	echo "$config" > /etc/profile.d/chruby.sh
 	log "Setup complete! Please restart the shell"
 else
 	warning "Could not determine where to add chruby configuration."
 	warning "Please add the following configuration where appropriate:"
 	echo
-	echo "$CHRUBY_CONFIG"
+	echo "$config"
 	echo
 fi

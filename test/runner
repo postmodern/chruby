@@ -2,27 +2,28 @@
 
 function log() {
 	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m\x1b[37m$1\x1b[0m"
+		printf "%b>>>%b %b%s%b\n" "\x1b[1m\x1b[32m" "\x1b[0m" \
+		                          "\x1b[1m\x1b[37m" "$1" "\x1b[0m"
 	else
-		echo ">>> $1"
+		printf ">>> %s\n" "$1"
 	fi
 }
 
 log "Running tests under $SHELL in interactive-mode ..."
 error=0
 
-for test in $(dirname $0)/*_test.sh; do
+for test in ${0%/*}/*_test.sh; do
 	log "Running $test ..."
-	$SHELL $* -i $test || error=1
+	"$SHELL" $* -i "$test" || error=1
 	echo
 done
 
 log "Running tests under $SHELL in non-interactive-mode ..."
 
-for test in $(dirname $0)/*_test.sh; do
+for test in ${0%/*}/*_test.sh; do
 	log "Running $test ..."
-	$SHELL $* $test || error=1
+	"$SHELL" $* "$test" || error=1
 	echo
 done
 
-exit $error
+exit "$error"

@@ -1,9 +1,9 @@
 CHRUBY_VERSION="0.3.7"
 
-RUBIES=(
-  `find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
-  `find "$HOME"/.rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
-)
+RUBIES=()
+for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
+	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+done
 
 function chruby_reset()
 {
@@ -11,7 +11,7 @@ function chruby_reset()
 
 	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY_ROOT\/bin:/:}
 
-	if [[ ! $UID -eq 0 ]]; then
+	if (( $UID != 0 )); then
 		[[ -n "$GEM_HOME" ]] && export PATH=${PATH//:$GEM_HOME\/bin:/:}
 		[[ -n "$GEM_ROOT" ]] && export PATH=${PATH//:$GEM_ROOT\/bin:/:}
 
@@ -40,14 +40,15 @@ function chruby_use()
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
-	eval `$RUBY_ROOT/bin/ruby - <<EOF
+	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
 begin; require 'rubygems'; rescue LoadError; end
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
 puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
-EOF`
+EOF
+)"
 
-	if [[ ! $UID -eq 0 ]]; then
+	if (( $UID != 0 )); then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
@@ -71,7 +72,7 @@ function chruby()
 				else                                  star=" "
 				fi
 
-				echo " $star $(basename "$dir")"
+				echo " $star ${dir##*/}"
 			done
 			;;
 		system) chruby_reset ;;
@@ -79,7 +80,7 @@ function chruby()
 			local match
 
 			for dir in ${RUBIES[@]}; do
-				[[ `basename "$dir"` == *$1* ]] && match="$dir"
+				[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
 			done
 
 			if [[ -z "$match" ]]; then

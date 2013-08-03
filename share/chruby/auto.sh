@@ -9,7 +9,7 @@ function chruby_auto() {
 		version_file="$dir/.ruby-version"
 
 		if [[ -f "$version_file" ]]; then
-			version=`cat "$version_file"`
+			read -r version < "$version_file"
 
 			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else

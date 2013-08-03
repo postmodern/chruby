@@ -32,4 +32,4 @@ setopt COMPLETE_IN_WORD
 
 # autoload -U colors
 #colors
-source "$HOME/../helper.sh"
+. $PWD/test/helper.sh
