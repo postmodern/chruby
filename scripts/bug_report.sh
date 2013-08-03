@@ -49,7 +49,7 @@ print_variable "PATH"
 [[ -n "$preexec_functions" ]] && print_variable "preexec_functions"
 [[ -n "$precmd_functions"  ]] && print_variable "precmd_functions"
 
-[[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[*]})"
+[[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[@]})"
 [[ -n "$RUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
 [[ -n "$RUBY_VERSION" ]] && print_variable "RUBY_VERSION"
 [[ -n "$RUBY_ENGINE"  ]] && print_variable "RUBY_ENGINE"
