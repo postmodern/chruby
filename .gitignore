@@ -2,4 +2,4 @@ doc/
 pkg/*.tar.gz
 pkg/*.tar.bz2
 pkg/*.zip
-test/rubies
+test/opt/rubies
