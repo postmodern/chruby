@@ -67,7 +67,7 @@ function chruby()
 		"")
 			local star
 
-			for dir in ${RUBIES[@]}; do
+			for dir in "${RUBIES[@]}"; do
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
 				else                                  star=" "
 				fi
@@ -79,7 +79,7 @@ function chruby()
 		*)
 			local match
 
-			for dir in ${RUBIES[@]}; do
+			for dir in "${RUBIES[@]}"; do
 				[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
 			done
 
