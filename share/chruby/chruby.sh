@@ -9,21 +9,21 @@ function chruby_reset()
 {
 	[[ -z "$RUBY_ROOT" ]] && return
 
-	export PATH=":$PATH:"; export PATH=${PATH//:$RUBY_ROOT\/bin:/:}
+	PATH=":$PATH:"; PATH=${PATH//:$RUBY_ROOT\/bin:/:}
 
 	if (( $UID != 0 )); then
-		[[ -n "$GEM_HOME" ]] && export PATH=${PATH//:$GEM_HOME\/bin:/:}
-		[[ -n "$GEM_ROOT" ]] && export PATH=${PATH//:$GEM_ROOT\/bin:/:}
+		[[ -n "$GEM_HOME" ]] && PATH=${PATH//:$GEM_HOME\/bin:/:}
+		[[ -n "$GEM_ROOT" ]] && PATH=${PATH//:$GEM_ROOT\/bin:/:}
 
-		export GEM_PATH=":$GEM_PATH:"
-		export GEM_PATH=${GEM_PATH//:$GEM_HOME:/:}
-		export GEM_PATH=${GEM_PATH//:$GEM_ROOT:/:}
-		export GEM_PATH=${GEM_PATH#:}; export GEM_PATH=${GEM_PATH%:}
+		GEM_PATH=":$GEM_PATH:"
+		GEM_PATH=${GEM_PATH//:$GEM_HOME:/:}
+		GEM_PATH=${GEM_PATH//:$GEM_ROOT:/:}
+		GEM_PATH=${GEM_PATH#:}; GEM_PATH=${GEM_PATH%:}
 		[[ -z "$GEM_PATH" ]] && unset GEM_PATH
 		unset GEM_ROOT GEM_HOME
 	fi
 
-	export PATH=${PATH#:}; export PATH=${PATH%:}
+	PATH=${PATH#:}; PATH=${PATH%:}
 	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT
 	hash -r
 }
