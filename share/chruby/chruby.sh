@@ -9,21 +9,21 @@ function chruby_reset()
 {
 	[[ -z "$RUBY_ROOT" ]] && return
 
-	PATH=":$PATH:"; PATH=${PATH//:$RUBY_ROOT\/bin:/:}
+	PATH=":$PATH:"; PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
 
 	if (( $UID != 0 )); then
-		[[ -n "$GEM_HOME" ]] && PATH=${PATH//:$GEM_HOME\/bin:/:}
-		[[ -n "$GEM_ROOT" ]] && PATH=${PATH//:$GEM_ROOT\/bin:/:}
+		[[ -n "$GEM_HOME" ]] && PATH="${PATH//:$GEM_HOME\/bin:/:}"
+		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
 		GEM_PATH=":$GEM_PATH:"
-		GEM_PATH=${GEM_PATH//:$GEM_HOME:/:}
-		GEM_PATH=${GEM_PATH//:$GEM_ROOT:/:}
-		GEM_PATH=${GEM_PATH#:}; GEM_PATH=${GEM_PATH%:}
+		GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
+		GEM_PATH="${GEM_PATH//:$GEM_ROOT:/:}"
+		GEM_PATH="${GEM_PATH#:}"; "GEM_PATH=${GEM_PATH%:}"
 		[[ -z "$GEM_PATH" ]] && unset GEM_PATH
 		unset GEM_ROOT GEM_HOME
 	fi
 
-	PATH=${PATH#:}; PATH=${PATH%:}
+	PATH="${PATH#:}"; PATH="${PATH%:}"
 	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT
 	hash -r
 }
