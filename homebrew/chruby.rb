@@ -30,7 +30,7 @@ class Chruby < Formula
 
       RVM:   RUBIES=(~/.rvm/rubies/*)
       rbenv: RUBIES=(~/.rbenv/versions/*)
-      rbfu:  RUBIES=('~/.rbfu/rubies/*)
+      rbfu:  RUBIES=(~/.rbfu/rubies/*)
 
     To enable auto-switching of Rubies specified by .ruby-version files,
     add the following to ~/.bashrc or ~/.zshrc:
