@@ -1,7 +1,7 @@
 language: c
 install:
   - sudo apt-get update -qq
-  - sudo apt-get install shunit2 zsh ruby
+  - sudo apt-get install shunit2 zsh mksh ruby
 
 before_script:
   - echo yes | rvm implode

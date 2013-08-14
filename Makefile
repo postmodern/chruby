@@ -45,6 +45,7 @@ test/opt/rubies:
 test: test/opt/rubies
 	./test/runner bash
 	./test/runner zsh
+	./test/runner mksh
 
 tag:
 	git push
