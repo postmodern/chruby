@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shell=${*:-$SHELL}
+
 function log() {
 	if [[ -t 1 ]]; then
 		printf "%b>>>%b %b%s%b\n" "\x1b[1m\x1b[32m" "\x1b[0m" \
@@ -9,20 +11,20 @@ function log() {
 	fi
 }
 
-log "Running tests under $SHELL in interactive-mode ..."
+log "Running tests under $shell in interactive-mode ..."
 error=0
 
 for test in ${0%/*}/*_test.sh; do
 	log "Running $test ..."
-	"$SHELL" $* -i "$test" || error=1
+	$shell -i "$test" || error=1
 	echo
 done
 
-log "Running tests under $SHELL in non-interactive-mode ..."
+log "Running tests under $shell in non-interactive-mode ..."
 
 for test in ${0%/*}/*_test.sh; do
 	log "Running $test ..."
-	"$SHELL" $* "$test" || error=1
+	$shell "$test" || error=1
 	echo
 done
 
