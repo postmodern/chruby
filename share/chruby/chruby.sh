@@ -11,7 +11,7 @@ function chruby_reset()
 
 	PATH=":$PATH:"; PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
 
-	if (( $UID != 0 )); then
+	if (( ${UID:-$(id -u)} != 0 )); then
 		[[ -n "$GEM_HOME" ]] && PATH="${PATH//:$GEM_HOME\/bin:/:}"
 		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
@@ -49,7 +49,7 @@ puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
 EOF
 )"
 
-	if (( $UID != 0 )); then
+	if (( ${UID:-$(id -u)} != 0 )); then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
