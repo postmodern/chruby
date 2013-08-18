@@ -1,3 +1,10 @@
+chruby (0.4.0) unstable; urgency=low
+
+  * Package upstream version 0.4.0
+
+ -- Alex Young <alex@blackkettle.org>  Sun, 18 Aug 2013 13:44:36 +0100
+
+
 chruby (0.3.6) unstable; urgency=low
 
   * Initial package

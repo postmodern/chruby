@@ -1,8 +1,9 @@
 CHRUBY_VERSION="0.3.6"
 
-RUBIES=()
-[[ -d "$PREFIX/opt/rubies/" ]] && RUBIES+=("$PREFIX"/opt/rubies/*)
-[[ -d "$HOME/.rubies"       ]] && RUBIES+=("$HOME"/.rubies/*)
+RUBIES=(
+  `find "$PREFIX"/opt/rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
+  `find "$HOME"/.rubies -mindepth 1 -maxdepth 1 -type d 2>/dev/null`
+)
 
 function chruby_reset()
 {
@@ -43,6 +44,7 @@ function chruby_use()
 begin; require 'rubygems'; rescue LoadError; end
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
+puts "export RUBY_PATCHLEVEL=#{RUBY_PATCHLEVEL};"
 puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
 EOF`
 
@@ -59,7 +61,7 @@ function chruby()
 		-h|--help)
 			echo "usage: chruby [RUBY|VERSION|system] [RUBY_OPTS]"
 			;;
-		-v|--version)
+		-V|--version)
 			echo "chruby version $CHRUBY_VERSION"
 			;;
 		"")

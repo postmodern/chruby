@@ -13,7 +13,7 @@ function chruby_auto() {
 
 			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else
-				export RUBY_AUTO_VERSION="$version"
+				RUBY_AUTO_VERSION="$version"
 				chruby "$version"
 				return $?
 			fi

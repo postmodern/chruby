@@ -7,7 +7,7 @@ case "$1" in
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND"
 		exit
 		;;
-	-v|--version)
+	-V|--version)
 		echo "chruby version $CHRUBY_VERSION"
 		exit
 		;;
