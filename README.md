@@ -32,9 +32,9 @@ Changes the current Ruby.
 
 ## Install
 
-    wget -O chruby-0.3.6.tar.gz https://github.com/postmodern/chruby/archive/v0.3.6.tar.gz
-    tar -xzvf chruby-0.3.6.tar.gz
-    cd chruby-0.3.6/
+    wget -O chruby-0.3.7.tar.gz https://github.com/postmodern/chruby/archive/v0.3.7.tar.gz
+    tar -xzvf chruby-0.3.7.tar.gz
+    cd chruby-0.3.7/
     sudo make install
 
 ### PGP
@@ -43,8 +43,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.6.tar.gz.asc
-    gpg --verify chruby-0.3.6.tar.gz.asc chruby-0.3.6.tar.gz
+    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.7.tar.gz.asc
+    gpg --verify chruby-0.3.7.tar.gz.asc chruby-0.3.7.tar.gz
 
 ### setup.sh
 
