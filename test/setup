@@ -26,9 +26,9 @@ function fail() {
 }
 
 function download() {
-	if command -v wget; then
+	if command -v wget >/dev/null; then
 		wget -c -O "$2" "$1"
-	elif command -v curl; then
+	elif command -v curl >/dev/null; then
 		curl -L -C - -o "$2" "$1"
 	else
 		error "Could not find wget or curl"
