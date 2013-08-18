@@ -18,7 +18,7 @@ class Chruby < Formula
 
     By default chruby will search for Rubies installed into /opt/rubies/ or
     ~/.rubies/. For non-standard installation locations, simply set the RUBIES
-    variable:
+    variable after loading chruby.sh:
 
       RUBIES=(
         /opt/jruby-1.7.0
