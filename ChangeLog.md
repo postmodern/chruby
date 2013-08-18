@@ -1,3 +1,30 @@
+### 0.3.7 / 2013-08-17
+
+* Multiple style changes and optimizations.
+* Safely glob the contents of `/opt/rubies` and `~/.rubies`.
+  This prevents nullglob errors under zsh and `.rbx` directories from being
+  added to `RUBIES`.
+* Unset `GEM_PATH` in `chruby_reset` if it has become empty.
+  Allows the RubyGems to use the default `GEM_PATH`.
+* Safely quote `RUBIES[@]` to prevent implicit word-splitting when listing
+ `RUBIES`.
+* Map `-V` to `--version` in `chruby`.
+* Added benchmarks.
+
+#### auto.sh
+
+* Unset `RUBY_AUTO_VERSION` when loaded. Forces sub-shells to re-detect any
+  `.ruby-version` file.
+* No longer export `RUBY_AUTO_VERSION`. Allows new windows in tmux to detect
+  the `.ruby-version` file.
+* Set `RUBY_AUTO_VERSION` even if `.ruby-version` contains an unknown Ruby.
+  Prevents `chruby` from printing errors after every command.
+* Fixed a typo where `RUBY_VERSION_FILE` was still being used.
+
+#### chruby-exec
+
+* If stdin is a TTY, then spawn an interactive shell.
+
 ### 0.3.6 / 2013-06-23
 
 * `chruby_use` no longer echos the selected Ruby.
