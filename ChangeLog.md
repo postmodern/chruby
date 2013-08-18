@@ -1,4 +1,4 @@
-### 0.3.7 / 2013-08-17
+### 0.3.7 / 2013-08-18
 
 * Multiple style changes and optimizations. (@zendeavor)
 * Safely glob the contents of `/opt/rubies` and `~/.rubies`.
