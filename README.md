@@ -268,6 +268,7 @@ Switch to an arbitrary Ruby on the fly:
 
 * [mpapis](https://github.com/mpapis) for reviewing the code.
 * [havenwood](https://github.com/havenwood) for handling the homebrew formula.
+* [zendeavor](https://github.com/zendeavor) for style fixes.
 * `#bash`, `#zsh`, `#machomebrew` for answering all my questions.
 
 [wiki]: https://github.com/postmodern/chruby/wiki
