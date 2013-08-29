@@ -67,7 +67,7 @@ function chruby()
 			echo "chruby: $CHRUBY_VERSION"
 			;;
 		"")
-			local star
+			local dir star
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
@@ -79,7 +79,7 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			local match
+			local dir match
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
 				[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
