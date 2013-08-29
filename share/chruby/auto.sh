@@ -1,8 +1,7 @@
 unset RUBY_AUTO_VERSION
 
 function chruby_auto() {
-	local dir="$PWD"
-	local version
+	local dir="$PWD" version
 
 	until [[ -z "$dir" ]]; do
 		if { read -r version <"$dir/.ruby-version"; } 2>/dev/null; then
