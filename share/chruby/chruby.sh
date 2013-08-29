@@ -1,6 +1,6 @@
 CHRUBY_VERSION="0.3.7"
-
 RUBIES=()
+
 local dir
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
@@ -68,7 +68,6 @@ function chruby()
 			;;
 		"")
 			local star
-
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
@@ -81,7 +80,6 @@ function chruby()
 		system) chruby_reset ;;
 		*)
 			local match
-
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
 				[[ "${dir##*/}" == *"$1"* ]] && match="$dir"
