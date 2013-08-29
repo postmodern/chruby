@@ -1,10 +1,10 @@
 CHRUBY_VERSION="0.3.7"
 RUBIES=()
 
-local dir
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
 done
+unset dir
 
 function chruby_reset()
 {
