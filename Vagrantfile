@@ -7,7 +7,7 @@ Vagrant::Config.run do |config|
     debian.vm.box = 'debian-wheezy-amd64'
   end
 
-  # vagrant box add ubuntu-12.04-amd64 http://dl.dropbox.com/u/1537815/precise64.box
+  # vagrant box add ubuntu-12.04-amd64 http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-amd64-disk1.box
   config.vm.define :ubuntu do |ubuntu|
     ubuntu.vm.box = 'ubuntu-12.04-amd64'
   end
