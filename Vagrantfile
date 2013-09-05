@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  # vagrant box add debian-squeeze-amd64 https://dl.dropbox.com/u/1543052/Boxes/DebianSqueeze64.box
+  # vagrant box add debian-wheezy-amd64 https://dl.dropboxusercontent.com/u/67225617/lxc-vagrant/lxc-wheezy64-puppet3-2013-07-27.box
   config.vm.define :debian do |debian|
-    debian.vm.box = 'debian-squeeze-amd64'
+    debian.vm.box = 'debian-wheezy-amd64'
   end
 
   # vagrant box add ubuntu-12.04-amd64 http://dl.dropbox.com/u/1537815/precise64.box
