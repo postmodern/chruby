@@ -150,6 +150,10 @@ chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
 https://gist.github.com/1912050
 
+If you want to automatically run the version of a gem executable specified in 
+your project's Gemfile, try 
+[rubygems-bundler](https://github.com/mpapis/rubygems-bundler).
+
 ### Default Ruby
 
 If you wish to set a default Ruby, simply call `chruby` in `~/.bash_profile` or
