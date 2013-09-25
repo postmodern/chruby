@@ -263,6 +263,11 @@ Switch to an arbitrary Ruby on the fly:
 
 -- [Steve Klabnik](http://blog.steveklabnik.com/posts/2012-12-13-getting-started-with-chruby)
 
+> So far, I'm a huge fan. The tool does what it advertises exactly and simply.
+> The small feature-set is also exactly and only the features I need.
+
+-- [Patrick Brisbin](http://pbrisbin.com/posts/chruby)
+
 > I wrote ruby-version; however, chruby is already what ruby-version wanted to
 > be. I've deprecated ruby-version in favor of chruby.
 
