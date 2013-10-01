@@ -236,6 +236,12 @@ Switch to an arbitrary Ruby on the fly:
 
     $ chruby_use /path/to/ruby
 
+## Uninstall
+
+After removing the chruby configuration:
+
+    $ sudo make uninstall
+
 ## Alternatives
 
 * [RVM]
