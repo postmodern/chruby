@@ -46,6 +46,7 @@ print_section "Environment"
 print_variable "CHRUBY_VERSION"
 print_variable "SHELL"
 print_variable "PATH"
+print_variable "HOME"
 
 [[ -n "$PROMPT_COMMAND"    ]] && print_variable "PROMPT_COMMAND"
 [[ -n "$preexec_functions" ]] && print_variable "preexec_functions"
