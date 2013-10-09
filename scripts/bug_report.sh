@@ -75,4 +75,4 @@ fi
 
 print_section "Aliases"
 
-alias | sed 's/^/    /'
+indent "$(alias)"
