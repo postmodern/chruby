@@ -13,7 +13,7 @@ function print_section()
 
 function indent()
 {
-	echo "    $1"
+	echo "$1" | sed 's/^/    /'
 }
 
 function print_variable()
@@ -32,6 +32,7 @@ function print_version()
 	fi
 }
 
+
 print_section "System"
 
 indent "$(uname -a)"
@@ -48,10 +49,6 @@ print_variable "SHELL"
 print_variable "PATH"
 print_variable "HOME"
 
-[[ -n "$PROMPT_COMMAND"    ]] && print_variable "PROMPT_COMMAND"
-[[ -n "$preexec_functions" ]] && print_variable "preexec_functions"
-[[ -n "$precmd_functions"  ]] && print_variable "precmd_functions"
-
 [[ -n "$RUBIES"       ]] && print_variable "RUBIES" "(${RUBIES[@]})"
 [[ -n "$RUBY_ROOT"    ]] && print_variable "RUBY_ROOT"
 [[ -n "$RUBY_VERSION" ]] && print_variable "RUBY_VERSION"
@@ -59,6 +56,17 @@ print_variable "HOME"
 [[ -n "$GEM_ROOT"     ]] && print_variable "GEM_ROOT"
 [[ -n "$GEM_HOME"     ]] && print_variable "GEM_HOME"
 [[ -n "$GEM_PATH"     ]] && print_variable "GEM_PATH"
+
+if [[ -n "$ZSH_VERSION" ]]; then
+	print_section "Hooks"
+	
+	for f in "${preexec_functions[@]}"; do
+		echo "  $f"
+	done
+elif [[ -n "$BASH_VERSION" ]]; then
+	print_section "Hooks"
+	indent "$(trap -p DEBUG)"
+fi
 
 if [[ -f .ruby-version ]]; then
 	print_section ".ruby-version"
