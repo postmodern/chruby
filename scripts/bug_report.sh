@@ -59,13 +59,11 @@ print_variable "HOME"
 
 if [[ -n "$ZSH_VERSION" ]]; then
 	print_section "Hooks"
-	
-	for f in "${preexec_functions[@]}"; do
-		echo "  $f"
-	done
+	print_variable preexec_functions "(${preexec_functions[@]})"
+	print_variable precmd_functions "(${precmd_functions[@]})"
 elif [[ -n "$BASH_VERSION" ]]; then
 	print_section "Hooks"
-	indent "$(trap -p DEBUG)"
+	indent "$(trap -p)"
 fi
 
 if [[ -f .ruby-version ]]; then
