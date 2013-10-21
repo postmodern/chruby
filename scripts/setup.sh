@@ -60,7 +60,7 @@ cd "$SRC_DIR"
 #
 # Install ruby-install (https://github.com/postmodern/ruby-install#readme)
 #
-ruby_install_version="0.3.0"
+ruby_install_version="0.3.1"
 
 log "Downloading ruby-install ..."
 wget -O "ruby-install-$ruby_install_version.tar.gz" "https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
