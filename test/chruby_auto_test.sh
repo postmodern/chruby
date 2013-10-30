@@ -121,6 +121,28 @@ function test_chruby_auto_invalid_ruby_version()
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
 
+function test_chruby_auto_activate_user_default_version()
+{
+	mkdir -p $HOME/.rubies
+	echo "1.9.3" > $HOME/.rubies/version
+	echo "2.0.0" > "$PREFIX/opt/rubies/version"
+
+	cd $HOME && chruby_auto
+
+	assertEquals "did not select the user version over the system version" \
+		"$test_ruby_root" "$RUBY_ROOT"
+}
+
+function test_chruby_auto_activate_system_default_version()
+{
+	echo "1.9.3" > "$PREFIX/opt/rubies/version"
+
+	cd $HOME && chruby_auto
+
+	assertEquals "did not select the user version over the system version" \
+		"$test_ruby_root" "$RUBY_ROOT"
+}
+
 function tearDown()
 {
 	cd "$PWD"
