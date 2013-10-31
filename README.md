@@ -292,7 +292,7 @@ After removing the chruby configuration:
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
-[homebrew]: http://mxcl.github.com/homebrew/
+[homebrew]: http://brew.sh/
 [AUR]: https://aur.archlinux.org/packages/chruby/
 [FreeBSD ports collection]: https://www.freshports.org/devel/chruby/
 [ruby-install]: https://github.com/postmodern/ruby-install#readme
