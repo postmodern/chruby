@@ -4,7 +4,7 @@ function chruby_auto() {
 	local dir="$PWD" version
 
 	until [[ -z "$dir" ]]; do
-		if { read -r version <"$dir/.ruby-version"; } 2>/dev/null; then
+		if { read -r version <"$dir/.ruby-version"; } 2>/dev/null || [[ -n "$version" ]]; then
 			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else
 				RUBY_AUTO_VERSION="$version"
