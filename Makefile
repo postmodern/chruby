@@ -29,7 +29,7 @@ sign: $(PKG)
 	gpg --sign --detach-sign --armor $(PKG)
 	git add $(PKG).asc
 	git commit $(PKG).asc -m "Added PGP signature for v$(VERSION) [ci skip]"
-	git push
+	git push origin master
 
 verify: $(PKG) $(SIG)
 	gpg --verify $(SIG) $(PKG)
@@ -47,9 +47,9 @@ test: test/opt/rubies
 	SHELL=`command -v zsh`  ./test/runner
 
 tag:
-	git push
+	git push origin master
 	git tag -s -m "Releasing $(VERSION)" v$(VERSION)
-	git push --tags
+	git push origin master --tags
 
 release: tag download sign
 
