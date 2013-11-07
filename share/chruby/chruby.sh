@@ -26,7 +26,6 @@ function chruby_reset()
 
 	PATH="${PATH#:}"; PATH="${PATH%:}"
 	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT
-	hash -r
 }
 
 function chruby_use()
@@ -36,7 +35,7 @@ function chruby_use()
 		return 1
 	fi
 
-	[[ -n "$RUBY_ROOT" ]] && chruby_reset
+	[[ -n "$RUBY_ROOT" ]] && chruby_reset || hash -r
 
 	export RUBY_ROOT="$1"
 	export RUBYOPT="$2"
@@ -55,6 +54,8 @@ EOF
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
 	fi
+
+	hash -r
 }
 
 function chruby()
