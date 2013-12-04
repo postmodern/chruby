@@ -1,3 +1,26 @@
+### 0.3.8 / 2013-12-04
+
+#### chruby.sh
+
+* Remove trailing slashes from ruby directories when iterating over `RUBIES`.
+  (@halostatue)
+* Ensure all temporary variables are local or unset.
+
+#### auto.sh
+
+* Ensure that `chruby_auto` can read `.ruby-version` files that do not end with
+  a new-line. (@hosiawak)
+
+#### scripts/setup.sh
+
+* Install ruby-install 0.3.3.
+
+#### scripts/bug_report.sh
+
+* Print `$HOME`, `$RUBY_AUTO_VERSION`.
+* Print `trap -p`, `$preexec_functions` and `$precmd_functions`.
+* Print env variables even when they are empty.
+
 ### 0.3.7 / 2013-08-18
 
 * Multiple style changes and optimizations. (@zendeavor)
