@@ -172,6 +172,7 @@ For instructions on using chruby with other tools, please see the [wiki]:
 * [Sudo](https://github.com/postmodern/chruby/wiki/Sudo)
 * [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Capistrano](https://github.com/capistrano/chruby#readme)
+* [Chef](https://github.com/Atalanta/chef-chruby#readme)
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
 * [Vim](https://github.com/postmodern/chruby/wiki/Vim)
