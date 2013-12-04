@@ -169,13 +169,13 @@ If you have enabled auto-switching, simply create a `.ruby-version` file:
 
 For instructions on using chruby with other tools, please see the [wiki]:
 
-* [Sudo](https://github.com/postmodern/chruby/wiki/Sudo)
-* [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Capistrano](https://github.com/capistrano/chruby#readme)
 * [Chef](https://github.com/Atalanta/chef-chruby#readme)
+* [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
 * [Puppet](https://github.com/dgoodlad/puppet-chruby#readme)
+* [Sudo](https://github.com/postmodern/chruby/wiki/Sudo)
 * [Vim](https://github.com/postmodern/chruby/wiki/Vim)
 
 ## Examples
