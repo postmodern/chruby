@@ -1,5 +1,5 @@
 %define name chruby
-%define version 0.3.7
+%define version 0.3.8
 %define release 1
 
 %define buildroot %{_topdir}/BUILDROOT
@@ -34,6 +34,8 @@ make install PREFIX=%{buildroot}/usr
 %{_defaultdocdir}/%{name}-%{version}/*
 
 %changelog
+* Sun Dec 04 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.8-1
+- Rebuilt for version 0.3.8.
 * Sun Aug 18 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.7-1
 - Rebuilt for version 0.3.7.
 * Sun Jun 24 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.6-1
