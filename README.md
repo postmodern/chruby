@@ -175,6 +175,7 @@ For instructions on using chruby with other tools, please see the [wiki]:
 * [Chef](https://github.com/Atalanta/chef-chruby#readme)
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
+* [Puppet](https://github.com/dgoodlad/puppet-chruby#readme)
 * [Vim](https://github.com/postmodern/chruby/wiki/Vim)
 
 ## Examples
