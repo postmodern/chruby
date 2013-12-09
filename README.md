@@ -83,32 +83,6 @@ Chruby provides detailed instructions for installing additional Rubies:
 * [Rubinius](https://github.com/postmodern/chruby/wiki/Rubinius)
 * [MagLev](https://github.com/postmodern/chruby/wiki/MagLev)
 
-#### chruby-install
-
-If you'd like to use chruby-install to install Rubies, just install
-[ruby-install] and add the following after where you have loaded `chruby.sh`:
-
-    source /usr/local/share/chruby/install.sh
-
-You can then use chruby-install to install additional Rubies, making them
-immediately available to chruby.
-
-List Rubies for installation:
-
-    chruby-install
-
-Install the current stable version of a Ruby:
-
-    chruby-install ruby
-
-Install the latest version of a Ruby:
-
-    chruby-install ruby 1.9
-
-Install a Ruby with specific configuration:
-
-    chruby-install ruby 2.0.0-p0 -- --enable-shared --enable-dtrace CFLAGS="-O3"
-
 #### ruby-install
 
 You can also use [ruby-install] to install additional Rubies:
