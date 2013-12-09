@@ -25,10 +25,10 @@ function print_variable()
 
 function print_version()
 {
-	local path="$(command -v "$1")"
+	local command_path="$(command -v "$1")"
 
-	if [[ -n "$path" ]]; then
-		indent "$("$1" --version | head -n 1) ($path)"
+	if [[ -n "$command_path" ]]; then
+		indent "$("$1" --version | head -n 1) ($command_path)"
 	fi
 }
 
