@@ -25,11 +25,12 @@ function print_variable()
 
 function print_version()
 {
-	local command_path="$(command -v "$1")"
-	local version_flag="${2:---version}"
+	local full_path="$(command -v "$1")"
 
-	if [[ -n "$command_path" ]]; then
-		indent "$("$1" $version_flag | head -n 1) ($command_path)"
+	if [[ -n "$full_path" ]]; then
+		local version="$(("$1" --version || "$1" -V) 2>/dev/null)"
+
+		indent "$(echo "$version" | head -n 1) [$full_path]"
 	fi
 }
 
@@ -38,7 +39,7 @@ print_section "System"
 
 indent "$(uname -a)"
 print_version "bash"
-print_version "tmux" "-V"
+print_version "tmux"
 print_version "zsh"
 print_version "ruby"
 print_version "bundle"
