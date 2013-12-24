@@ -60,6 +60,10 @@ chruby can also be installed with [homebrew]:
 
     brew install chruby
 
+Or the absolute latest chruby can be installed from source:
+
+    brew install chruby --HEAD
+
 ### Arch Linux
 
 chruby is already included in the [AUR]:
