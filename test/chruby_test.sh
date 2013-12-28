@@ -1,8 +1,15 @@
 . ./test/helper.sh
 
+function setUp()
+{
+	original_rubies=(${RUBIES[@]})
+}
+
 function tearDown()
 {
 	chruby_reset
+
+	RUBIES=(${original_rubies[@]})
 }
 
 function test_chruby_default_RUBIES()
@@ -26,6 +33,15 @@ function test_chruby_multiple_matches()
 	chruby "1.9" >/dev/null
 
 	assertEquals "did not use the last match" "$test_ruby_root" "$RUBY_ROOT"
+}
+
+function test_chruby_exact_match_first()
+{
+	RUBIES=("$test_ruby_root" "$test_ruby_root-rc1")
+
+	chruby "${test_ruby_root##*/}"
+
+	assertEquals "did not use the exact match" "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_system()
