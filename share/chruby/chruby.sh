@@ -79,12 +79,13 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			local dir dirname match
+			local dir match
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
-				dirname="${dir##*/}"
-				[[ "$dirname" == "$1" ]] && match="$dir" && break
-				[[ "$dirname" == *"$1"* ]] && match="$dir"
+				case "${dir##*/}" in
+					"$1")	match="$dir" && break ;;
+					*"$1"*)	match="$dir" ;;
+				esac
 			done
 
 			if [[ -z "$match" ]]; then
