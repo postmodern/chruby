@@ -32,12 +32,10 @@ Changes the current Ruby.
 
 ## Install
 
-``` bash
-wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
-tar -xzvf chruby-0.3.8.tar.gz
-cd chruby-0.3.8/
-sudo make install
-```
+    wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
+    tar -xzvf chruby-0.3.8.tar.gz
+    cd chruby-0.3.8/
+    sudo make install
 
 ### PGP
 
@@ -45,10 +43,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-``` bash
-wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.8.tar.gz.asc
-gpg --verify chruby-0.3.8.tar.gz.asc chruby-0.3.8.tar.gz
-```
+    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.8.tar.gz.asc
+    gpg --verify chruby-0.3.8.tar.gz.asc chruby-0.3.8.tar.gz
 
 ### setup.sh
 
@@ -56,39 +52,29 @@ chruby also includes a `setup.sh` script, which installs chruby and the latest
 releases of [Ruby], [JRuby] and [Rubinius]. Simply run the script as root or 
 via `sudo`:
 
-``` bash
-sudo ./scripts/setup.sh
-```
+    sudo ./scripts/setup.sh
 
 ### Homebrew
 
 chruby can also be installed with [homebrew]:
 
-``` bash
-brew install chruby
-```
+    brew install chruby
 
 Or the absolute latest chruby can be installed from source:
 
-``` bash
-brew install chruby --HEAD
-```
+    brew install chruby --HEAD
 
 ### Arch Linux
 
 chruby is already included in the [AUR]:
 
-``` bash
-yaourt -S chruby
-```
+    yaourt -S chruby
     
 ### FreeBSD
 
 chruby is included in the official [FreeBSD ports collection]:
 
-``` bash
-cd /usr/ports/devel/chruby/ && make install clean
-```
+    cd /usr/ports/devel/chruby/ && make install clean
 
 ### Rubies
 
@@ -107,12 +93,10 @@ You can also use [ruby-install] to install additional Rubies:
 
 Installing to `/opt/rubies` or `~/.rubies`:
 
-``` bash
-ruby-install ruby
-ruby-install jruby
-ruby-install rubinius
-ruby-install maglev
-```
+    ruby-install ruby
+    ruby-install jruby
+    ruby-install rubinius
+    ruby-install maglev
 
 #### ruby-build
 
@@ -120,12 +104,10 @@ You can also use [ruby-build] to install additional Rubies:
 
 Installing to `/opt/rubies`:
 
-``` bash
-ruby-build 1.9.3-p392 /opt/rubies/ruby-1.9.3-p392
-ruby-build jruby-1.7.3 /opt/rubies/jruby-1.7.3
-ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
-ruby-build maglev-1.0.0 /opt/rubies/maglev-1.0.0
-```
+    ruby-build 1.9.3-p392 /opt/rubies/ruby-1.9.3-p392
+    ruby-build jruby-1.7.3 /opt/rubies/jruby-1.7.3
+    ruby-build rbx-2.0.0-rc1 /opt/rubies/rubinius-2.0.0-rc1
+    ruby-build maglev-1.0.0 /opt/rubies/maglev-1.0.0
 
 ## Configuration
 
@@ -186,9 +168,7 @@ If you want chruby to auto-switch the current version of Ruby when you `cd`
 between your different projects, simply load `auto.sh` in `~/.bashrc` or
 `~/.zshrc`:
 
-``` bash
-source /usr/local/share/chruby/auto.sh
-```
+    source /usr/local/share/chruby/auto.sh
 
 chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
@@ -203,15 +183,11 @@ your project's Gemfile, try
 If you wish to set a default Ruby, simply call `chruby` in `~/.bash_profile` or
 `~/.zprofile`:
 
-``` bash
-chruby ruby-1.9
-```
+    chruby ruby-1.9
 
 If you have enabled auto-switching, simply create a `.ruby-version` file:
 
-``` bash
-echo "ruby-1.9" > ~/.ruby-version
-```
+    echo "ruby-1.9" > ~/.ruby-version
 
 ### Integration
 
