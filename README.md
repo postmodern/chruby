@@ -175,7 +175,9 @@ If you want chruby to auto-switch the current version of Ruby when you `cd`
 between your different projects, simply load `auto.sh` in `~/.bashrc` or
 `~/.zshrc`:
 
-    source /usr/local/share/chruby/auto.sh
+``` bash
+source /usr/local/share/chruby/auto.sh
+```
 
 chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
