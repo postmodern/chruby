@@ -176,6 +176,7 @@ between your different projects, simply load `auto.sh` in `~/.bashrc` or
 `~/.zshrc`:
 
 ``` bash
+source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 ```
 
