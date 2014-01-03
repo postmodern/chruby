@@ -117,6 +117,17 @@ Add the following to the `~/.bashrc` or `~/.zshrc` file:
 source /usr/local/share/chruby/chruby.sh
 ```
 
+### System Wide
+
+If you wish to enable chruby system-wide, add the following to
+`/etc/profile.d/chruby.sh`:
+
+``` bash
+[ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return
+
+source /usr/local/share/chruby/chruby.sh
+```
+
 ### Rubies
 
 When chruby is first loaded by the shell, it will auto-detect Rubies installed
@@ -155,17 +166,6 @@ RUBIES+=(~/.rbenv/versions/*)
 
 ``` bash
 RUBIES+=(~/.rbfu/rubies/*)
-```
-
-### System Wide
-
-If you wish to enable chruby system-wide, add the following to
-`/etc/profile.d/chruby.sh`:
-
-``` bash
-[ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return
-
-source /usr/local/share/chruby/chruby.sh
 ```
 
 ### Auto-Switching
