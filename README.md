@@ -118,14 +118,21 @@ Add the following to the `/etc/profile.d/chruby.sh`, `~/.bashrc` or
 source /usr/local/share/chruby/chruby.sh
 ```
 
-By default chruby will search for Rubies installed into `/opt/rubies/` or
-`~/.rubies/`. For non-standard installation locations, simply set the
-`RUBIES` variable after loading `chruby.sh`:
+### Rubies
+
+When chruby is first loaded by the shell, it will auto-detect Rubies installed
+in `/opt/rubies/` and `~/.rubies/`. After installing new Rubies, you _must_
+restart the shell before chruby can recognize them.
+
+For Rubies installed in non-standard locations, simply append their paths to
+the `RUBIES` variable:
 
 ``` bash
-RUBIES=(
+source /usr/local/share/chruby/chruby.sh
+
+RUBIES+=(
   /opt/jruby-1.7.0
-  $HOME/src/rubinius
+  "$HOME/src/rubinius"
 )
 ```
 
