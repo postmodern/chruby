@@ -143,19 +143,19 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 #### RVM
 
 ``` bash
-RUBIES=(~/.rvm/rubies/*)
+RUBIES+=(~/.rvm/rubies/*)
 ```
 
 #### rbenv
 
 ``` bash
-RUBIES=(~/.rbenv/versions/*)
+RUBIES+=(~/.rbenv/versions/*)
 ```
 
 #### rbfu
 
 ``` bash
-RUBIES=(~/.rbfu/rubies/*)
+RUBIES+=(~/.rbfu/rubies/*)
 ```
 
 ### System Wide
