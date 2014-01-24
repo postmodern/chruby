@@ -123,10 +123,14 @@ If you wish to enable chruby system-wide, add the following to
 `/etc/profile.d/chruby.sh`:
 
 ``` bash
-[ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return
-
-source /usr/local/share/chruby/chruby.sh
+if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
+  source /usr/local/share/chruby/chruby.sh
+  ...
+fi
 ```
+
+This will prevent chruby from accidentally being loaded by `/bin/sh`, which
+is not always the same as `/bin/bash`.
 
 ### Rubies
 
