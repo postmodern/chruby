@@ -268,6 +268,15 @@ Switch back to system Ruby:
     $ echo $PATH
     /usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hal/bin
 
+Switch to previous:
+
+    $ chruby system # system Ruby
+    $ chruby 2.0    # 2.0
+    $ chruby -      # system
+    $ chruby -      # 2.0
+    $ chruby 2.1    # 2.1
+    $ chruby -      # 2.0
+
 Run a command under a Ruby with `chruby-exec`:
 
     $ chruby-exec jruby -- gem update
