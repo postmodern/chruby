@@ -29,6 +29,27 @@ test_chruby_system()
 	assertNull "did not reset the Ruby" "$RUBY_ROOT"
 }
 
+test_chruby_previous()
+{
+	chruby "$test_ruby_version" >/dev/null
+	chruby system >/dev/null
+	chruby -
+
+	assertEquals "did not switch to previous" "$test_ruby_root" "$RUBY_ROOT"
+
+	chruby - >/dev/null
+
+	assertNull "did not reset the Ruby" "$RUBY_ROOT"
+}
+
+test_chruby_previous_without_prior_switch()
+{
+	unset OLD_RUBY_ROOT
+	chruby - 2>/dev/null
+
+	assertEquals "did not return 0" 0 $?
+}
+
 test_chruby_unknown()
 {
 	chruby "foo" 2>/dev/null
