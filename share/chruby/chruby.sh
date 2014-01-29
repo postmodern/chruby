@@ -75,7 +75,16 @@ function chruby()
 				echo " $star $(basename "$dir")"
 			done
 			;;
-		system) chruby_reset ;;
+		system)
+			export OLD_RUBY_ROOT="${RUBY_ROOT##*/}"
+			chruby_reset
+			;;
+		"-")
+			[[ -z "$OLD_RUBY_ROOT" ]] && return 0
+
+			shift
+			chruby "$OLD_RUBY_ROOT" "$*"
+			;;
 		*)
 			local match
 
@@ -86,6 +95,10 @@ function chruby()
 			if [[ -z "$match" ]]; then
 				echo "chruby: unknown Ruby: $1" >&2
 				return 1
+			fi
+
+			if [[ -z "$RUBY_ROOT" ]]; then export OLD_RUBY_ROOT="system"
+			else                           export OLD_RUBY_ROOT="${RUBY_ROOT##*/}"
 			fi
 
 			shift
