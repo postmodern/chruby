@@ -14,9 +14,9 @@ test_chruby_auto_loaded_in_zsh()
 {
 	[[ -n "$ZSH_VERSION" ]] || return
 
-	assertEquals "did not add chruby_auto to preexec_functions" \
+	assertEquals "did not add chruby_auto to chpwd_functions" \
 		     "chruby_auto" \
-		     "$preexec_functions"
+		     "$chpwd_functions"
 }
 
 test_chruby_auto_loaded_in_bash()
@@ -36,7 +36,7 @@ test_chruby_auto_loaded_twice_in_zsh()
 	. ./share/chruby/auto.sh
 
 	assertNotEquals "should not add chruby_auto twice" \
-		        "$preexec_functions" \
+		        "$chpwd_functions" \
 			"chruby_auto chruby_auto"
 }
 
