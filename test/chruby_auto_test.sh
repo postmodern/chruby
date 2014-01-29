@@ -110,6 +110,14 @@ test_chruby_auto_leave_project_dir()
 		   "$RUBY_ROOT"
 }
 
+test_chruby_auto_within_subshells()
+{
+	local output=$(cd "$PROJECT_DIR" && echo "$RUBY_ROOT")
+
+	assertEquals "did not switch Ruby when subshell entered versioned directory" \
+		     "$TEST_RUBY_ROOT" "$output"
+}
+
 test_chruby_auto_invalid_ruby_version()
 {
 	local expected_auto_version=`cat $PROJECT_DIR/bad/.ruby-version`

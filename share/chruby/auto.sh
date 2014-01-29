@@ -33,5 +33,6 @@ if [[ -n "$ZSH_VERSION" ]]; then
 		chpwd_functions+=("chruby_auto")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
+	set -T
 	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto' DEBUG
 fi
