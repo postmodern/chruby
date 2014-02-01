@@ -8,6 +8,7 @@ function chruby_auto() {
 			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else
 				RUBY_AUTO_VERSION="$version"
+				export RUBY_PROJECT_DIR="$dir"
 				chruby "$version"
 				return $?
 			fi
