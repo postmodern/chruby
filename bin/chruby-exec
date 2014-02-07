@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source "${0%/*}/../share/chruby/chruby.sh"
-
 case "$1" in
 	-h|--help)
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND [ARGS...]"
@@ -33,7 +31,8 @@ if (( $# == 0 )); then
 	exit 1
 fi
 
-command="chruby $argv && $*"
+chruby_sh="${0%/*}/../share/chruby/chruby.sh"
+command="source $chruby_sh && chruby $argv && $*"
 
 if [[ -t 0 ]]; then exec "$SHELL" -i -l -c "$command"
 else                exec "$SHELL"    -l -c "$command"
