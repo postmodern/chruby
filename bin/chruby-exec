@@ -32,7 +32,9 @@ if (( $# == 0 )); then
 fi
 
 chruby_sh="${0%/*}/../share/chruby/chruby.sh"
-command="source $chruby_sh && chruby $argv && $*"
+source_command="[[ -z \"\`type -t chruby\`\" ]] && source $chruby_sh"
+
+command="$source_command; chruby $argv && $*"
 
 if [[ -t 0 ]]; then exec "$SHELL" -i -l -c "$command"
 else                exec "$SHELL"    -l -c "$command"
