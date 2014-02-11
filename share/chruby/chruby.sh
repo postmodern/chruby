@@ -17,8 +17,8 @@ function chruby_reset()
 		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
 		GEM_PATH=":$GEM_PATH:"
-		GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
-		GEM_PATH="${GEM_PATH//:$GEM_ROOT:/:}"
+		[[ -n "$GEM_HOME" ]] && GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
+		[[ -n "$GEM_ROOT" ]] && GEM_PATH="${GEM_PATH//:$GEM_ROOT:/:}"
 		GEM_PATH="${GEM_PATH#:}"; GEM_PATH="${GEM_PATH%:}"
 		unset GEM_ROOT GEM_HOME
 		[[ -z "$GEM_PATH" ]] && unset GEM_PATH
