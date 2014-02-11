@@ -3,3 +3,4 @@
 /pkg/*.tar.bz2
 /pkg/*.zip
 /test/opt/rubies
+/test/home/.zcompdump
