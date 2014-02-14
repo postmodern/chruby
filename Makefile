@@ -53,6 +53,11 @@ tag:
 
 release: tag download sign
 
+rpm:
+	rpmdev-setuptree
+	spectool -g -R rpm/chruby.spec
+	rpmbuild -ba rpm/chruby.spec
+
 install:
 	for dir in $(INSTALL_DIRS); do mkdir -p $(PREFIX)/$$dir; done
 	for file in $(INSTALL_FILES); do cp $$file $(PREFIX)/$$file; done
@@ -63,4 +68,4 @@ uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
 	rm -rf $(DOC_DIR)
 
-.PHONY: build download sign verify clean test tag release install uninstall all
+.PHONY: build download sign verify clean test tag release rpm install uninstall all
