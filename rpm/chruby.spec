@@ -34,13 +34,17 @@ make install PREFIX=%{buildroot}/usr
 %{_defaultdocdir}/%{name}-%{version}/*
 
 %changelog
-* Sun Dec 04 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.8-1
+* Wed Dec 04 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.8-1
 - Rebuilt for version 0.3.8.
+
 * Sun Aug 18 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.7-1
 - Rebuilt for version 0.3.7.
-* Sun Jun 24 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.6-1
+
+* Mon Jun 24 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.6-1
 - Rebuilt for version 0.3.6.
-* Sun May 28 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.5-1
+
+* Tue May 28 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.5-1
 - Rebuilt for version 0.3.5.
+
 * Sun Mar 24 2013 Postmodern <postmodern.mod3@gmail.com> - 0.3.4-1
 - Rebuilt for version 0.3.4.
