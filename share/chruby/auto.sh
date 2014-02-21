@@ -27,5 +27,10 @@ if [[ -n "$ZSH_VERSION" ]]; then
 		preexec_functions+=("chruby_auto")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
-	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto' DEBUG
+	cmd='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto'
+	hook="$(trap -p DEBUG)"
+	hook="${hook:13:-7}"
+	hook="${hook}${hook:+; }${cmd}"
+	trap "$hook" DEBUG
+	unset cmd hook
 fi
