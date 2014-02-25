@@ -202,6 +202,16 @@ If you have enabled auto-switching, simply create a `.ruby-version` file:
 
     echo "ruby-1.9" > ~/.ruby-version
 
+### RubyGems
+
+Gems installed as a non-root user via `gem install` will be installed into
+`~/.gem/$ruby/X.Y.Z`.  By default, RubyGems will use the absolute path to the
+currently selected ruby for the shebang of any binstubs it generates.  To
+mitigate potential problems when removing rubies, you can force RubyGems to
+generate binstubs with shebangs that will search for ruby in your `$PATH` by
+using `gem install --env-shebang` (or the equivalent short option `-E`).  This
+parameter can also be added to your gemrc file.
+
 ### Integration
 
 For instructions on using chruby with other tools, please see the [wiki]:
