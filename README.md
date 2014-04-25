@@ -225,6 +225,7 @@ For instructions on using chruby with other tools, please see the [wiki]:
 * [Puppet](https://github.com/dgoodlad/puppet-chruby#readme)
 * [Sudo](https://github.com/postmodern/chruby/wiki/Sudo)
 * [Vim](https://github.com/postmodern/chruby/wiki/Vim)
+* [Fish](https://github.com/JeanMertz/chruby-fish#readme)
 
 ## Examples
 
