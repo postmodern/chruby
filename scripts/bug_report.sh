@@ -51,7 +51,7 @@ print_variable "SHELL"
 print_variable "PATH"
 print_variable "HOME"
 
-print_variable "RUBIES" "(${RUBIES[@]})"
+print_variable "RUBIES" "(${RUBIES[*]})"
 print_variable "RUBY_ROOT"
 print_variable "RUBY_VERSION"
 print_variable "RUBY_ENGINE"
@@ -66,8 +66,8 @@ print_variable "GEM_PATH"
 
 if [[ -n "$ZSH_VERSION" ]]; then
 	print_section "Hooks"
-	print_variable "preexec_functions" "(${preexec_functions[@]})"
-	print_variable "precmd_functions" "(${precmd_functions[@]})"
+	print_variable "preexec_functions" "(${preexec_functions[*]})"
+	print_variable "precmd_functions" "(${precmd_functions[*]})"
 elif [[ -n "$BASH_VERSION" ]]; then
 	print_section "Hooks"
 	indent "$(trap -p)"
