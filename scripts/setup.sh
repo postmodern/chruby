@@ -69,8 +69,8 @@ log "Extracting ruby-install $ruby_install_version ..."
 tar -xzf "ruby-install-$ruby_install_version.tar.gz"
 cd "ruby-install-$ruby_install_version/"
 
-log "Installing ruby-install and Rubies ..."
-./setup.sh
+log "Installing ruby-install ..."
+make install
 
 #
 # Configuration
