@@ -48,11 +48,13 @@ with:
 
 ### setup.sh
 
-chruby also includes a `setup.sh` script, which installs chruby and the latest
-releases of [Ruby], [JRuby] and [Rubinius]. Simply run the script as root or 
-via `sudo`:
+chruby also includes a `setup.sh` script, which installs chruby and
+[ruby-install]. Simply run the script as root or via `sudo`:
 
     sudo ./scripts/setup.sh
+
+You can then use `ruby-install` to build the Ruby that you want (see the
+"ruby-install" section for examples).
 
 ### Homebrew
 
