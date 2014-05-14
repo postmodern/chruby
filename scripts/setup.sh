@@ -58,21 +58,6 @@ install -d "$SRC_DIR"
 cd "$SRC_DIR"
 
 #
-# Install ruby-install (https://github.com/postmodern/ruby-install#readme)
-#
-ruby_install_version="0.4.0"
-
-log "Downloading ruby-install ..."
-wget -O "ruby-install-$ruby_install_version.tar.gz" "https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
-
-log "Extracting ruby-install $ruby_install_version ..."
-tar -xzf "ruby-install-$ruby_install_version.tar.gz"
-cd "ruby-install-$ruby_install_version/"
-
-log "Installing ruby-install and Rubies ..."
-./setup.sh
-
-#
 # Configuration
 #
 log "Configuring chruby ..."
