@@ -11,10 +11,6 @@ set -e
 #
 export PREFIX="${PREFIX:-/usr/local}"
 
-if (( $UID == 0 )); then SRC_DIR="${SRC_DIR:-/usr/local/src}"
-else                     SRC_DIR="${SRC_DIR:-$HOME/src}"
-fi
-
 #
 # Functions
 #
@@ -50,12 +46,6 @@ function warning() {
 #
 log "Installing chruby ..."
 make install
-
-#
-# Pre Install
-#
-install -d "$SRC_DIR"
-cd "$SRC_DIR"
 
 #
 # Configuration
