@@ -120,17 +120,29 @@ source /usr/local/share/chruby/chruby.sh
 ### System Wide
 
 If you wish to enable chruby system-wide, add the following to
-`/etc/profile.d/chruby.sh`:
+`/etc/profile` or `/etc/profile.d/chruby.sh`:
 
 ``` bash
-if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
-  source /usr/local/share/chruby/chruby.sh
-  ...
+CHRUBY_DIR="/usr/local/share/chruby"
+if [ -d "$CHRUBY_DIR" ] && [ -n "$BASH_VERSION" ]; then
+  source "$CHRUBY_DIR/chruby.sh"
+  source "$CHRUBY_DIR/auto.sh"
 fi
 ```
 
-This will prevent chruby from accidentally being loaded by `/bin/sh`, which
-is not always the same as `/bin/bash`.
+(Checking the bash version will prevent chruby from accidentally being loaded
+by `/bin/sh`, which is not always the same as `/bin/bash`.)
+
+Please keep in mind that zsh loads `/etc/zshenv` instead of `/etc/profile`:
+
+``` bash
+CHRUBY_DIR="/usr/local/share/chruby"
+if [ -d "$CHRUBY_DIR" ]; then
+  source "$CHRUBY_DIR/chruby.sh"
+  source "$CHRUBY_DIR/auto.sh"
+fi
+```
+
 
 ### Rubies
 
