@@ -45,6 +45,7 @@ function chruby_use()
 	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
+begin; require 'rbconfig'; puts "export RUBY_VERSION=#{RbConfig::CONFIG['ruby_version']};" unless RUBY_VERSION[0] == '1'; rescue; end
 begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
 EOF
 )"
