@@ -2,7 +2,7 @@ CHRUBY_VERSION="0.3.8"
 RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+  [[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=($(ls -dv "$dir"/*))
 done
 unset dir
 
