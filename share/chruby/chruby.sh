@@ -1,8 +1,20 @@
 CHRUBY_VERSION="0.3.8"
 RUBIES=()
 
+if \ls --version >/dev/null 2>&1; then
+  GNU_LS=1
+else
+  GNU_LS=0
+fi
+
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-  [[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=($(ls -dv "$dir"/*))
+  if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
+    if [ $GNU_LS == 1 ]; then
+      RUBIES+=($(\ls -dv "$dir"/*))
+    else
+      RUBIES+=("$dir"/*)
+    fi
+  fi
 done
 unset dir
 
