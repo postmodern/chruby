@@ -1,22 +1,15 @@
 CHRUBY_VERSION="0.3.8"
 RUBIES=()
-
-if \ls --version >/dev/null 2>&1; then
-  GNU_LS=1
-else
-  GNU_LS=0
-fi
+UNSORTED_RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-  if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
-    if [ $GNU_LS == 1 ]; then
-      RUBIES+=($(\ls -dv "$dir"/*))
-    else
-      RUBIES+=("$dir"/*)
-    fi
-  fi
+	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && UNSORTED_RUBIES+=("$dir"/*)
 done
 unset dir
+
+RUBIES=($(for rubie in ${UNSORTED_RUBIES[*]}; do
+ 	echo $rubie
+done | sed 'h; s/-/./g ;; s/.*\///g ;; G ; s/\n/ /' | LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n | awk '{print $2}' ))
 
 function chruby_reset()
 {
