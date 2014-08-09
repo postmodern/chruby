@@ -173,6 +173,12 @@ test_ruby_root="$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel"
 mkdir -p "$PREFIX/opt/rubies"
 cd "$PREFIX/opt/rubies"
 
+mkdir -p "jruby-1.7.9" "jruby-1.7.14" "rbx-2.2.9" "rbx-2.2.10" "rbx-10.0.0" \
+	"ruby-1.9.3-p547" "ruby-1.9.3-preview1" "ruby-1.9.3-rc1" "ruby-2.0.0-p0" \
+		"ruby-2.0.0-p195" "ruby-2.0.0-p247" "ruby-2.0.0-p353"
+
+mkdir -p "$PREFIX/opt/r u b i e s/ruby-2.1.2"
+
 log "Downloading $test_ruby_url ..."
 download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
 
