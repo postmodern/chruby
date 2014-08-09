@@ -1,8 +1,13 @@
 CHRUBY_VERSION="0.3.8"
-RUBIES=($(find "$PREFIX/opt/rubies" "$HOME/.rubies" -mindepth 1 -maxdepth 1 -type "d" 2>/dev/null |
+
+function chruby_rubies()
+{
+	find "$@" -mindepth 1 -maxdepth 1 -type "d" 2>/dev/null |
 	sed -e "h" -e "s/.*\///" -e "s/-/./g" -e "G" -e "s/\n/ /" |
-	sort -t "." -k "1,1" -k "2,2n" -k "3,3n" -k "4,4n" |
-	cut -d " " -f 2))
+	sort -t "." -k "1,1" -k "2,2n" -k "3,3n" -k "4,4n" | cut -d " " -f 2
+}
+
+RUBIES=($(chruby_rubies "$PREFIX/opt/rubies" "$HOME/.rubies"))
 
 function chruby_reset()
 {
