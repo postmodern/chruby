@@ -20,7 +20,7 @@ fi
 
 argv=()
 
-for arg in $@; do
+for arg in "$@"; do
 	shift
 
 	if [[ "$arg" == "--" ]]; then break
@@ -33,7 +33,7 @@ if (( $# == 0 )); then
 	exit 1
 fi
 
-command="chruby $argv && $*"
+command="chruby $(printf "%q " "${argv[@]}") && $(printf "%q " "$@")"
 
 if [[ -t 0 ]]; then exec "$SHELL" -i -l -c "$command"
 else                exec "$SHELL"    -l -c "$command"
