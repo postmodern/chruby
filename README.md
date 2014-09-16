@@ -218,7 +218,7 @@ short option `-E`).  This parameter can also be added to your gemrc file.
 For instructions on using chruby with other tools, please see the [wiki]:
 
 * [Capistrano](https://github.com/capistrano/chruby#readme)
-* [Chef](https://github.com/Atalanta/chef-chruby#readme)
+* [Chef](https://supermarket.getchef.com/cookbooks/chruby_install)
 * [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
