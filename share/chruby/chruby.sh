@@ -5,8 +5,8 @@ function chruby_rubies()
 	local rubies dir ruby version
 	rubies=()
 	for dir in "$@"; do
-		[[ -d "$dir" && -n $(ls -A "$dir") ]] && for ruby in "$dir"/*; do
-			version="${ruby##*/}" && rubies+=("${version/-/.}\t$ruby")
+		[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && for ruby in "$dir"/*; do
+			rubies+=("$(basename "$ruby" | tr "-" ".")\t$ruby")
 		done
 	done
 
