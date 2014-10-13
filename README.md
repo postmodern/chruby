@@ -30,6 +30,10 @@ Changes the current Ruby.
 * Does not automatically switch Rubies by default.
 * Does not require write-access to the Ruby directory in order to install gems.
 
+## Requirements
+
+* [bash] >= 3 or [zsh]
+
 ## Install
 
     wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
