@@ -43,6 +43,7 @@ print_version "tmux"
 print_version "zsh"
 print_version "ruby"
 print_version "bundle"
+print_version "chruby-exec"
 
 print_section "Environment"
 
