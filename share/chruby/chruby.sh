@@ -1,10 +1,19 @@
 CHRUBY_VERSION="0.3.8"
-RUBIES=()
 
-for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
-done
-unset dir
+function chruby_rubies()
+{
+	local rubies dir ruby version
+	rubies=()
+	for dir in "$@"; do
+		[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && for ruby in "$dir"/*; do
+			rubies+=("$(basename "$ruby" | tr "-" ".")\t$ruby")
+		done
+	done
+
+	printf "%b\n" "${rubies[@]}" | sort -t "." -k "1,1" -k "2,2n" -k "3,3n" -k "4,4n" | cut -f 2
+}
+
+RUBIES=($(chruby_rubies "$PREFIX/opt/rubies" "$HOME/.rubies"))
 
 function chruby_reset()
 {
