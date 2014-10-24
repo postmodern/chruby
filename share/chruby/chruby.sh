@@ -82,7 +82,7 @@ function chruby()
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
 				case "${dir##*/}" in
-					"$1")	match="$dir" && break ;;
+					"$1")	match="$dir" ;;
 					"$1"*)	prefix_match="$dir" ;;
 					*"$1")	suffix_match="$dir" ;;
 					*"$1"*)	fuzzy_match="$dir" ;;
