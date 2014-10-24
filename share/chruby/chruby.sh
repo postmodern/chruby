@@ -78,14 +78,18 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			local dir match
+			local dir match prefix_match suffix_match fuzzy_match
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"
 				case "${dir##*/}" in
 					"$1")	match="$dir" && break ;;
-					*"$1"*)	match="$dir" ;;
+					"$1"*)	prefix_match="$dir" ;;
+					*"$1")	suffix_match="$dir" ;;
+					*"$1"*)	fuzzy_match="$dir" ;;
 				esac
 			done
+
+			match="${match:-${prefix_match:-${suffix_match:-$fuzzy_match}}}"
 
 			if [[ -z "$match" ]]; then
 				echo "chruby: unknown Ruby: $1" >&2
