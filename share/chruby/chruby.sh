@@ -1,4 +1,4 @@
-CHRUBY_VERSION="0.3.8"
+CHRUBY_VERSION="0.3.9"
 RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
