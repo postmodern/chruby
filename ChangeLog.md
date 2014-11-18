@@ -1,3 +1,9 @@
+### (development head)
+
+#### completion.sh
+
+* Add tab completion of rubies for Bash and Zsh. (@callahad)
+
 ### 0.3.9 / 2014-11-17
 
 #### chruby.sh

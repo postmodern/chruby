@@ -35,6 +35,10 @@ class Chruby < Formula
     add the following to ~/.bashrc or ~/.zshrc:
 
       source #{opt_prefix}/share/chruby/auto.sh
+
+    To enable tab completion, add the following to ~/.bashrc or ~/.zshrc:
+
+      source #{opt_prefix}/share/chruby/completion.sh
     EOS
   end
 end

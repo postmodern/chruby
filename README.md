@@ -195,6 +195,16 @@ If you want to automatically run the version of a gem executable specified in
 your project's Gemfile, try 
 [rubygems-bundler](https://github.com/mpapis/rubygems-bundler).
 
+### Tab Completion
+
+If you want enable tab-completion of ruby versions, simply load `completion.sh`
+in `~/.bashrc` or `~/.zshrc`:
+
+``` bash
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/completion.sh
+```
+
 ### Default Ruby
 
 If you wish to set a default Ruby, simply call `chruby` in `~/.bash_profile` or
