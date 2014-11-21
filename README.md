@@ -1,6 +1,6 @@
 # chruby
 
-[![Build Status](https://travis-ci.org/postmodern/chruby.png)](https://travis-ci.org/postmodern/chruby)
+[![Build Status](https://travis-ci.org/postmodern/chruby.svg?branch=master)](https://travis-ci.org/postmodern/chruby)
 
 Changes the current Ruby.
 
