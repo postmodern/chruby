@@ -53,6 +53,9 @@ EOF
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
+		if [[ "$(uname)" = "Darwin" ]]; then
+			launchctl setenv GEM_PATH $GEM_PATH GEM_HOME $GEM_HOME GEM_ROOT $GEM_ROOT
+		fi
 	fi
 }
 
