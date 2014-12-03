@@ -25,6 +25,9 @@ function chruby_auto() {
 if [[ -n "$ZSH_VERSION" ]]; then
 	if [[ ! "$preexec_functions" == *chruby_auto* ]]; then
 		preexec_functions+=("chruby_auto")
+  fi
+	if [[ ! "$chpwd_functions" == *chruby_auto* ]]; then
+		chpwd_functions+=("chruby_auto")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
 	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto' DEBUG
