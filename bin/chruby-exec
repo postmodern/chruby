@@ -35,8 +35,8 @@ fi
 
 command="chruby $(printf "%q " "${argv[@]}") && $(printf "%q " "$@")"
 
-ABS_SHELL=$(readlink -f $SHELL)
-if [[ ${ABS_SHELL##*/} == "dash" ]]; then
+abs_shell=$(readlink -f $SHELL)
+if [[ ${abs_shell##*/} == "dash" ]]; then
   if which bash &> /dev/null; then
     SHELL="bash"
   elif which zsh &> /dev/null; then
