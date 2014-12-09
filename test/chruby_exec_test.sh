@@ -21,4 +21,13 @@ function test_chruby_exec()
 	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }
 
+function test_chruby_exec_dash()
+{
+	SHELL="/bin/dash"
+	local ruby_version=$(chruby-exec "$test_ruby_version" -- ruby -e "print RUBY_VERSION")
+
+	assertEquals "did change the ruby despite dash" "$test_ruby_version" "$ruby_version"
+}
+
+
 SHUNIT_PARENT=$0 . $SHUNIT2
