@@ -42,6 +42,8 @@ function chruby_use()
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
+	typeset unset RUBYGEMS_GEMDEPS
+
 	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
