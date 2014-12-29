@@ -1,4 +1,4 @@
-CHRUBY_VERSION="0.3.8"
+CHRUBY_VERSION="0.3.9"
 RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
@@ -17,11 +17,11 @@ function chruby_reset()
 		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
 		GEM_PATH=":$GEM_PATH:"
-		GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
-		GEM_PATH="${GEM_PATH//:$GEM_ROOT:/:}"
+		[[ -n "$GEM_HOME" ]] && GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
+		[[ -n "$GEM_ROOT" ]] && GEM_PATH="${GEM_PATH//:$GEM_ROOT:/:}"
 		GEM_PATH="${GEM_PATH#:}"; GEM_PATH="${GEM_PATH%:}"
-		[[ -z "$GEM_PATH" ]] && unset GEM_PATH
 		unset GEM_ROOT GEM_HOME
+		[[ -z "$GEM_PATH" ]] && unset GEM_PATH
 	fi
 
 	PATH="${PATH#:}"; PATH="${PATH%:}"
@@ -42,11 +42,12 @@ function chruby_use()
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
+	typeset unset RUBYGEMS_GEMDEPS
+
 	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
-begin; require 'rubygems'; rescue LoadError; end
 puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
-puts "export GEM_ROOT=#{Gem.default_dir.inspect};" if defined?(Gem)
+begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
 EOF
 )"
 

@@ -1,6 +1,6 @@
 # chruby
 
-[![Build Status](https://travis-ci.org/postmodern/chruby.png)](https://travis-ci.org/postmodern/chruby)
+[![Build Status](https://travis-ci.org/postmodern/chruby.svg?branch=master)](https://travis-ci.org/postmodern/chruby)
 
 Changes the current Ruby.
 
@@ -30,11 +30,15 @@ Changes the current Ruby.
 * Does not automatically switch Rubies by default.
 * Does not require write-access to the Ruby directory in order to install gems.
 
+## Requirements
+
+* [bash] >= 3 or [zsh]
+
 ## Install
 
-    wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
-    tar -xzvf chruby-0.3.8.tar.gz
-    cd chruby-0.3.8/
+    wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+    tar -xzvf chruby-0.3.9.tar.gz
+    cd chruby-0.3.9/
     sudo make install
 
 ### PGP
@@ -43,8 +47,8 @@ All releases are [PGP] signed for security. Instructions on how to import my
 PGP key can be found on my [blog][1]. To verify that a release was not tampered 
 with:
 
-    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.8.tar.gz.asc
-    gpg --verify chruby-0.3.8.tar.gz.asc chruby-0.3.8.tar.gz
+    wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.9.tar.gz.asc
+    gpg --verify chruby-0.3.9.tar.gz.asc chruby-0.3.9.tar.gz
 
 ### setup.sh
 
@@ -144,7 +148,7 @@ the `RUBIES` variable:
 ``` bash
 source /usr/local/share/chruby/chruby.sh
 
-RUBIES+=(
+RUBIES=(
   /opt/jruby-1.7.0
   "$HOME/src/rubinius"
 )
@@ -202,18 +206,30 @@ If you have enabled auto-switching, simply create a `.ruby-version` file:
 
     echo "ruby-1.9" > ~/.ruby-version
 
+### RubyGems
+
+Gems installed as a non-root user via `gem install` will be installed into
+`~/.gem/$ruby/X.Y.Z`.  By default, RubyGems will use the absolute path to the
+currently selected ruby for the shebang of any binstubs it generates.  In some
+cases, this path may contain extra version information (e.g.
+`ruby-2.0.0-p451`).  To mitigate potential problems when removing rubies, you
+can force RubyGems to generate binstubs with shebangs that will search for
+ruby in your `$PATH` by using `gem install --env-shebang` (or the equivalent
+short option `-E`).  This parameter can also be added to your gemrc file.
+
 ### Integration
 
 For instructions on using chruby with other tools, please see the [wiki]:
 
 * [Capistrano](https://github.com/capistrano/chruby#readme)
-* [Chef](https://github.com/Atalanta/chef-chruby#readme)
+* [Chef](https://supermarket.getchef.com/cookbooks/chruby_install)
 * [Cron](https://github.com/postmodern/chruby/wiki/Cron)
 * [Emacs](https://github.com/arnebrasseur/chruby.el#readme)
 * [Pow](https://github.com/postmodern/chruby/wiki/Pow)
 * [Puppet](https://github.com/dgoodlad/puppet-chruby#readme)
 * [Sudo](https://github.com/postmodern/chruby/wiki/Sudo)
 * [Vim](https://github.com/postmodern/chruby/wiki/Vim)
+* [Fish](https://github.com/JeanMertz/chruby-fish#readme)
 
 ## Examples
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
-# chruby script that installs ruby-install which then installs the latest
-# stable versions of Ruby, JRuby and Rubinius into /opt/rubies or ~/.rubies.
+# Installs and configures chruby.
 #
 
 set -e
@@ -10,10 +9,6 @@ set -e
 # Constants
 #
 export PREFIX="${PREFIX:-/usr/local}"
-
-if (( $UID == 0 )); then SRC_DIR="${SRC_DIR:-/usr/local/src}"
-else                     SRC_DIR="${SRC_DIR:-$HOME/src}"
-fi
 
 #
 # Functions
@@ -52,34 +47,14 @@ log "Installing chruby ..."
 make install
 
 #
-# Pre Install
-#
-install -d "$SRC_DIR"
-cd "$SRC_DIR"
-
-#
-# Install ruby-install (https://github.com/postmodern/ruby-install#readme)
-#
-ruby_install_version="0.3.3"
-
-log "Downloading ruby-install ..."
-wget -O "ruby-install-$ruby_install_version.tar.gz" "https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
-
-log "Extracting ruby-install $ruby_install_version ..."
-tar -xzf "ruby-install-$ruby_install_version.tar.gz"
-cd "ruby-install-$ruby_install_version/"
-
-log "Installing ruby-install and Rubies ..."
-./setup.sh
-
-#
 # Configuration
 #
 log "Configuring chruby ..."
 
-config="[ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ] || return
-
-source $PREFIX/share/chruby/chruby.sh"
+config="if [ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ]; then
+	source $PREFIX/share/chruby/chruby.sh
+	source $PREFIX/share/chruby/auto.sh
+fi"
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh

@@ -1,3 +1,27 @@
+### 0.3.9 / 2014-11-23
+
+#### chruby.sh
+
+* Stop searching `RUBIES` if an exact match is found. (@havenwood)
+
+#### auto.sh
+
+* Fixed a bug where `/.ruby-version` was being ignored. (@havenwood)
+
+#### chruby-exec
+
+* Ensure that all parameters are properly shell-escaped. (@havenwood)
+
+#### scripts/setup.sh
+
+* No longer install [ruby-install](https://github.com/postmodern/ruby-install#readme).
+
+#### scripts/bug_report.sh
+
+* Print `RUBYLIB`, `RUBYOPT`, `RUBYPATH` and `RUBYSHELL` env variables.
+* Include `chruby-exec` in the versions section.
+* Fall back to `-V` if `--version` did not work.
+
 ### 0.3.8 / 2013-12-04
 
 #### chruby.sh

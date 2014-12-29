@@ -18,7 +18,7 @@ fi
 
 argv=()
 
-for arg in $@; do
+for arg in "$@"; do
 	shift
 
 	if [[ "$arg" == "--" ]]; then break
@@ -34,7 +34,7 @@ fi
 chruby_sh="${0%/*}/../share/chruby/chruby.sh"
 source_command="command -v chruby >/dev/null || source $chruby_sh"
 
-command="$source_command; chruby $argv && $*"
+command="$source_command; chruby $(printf "%q " "${argv[@]}") && $(printf "%q " "$@")"
 
 if [[ -t 0 ]]; then exec "$SHELL" -i -l -c "$command"
 else                exec "$SHELL"    -l -c "$command"
