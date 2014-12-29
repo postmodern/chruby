@@ -32,7 +32,7 @@ if (( $# == 0 )); then
 fi
 
 chruby_sh="${0%/*}/../share/chruby/chruby.sh"
-source_command="[[ -z \"\`type -t chruby\`\" ]] && source $chruby_sh"
+source_command="command -v chruby >/dev/null || source $chruby_sh"
 
 command="$source_command; chruby $argv && $*"
 
