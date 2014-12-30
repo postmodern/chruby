@@ -21,4 +21,13 @@ function test_chruby_exec()
 	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }
 
+function test_chruby_exec_with_version()
+{
+	local output=$(chruby-exec --version)
+
+	assertEquals "did not output the correct version" \
+		     "chruby version $CHRUBY_VERSION" \
+		     "$output"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2

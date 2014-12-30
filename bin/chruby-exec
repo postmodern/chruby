@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+chruby_sh="${0%/*}/../share/chruby/chruby.sh"
+source "$chruby_sh"
+
 case "$1" in
 	-h|--help)
 		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND [ARGS...]"
@@ -31,7 +34,6 @@ if (( $# == 0 )); then
 	exit 1
 fi
 
-chruby_sh="${0%/*}/../share/chruby/chruby.sh"
 source_command="command -v chruby >/dev/null || source $chruby_sh"
 command="$source_command; chruby $(printf "%q " "${argv[@]}") && $(printf "%q " "$@")"
 
