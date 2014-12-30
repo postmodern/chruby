@@ -34,9 +34,10 @@ if (( $# == 0 )); then
 	exit 1
 fi
 
+shell_opts=("-l")
+[[ -t 0 ]] && shell_opts+=("-i")
+
 source_command="command -v chruby >/dev/null || source $chruby_sh"
 command="$source_command; chruby $(printf "%q " "${argv[@]}") && $(printf "%q " "$@")"
 
-if [[ -t 0 ]]; then exec "$SHELL" -i -l -c "$command"
-else                exec "$SHELL"    -l -c "$command"
-fi
+exec "$SHELL" "${shell_opts[@]}" -c "$command"
