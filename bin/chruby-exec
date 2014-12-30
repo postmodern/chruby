@@ -38,6 +38,8 @@ shell_opts=("-l")
 [[ -t 0 ]] && shell_opts+=("-i")
 
 source_command="command -v chruby >/dev/null || source $chruby_sh"
-command="$source_command; chruby $(printf "%q " "${argv[@]}") && $(printf "%q " "$@")"
+chruby_command="chruby $(printf "%q " "${argv[@]}")"
+sub_command="$(printf "%q " "$@")"
+command="$source_command; $chruby_command && $sub_command"
 
 exec "$SHELL" "${shell_opts[@]}" -c "$command"
