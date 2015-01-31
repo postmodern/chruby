@@ -68,4 +68,54 @@ function test_chruby_invalid_ruby()
 	assertEquals "did not return 1" 1 $?
 }
 
+function test_chruby_ruby_select_by_major_minor()
+{
+	RUBIES=(
+		/opt/rubies/ruby-2.0.0-p100
+		/opt/rubies/ruby-2.1.0
+		/opt/rubies/ruby-2.2.0
+		/opt/rubies/ruby-2.2.1
+	)
+
+	chruby_ruby_select "2.0"
+	assertEquals "did not match major.minor" "/opt/rubies/ruby-2.0.0-p100" "$matched_ruby"
+
+	chruby_ruby_select "2.1"
+	assertEquals "did not match major.minor" "/opt/rubies/ruby-2.1.0" "$matched_ruby"
+}
+
+function test_chruby_ruby_select_by_implementation()
+{
+	RUBIES=(
+		/opt/rubies/ruby-2.2.10
+		/opt/rubies/rbx-2.2.10
+	)
+
+	chruby_ruby_select "rbx"
+	assertEquals "did not match by implementation" "/opt/rubies/rbx-2.2.10" "$matched_ruby"
+}
+
+function test_chruby_ruby_select_exact()
+{
+	RUBIES=(
+		/opt/rubies/2.1.0
+		/opt/rubies/ruby-2.1.0
+		/opt/rubies/ruby-2.1.1
+	)
+
+	chruby_ruby_select "ruby-2.1.0"
+	assertEquals "did not match exact" "/opt/rubies/ruby-2.1.0" "$matched_ruby"
+}
+
+function test_chruby_ruby_select_last()
+{
+	RUBIES=(
+		/opt/rubies/ruby-1.9.3-p100
+		/opt/rubies/ruby-1.9.3-p200
+	)
+
+	chruby_ruby_select "1.9.3"
+	assertEquals "did not match last version listed" "/opt/rubies/ruby-1.9.3-p200" "$matched_ruby"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2

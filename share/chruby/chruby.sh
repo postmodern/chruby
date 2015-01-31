@@ -58,6 +58,20 @@ EOF
 	fi
 }
 
+function chruby_ruby_select()
+{
+	local dir
+	for dir in "${RUBIES[@]}"; do
+		dir="${dir%%/}"
+		case "${dir##*/}" in
+			"$1") matched_ruby="$dir" && break;;
+			ruby-"$1"*) matched_ruby="$dir";;
+			"$1"*) matched_ruby="$dir";;
+		esac
+	done
+}
+
+
 function chruby()
 {
 	case "$1" in
@@ -80,22 +94,16 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			local dir match
-			for dir in "${RUBIES[@]}"; do
-				dir="${dir%%/}"
-				case "${dir##*/}" in
-					"$1")	match="$dir" && break ;;
-					*"$1"*)	match="$dir" ;;
-				esac
-			done
+			local matched_ruby
+			chruby_ruby_select "$1"
 
-			if [[ -z "$match" ]]; then
+			if [[ -z "$matched_ruby" ]]; then
 				echo "chruby: unknown Ruby: $1" >&2
 				return 1
 			fi
 
 			shift
-			chruby_use "$match" "$*"
+			chruby_use "$matched_ruby" "$*"
 			;;
 	esac
 }
