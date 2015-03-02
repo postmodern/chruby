@@ -52,9 +52,8 @@ with:
 
 ### setup.sh
 
-chruby also includes a `setup.sh` script, which installs chruby and the latest
-releases of [Ruby], [JRuby] and [Rubinius]. Simply run the script as root or 
-via `sudo`:
+chruby also includes a `setup.sh` script, which installs chruby. Simply run the 
+script as root or via `sudo`:
 
     sudo ./scripts/setup.sh
 
