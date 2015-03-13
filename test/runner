@@ -8,19 +8,16 @@ function log() {
 	fi
 }
 
-log "Running tests under $SHELL in interactive-mode ..."
 error=0
 
 for test in ${0%/*}/*_test.sh; do
-	log "Running $test ..."
+	log "Running $test under $SHELL (interactive) ..."
 	"$SHELL" $* -i "$test" || error=1
 	echo
 done
 
-log "Running tests under $SHELL in non-interactive-mode ..."
-
 for test in ${0%/*}/*_test.sh; do
-	log "Running $test ..."
+	log "Running $test under $SHELL (non-interactive) ..."
 	"$SHELL" $* "$test" || error=1
 	echo
 done
