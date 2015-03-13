@@ -5,7 +5,18 @@ function setUp()
 	chruby_use $test_ruby_root >/dev/null
 }
 
-function test_chruby_use()
+function test_chruby_clears_hash_table()
+{
+	if [[ -n "$BASH_VERSION" ]]; then
+		assertEquals "did not clear the path table" \
+			     "hash: hash table empty" "$(hash)"
+	elif [[ -n "$ZSH_VERSION" ]]; then
+		assertEquals "did not clear the path table" \
+			     "" "$(hash)"
+	fi
+}
+
+function test_chruby_use_env_variables()
 {
 	assertEquals "invalid RUBY_ROOT"    "$test_ruby_root" "$RUBY_ROOT"
 	assertEquals "invalid RUBY_ENGINE"  "$test_ruby_engine" "$RUBY_ENGINE"
