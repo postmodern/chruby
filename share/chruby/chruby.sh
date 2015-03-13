@@ -11,21 +11,22 @@ function chruby_reset()
 	[[ -z "$RUBY_ROOT" ]] && return
 
 	PATH=":$PATH:"; PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
+	[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
 	if (( $UID != 0 )); then
 		[[ -n "$GEM_HOME" ]] && PATH="${PATH//:$GEM_HOME\/bin:/:}"
-		[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
 		GEM_PATH=":$GEM_PATH:"
 		[[ -n "$GEM_HOME" ]] && GEM_PATH="${GEM_PATH//:$GEM_HOME:/:}"
 		[[ -n "$GEM_ROOT" ]] && GEM_PATH="${GEM_PATH//:$GEM_ROOT:/:}"
 		GEM_PATH="${GEM_PATH#:}"; GEM_PATH="${GEM_PATH%:}"
-		unset GEM_ROOT GEM_HOME
+
+		unset GEM_HOME
 		[[ -z "$GEM_PATH" ]] && unset GEM_PATH
 	fi
 
 	PATH="${PATH#:}"; PATH="${PATH%:}"
-	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT
+	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT GEM_ROOT
 	hash -r
 }
 
@@ -50,11 +51,12 @@ puts "export RUBY_VERSION=#{RUBY_VERSION};"
 begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
 EOF
 )"
+	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
 	if (( $UID != 0 )); then
 		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
-		export PATH="$GEM_HOME/bin${GEM_ROOT:+:$GEM_ROOT/bin}:$PATH"
+		export PATH="$GEM_HOME/bin:$PATH"
 	fi
 
 	hash -r
