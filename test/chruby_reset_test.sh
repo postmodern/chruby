@@ -7,7 +7,18 @@ function setUp()
 	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$test_path"
 }
 
-function test_chruby_reset()
+function test_chruby_reset_hash_table()
+{
+	if [[ -n "$BASH_VERSION" ]]; then
+		assertEquals "did not clear the path table" \
+			     "hash: hash table empty" "$(hash)"
+	elif [[ -n "$ZSH_VERSION" ]]; then
+		assertEquals "did not clear the path table" \
+			     "" "$(hash)"
+	fi
+}
+
+function test_chruby_reset_env_variables()
 {
 	chruby_reset
 
