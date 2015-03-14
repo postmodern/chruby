@@ -7,6 +7,8 @@ function chruby_auto() {
 		dir="${dir%/*}"
 
 		if { read -r version <"$dir/.ruby-version"; } 2>/dev/null || [[ -n "$version" ]]; then
+			version="${version%%[[:space:]]}"
+
 			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
 			else
 				RUBY_AUTO_VERSION="$version"
