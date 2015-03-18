@@ -76,7 +76,7 @@ function detect_system() {
         )"
       elif [[ -f /etc/debian_version ]]; then
         system_name="debian"
-        system_version="$(< /etc/debian_version | awk -F. '{print $1"."$2}')"
+        system_version="$(awk -F. '{print $1"."$2}' /etc/debian_version)"
         system_arch="$( dpkg --print-architecture )"
       elif [[ -f /etc/os-release ]] &&
            [[ "$(< /etc/os-release)" == *"ID=debian"* ]]
