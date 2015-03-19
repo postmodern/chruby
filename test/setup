@@ -76,7 +76,11 @@ function detect_system() {
         )"
       elif [[ -f /etc/debian_version ]]; then
         system_name="debian"
-        system_version="$(awk -F. '{print $1"."$2}' /etc/debian_version)"
+        system_version="$(awk -F. '{print $1}' /etc/debian_version | head -n 1)"
+        if [ $system_version == "8" ]; then
+          echo "hacking debian_version 8 to jessie_sid. remove when 8 is in rvm.io"
+          system_version="jessie_sid"
+        fi
         system_arch="$( dpkg --print-architecture )"
       elif [[ -f /etc/os-release ]] &&
            [[ "$(< /etc/os-release)" == *"ID=debian"* ]]

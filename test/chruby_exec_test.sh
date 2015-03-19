@@ -23,7 +23,7 @@ function test_chruby_exec()
 
 function test_chruby_exec_with_version()
 {
-	local output=$(chruby-exec --version)
+	local output="$(chruby-exec --version)"
 
 	assertEquals "did not output the correct version" \
 		     "chruby version $CHRUBY_VERSION" \
