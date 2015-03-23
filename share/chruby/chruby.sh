@@ -46,7 +46,10 @@ function chruby_use()
 	typeset unset RUBYGEMS_GEMDEPS
 
 	eval "$("$RUBY_ROOT/bin/ruby" - <<EOF
-puts "export RUBY_ENGINE=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
+ruby_engine = defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'
+ruby_engine_version = defined?(RUBY_ENGINE_VERSION) ? RUBY_ENGINE_VERSION : case ruby_engine; when 'rbx'; Rubinius::VERSION; else; RUBY_VERSION; end
+puts "export RUBY_ENGINE=#{ruby_engine};"
+puts "export RUBY_ENGINE_VERSION=#{ruby_engine_version};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
 begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
 EOF
@@ -54,7 +57,7 @@ EOF
 	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
 	if (( $UID != 0 )); then
-		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
+		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_ENGINE_VERSION"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin:$PATH"
 	fi
