@@ -36,8 +36,7 @@ function download() {
 	fi
 }
 
-function detect_system()
-{
+function detect_system() {
 	# adapted from RVM: https://github.com/wayneeseguin/rvm/blob/master/scripts/functions/utility_system#L3
 	system_type="unknown"
 	system_name="unknown"
