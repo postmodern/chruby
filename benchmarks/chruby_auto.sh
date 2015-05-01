@@ -1,7 +1,7 @@
 root="${0%/*}/.."
 n=100
 
-RUBIES=("$root/test/opt/rubies/ruby-2.0.0-p353")
+RUBIES=("$root/test/opt/rubies/ruby-2.0.0-p481")
 
 . "$root/share/chruby/chruby.sh"
 . "$root/share/chruby/auto.sh"

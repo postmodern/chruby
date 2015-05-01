@@ -1,6 +1,6 @@
 root="${0%/*}/.."
 n=100
-ruby_dir="$root/test/opt/rubies/ruby-2.0.0-p353"
+ruby_dir="$root/test/opt/rubies/ruby-2.0.0-p481"
 
 . "$root/share/chruby/chruby.sh"
 
