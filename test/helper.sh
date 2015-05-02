@@ -10,7 +10,7 @@ chruby_reset
 
 test_ruby_engine="ruby"
 test_ruby_version="2.0.0"
-test_ruby_patchlevel="353"
+test_ruby_patchlevel="598"
 test_ruby_api="2.0.0"
 test_ruby_root="$PWD/test/opt/rubies/$test_ruby_engine-$test_ruby_version-p$test_ruby_patchlevel"
 
