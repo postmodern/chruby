@@ -43,12 +43,15 @@ function chruby_use()
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
-	eval "$(RUBYGEMS_GEMDEPS="" "$RUBY_ROOT/bin/ruby" - <<EOF
+	cd "$RUBY_ROOT/bin"
+	eval "$(RUBYGEMS_GEMDEPS="" ./ruby - <<EOF
 puts "export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
 begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
 EOF
 )"
+	cd - >/dev/null
+
 	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
 	if (( UID != 0 )); then
