@@ -35,7 +35,7 @@ verify: $(PKG) $(SIG)
 	gpg --verify $(SIG) $(PKG)
 
 clean:
-	rm -f test/opt/rubies
+	rm -rf test/opt/rubies
 	rm -f $(PKG) $(SIG)
 
 all: $(PKG) $(SIG)
