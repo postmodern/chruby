@@ -2,7 +2,13 @@ CHRUBY_VERSION="0.3.9"
 RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+    if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
+        for rdir in "$dir"/*; do
+            if [[ "${rdir##*/}" != "lost+found" ]]; then
+                RUBIES+=("$rdir")
+            fi
+        done
+    fi
 done
 unset dir
 
