@@ -4,9 +4,7 @@ RUBIES=()
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
     if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
         for rdir in "$dir"/*; do
-            if [[ "${rdir##*/}" != "lost+found" ]]; then
-                RUBIES+=("$rdir")
-            fi
+            [[ -f "$rdir/bin/ruby" && -x "$rdir/bin/ruby" ]] && RUBIES+=("$rdir")
         done
     fi
 done
