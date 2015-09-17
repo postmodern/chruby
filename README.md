@@ -147,7 +147,7 @@ the `RUBIES` variable:
 ``` bash
 source /usr/local/share/chruby/chruby.sh
 
-RUBIES=(
+RUBIES+=(
   /opt/jruby-1.7.0
   "$HOME/src/rubinius"
 )
