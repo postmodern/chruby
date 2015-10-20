@@ -14,7 +14,7 @@ addons:
       - zsh
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install shunit2 zsh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install shunit2 bash; fi
 
 before_script:
   - rm -rf $HOME/.rvm $HOME/.rvmrc
