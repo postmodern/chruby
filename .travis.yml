@@ -19,6 +19,6 @@ install:
 before_script:
   - rm -rf $HOME/.rvm $HOME/.rvmrc
   - __rvm_unload
-  - SHUNIT2="$(command -v shunit2 2>/dev/null)"
+  - export SHUNIT2="$(command -v shunit2 2>/dev/null)"
 
 script: make test
