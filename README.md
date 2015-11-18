@@ -79,6 +79,13 @@ chruby is included in the official [FreeBSD ports collection]:
 
     cd /usr/ports/devel/chruby/ && make install clean
 
+### Fedora
+
+Fedora users can install chruby from [this COPR repository]:
+
+    # dnf copr enable nwallace/ruby-tools
+    # dnf install chruby
+
 ### Rubies
 
 #### Manually
@@ -349,6 +356,7 @@ After removing the chruby configuration:
 [homebrew]: http://brew.sh/
 [AUR]: https://aur.archlinux.org/packages/chruby/
 [FreeBSD ports collection]: https://www.freshports.org/devel/chruby/
+[this COPR repository]: https://copr.fedoraproject.org/coprs/nwallace/ruby-tools/
 [ruby-install]: https://github.com/postmodern/ruby-install#readme
 [ruby-build]: https://github.com/sstephenson/ruby-build#readme
 [.ruby-version]: https://gist.github.com/1912050
