@@ -293,9 +293,9 @@ Switch to an arbitrary Ruby on the fly:
 
 ## Uninstall
 
-After removing the chruby configuration:
-
-    $ sudo make uninstall
+1. Remove or comment out chruby from your shell configuration.
+2. Restart your shell (ex: `exec $SHELL`).
+3. `sudo make uninstall`
 
 ## Alternatives
 
