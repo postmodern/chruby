@@ -85,7 +85,7 @@ function test_chruby_auto_enter_subdir_with_ruby_version()
 function test_chruby_auto_modified_ruby_version()
 {
 	cd "$test_project_dir/modified_version" && chruby_auto
-	echo "2.2.0" > .ruby-version            && chruby_auto
+	echo "2.2" > .ruby-version              && chruby_auto
 
 	assertEquals "did not detect the modified .ruby-version file" \
 		     "$test_ruby_root" "$RUBY_ROOT"
