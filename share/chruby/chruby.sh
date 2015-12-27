@@ -74,7 +74,7 @@ function chruby()
 			for dir in "${RUBIES[@]}"; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
-					echo " * ${ruby}"
+					echo " * ${ruby} ${RUBYOPT}"
 				else
 					echo "  ${ruby}"
 				fi
