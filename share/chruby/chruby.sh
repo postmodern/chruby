@@ -70,22 +70,23 @@ function chruby()
 			echo "chruby: $CHRUBY_VERSION"
 			;;
 		"")
-			local dir star
+			local dir ruby
 			for dir in "${RUBIES[@]}"; do
-				dir="${dir%%/}"
-				if [[ "$dir" == "$RUBY_ROOT" ]]; then star="*"
-				else                                  star=" "
+				dir="${dir%%/}"; ruby="${dir##*/}"
+				if [[ "$dir" == "$RUBY_ROOT" ]]; then
+					echo " * ${ruby}"
+				else
+					echo "  ${ruby}"
 				fi
 
-				echo " $star ${dir##*/}"
 			done
 			;;
 		system) chruby_reset ;;
 		*)
-			local dir match
+			local dir ruby match
 			for dir in "${RUBIES[@]}"; do
-				dir="${dir%%/}"
-				case "${dir##*/}" in
+				dir="${dir%%/}"; ruby="${dir##*/}"
+				case "$ruby" in
 					"$1")	match="$dir" && break ;;
 					*"$1"*)	match="$dir" ;;
 				esac
