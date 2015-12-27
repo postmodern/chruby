@@ -19,7 +19,7 @@ Changes the current Ruby.
 * Defaults to the system Ruby.
 * Optionally supports auto-switching and the `.ruby-version` file.
 * Supports [bash] and [zsh].
-* Small (~90 LOC).
+* Small (~100 LOC).
 * Has tests.
 
 ## Anti-Features
