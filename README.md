@@ -196,8 +196,9 @@ your project's Gemfile, try
 
 ### Default Ruby
 
-If you wish to set a default Ruby, simply call `chruby` in `~/.bash_profile` or
-`~/.zprofile`:
+Once you have loaded `chruby.sh` and/or `auto.sh` in your shell configuration,
+you can also set a default Ruby. Simply call the `chruby` function in
+`~/.bash_profile` or `~/.zprofile`:
 
     chruby ruby-1.9
 
