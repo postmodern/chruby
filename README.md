@@ -192,7 +192,9 @@ https://gist.github.com/1912050
 
 If you want to automatically run the version of a gem executable specified in 
 your project's Gemfile, try 
-[rubygems-bundler](https://github.com/mpapis/rubygems-bundler).
+[rubygems-bundler](https://github.com/mpapis/rubygems-bundler). If you want to
+modify how and when chruby_auto is called, you may override the
+`ruby_version_autoexec` shell function.
 
 ### Default Ruby
 
