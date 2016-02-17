@@ -122,8 +122,8 @@ source /usr/local/share/chruby/chruby.sh
 
 ### System Wide
 
-If you wish to enable chruby system-wide, add the following to
-`/etc/profile.d/chruby.sh`:
+If you wish to enable chruby system-wide, on non-Ubuntu add the following to
+`/etc/profile.d/chruby.sh`, on Ubuntu add to `/etc/bash.bashrc`:
 
 ``` bash
 if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
