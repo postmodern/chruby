@@ -161,6 +161,11 @@ test_ruby_root="$test_ruby_engine-$test_ruby_version"
 mkdir -p "$PREFIX/opt/rubies"
 cd "$PREFIX/opt/rubies"
 
+if [[ -d "$test_ruby_root" ]] && ! [[ -e "$test_ruby_archive" ]]; then
+    log "$test_ruby_root already extracted and cleaned up."
+    exit
+fi
+
 log "Downloading $test_ruby_url ..."
 download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
 
