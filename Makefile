@@ -16,6 +16,8 @@ SIG=$(PKG).asc
 PREFIX?=/usr/local
 DOC_DIR=$(PREFIX)/share/doc/$(PKG_NAME)
 
+all:
+
 pkg:
 	mkdir $(PKG_DIR)
 
@@ -37,8 +39,6 @@ verify: $(PKG) $(SIG)
 clean:
 	rm -rf test/opt/rubies
 	rm -f $(PKG) $(SIG)
-
-all: $(PKG) $(SIG)
 
 check:
 	shellcheck share/$(NAME)/*.sh
