@@ -120,6 +120,8 @@ Add the following to the `~/.bashrc` or `~/.zshrc` file:
 source /usr/local/share/chruby/chruby.sh
 ```
 
+*Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
+
 ### System Wide
 
 If you wish to enable chruby system-wide, add the following to
@@ -185,6 +187,8 @@ between your different projects, simply load `auto.sh` in `~/.bashrc` or
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 ```
+
+*Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
 
 chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
