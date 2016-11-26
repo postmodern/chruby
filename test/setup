@@ -179,6 +179,7 @@ function clean_up_test_hierarchy() {
 function do_or_fail() {
 	local preamble="$1"
 	local fail_message="$2"
+	shift 2
 
 	log "$preamble"
 
