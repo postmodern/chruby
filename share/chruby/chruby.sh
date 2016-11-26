@@ -1,9 +1,5 @@
 CHRUBY_VERSION="0.3.9"
-
 RUBIES=()
-
-declare -A CHRUBY_CACHE
-CHRUBY_CACHE=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
