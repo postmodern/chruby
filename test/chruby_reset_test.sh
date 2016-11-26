@@ -12,7 +12,7 @@ function setUp()
 }
 
 function with_bad_ruby() {
-	export RUBY_ROOT="$(mktemp --dry-run)"
+	export RUBY_ROOT="/tmp/tmp.${RANDOM}"
 	setUpPATH
 	"$@"
 }
