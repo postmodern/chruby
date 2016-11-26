@@ -31,6 +31,41 @@ function test_chruby_use_env_variables()
 		     "$(command -v ruby)"
 }
 
+function test_chruby_use_cache_population()
+{
+	chruby_reset
+
+	local dummy_gem_home="/tmp/dummy/.gem/2.3.0"
+	local dummy_gem_path="/tmp/dummy/.gem/2.3.0:/opt/dummy/gems/2.3.0"
+
+	export GEM_HOME="$dummy_gem_home"
+	export GEM_PATH="$dummy_gem_path"
+
+	chruby_use $test_ruby_root >/dev/null
+
+	assertEquals "did not cache correct ADDED_PATH" \
+		     "${CHRUBY_CACHE[ADDED_PATH]}" \
+		     "$test_gem_home/bin:$test_gem_root/bin:$test_ruby_root/bin"
+
+	assertEquals "did not cache correct CHRUBY_GEM_HOME" \
+		     "${CHRUBY_CACHE[CHRUBY_GEM_HOME]}" "$test_gem_home"
+
+	assertEquals "did not cache correct CHRUBY_GEM_PATH" \
+		     "${CHRUBY_CACHE[CHRUBY_GEM_PATH]}" \
+		     "$test_gem_home:$test_gem_root:$dummy_gem_path"
+
+	assertEquals "did not cache correct GEM_HOME" "${CHRUBY_CACHE[GEM_HOME]}" \
+		     "$dummy_gem_home"
+
+	assertEquals "did not cache correct GEM_PATH" "${CHRUBY_CACHE[GEM_PATH]}" \
+		     "$dummy_gem_path"
+
+	assertEquals "did not cache correct PATH" "${CHRUBY_CACHE[PATH]}" \
+		     "$__shunit_tmpDir:$test_path"
+
+	unset -v GEM_HOME GEM_PATH
+}
+
 function tearDown()
 {
 	chruby_reset

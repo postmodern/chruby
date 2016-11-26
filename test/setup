@@ -25,16 +25,26 @@ function fail() {
 	exit -1
 }
 
-function download() {
-	if command -v wget >/dev/null; then
+if command -v wget >/dev/null; then
+	function check_url() {
+		wget -q --spider "$1"
+	}
+
+	function download() {
 		wget -c -O "$2" "$1"
-	elif command -v curl >/dev/null; then
-		curl -L -C - -o "$2" "$1"
-	else
-		error "Could not find wget or curl"
-		return 1
-	fi
-}
+	}
+elif command -v curl >/dev/null; then
+	function check_url() {
+		curl -f -L --head --output /dev/null --silent --fail "$1"
+	}
+
+	function download() {
+		curl -f -L -C - -o "$2" "$1"
+	}
+else
+	error "Could not find wget or curl"
+	return 1
+fi
 
 function detect_system() {
 	# adapted from RVM: https://github.com/wayneeseguin/rvm/blob/master/scripts/functions/utility_system#L3
@@ -154,18 +164,47 @@ detect_system || fail "Cannot auto-detect system type"
 [[ "$system_version" == "unknown" ]] && fail "Could not detect system version"
 [[ "$system_arch" == "unknown"    ]] && fail "Could not detect system arch"
 
-test_ruby_archive="${test_ruby_engine}-${test_ruby_version}.tar.bz2"
-test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
-test_ruby_root="$test_ruby_engine-$test_ruby_version"
+test_ruby="${test_ruby_engine}-${test_ruby_version}"
+test_ruby_archive_basename="${test_ruby}.tar.bz2"
+test_ruby_root_parent="${test_ruby_root%/*}"
+test_ruby_archive="${test_ruby_root_parent}/${test_ruby_archive_basename}"
+test_ruby_url="http://rvm.io/binaries/${system_name}/${system_version}/${system_arch}/${test_ruby_archive_basename}"
 
-mkdir -p "$PREFIX/opt/rubies"
-cd "$PREFIX/opt/rubies"
+function clean_up_test_hierarchy()
+{
+	rm -f "$test_ruby_archive"
+	[[ "$test_ruby_root_parent"/* != "$test_ruby_root_parent/*" ]] \
+	        && rmdir "$test_ruby_root_parent"
+}
 
-log "Downloading $test_ruby_url ..."
-download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
+function do_or_fail()
+{
+	local preamble="$1"
+	local fail_message="$2"
 
-log "Unpacking $test_ruby_archive ..."
-tar -xjf "$test_ruby_archive" || fail "Unpacking failed"
+	log "$preamble"
+
+	if ! "$@"; then
+		clean_up_test_hierarchy
+		fail "$fail_message"
+	fi
+}
+
+mkdir -p "${test_ruby_archive%/*}"
+
+trap clean_up_test_hierarchy ERR INT QUIT
+
+do_or_fail "Checking ${test_ruby_url} ..." \
+           "${test_ruby} is not available for your system (${system_name}), arch (${system_arch}) and/or libc (${system_version})" \
+           check_url "$test_ruby_url"
+
+do_or_fail "Downloading $test_ruby_url ..." "Download failed" \
+           download "$test_ruby_url" "$test_ruby_archive"
+
+do_or_fail "Unpacking $test_ruby_archive ..." "Unpacking failed" \
+           tar -C "$test_ruby_root_parent" -xjf "$test_ruby_archive"
+
+trap - ERR INT QUIT
 
 log "Cleaning up ..."
 rm -f "$test_ruby_archive"
