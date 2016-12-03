@@ -121,11 +121,10 @@ function test_chruby_auto_invalid_ruby_version()
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
 
-function test_chruby_auto_loaded_in_bash()
+function test_chruby_auto_preserves_dollar_underscore()
 {
-	echo expected > /dev/null
-	assertEquals "value of $_ does not change" \
-		"$_" "expected"
+	: expected
+	assertEquals "value of $_ does not change" "$_" "expected"
 }
 
 function tearDown()
