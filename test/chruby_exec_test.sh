@@ -21,6 +21,18 @@ function test_chruby_exec()
 	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }
 
+function test_chruby_exec()
+{
+	# Check to ensure that chruby-exec execs, not forks
+	if [ -n "$ZSH_VERSION" ] ; then
+		local checks=$(echo $$ ; chruby-exec 2.2.1 -- ruby -e "puts Process.ppid")
+	else
+		# We need to check this way because $$ does not return the pid of the subprocess in bash
+		local checks=$(bash -c 'echo $PPID' ; bin/chruby-exec 2.2.1 -- ruby -e "puts Process.ppid")
+	fi
+	assertEquals "execed ruby" $checks
+}
+
 function test_chruby_exec_with_version()
 {
 	local output=$(chruby-exec --version)
