@@ -72,6 +72,10 @@ Or the absolute latest chruby can be installed from source:
 chruby is already included in the [AUR]:
 
     yaourt -S chruby
+
+### Fedora Linux
+
+chruby is available as an rpm on [Fedora Copr](https://copr.fedorainfracloud.org/coprs/postmodern/chruby/).
     
 ### FreeBSD
 
