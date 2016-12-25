@@ -19,7 +19,7 @@ function chruby_auto() {
 	done
 
 	if [[ -n "$RUBY_AUTO_VERSION" ]]; then
-		chruby_reset
+		chruby default
 		unset RUBY_AUTO_VERSION
 	fi
 }

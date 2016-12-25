@@ -82,7 +82,12 @@ function chruby()
 
 			done
 			;;
+		--default)
+			export CHRUBY_DEFAULT="$2"
+			shift && chruby "$@"
+			;;
 		system) chruby_reset ;;
+		default) chruby "${CHRUBY_DEFAULT:-system}" ;;
 		*)
 			local dir ruby match
 			for dir in "${RUBIES[@]}"; do
