@@ -15,6 +15,8 @@ URL: https://github.com/postmodern/chruby#readme
 AutoReqProv: no
 BuildArch: noarch
 
+Source1: chruby_profile.sh
+
 %description
 Changes the current Ruby.
 
@@ -25,11 +27,14 @@ Changes the current Ruby.
 
 %install
 make install PREFIX=%{buildroot}/usr
+install -D -m 644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/chruby.sh
 
 %files
 %defattr(-,root,root)
 %{_bindir}/chruby-exec
 %{_datadir}/%{name}/*
+%config
+%{_sysconfdir}/profile.d/chruby.sh
 %doc
 %{_defaultdocdir}/%{name}-%{version}/*
 
