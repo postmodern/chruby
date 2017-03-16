@@ -121,6 +121,15 @@ function test_chruby_auto_invalid_ruby_version()
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
 
+function test_chruby_auto_disable()
+{
+	RUBY_AUTO_DISABLE=1
+	cd "$test_project_dir" && chruby_auto
+
+	assertNotEquals "switched Ruby when entering a versioned directory with RUBY_AUTO_DISABLE=1" \
+		        "$test_ruby_root" "$RUBY_ROOT"
+}
+
 function tearDown()
 {
 	cd "$PWD"

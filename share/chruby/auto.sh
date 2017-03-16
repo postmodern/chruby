@@ -3,6 +3,8 @@ unset RUBY_AUTO_VERSION
 function chruby_auto() {
 	local dir="$PWD/" version
 
+	[ -z "$RUBY_AUTO_DISABLE" ] || return 0
+
 	until [[ -z "$dir" ]]; do
 		dir="${dir%/*}"
 
