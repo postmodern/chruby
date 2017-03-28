@@ -19,9 +19,24 @@ function chruby_auto() {
 	done
 
 	if [[ -n "$RUBY_AUTO_VERSION" ]]; then
-		chruby_reset
 		unset RUBY_AUTO_VERSION
+		if [[ -z "$RUBY_DEFAULT_VERSION" ]]; then
+				chruby_reset
+		else
+				chruby_use_default
+		fi
 	fi
+}
+
+function chruby_default() {
+	RUBY_DEFAULT_VERSION="$1"
+	if [[ -z "$RUBY_AUTO_VERSION" ]]; then
+		chruby_use_default
+	fi
+}
+
+function chruby_use_default() {
+	chruby "$RUBY_DEFAULT_VERSION"
 }
 
 if [[ -n "$ZSH_VERSION" ]]; then
