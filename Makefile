@@ -48,8 +48,8 @@ test/opt/rubies:
 	./test/setup
 
 test: test/opt/rubies
-	SHELL=`command -v bash` ./test/runner
-	SHELL=`command -v zsh`  ./test/runner
+	LC_MESSAGES=C SHELL=`command -v bash` ./test/runner
+	LC_MESSAGES=C SHELL=`command -v zsh`  ./test/runner
 
 tag:
 	git push origin master
