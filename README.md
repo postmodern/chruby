@@ -41,6 +41,12 @@ Changes the current Ruby.
     cd chruby-0.3.9/
     sudo make install
 
+By default, chruby would be installed into /usr/local. For users without sudo privileges, the installation path could be changed by modifying the environment variable PREFIX when we invoke 'make install', for example:
+
+    PREFIX=$HOME/local make install
+
+Do note that if we install chruby with a modified PREFIX, the subsequent mentions of '/usr/local' in this document should be replaced with the value of our modified PREFIX.
+
 ### PGP
 
 All releases are [PGP] signed for security. Instructions on how to import my
