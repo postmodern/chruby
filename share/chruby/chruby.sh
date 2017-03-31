@@ -1,10 +1,15 @@
 CHRUBY_VERSION="0.3.9"
 RUBIES=()
+UNSORTED_RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && UNSORTED_RUBIES+=("$dir"/*)
 done
 unset dir
+
+RUBIES=($(for rubie in ${UNSORTED_RUBIES[*]}; do
+ 	echo $rubie
+done | sed 'h; s/-/./g ;; s/.*\///g ;; G ; s/\n/ /' | LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n | awk '{print $2}' ))
 
 function chruby_reset()
 {
