@@ -208,7 +208,7 @@ Once you have loaded `chruby.sh` and/or `auto.sh` in your shell configuration,
 you can also set a default Ruby. Simply call the `chruby` function in
 `~/.bash_profile` or `~/.zprofile`:
 
-    chruby ruby-1.9
+    chruby 1.9
 
 If you have enabled auto-switching, simply create a `.ruby-version` file:
 
