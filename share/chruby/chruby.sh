@@ -81,7 +81,18 @@ function chruby()
 
 			done
 			;;
-		system) chruby_reset ;;
+		system)
+			export OLD_RUBY_ROOT="${RUBY_ROOT##*/}"
+			chruby_reset
+			;;
+		"-")
+			if [[ -z "$OLD_RUBY_ROOT" ]]; then
+				echo "No previous chruby selected." >&2
+				return 1
+			fi
+			shift
+			chruby "$OLD_RUBY_ROOT" "$*"
+			;;
 		*)
 			local dir ruby match
 			for dir in "${RUBIES[@]}"; do
@@ -95,6 +106,12 @@ function chruby()
 			if [[ -z "$match" ]]; then
 				echo "chruby: unknown Ruby: $1" >&2
 				return 1
+			fi
+
+			if [[ -z "$RUBY_ROOT" ]]; then
+				export OLD_RUBY_ROOT="system"
+			else
+				export OLD_RUBY_ROOT="${RUBY_ROOT##*/}"
 			fi
 
 			shift
