@@ -15,7 +15,7 @@ SIG=$(PKG).asc
 
 PREFIX?=/usr/local
 SHARE_DIR=$(PREFIX)/share
-DOC_DIR=$(SHARE)/doc/$(PKG_NAME)
+DOC_DIR=$(SHARE_DIR)/doc/$(PKG_NAME)
 
 all:
 
