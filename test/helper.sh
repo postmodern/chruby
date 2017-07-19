@@ -18,6 +18,7 @@ test_gem_home="$HOME/.gem/$test_ruby_engine/$test_ruby_version"
 test_gem_root="$test_ruby_root/lib/ruby/gems/$test_ruby_api"
 
 test_project_dir="$PWD/test/project"
+test_project_modified_ruby_version="$test_project_dir/modified_version/.ruby-version"
 
 setUp() { return; }
 tearDown() { return; }
