@@ -34,11 +34,13 @@ function test_chruby_reset_env_variables()
 
 function test_chruby_reset_duplicate_path()
 {
-	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
+	duplicated_path="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
+	expected_path="$test_path:$duplicated_path"
+	export PATH="$PATH:$duplicated_path"
 
 	chruby_reset
 
-	assertEquals "PATH was not sanitized"    "$test_path" "$PATH"
+	assertEquals "PATH was not sanitized"    "$expected_path" "$PATH"
 }
 
 function test_chruby_reset_modified_gem_path()
@@ -61,6 +63,13 @@ function test_chruby_reset_no_gem_root_or_gem_home()
 	chruby_reset
 
 	assertEquals "PATH was messed up" "$test_path:/bin" "$PATH"
+}
+
+function test_chruby_reset_cache_cleared()
+{
+	chruby_reset
+
+	assertEquals "CHRUBY_CACHE was not cleared" "${#CHRUBY_CACHE[@]}" 0
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2

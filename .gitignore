@@ -4,3 +4,5 @@
 /pkg/*.zip
 /test/opt/rubies
 /test/home/.zcompdump
+/.vagrant/
+test/home/.*

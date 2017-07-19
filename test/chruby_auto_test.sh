@@ -1,10 +1,22 @@
 . ./share/chruby/auto.sh
 . ./test/helper.sh
 
+STORED_RUBY_AUTO_VERSION=''
+
 function setUp()
 {
 	chruby_reset
 	unset RUBY_AUTO_VERSION
+}
+
+function oneTimeSetUp()
+{
+	STORED_RUBY_AUTO_VERSION="$(< "$test_project_modified_ruby_version")"
+}
+
+function oneTimeTearDown()
+{
+	echo "$STORED_RUBY_AUTO_VERSION" > "$test_project_modified_ruby_version"
 }
 
 function test_chruby_auto_loaded_in_zsh()
@@ -35,7 +47,7 @@ function test_chruby_auto_loaded_twice_in_zsh()
 
 	assertNotEquals "should not add chruby_auto twice" \
 		        "$preexec_functions" \
-			"chruby_auto chruby_auto"
+		        "chruby_auto chruby_auto"
 }
 
 function test_chruby_auto_loaded_twice()
@@ -84,8 +96,8 @@ function test_chruby_auto_enter_subdir_with_ruby_version()
 
 function test_chruby_auto_modified_ruby_version()
 {
-	cd "$test_project_dir/modified_version" && chruby_auto
-	echo "2.2" > .ruby-version              && chruby_auto
+	cd "${test_project_modified_ruby_version%/*}" && chruby_auto
+	echo "2.2" > .ruby-version                    && chruby_auto
 
 	assertEquals "did not detect the modified .ruby-version file" \
 		     "$test_ruby_root" "$RUBY_ROOT"
