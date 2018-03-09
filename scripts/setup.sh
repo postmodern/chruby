@@ -58,6 +58,7 @@ fi"
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
+	log "Installing configuration into /etc/profile.d/ ..."
 	echo "$config" > /etc/profile.d/chruby.sh
 	log "Setup complete! Please restart the shell"
 else
