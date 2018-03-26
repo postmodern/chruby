@@ -372,4 +372,4 @@ Switch to an arbitrary Ruby on the fly:
 [JRuby]: http://jruby.org/
 [Rubinius]: http://rubini.us/
 
-[1]: http://postmodern.github.com/contact.html#pgp
+[1]: http://postmodern.github.io/contact.html#pgp
