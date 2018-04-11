@@ -72,6 +72,6 @@ install:
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(DOC_DIR)
-	rmdir $(DESTDIR)$(SHARE_DIR)
+	rmdir $(DESTDIR)$(SHARE_DIR)/chruby
 
 .PHONY: build download sign verify clean check test tag release rpm install uninstall all
