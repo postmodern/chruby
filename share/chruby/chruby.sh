@@ -26,7 +26,7 @@ function chruby_reset()
 	fi
 
 	PATH="${PATH#:}"; PATH="${PATH%:}"
-	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBYOPT GEM_ROOT
+	unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION RUBY_ENGINE_VERSION RUBYOPT GEM_ROOT
 	hash -r
 }
 
@@ -46,13 +46,14 @@ function chruby_use()
 	eval "$(RUBYGEMS_GEMDEPS="" "$RUBY_ROOT/bin/ruby" - <<EOF
 puts "export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
 puts "export RUBY_VERSION=#{RUBY_VERSION};"
+puts "export RUBY_ENGINE_VERSION=#{Object.const_defined?(:RUBY_ENGINE_VERSION) ? RUBY_ENGINE_VERSION : RUBY_VERSION};"
 begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
 EOF
 )"
 	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
 	if (( UID != 0 )); then
-		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_VERSION"
+		export GEM_HOME="$HOME/.gem/$RUBY_ENGINE/$RUBY_ENGINE_VERSION"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin:$PATH"
 	fi
