@@ -1,3 +1,13 @@
+### 0.4.0
+
+#### chruby.sh
+
+* Use `RUBY_ENGINE_VERSION` for setting `GEM_HOME`. (@eregon)  
+  This makes no change for MRI, but it guarantees a unique `GEM_HOME` per
+  release for other Ruby implementations, which is safer for
+  C and JRuby extensions. In practice, updating `chruby` means you will
+  need to install gems again on other Ruby implementations than MRI.
+
 ### 0.3.9 / 2014-11-23
 
 #### chruby.sh
