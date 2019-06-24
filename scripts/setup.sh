@@ -51,9 +51,11 @@ make install
 #
 log "Configuring chruby ..."
 
-config="if [ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ]; then
-	source \"$PREFIX/share/chruby/chruby.sh\"
-	source \"$PREFIX/share/chruby/auto.sh\"
+config="if [ -d "$PREFIX/share/chruby" ]; then
+	if [ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ]; then
+		source \"$PREFIX/share/chruby/chruby.sh\"
+		source \"$PREFIX/share/chruby/auto.sh\"
+	fi
 fi"
 
 if [[ -d /etc/profile.d/ ]]; then
