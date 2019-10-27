@@ -19,18 +19,18 @@ function test_chruby_default_RUBIES()
 		     "${RUBIES[*]}"
 }
 
-function test_chruby_2_2()
+function test_chruby_major_minor()
 {
-	chruby "2.2" >/dev/null
+	chruby "$test_ruby_major_minor" >/dev/null
 
-	assertEquals "did not match 2.2" "$test_ruby_root" "$RUBY_ROOT"
+	assertEquals "did not match $test_ruby_major_minor" "$test_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_multiple_matches()
 {
-	RUBIES=(/path/to/ruby-2.2 "$test_ruby_root")
+	RUBIES=(/path/to/ruby-$test_ruby_major_minor "$test_ruby_root")
 
-	chruby "2.2" >/dev/null
+	chruby "$test_ruby_major_minor" >/dev/null
 
 	assertEquals "did not use the last match" "$test_ruby_root" "$RUBY_ROOT"
 }

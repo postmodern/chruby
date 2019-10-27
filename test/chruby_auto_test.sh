@@ -5,6 +5,7 @@ function setUp()
 {
 	chruby_reset
 	unset RUBY_AUTO_VERSION
+	echo "$test_ruby_engine-$test_ruby_major_minor" > $test_project_dir/.ruby-version
 }
 
 function test_chruby_auto_loaded_in_zsh()
@@ -85,10 +86,13 @@ function test_chruby_auto_enter_subdir_with_ruby_version()
 function test_chruby_auto_modified_ruby_version()
 {
 	cd "$test_project_dir/modified_version" && chruby_auto
-	echo "2.2" > .ruby-version              && chruby_auto
+	echo "$test_ruby_major_minor" > .ruby-version && chruby_auto
 
 	assertEquals "did not detect the modified .ruby-version file" \
 		     "$test_ruby_root" "$RUBY_ROOT"
+
+	# restore original contents
+	echo 2.0.0 > .ruby-version
 }
 
 function test_chruby_auto_overriding_ruby_version()

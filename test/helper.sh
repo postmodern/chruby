@@ -10,7 +10,8 @@ chruby_reset
 
 test_ruby_engine="ruby"
 test_ruby_version="2.2.5"
-test_ruby_api="2.2.0"
+test_ruby_major_minor="${test_ruby_version%.*}"
+test_ruby_api="$test_ruby_major_minor.0"
 test_ruby_root="$PWD/test/opt/rubies/$test_ruby_engine-$test_ruby_version"
 
 test_path="$PATH"
