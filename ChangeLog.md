@@ -1,5 +1,12 @@
 ### 1.0.0
 
+#### Upgrade Notes
+
+* When updating from `chruby` < 1.0 to `chruby` >= 1.0, you will need to
+  re-install your gems because the gem directories will be different. It is also
+  recommended to clean old gem directories which will no longer be used with
+  `rm -rf ~/.gem`.
+
 #### chruby.sh
 
 * Use the installed Ruby directory name for setting `GEM_HOME`. (@eregon)  
@@ -8,10 +15,6 @@
   might compile differently based on build-time flags such as `--enable-shared`.
   This also fixes the bug that the `GEM_HOME` for non-MRI Ruby implementations
   was shared even for different releases.
-
-  In practice, updating `chruby` means you will need to install gems again as
-  the gem directories will be different. It is also recommended to clean old
-  gem directories which will no longer by used with `rm -rf ~/.gem`.
 
 ### 0.3.9 / 2014-11-23
 
