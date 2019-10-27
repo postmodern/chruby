@@ -1,3 +1,18 @@
+### 1.0.0
+
+#### chruby.sh
+
+* Use the installed Ruby directory name for setting `GEM_HOME`. (@eregon)  
+  This guarantees a unique `GEM_HOME` per installed Ruby, even if they have
+  the same `RUBY_VERSION`.  This is important for native extensions, which
+  might compile differently based on build-time flags such as `--enable-shared`.
+  This also fixes the bug that the `GEM_HOME` for non-MRI Ruby implementations
+  was shared even for different releases.
+
+  In practice, updating `chruby` means you will need to install gems again as
+  the gem directories will be different. It is also recommended to clean old
+  gem directories which will no longer by used with `rm -rf ~/.gem`.
+
 ### 0.3.9 / 2014-11-23
 
 #### chruby.sh
