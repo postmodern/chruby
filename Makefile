@@ -44,6 +44,7 @@ clean:
 check:
 	shellcheck share/$(NAME)/*.sh
 
+.PHONY: test/opt/rubies
 test/opt/rubies:
 	./test/setup
 

@@ -68,11 +68,11 @@ function detect_system() {
 				)"
 			elif [[ -f /etc/debian_version ]]; then
 				system_name="debian"
-				system_version="$(awk -F. '{print $1"."$2}' /etc/debian_version)"
+				system_version="$(awk -F. '{print $1}' /etc/debian_version)"
 				system_arch="$( dpkg --print-architecture )"
 			elif [[ -f /etc/os-release ]] && [[ "$(< /etc/os-release)" == *"ID=debian"* ]]; then
 				system_name="debian"
-				system_version="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release | awk -F. '{print $1"."$2}')" #'
+				system_version="$(awk -F'=' '$1=="VERSION_ID"{gsub(/"/,"");print $2}' /etc/os-release | awk -F. '{print $1}')" #'
 				system_arch="$( dpkg --print-architecture )"
 			elif [[ -f /etc/fedora-release ]]; then
 				system_name="fedora"
@@ -160,6 +160,11 @@ test_ruby_root="$test_ruby_engine-$test_ruby_version"
 
 mkdir -p "$PREFIX/opt/rubies"
 cd "$PREFIX/opt/rubies"
+
+if [[ -d "$test_ruby_root" ]] && ! [[ -e "$test_ruby_archive" ]]; then
+    log "$test_ruby_root already extracted and cleaned up."
+    exit
+fi
 
 log "Downloading $test_ruby_url ..."
 download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
