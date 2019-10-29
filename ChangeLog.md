@@ -4,8 +4,11 @@
 
 * When updating from `chruby` < 1.0 to `chruby` >= 1.0, you will need to
   re-install your gems because the gem directories will be different. It is also
-  recommended to clean old gem directories which will no longer be used with
-  `rm -rf ~/.gem`.
+  recommended to clean old gem directories under `~/.gem` which will no longer
+  be used to save disk space. If you only ever installed gems with `chruby` then
+  a straightforward `rm -rf ~/.gem` should be fine. Otherwise, look at
+  directories under `~/.gem` and if they look like
+  `~/.gem/$ruby_engine/$ruby_version` they are most likely from chruby.
 
 #### chruby.sh
 
