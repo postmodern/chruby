@@ -9,8 +9,8 @@ Changes the current Ruby.
 * Updates `$PATH`.
   * Also adds RubyGems `bin/` directories to `$PATH`.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
-  * Users: gems are installed into `~/.gem/$(basename /path/to/$ruby)`.
-  * Root: gems are installed directly into `/path/to/$ruby/$gemdir`.
+  * Users: gems are installed into `~/.gem/$ruby_name` (e.g., `~/.gem/ruby-2.6.3` for `~/.rubies/ruby-2.6.3`).
+  * Root: gems are installed directly into `$ruby_install_dir/$gemdir` (the default).
 * Additionally sets `$RUBY_ROOT`, `$RUBY_ENGINE`, `$RUBY_VERSION` and
   `$GEM_ROOT`.
 * Optionally sets `$RUBYOPT` if second argument is given.
@@ -217,7 +217,7 @@ If you have enabled auto-switching, simply create a `.ruby-version` file:
 ### RubyGems
 
 Gems installed as a non-root user via `gem install` will be installed into
-`~/.gem/$(basename /path/to/$ruby)`.  By default, RubyGems will use the
+`~/.gem/$ruby_name`.  By default, RubyGems will use the
 absolute path to the currently selected ruby for the shebang of any binstubs it
 generates.  In some cases, this path may contain extra version information (e.g.
 `ruby-2.0.0-p451`).  To mitigate potential problems when removing rubies, you
