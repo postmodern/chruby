@@ -155,7 +155,7 @@ detect_system || fail "Cannot auto-detect system type"
 [[ "$system_arch" == "unknown"    ]] && fail "Could not detect system arch"
 
 test_ruby_archive="${test_ruby_engine}-${test_ruby_version}.tar.bz2"
-test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
+test_ruby_url="http://rubies.travis-ci.org/$system_name/$system_version/$system_arch/$test_ruby_archive"
 test_ruby_root="$test_ruby_engine-$test_ruby_version"
 
 mkdir -p "$PREFIX/opt/rubies"
