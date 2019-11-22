@@ -50,7 +50,7 @@ Switch back to system Ruby:
 Switch to an arbitrary Ruby on the fly:
     $ chruby_use /path/to/ruby
 
-##FILES
+## FILES
 
 */opt/rubies*
     Primary default Ruby install location.
@@ -64,7 +64,7 @@ Switch to an arbitrary Ruby on the fly:
 *~/.gem/$ruby/$version*
     Default gem install location.
 
-##ENVIRONMENT
+## ENVIRONMENT
 
 *PATH*
     Updates the PATH environment variable to include Rubies and RubyGems bin/ directories.
@@ -88,8 +88,8 @@ Switch to an arbitrary Ruby on the fly:
 *RUBYOPT*
     Optionally set if additional Ruby options are given.
 
-##AUTHOR
+## AUTHOR
 Postmodern [postmodern.mod3\@gmail.com](mailto:postmodern.mod3\@gmail.com).
 
-##SEE ALSO
+## SEE ALSO
 chruby-exec(1), ruby(1), gem(1)
