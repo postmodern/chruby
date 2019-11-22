@@ -5,7 +5,12 @@ function setUp()
 {
 	chruby_reset
 	unset RUBY_AUTO_VERSION
-	echo "$test_ruby_engine-$test_ruby_major_minor" > $test_project_dir/.ruby-version
+	echo "$test_ruby_engine-$test_ruby_major_minor" > "$test_project_dir/.ruby-version"
+}
+
+function tearDown()
+{
+	rm "$test_project_dir/.ruby-version"
 }
 
 function test_chruby_auto_loaded_in_zsh()

@@ -4,4 +4,3 @@
 /pkg/*.zip
 /test/opt/rubies
 /test/home/.zcompdump
-/test/project/.ruby-version
