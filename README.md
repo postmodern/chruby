@@ -9,8 +9,8 @@ Changes the current Ruby.
 * Updates `$PATH`.
   * Also adds RubyGems `bin/` directories to `$PATH`.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
-  * Users: gems are installed into `~/.gem/$ruby/$version`.
-  * Root: gems are installed directly into `/path/to/$ruby/$gemdir`.
+  * Users: gems are installed into `~/.gem/$ruby_name` (e.g., `~/.gem/ruby-2.6.3` for `~/.rubies/ruby-2.6.3`).
+  * Root: gems are installed directly into `$ruby_install_dir/$gemdir` (the default).
 * Additionally sets `$RUBY_ROOT`, `$RUBY_ENGINE`, `$RUBY_VERSION` and
   `$GEM_ROOT`.
 * Optionally sets `$RUBYOPT` if second argument is given.
@@ -218,13 +218,13 @@ If you have enabled auto-switching, simply create a `.ruby-version` file:
 ### RubyGems
 
 Gems installed as a non-root user via `gem install` will be installed into
-`~/.gem/$ruby/X.Y.Z`.  By default, RubyGems will use the absolute path to the
-currently selected ruby for the shebang of any binstubs it generates.  In some
-cases, this path may contain extra version information (e.g.
+`~/.gem/$ruby_name`.  By default, RubyGems will use the
+absolute path to the currently selected ruby for the shebang of any binstubs it
+generates.  In some cases, this path may contain extra version information (e.g.
 `ruby-2.0.0-p451`).  To mitigate potential problems when removing rubies, you
 can force RubyGems to generate binstubs with shebangs that will search for
 ruby in your `$PATH` by using `gem install --env-shebang` (or the equivalent
-short option `-E`).  This parameter can also be added to your gemrc file.
+short option `-E`).  This parameter can also be added to your `.gemrc` file.
 
 ### Integration
 
@@ -269,7 +269,7 @@ Select a Ruby:
         - ruby
         - x86_64-linux
       - GEM PATHS:
-         - /home/hal/.gem/ruby/1.9.3
+         - /home/hal/.gem/ruby-1.9.3-p392
          - /opt/rubies/ruby-1.9.3-p392/lib/ruby/gems/1.9.1
       - GEM CONFIGURATION:
          - :update_sources => true
