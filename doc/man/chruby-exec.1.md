@@ -31,7 +31,7 @@ Run a command with the selected Ruby version by correctly setting the appropriat
 Run the command `gem update` under JRuby:
     $ chruby-exec jruby -- gem update
 
-##FILES
+## FILES
 
 */opt/rubies*
     Primary default Ruby install location.
@@ -45,7 +45,7 @@ Run the command `gem update` under JRuby:
 *~/.gem/$ruby/$version*
     Default gem install location.
 
-##ENVIRONMENT
+## ENVIRONMENT
 
 *PATH*
     Updates the PATH environment variable to include Rubies and RubyGems bin/ directories.
@@ -69,8 +69,8 @@ Run the command `gem update` under JRuby:
 *RUBYOPT*
     Optionally set if additional Ruby options are given.
 
-##AUTHOR
+## AUTHOR
 Postmodern [postmodern.mod3\@gmail.com](mailto:postmodern.mod3\@gmail.com).
 
-##SEE ALSO
+## SEE ALSO
 chruby(1), ruby(1), gem(1)
