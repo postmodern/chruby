@@ -1,3 +1,22 @@
+### 1.0.0
+
+#### Upgrade Notes
+
+* When updating from `chruby` < 1.0 to `chruby` >= 1.0, you will need to
+  re-install your gems because the gem directories will be different. It is also
+  recommended to clean old gem directories under `~/.gem` which will no longer
+  be used to save disk space. To remove them, you can use
+  `rm -rf ~/.gem/{ruby,jruby,rbx,truffleruby}/[0-9].[0-9].[0-9]`
+
+#### chruby.sh
+
+* Use the installed Ruby directory name for setting `GEM_HOME`. (@eregon)  
+  This guarantees a unique `GEM_HOME` per installed Ruby, even if they have
+  the same `RUBY_VERSION`.  This is important for native extensions, which
+  might compile differently based on build-time flags such as `--enable-shared`.
+  This also fixes the bug that the `GEM_HOME` for non-MRI Ruby implementations
+  was shared even for different releases.
+
 ### 0.3.9 / 2014-11-23
 
 #### chruby.sh
