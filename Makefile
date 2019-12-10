@@ -14,7 +14,7 @@ PKG=$(PKG_DIR)/$(PKG_NAME).tar.gz
 SIG=$(PKG).asc
 
 PREFIX?=/usr/local
-SHARE_DIR=$(PREFIX)/share
+SHARE_DIR=share
 DOC_DIR=$(SHARE_DIR)/doc/$(PKG_NAME)
 
 all:
@@ -66,12 +66,12 @@ rpm:
 install:
 	for dir in $(INSTALL_DIRS); do mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in $(INSTALL_FILES); do cp $$file $(DESTDIR)$(PREFIX)/$$file; done
-	mkdir -p $(DESTDIR)$(DOC_DIR)
-	cp -r $(DOC_FILES) $(DESTDIR)$(DOC_DIR)/
+	mkdir -p $(DESTDIR)$(PREFIX)/$(DOC_DIR)
+	cp -r $(DOC_FILES) $(DESTDIR)$(PREFIX)/$(DOC_DIR)/
 
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(DESTDIR)$(PREFIX)/$$file; done
-	rm -rf $(DESTDIR)$(DOC_DIR)
-	rmdir $(DESTDIR)$(SHARE_DIR)
+	rm -rf $(DESTDIR)$(PREFIX)/$(DOC_DIR)
+	rmdir $(DESTDIR)$(PREFIX)/$(SHARE_DIR)
 
 .PHONY: build download sign verify clean check test tag release rpm install uninstall all

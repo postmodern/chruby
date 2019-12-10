@@ -1,8 +1,11 @@
 sudo: false
 
-os:
-  - linux
-  - osx
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+    - os: osx
+      osx_image: xcode9.2
 
 language: c
 
@@ -17,7 +20,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install shunit2 bash; fi
 
 before_script:
-  - rm -rf $HOME/.rvm $HOME/.rvmrc
+  - sudo rm -rf $HOME/.rvm $HOME/.rvmrc
   - __rvm_unload
   - export SHUNIT2="$(command -v shunit2 2>/dev/null)"
 
