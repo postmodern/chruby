@@ -75,7 +75,7 @@ chruby is already included in the [AUR]:
 
 ### Fedora Linux
 
-chruby is available as an rpm on [Fedora Copr](https://copr.fedorainfracloud.org/coprs/postmodern/chruby/).
+chruby is available as an rpm on [Fedora Copr](https://copr.fedorainfracloud.org/coprs/duritong/chruby/).
     
 ### FreeBSD
 
