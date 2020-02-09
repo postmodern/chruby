@@ -34,7 +34,7 @@ function chruby_reset()
 	PATH=":$PATH:"; PATH="${PATH//:$RUBY_ROOT\/bin:/:}"
 	[[ -n "$GEM_ROOT" ]] && PATH="${PATH//:$GEM_ROOT\/bin:/:}"
 
-	if (( UID != 0 )); then
+	if [[ ! -w "$GEM_ROOT" ]]; then
 		[[ -n "$GEM_HOME" ]] && PATH="${PATH//:$GEM_HOME\/bin:/:}"
 
 		GEM_PATH=":$GEM_PATH:"
@@ -74,7 +74,7 @@ EOF
 )"
 	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
-	if (( UID != 0 )); then
+	if [[ ! -w "$GEM_ROOT" ]]; then
 		export GEM_HOME="$HOME/.gem/rubies/${RUBY_ROOT##*/}"
 		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
 		export PATH="$GEM_HOME/bin:$PATH"
