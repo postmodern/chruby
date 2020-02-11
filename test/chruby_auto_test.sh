@@ -50,7 +50,7 @@ function test_chruby_auto_loaded_twice()
 
 function test_chruby_auto_enter_project_dir()
 {
-	cd "$test_project_dir" && chruby_auto
+	cd "$ruby_version_fixtures" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -58,7 +58,7 @@ function test_chruby_auto_enter_project_dir()
 
 function test_chruby_auto_enter_subdir_directly()
 {
-	cd "$test_project_dir/sub_dir" && chruby_auto
+	cd "$ruby_version_fixtures/sub_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when directly entering a sub-directory of a versioned directory" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -66,8 +66,8 @@ function test_chruby_auto_enter_subdir_directly()
 
 function test_chruby_auto_enter_subdir()
 {
-	cd "$test_project_dir" && chruby_auto
-	cd sub_dir             && chruby_auto
+	cd "$ruby_version_fixtures" && chruby_auto
+	cd sub_dir                  && chruby_auto
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -75,8 +75,8 @@ function test_chruby_auto_enter_subdir()
 
 function test_chruby_auto_enter_subdir_with_ruby_version()
 {
-	cd "$test_project_dir"    && chruby_auto
-	cd sub_versioned/         && chruby_auto
+	cd "$ruby_version_fixtures"    && chruby_auto
+	cd sub_versioned/              && chruby_auto
 
 	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
 		   "$RUBY_ROOT"
@@ -84,8 +84,12 @@ function test_chruby_auto_enter_subdir_with_ruby_version()
 
 function test_chruby_auto_modified_ruby_version()
 {
-	cd "$test_project_dir/modified_version" && chruby_auto
-	echo "2.2" > .ruby-version              && chruby_auto
+	cd "$ruby_version_fixtures/modified_version"  && chruby_auto
+
+	cat > .ruby-version <<EOF
+$test_ruby_version
+EOF
+	chruby_auto
 
 	assertEquals "did not detect the modified .ruby-version file" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -93,16 +97,16 @@ function test_chruby_auto_modified_ruby_version()
 
 function test_chruby_auto_overriding_ruby_version()
 {
-	cd "$test_project_dir" && chruby_auto
-	chruby system          && chruby_auto
+	cd "$ruby_version_fixtures" && chruby_auto
+	chruby system               && chruby_auto
 
 	assertNull "did not override the Ruby set in .ruby-version" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_leave_project_dir()
 {
-	cd "$test_project_dir"    && chruby_auto
-	cd "$test_project_dir/.." && chruby_auto
+	cd "$ruby_version_fixtures"    && chruby_auto
+	cd "$ruby_version_fixtures/.." && chruby_auto
 
 	assertNull "did not reset the Ruby when leaving a versioned directory" \
 		   "$RUBY_ROOT"
@@ -110,10 +114,10 @@ function test_chruby_auto_leave_project_dir()
 
 function test_chruby_auto_invalid_ruby_version()
 {
-	local expected_auto_version="$(cat $test_project_dir/bad/.ruby-version)"
+	local expected_auto_version="$(cat "$ruby_version_fixtures/bad/.ruby-version")"
 
-	cd "$test_project_dir" && chruby_auto
-	cd bad/                && chruby_auto 2>/dev/null
+	cd "$ruby_version_fixtures" && chruby_auto
+	cd bad/                     && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$test_ruby_root" "$RUBY_ROOT"

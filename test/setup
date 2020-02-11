@@ -149,6 +149,11 @@ function detect_system() {
 	system_arch="${system_arch/i[123456789]86/i386}"
 }
 
+if [[ -x "${test_ruby_root}/bin/ruby" ]]; then
+	exit
+fi
+
+
 detect_system || fail "Cannot auto-detect system type"
 [[ "$system_name" == "unknown"    ]] && fail "Could not detect system name"
 [[ "$system_version" == "unknown" ]] && fail "Could not detect system version"
@@ -156,10 +161,10 @@ detect_system || fail "Cannot auto-detect system type"
 
 test_ruby_archive="${test_ruby_engine}-${test_ruby_version}.tar.bz2"
 test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
-test_ruby_root="$test_ruby_engine-$test_ruby_version"
+test_ruby_dirname="$test_ruby_engine-$test_ruby_version"
 
-mkdir -p "$PREFIX/opt/rubies"
-cd "$PREFIX/opt/rubies"
+mkdir -p "$PWD/test/fixtures/opt/rubies"
+cd "$PWD/test/fixtures/opt/rubies"
 
 log "Downloading $test_ruby_url ..."
 download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"
