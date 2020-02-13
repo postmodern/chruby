@@ -1,6 +1,11 @@
 . ./share/chruby/auto.sh
 . ./test/helper.sh
 
+function oneTimeSetUp()
+{
+	generate_ruby_version_fixtures
+}
+
 function setUp()
 {
 	chruby_reset
