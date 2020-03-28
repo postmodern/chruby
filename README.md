@@ -8,11 +8,10 @@ Changes the current Ruby.
 
 * Updates `$PATH`.
   * Also adds RubyGems `bin/` directories to `$PATH`.
-* Correctly sets `$GEM_HOME` and `$GEM_PATH`.
-  * Users: gems are installed into `~/.gem/$ruby_name` (e.g., `~/.gem/ruby-2.6.3` for `~/.rubies/ruby-2.6.3`).
-  * Root: gems are installed directly into `$ruby_install_dir/$gemdir` (the default).
-* Additionally sets `$RUBY_ROOT`, `$RUBY_ENGINE`, `$RUBY_VERSION` and
-  `$GEM_ROOT`.
+* Sets `$GEM_HOME` and `$GEM_PATH` only if needed:
+  * When the default gem directory is writable: gems are installed directly into it (`$GEM_HOME`/`$GEM_PATH` are not set).
+  * When it is not writable: gems are installed into `~/.gem/$ruby_name` (e.g., `~/.gem/ruby-2.6.5` for `~/.rubies/ruby-2.6.5`).
+* Additionally sets `$RUBY_ROOT`, `$RUBY_ENGINE`, `$RUBY_VERSION` and `$GEM_ROOT`.
 * Optionally sets `$RUBYOPT` if second argument is given.
 * Calls `hash -r` to clear the command-lookup hash-table.
 * Fuzzy matching of Rubies by name.
