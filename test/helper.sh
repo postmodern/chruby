@@ -18,12 +18,14 @@ if [[ "$(basename "$0")" != "setup" && ! -d "$test_ruby_root" ]]; then
 	exit 2
 fi
 
-test_path="$PATH"
 test_gem_home="$HOME/.gem/$test_ruby_engine/$test_ruby_version"
 test_gem_root="$test_ruby_root/lib/ruby/gems/$test_ruby_api"
 
 . ./share/chruby/chruby.sh
 chruby_reset
+
+# Capture the PATH after chruby_reset
+test_path="$PATH"
 
 setUp() { return; }
 tearDown() { return; }
