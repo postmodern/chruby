@@ -2,42 +2,34 @@
 
 function setUp()
 {
+	chmod u-w "$test_gem_root"
 	chruby_use "$test_ruby_root" >/dev/null
 
 	export PATH="$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin:$test_path"
 }
 
+function tearDown()
+{
+	chmod u+w "$test_gem_root"
+}
+
 function test_chruby_reset_hash_table()
 {
-	if [[ -n "$BASH_VERSION" ]]; then
-		assertEquals "did not clear the path table" \
-			     "hash: hash table empty" "$(hash)"
-	elif [[ -n "$ZSH_VERSION" ]]; then
-		assertEquals "did not clear the path table" \
-			     "" "$(hash)"
-	fi
+	chruby_reset
+	assertClearPathTable
 }
 
 function test_chruby_reset_env_variables()
 {
 	chruby_reset
-
-	assertNull "RUBY_ROOT was not unset"     "$RUBY_ROOT"
-	assertNull "RUBY_ENGINE was not unset"   "$RUBY_ENGINE"
-	assertNull "RUBY_VERSION was not unset"  "$RUBY_VERSION"
-	assertNull "RUBYOPT was not unset"       "$RUBYOPT"
-	assertNull "GEM_HOME was not unset"      "$GEM_HOME"
-	assertNull "GEM_PATH was not unset"      "$GEM_PATH"
-
+	assertAllUnset
 	assertEquals "PATH was not sanitized"    "$test_path" "$PATH"
 }
 
 function test_chruby_reset_duplicate_path()
 {
 	export PATH="$PATH:$GEM_HOME/bin:$GEM_ROOT/bin:$RUBY_ROOT/bin"
-
 	chruby_reset
-
 	assertEquals "PATH was not sanitized"    "$test_path" "$PATH"
 }
 

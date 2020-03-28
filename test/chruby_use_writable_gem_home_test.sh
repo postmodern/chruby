@@ -2,26 +2,17 @@
 
 function setUp()
 {
-	chmod u-w "$test_gem_root"
-	chruby_use "$test_ruby_root" >/dev/null
+	chruby_use $test_ruby_root >/dev/null
 }
 
 function tearDown()
 {
 	chruby_reset
-	chmod u+w "$test_gem_root"
 }
 
 function test_chruby_clears_hash_table()
 {
 	assertClearPathTable
-}
-
-function test_chruby_use_with_invalid_ruby_path()
-{
-	chruby_use "/path/to/fake/ruby" 2>/dev/null
-
-	assertEquals "did not return an error code" 1 $?
 }
 
 function test_chruby_use_env_variables()
@@ -30,9 +21,9 @@ function test_chruby_use_env_variables()
 	assertEquals "invalid RUBY_ENGINE"  "$test_ruby_engine" "$RUBY_ENGINE"
 	assertEquals "invalid RUBY_VERSION" "$test_ruby_version" "$RUBY_VERSION"
 	assertEquals "invalid GEM_ROOT"     "$test_ruby_root/lib/ruby/gems/$test_ruby_api" "$GEM_ROOT"
-	assertEquals "invalid GEM_HOME"     "$test_gem_home" "$GEM_HOME"
-	assertEquals "invalid GEM_PATH"     "$GEM_HOME:$GEM_ROOT" "$GEM_PATH"
-	assertEquals "invalid PATH"         "$test_gem_home/bin:$test_gem_root/bin:$test_ruby_root/bin:$__shunit_tmpDir:$test_path" "$PATH"
+	assertNull "GEM_HOME should not be set" "$GEM_HOME"
+	assertNull "GEM_PATH should not be set" "$GEM_PATH"
+	assertEquals "invalid PATH"         "$test_gem_root/bin:$test_ruby_root/bin:$__shunit_tmpDir:$test_path" "$PATH"
 
 	assertEquals "could not find ruby in $PATH" \
 		     "$test_ruby_root/bin/ruby" \

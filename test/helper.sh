@@ -31,3 +31,22 @@ test_path="$PATH"
 setUp() { return; }
 tearDown() { return; }
 oneTimeTearDown() { return; }
+
+function assertClearPathTable() {
+	if [[ -n "$BASH_VERSION" ]]; then
+		assertEquals "did not clear the path table" \
+			     "hash: hash table empty" "$(hash)"
+	elif [[ -n "$ZSH_VERSION" ]]; then
+		assertEquals "did not clear the path table" \
+			     "" "$(hash)"
+	fi
+}
+
+function assertAllUnset() {
+	assertNull "RUBY_ROOT was not unset"     "$RUBY_ROOT"
+	assertNull "RUBY_ENGINE was not unset"   "$RUBY_ENGINE"
+	assertNull "RUBY_VERSION was not unset"  "$RUBY_VERSION"
+	assertNull "RUBYOPT was not unset"       "$RUBYOPT"
+	assertNull "GEM_HOME was not unset"      "$GEM_HOME"
+	assertNull "GEM_PATH was not unset"      "$GEM_PATH"
+}
