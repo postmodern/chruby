@@ -15,9 +15,9 @@ addons:
       - ruby
       - shunit2
       - zsh
-
-install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then HOMEBREW_NO_AUTO_UPDATE=1 brew install shunit2 bash; fi
+  homebrew:
+    packages:
+      - shunit2
 
 before_script:
   - sudo rm -rf $HOME/.rvm $HOME/.rvmrc
