@@ -38,16 +38,16 @@ verify: $(PKG) $(SIG)
 	gpg --verify $(SIG) $(PKG)
 
 clean:
-	rm -rf test/opt/rubies
+	rm -rf test/fixtures/opt/rubies
 	rm -f $(PKG) $(SIG)
 
 check:
 	shellcheck share/$(NAME)/*.sh
 
-test/opt/rubies:
+test/fixtures/opt/rubies:
 	./test/setup
 
-test: test/opt/rubies
+test: test/fixtures/opt/rubies
 	SHELL=`command -v bash` ./test/runner
 	SHELL=`command -v zsh`  ./test/runner
 
