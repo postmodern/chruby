@@ -232,47 +232,55 @@ For instructions on using chruby with other tools, please see the [wiki]:
 List available Rubies:
 
     $ chruby
-       ruby-1.9.3-p392
-       jruby-1.7.0
-       rubinius-2.0.0-rc1
+       ruby-2.6.6
+       jruby-9.2.11.0
+       truffleruby-20.0.0
 
 Select a Ruby:
 
-    $ chruby 1.9.3
+    $ chruby 2.6.6
     $ chruby
-     * ruby-1.9.3-p392
-       jruby-1.7.0
-       rubinius-2.0.0-rc1
+     * ruby-2.6.6
+       jruby-9.2.11.0
+       truffleruby-20.0.0
     $ echo $PATH
-    /home/hal/.gem/ruby/1.9.3/bin:/opt/rubies/ruby-1.9.3-p392/lib/ruby/gems/1.9.1/bin:/opt/rubies/ruby-1.9.3-p392/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/hal/bin:/home/hal/bin
+    /home/hal/.rubies/ruby-2.6.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hal/bin
     $ gem env
     RubyGems Environment:
-      - RUBYGEMS VERSION: 1.8.23
-      - RUBY VERSION: 1.9.3 (2013-02-22 patchlevel 392) [x86_64-linux]
-      - INSTALLATION DIRECTORY: /home/hal/.gem/ruby/1.9.3
-      - RUBY EXECUTABLE: /opt/rubies/ruby-1.9.3-p392/bin/ruby
-      - EXECUTABLE DIRECTORY: /home/hal/.gem/ruby/1.9.3/bin
+      - RUBYGEMS VERSION: 3.0.3
+      - RUBY VERSION: 2.6.6 (2020-03-31 patchlevel 146) [x86_64-linux]
+      - INSTALLATION DIRECTORY: /home/hal/.rubies/ruby-2.6.6/lib/ruby/gems/2.6.0
+      - USER INSTALLATION DIRECTORY: /home/hal/.gem/ruby/2.6.0
+      - RUBY EXECUTABLE: /home/hal/.rubies/ruby-2.6.6/bin/ruby
+      - GIT EXECUTABLE: /usr/bin/git
+      - EXECUTABLE DIRECTORY: /home/hal/.rubies/ruby-2.6.6/bin
+      - SPEC CACHE DIRECTORY: /home/hal/.gem/specs
+      - SYSTEM CONFIGURATION DIRECTORY: /home/hal/.rubies/ruby-2.6.6/etc
       - RUBYGEMS PLATFORMS:
         - ruby
         - x86_64-linux
       - GEM PATHS:
-         - /home/hal/.gem/ruby-1.9.3-p392
-         - /opt/rubies/ruby-1.9.3-p392/lib/ruby/gems/1.9.1
+         - /home/hal/.rubies/ruby-2.6.6/lib/ruby/gems/2.6.0
+         - /home/hal/.gem/ruby/2.6.0
       - GEM CONFIGURATION:
          - :update_sources => true
          - :verbose => true
-         - :benchmark => false
          - :backtrace => false
          - :bulk_threshold => 1000
-         - "gem" => "--no-rdoc"
+         - "gem" => "--no-document"
       - REMOTE SOURCES:
-         - http://rubygems.org/
+         - https://rubygems.org/
 
-Switch to JRuby in 1.9 mode:
 
-    $ chruby jruby --1.9
+Switch to JRuby in `--dev` mode:
+
+    $ chruby jruby --dev
+    $ chruby
+       ruby-2.6.6
+     * jruby-9.2.11.0 --dev
+       truffleruby-20.0.0
     $ ruby -v
-    jruby 1.7.0 (1.9.3p203) 2012-10-22 ff1ebbe on OpenJDK 64-Bit Server VM 1.7.0_09-icedtea-mockbuild_2012_10_17_15_53-b00 [linux-amd64]
+    jruby 9.2.11.0 (2.5.7) 2020-03-02 612d7a05a6 OpenJDK 64-Bit Server VM ... +jit [linux-x86_64]
 
 Switch back to system Ruby:
 
