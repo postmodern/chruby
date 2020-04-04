@@ -10,6 +10,11 @@
 
 #### chruby.sh
 
+* Only set `GEM_HOME` if needed, that is if `Gem.default_dir` is not writable. (@eregon)  
+  This means the default gem home is used if writable and the Ruby installation
+  contains its gems. Deleting that Ruby will therefore automatically remove the
+  related gems as well. This also avoids gem sharing issues when executing
+  another Ruby directly without changing to it with `chruby` first.
 * Use the installed Ruby directory name for setting `GEM_HOME`. (@eregon)  
   This guarantees a unique `GEM_HOME` per installed Ruby, even if they have
   the same `RUBY_VERSION`.  This is important for native extensions, which
