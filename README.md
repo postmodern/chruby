@@ -124,7 +124,7 @@ Add the following to the `~/.bashrc` or `~/.zshrc` file:
 source /usr/local/share/chruby/chruby.sh
 ```
 
-*Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
+*Note:* OS X does not automatically execute `~/.bashrc`, instead try adding to `~/.bash_profile` or `/etc/bashrc`.
 
 ### System Wide
 
