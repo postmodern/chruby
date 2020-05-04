@@ -39,7 +39,13 @@ shell_opts=("-l")
 
 source_command="command -v chruby >/dev/null || source $chruby_sh"
 chruby_command="chruby $(printf "%q " "${argv[@]}")"
+
+# Safeguard against bash changing directories in /etc/profile (or other init
+# files):
+cwd="$(pwd)"
+cd_command="$(printf 'cd -- %q ' "$cwd")"
+
 sub_command="$(printf "%q " "$@")"
-command="$source_command; $chruby_command && exec $sub_command"
+command="$source_command; $chruby_command && $cd_command && exec $sub_command"
 
 exec "$SHELL" "${shell_opts[@]}" -c "$command"
