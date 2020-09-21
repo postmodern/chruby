@@ -36,6 +36,8 @@ Changes the current Ruby.
 
 ## Install
 
+Ensure you have wget, tar and make commands installed first and run following:
+
     wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
     tar -xzvf chruby-0.3.9.tar.gz
     cd chruby-0.3.9/
