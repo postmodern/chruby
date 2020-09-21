@@ -6,6 +6,21 @@ for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 done
 unset dir
 
+function chruby_find()
+{
+	local dir ruby match
+
+	for dir in "${RUBIES[@]}"; do
+		dir="${dir%%/}"; ruby="${dir##*/}"
+		case "$ruby" in
+			"$1")	match="$dir" && break ;;
+			*"$1"*)	match="$dir" ;;
+		esac
+	done
+
+	echo "$match"
+}
+
 function chruby_reset()
 {
 	[[ -z "$RUBY_ROOT" ]] && return
@@ -83,14 +98,7 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			local dir ruby match
-			for dir in "${RUBIES[@]}"; do
-				dir="${dir%%/}"; ruby="${dir##*/}"
-				case "$ruby" in
-					"$1")	match="$dir" && break ;;
-					*"$1"*)	match="$dir" ;;
-				esac
-			done
+			local match="$(chruby_find "$1")"
 
 			if [[ -z "$match" ]]; then
 				echo "chruby: unknown Ruby: $1" >&2
