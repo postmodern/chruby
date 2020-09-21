@@ -6,6 +6,15 @@ for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 done
 unset dir
 
+function chruby_list()
+{
+	local dir
+
+	for dir in "${RUBIES[@]}"; do
+		echo "$dir"
+	done
+}
+
 function chruby_find()
 {
 	local dir ruby match
@@ -86,15 +95,14 @@ function chruby()
 			;;
 		"")
 			local dir ruby
-			for dir in "${RUBIES[@]}"; do
+			while IFS= read dir; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
 					echo " * ${ruby} ${RUBYOPT}"
 				else
 					echo "   ${ruby}"
 				fi
-
-			done
+			done <<< $(chruby_list)
 			;;
 		system) chruby_reset ;;
 		*)
