@@ -6,7 +6,7 @@ function chruby_init()
 
 	CHRUBY_RUBIES=()
 	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-		if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
+		if [[ -d "$dir" ]] && [[ -n "$(ls -A "$dir")" ]]; then
 			CHRUBY_RUBIES+=("$dir"/*)
 		fi
 	done
@@ -62,14 +62,16 @@ function chruby_reset()
 
 function chruby_use()
 {
-	if [[ ! -x "$1/bin/ruby" ]]; then
-		echo "chruby: $1/bin/ruby not executable" >&2
+	local ruby_dir="$1"
+
+	if [[ ! -x "$ruby_dir/bin/ruby" ]]; then
+		echo "chruby: $ruby_dir/bin/ruby not executable" >&2
 		return 1
 	fi
 
 	[[ -n "$RUBY_ROOT" ]] && chruby_reset
 
-	export RUBY_ROOT="$1"
+	export RUBY_ROOT="$ruby_dir"
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
 
@@ -113,15 +115,16 @@ function chruby()
 			;;
 		system) chruby_reset ;;
 		*)
-			local match="$(chruby_find "$1")"
+			local ruby="$1"
+			local ruby_dir="$(chruby_find "$ruby")"
 
-			if [[ -z "$match" ]]; then
-				echo "chruby: unknown Ruby: $1" >&2
+			if [[ -z "$ruby_dir" ]]; then
+				echo "chruby: unknown Ruby: $ruby" >&2
 				return 1
 			fi
 
 			shift
-			chruby_use "$match" "$*"
+			chruby_use "$ruby_dir" "$*"
 			;;
 	esac
 }
