@@ -92,11 +92,12 @@ function chruby()
 {
 	case "$1" in
 		-h|--help)
-			echo "usage: chruby [RUBY|VERSION|system] [RUBYOPT...]"
+			echo "usage: chruby [--reload | RUBY|VERSION|system [RUBYOPT...]]"
 			;;
 		-V|--version)
 			echo "chruby: $CHRUBY_VERSION"
 			;;
+		--reload) chruby_init ;;
 		"")
 			local dir ruby
 			while IFS= read dir; do
