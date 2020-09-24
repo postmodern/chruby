@@ -80,6 +80,15 @@ function test_chruby_reload()
 		     "$test_ruby_root" "${RUBIES[0]}"
 }
 
+function test_chruby_help()
+{
+	local usage="usage: chruby [--reload | RUBY|VERSION [RUBYOPT...] | system]"
+	local output="$(chruby --help)"
+
+	assertEquals "did not output the chruby usage string" \
+		     "$usage" "$output"
+}
+
 function test_chruby_version()
 {
 	local output="$(chruby --version)"
