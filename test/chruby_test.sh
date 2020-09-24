@@ -5,13 +5,6 @@ function setUp()
 	original_rubies=("${RUBIES[@]}")
 }
 
-function tearDown()
-{
-	chruby_reset
-
-	RUBIES=("${original_rubies[@]}")
-}
-
 function test_chruby_list_rubies()
 {
 	local expected="   ${test_ruby_engine}-${test_ruby_version}"
@@ -105,6 +98,13 @@ function test_chruby_reload()
 	assertEquals "did not re-populate RUBIES" 1 ${#RUBIES[@]}
 	assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
 		     "$test_ruby_root" "${RUBIES[0]}"
+}
+
+function tearDown()
+{
+	chruby_reset
+
+	RUBIES=("${original_rubies[@]}")
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
