@@ -1,10 +1,14 @@
 CHRUBY_VERSION="1.0.0"
-RUBIES=()
 
-for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
-done
-unset dir
+function chruby_init()
+{
+	local dir
+
+	RUBIES=()
+	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
+		[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+	done
+}
 
 function chruby_rubies()
 {
@@ -118,3 +122,5 @@ function chruby()
 			;;
 	esac
 }
+
+chruby_init
