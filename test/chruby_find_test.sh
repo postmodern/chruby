@@ -5,7 +5,7 @@ function setUp()
 	test_ruby_path1="/path/to/ruby1"
 	test_ruby_path2="/path/to/ruby2"
 
-	RUBIES=("$test_ruby_path1" "$test_ruby_path2")
+	CHRUBY_RUBIES=("$test_ruby_path1" "$test_ruby_path2")
 }
 
 function test_chruby_find_with_exact_name()
@@ -19,7 +19,7 @@ function test_chruby_find_with_exact_name()
 
 function test_chruby_find_with_exact_name_but_there_are_multiple_matches()
 {
-	RUBIES=(
+	CHRUBY_RUBIES=(
 		"$test_ruby_path1"
 		"${test_ruby_path1}-foo"
 		"$test_ruby_path2"
