@@ -25,7 +25,7 @@ function test_chruby_list_rubies_when_a_ruby_is_active()
 		     "$expected" "$output"
 }
 
-function test_chruby_list_RUBIES_when_one_contains_a_space()
+function test_chruby_list_rubies_when_one_contains_a_space()
 {
 	local ruby_name="ruby"
 	local path_with_spaces="/path/with spaces/$ruby_name"
@@ -37,14 +37,14 @@ function test_chruby_list_RUBIES_when_one_contains_a_space()
 		     "   $ruby_name" "$output"
 }
 
-function test_chruby_X_Y()
+function test_chruby_with_X_Y()
 {
 	chruby "$test_ruby_version_x_y" >/dev/null
 
 	assertEquals "did not match $test_ruby_version_x_y" "$test_ruby_root" "$RUBY_ROOT"
 }
 
-function test_chruby_system()
+function test_chruby_with_system()
 {
 	chruby "$test_ruby_version" >/dev/null
 	chruby system
@@ -52,14 +52,14 @@ function test_chruby_system()
 	assertNull "did not reset the Ruby" "$RUBY_ROOT"
 }
 
-function test_chruby_unknown()
+function test_chruby_with_unknown_ruby()
 {
 	chruby "does_not_exist" 2>/dev/null
 
 	assertEquals "did not return 1" 1 $?
 }
 
-function test_chruby_invalid_ruby()
+function test_chruby_with_invalid_ruby()
 {
 	RUBIES=(/does/not/exist/jruby)
 
