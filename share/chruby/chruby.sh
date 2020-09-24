@@ -103,7 +103,7 @@ function chruby()
 			while IFS= read dir; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
-					echo " * ${ruby} ${RUBYOPT}"
+					echo " * ${ruby}${RUBYOPT:+ $RUBYOPT}"
 				else
 					echo "   ${ruby}"
 				fi
