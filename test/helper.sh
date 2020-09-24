@@ -19,7 +19,7 @@ if [[ "$(basename "$0")" != "setup" && ! -d "$test_ruby_root" ]]; then
 fi
 
 test_path="$PATH"
-test_gem_home="$HOME/.gem/$test_ruby_engine-$test_ruby_version"
+test_gem_home="$HOME/.gem/rubies/$test_ruby_engine-$test_ruby_version"
 test_gem_root="$test_ruby_root/lib/ruby/gems/$test_ruby_api"
 
 . ./share/chruby/chruby.sh
