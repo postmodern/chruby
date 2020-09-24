@@ -2,7 +2,7 @@
 
 function setUp()
 {
-	original_rubies=("${RUBIES[@]}")
+	original_rubies=("${CHRUBY_RUBIES[@]}")
 }
 
 function test_chruby_rubies()
@@ -11,7 +11,7 @@ function test_chruby_rubies()
 	local path2="/path/to/ruby2"
 	local expected="$(echo "$path1"; echo "$path2")"
 
-	RUBIES=("$path1" "$path2")
+	CHRUBY_RUBIES=("$path1" "$path2")
 
 	local output="$(chruby_rubies)"
 
@@ -21,7 +21,7 @@ function test_chruby_rubies()
 
 function tearDown()
 {
-	RUBIES=("${original_rubies[@]}")
+	CHRUBY_RUBIES=("${original_rubies[@]}")
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
