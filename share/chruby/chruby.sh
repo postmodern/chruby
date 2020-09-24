@@ -6,7 +6,7 @@ for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 done
 unset dir
 
-function chruby_list()
+function chruby_rubies()
 {
 	local dir
 
@@ -102,7 +102,7 @@ function chruby()
 				else
 					echo "   ${ruby}"
 				fi
-			done <<< $(chruby_list)
+			done <<< $(chruby_rubies)
 			;;
 		system) chruby_reset ;;
 		*)
