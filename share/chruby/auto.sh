@@ -1,6 +1,7 @@
 unset CHRUBY_AUTO_VERSION
 
-function chruby_auto() {
+function chruby_auto()
+{
 	local dir="$PWD/" version
 
 	until [[ -z "$dir" ]]; do
