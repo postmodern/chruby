@@ -1,5 +1,10 @@
 . ./test/unit/helper.sh
 
+function setUp()
+{
+	chruby_use "$test_ruby_root" >/dev/null
+}
+
 function test_chruby_clears_hash_table()
 {
 	if [[ -n "$ZSH_VERSION" ]]; then
