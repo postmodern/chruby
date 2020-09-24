@@ -1,4 +1,4 @@
-unset RUBY_AUTO_VERSION
+unset CHRUBY_AUTO_VERSION
 
 function chruby_auto() {
 	local dir="$PWD/" version
@@ -9,18 +9,18 @@ function chruby_auto() {
 		if { read -r version <"$dir/.ruby-version"; } 2>/dev/null || [[ -n "$version" ]]; then
 			version="${version%%[[:space:]]}"
 
-			if [[ "$version" == "$RUBY_AUTO_VERSION" ]]; then return
+			if [[ "$version" == "$CHRUBY_AUTO_VERSION" ]]; then return
 			else
-				RUBY_AUTO_VERSION="$version"
+				CHRUBY_AUTO_VERSION="$version"
 				chruby "$version"
 				return $?
 			fi
 		fi
 	done
 
-	if [[ -n "$RUBY_AUTO_VERSION" ]]; then
+	if [[ -n "$CHRUBY_AUTO_VERSION" ]]; then
 		chruby_reset
-		unset RUBY_AUTO_VERSION
+		unset CHRUBY_AUTO_VERSION
 	fi
 }
 

@@ -9,7 +9,7 @@ function oneTimeSetUp()
 function setUp()
 {
 	chruby_reset
-	unset RUBY_AUTO_VERSION
+	unset CHRUBY_AUTO_VERSION
 }
 
 function test_chruby_auto_loaded_in_zsh()
@@ -45,12 +45,12 @@ function test_chruby_auto_loaded_twice_in_zsh()
 
 function test_chruby_auto_loaded_twice()
 {
-	RUBY_AUTO_VERSION="dirty"
+	CHRUBY_AUTO_VERSION="dirty"
 	PROMPT_COMMAND="chruby_auto"
 
 	. ./share/chruby/auto.sh
 
-	assertNull "RUBY_AUTO_VERSION was not unset" "$RUBY_AUTO_VERSION"
+	assertNull "CHRUBY_AUTO_VERSION was not unset" "$CHRUBY_AUTO_VERSION"
 }
 
 function test_chruby_auto_enter_project_dir()
@@ -126,8 +126,8 @@ function test_chruby_auto_invalid_ruby_version()
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$test_ruby_root" "$RUBY_ROOT"
-	assertEquals "did not set RUBY_AUTO_VERSION" \
-		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
+	assertEquals "did not set CHRUBY_AUTO_VERSION" \
+		     "$expected_auto_version" "$CHRUBY_AUTO_VERSION"
 }
 
 function tearDown()
