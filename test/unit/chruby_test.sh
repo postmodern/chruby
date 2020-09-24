@@ -2,7 +2,7 @@
 
 function setUp()
 {
-	original_rubies=("${RUBIES[@]}")
+	original_rubies=("${CHRUBY_RUBIES[@]}")
 }
 
 function test_chruby_list_rubies()
@@ -10,7 +10,7 @@ function test_chruby_list_rubies()
 	local expected="   ${test_ruby_engine}-${test_ruby_version}"
 	local output="$(chruby)"
 
-	assertEquals "did not correctly list RUBIES" \
+	assertEquals "did not correctly list CHRUBY_RUBIES" \
 		     "$expected" "$output"
 }
 
@@ -21,7 +21,7 @@ function test_chruby_list_rubies_when_a_ruby_is_active()
 	local expected=" * ${test_ruby_engine}-${test_ruby_version}"
 	local output="$(chruby)"
 
-	assertEquals "did not correctly list RUBIES" \
+	assertEquals "did not correctly list CHRUBY_RUBIES" \
 		     "$expected" "$output"
 }
 
@@ -30,7 +30,7 @@ function test_chruby_list_rubies_when_one_contains_a_space()
 	local ruby_name="ruby"
 	local path_with_spaces="/path/with spaces/$ruby_name"
 
-	RUBIES=("$path_with_spaces")
+	CHRUBY_RUBIES=("$path_with_spaces")
 	local output="$(chruby)"
 
 	assertEquals "did not correctly handle paths containing spaces" \
@@ -61,7 +61,7 @@ function test_chruby_with_unknown_ruby()
 
 function test_chruby_with_invalid_ruby()
 {
-	RUBIES=(/does/not/exist/jruby)
+	CHRUBY_RUBIES=(/does/not/exist/jruby)
 
 	chruby "jruby" 2>/dev/null
 
@@ -70,14 +70,14 @@ function test_chruby_with_invalid_ruby()
 
 function test_chruby_reload()
 {
-	RUBIES=()
+	CHRUBY_RUBIES=()
 
 	chruby --reload
 
 	assertEquals "did not return 0" 0 $?
-	assertEquals "did not re-populate RUBIES" 1 ${#RUBIES[@]}
+	assertEquals "did not re-populate CHRUBY_RUBIES" 1 ${#CHRUBY_RUBIES[@]}
 	assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
-		     "$test_ruby_root" "${RUBIES[0]}"
+		     "$test_ruby_root" "${CHRUBY_RUBIES[0]}"
 }
 
 function test_chruby_help()
@@ -101,7 +101,7 @@ function tearDown()
 {
 	chruby_reset
 
-	RUBIES=("${original_rubies[@]}")
+	CHRUBY_RUBIES=("${original_rubies[@]}")
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2

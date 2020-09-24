@@ -4,10 +4,10 @@ function chruby_init()
 {
 	local dir
 
-	RUBIES=()
+	CHRUBY_RUBIES=()
 	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 		if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
-			RUBIES+=("$dir"/*)
+			CHRUBY_RUBIES+=("$dir"/*)
 		fi
 	done
 }
@@ -16,7 +16,7 @@ function chruby_rubies()
 {
 	local dir
 
-	for dir in "${RUBIES[@]}"; do
+	for dir in "${CHRUBY_RUBIES[@]}"; do
 		echo "$dir"
 	done
 }
@@ -25,7 +25,7 @@ function chruby_find()
 {
 	local dir ruby match
 
-	for dir in "${RUBIES[@]}"; do
+	for dir in "${CHRUBY_RUBIES[@]}"; do
 		dir="${dir%%/}"; ruby="${dir##*/}"
 		case "$ruby" in
 			"$1")	match="$dir" && break ;;
