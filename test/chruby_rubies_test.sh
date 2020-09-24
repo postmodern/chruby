@@ -2,7 +2,7 @@
 
 function setUp()
 {
-	test_rubies=("${RUBIES[@]}")
+	original_rubies=("${RUBIES[@]}")
 }
 
 function test_chruby_rubies()
@@ -21,7 +21,7 @@ function test_chruby_rubies()
 
 function tearDown()
 {
-	RUBIES=("${test_rubies[@]}")
+	RUBIES=("${original_rubies[@]}")
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
