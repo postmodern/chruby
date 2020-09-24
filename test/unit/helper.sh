@@ -10,6 +10,8 @@ export HOME="$test_root_dir/home"
 export PATH="$PWD/bin:$PATH"
 hash -r
 
+test_path="$PATH"
+
 unset GEM_HOME GEM_PATH
 
 . ./test/unit/config.sh
