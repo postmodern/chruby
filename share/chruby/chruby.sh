@@ -95,6 +95,7 @@ function chruby()
 		--reload) chruby_init ;;
 		"")
 			local dir ruby
+
 			for dir in "${CHRUBY_RUBIES[@]}"; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
