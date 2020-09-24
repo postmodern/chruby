@@ -80,6 +80,14 @@ function test_chruby_reload()
 		     "$test_ruby_root" "${RUBIES[0]}"
 }
 
+function test_chruby_version()
+{
+	local output="$(chruby --version)"
+
+	assertEquals "did not output the chruby version" \
+		     "chruby: $CHRUBY_VERSION" "$output"
+}
+
 function tearDown()
 {
 	chruby_reset
