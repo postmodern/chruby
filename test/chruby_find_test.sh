@@ -51,7 +51,7 @@ function test_chruby_find_when_cannot_find_match()
 {
 	local result="$(chruby_find "foo")"
 
-	assertTrue "did not return an empty string" '[[ -z "$result" ]]'
+	assertEquals "did not return an empty string" "" "$result"
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
