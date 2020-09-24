@@ -104,7 +104,7 @@ function tearDown()
 {
 	chruby_reset
 
-	RUBIES=(${original_rubies[@]})
+	RUBIES=("${original_rubies[@]}")
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
