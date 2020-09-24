@@ -63,6 +63,18 @@ function test_chruby_invalid_ruby()
 	assertEquals "did not return 1" 1 $?
 }
 
+function test_chruby_reload()
+{
+	RUBIES=()
+
+	chruby --reload
+
+	assertEquals "did not return 1" 1 $?
+	assertEquals "did not re-populate RUBIES" 1 ${#RUBIES[@]}
+	assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
+		     "$test_ruby_root" "${RUBIES[0]}"
+}
+
 function tearDown()
 {
 	chruby_reset

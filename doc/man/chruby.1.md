@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`chruby` [<RUBY|VERSION|system>] [<RUBY_OPTS>]
+`chruby` [OPTIONS | <RUBY|VERSION|system> [<RUBY_OPTS>]]
 
 ## ARGUMENTS
 
@@ -16,6 +16,9 @@
     Additional optional arguments to pass to Ruby.
 
 ## OPTIONS
+
+`--reload`
+    Reloads the list of available Rubies
 
 `-h`, `--help`
 
