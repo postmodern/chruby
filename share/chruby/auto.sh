@@ -9,7 +9,8 @@ function chruby_auto() {
 		if { read -r version <"$dir/.ruby-version"; } 2>/dev/null || [[ -n "$version" ]]; then
 			version="${version%%[[:space:]]}"
 
-			if [[ "$version" == "$CHRUBY_AUTO_VERSION" ]]; then return
+			if [[ "$version" == "$CHRUBY_AUTO_VERSION" ]]; then
+				return
 			else
 				CHRUBY_AUTO_VERSION="$version"
 				chruby "$version"
