@@ -16,6 +16,13 @@ function test_chruby_clears_hash_table()
 	fi
 }
 
+function test_chruby_use_with_invalid_ruby_path()
+{
+	chruby_use "/path/to/fake/ruby" 2>/dev/null
+
+	assertEquals "did not return an error code" 1 $?
+}
+
 function test_chruby_use_env_variables()
 {
 	assertEquals "invalid RUBY_ROOT"    "$test_ruby_root" "$RUBY_ROOT"
