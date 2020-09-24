@@ -2,7 +2,7 @@
 
 function setUp()
 {
-	chruby_use $test_ruby_root >/dev/null
+	chruby_use "$test_ruby_root" >/dev/null
 }
 
 function test_chruby_clears_hash_table()
