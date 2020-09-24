@@ -6,7 +6,9 @@ function chruby_init()
 
 	RUBIES=()
 	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-		[[ -d "$dir" && -n "$(ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+		if [[ -d "$dir" && -n "$(ls -A "$dir")" ]]; then
+			RUBIES+=("$dir"/*)
+		fi
 	done
 }
 
