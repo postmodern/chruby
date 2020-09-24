@@ -2,14 +2,39 @@
 
 function setUp()
 {
-	original_rubies=(${RUBIES[@]})
+	original_rubies=("${RUBIES[@]}")
 }
 
-function test_chruby_default_RUBIES()
+function test_chruby_list_rubies()
 {
-	assertEquals "did not correctly populate RUBIES" \
-		     "$test_ruby_root" \
-		     "${RUBIES[@]}"
+	local expected="   ${test_ruby_engine}-${test_ruby_version}"
+	local output="$(chruby)"
+
+	assertEquals "did not correctly list RUBIES" \
+		     "$expected" "$output"
+}
+
+function test_chruby_list_rubies_when_a_ruby_is_active()
+{
+	chruby "${test_ruby_engine}-${test_ruby_version}"
+
+	local expected=" * ${test_ruby_engine}-${test_ruby_version}"
+	local output="$(chruby)"
+
+	assertEquals "did not correctly list RUBIES" \
+		     "$expected" "$output"
+}
+
+function test_chruby_list_RUBIES_when_one_contains_a_space()
+{
+	local ruby_name="ruby"
+	local path_with_spaces="/path/with spaces/$ruby_name"
+
+	RUBIES=("$path_with_spaces")
+	local output="$(chruby)"
+
+	assertEquals "did not correctly handle paths containing spaces" \
+		     "   $ruby_name" "$output"
 }
 
 function test_chruby_X_Y()
