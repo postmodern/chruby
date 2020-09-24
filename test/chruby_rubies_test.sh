@@ -5,7 +5,7 @@ function setUp()
 	test_rubies=("${RUBIES[@]}")
 }
 
-function test_chruby_list()
+function test_chruby_rubies()
 {
 	local path1="/path/to/ruby1"
 	local path2="/path/to/ruby2"
@@ -13,7 +13,7 @@ function test_chruby_list()
 
 	RUBIES=("$path1" "$path2")
 
-	local output="$(chruby_list)"
+	local output="$(chruby_rubies)"
 
 	assertEquals "did not output the expected ruby paths" \
 		     "$expected" "$output"
