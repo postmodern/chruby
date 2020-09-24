@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`chruby` [OPTIONS | <RUBY|VERSION|system> [<RUBY_OPTS>]]
+`chruby` [OPTIONS | <RUBY|VERSION> [<RUBY_OPTS>] | system]
 
 ## ARGUMENTS
 

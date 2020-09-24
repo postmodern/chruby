@@ -92,7 +92,7 @@ function chruby()
 {
 	case "$1" in
 		-h|--help)
-			echo "usage: chruby [--reload | RUBY|VERSION|system [RUBYOPT...]]"
+			echo "usage: chruby [--reload | RUBY|VERSION [RUBYOPT...] | system]"
 			;;
 		-V|--version)
 			echo "chruby: $CHRUBY_VERSION"
