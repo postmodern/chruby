@@ -12,15 +12,6 @@ function chruby_init()
 	done
 }
 
-function chruby_rubies()
-{
-	local dir
-
-	for dir in "${CHRUBY_RUBIES[@]}"; do
-		echo "$dir"
-	done
-}
-
 function chruby_find()
 {
 	local dir ruby match
@@ -104,14 +95,14 @@ function chruby()
 		--reload) chruby_init ;;
 		"")
 			local dir ruby
-			while IFS= read dir; do
+			for dir in "${CHRUBY_RUBIES[@]}"; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
 					echo " * ${ruby}${RUBYOPT:+ $RUBYOPT}"
 				else
 					echo "   ${ruby}"
 				fi
-			done <<< $(chruby_rubies)
+			done
 			;;
 		system) chruby_reset ;;
 		*)
