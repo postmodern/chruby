@@ -9,7 +9,7 @@ for i in {1..3}; do
 
 	time (
 		for ((i=0; i<$n; i+=1)); do
-			chruby_use "$ruby_dir"
+			chruby_set "$ruby_dir"
 		done
 	)
 done

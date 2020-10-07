@@ -2,34 +2,34 @@
 
 function setUp()
 {
-	chruby_use "$test_ruby_root" >/dev/null
+	chruby_set "$test_ruby_root" >/dev/null
 }
 
 function test_chruby_clears_hash_table()
 {
 	if [[ -n "$ZSH_VERSION" ]]; then
-		chruby_use "$test_ruby_root" >/dev/null
+		chruby_set "$test_ruby_root" >/dev/null
 
 		assertEquals "did not clear the path table" \
 			     "" "$(hash)"
 	elif [[ -n "$BASH_VERSION" ]]; then
-		chruby_use "$test_ruby_root" >/dev/null
+		chruby_set "$test_ruby_root" >/dev/null
 
 		assertEquals "did not clear the path table" \
 			     "hash: hash table empty" "$(hash)"
 	fi
 }
 
-function test_chruby_use_with_invalid_ruby_path()
+function test_chruby_set_with_invalid_ruby_path()
 {
-	chruby_use "/path/to/fake/ruby" 2>/dev/null
+	chruby_set "/path/to/fake/ruby" 2>/dev/null
 
 	assertEquals "did not return an error code" 1 $?
 }
 
-function test_chruby_use_env_variables()
+function test_chruby_set_env_variables()
 {
-	chruby_use "$test_ruby_root" >/dev/null
+	chruby_set "$test_ruby_root" >/dev/null
 
 	assertEquals "invalid RUBY_ROOT"    "$test_ruby_root" "$RUBY_ROOT"
 	assertEquals "invalid RUBY_ENGINE"  "$test_ruby_engine" "$RUBY_ENGINE"

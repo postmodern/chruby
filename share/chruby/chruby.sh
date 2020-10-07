@@ -51,7 +51,7 @@ function chruby_reset()
 	hash -r
 }
 
-function chruby_use()
+function chruby_set()
 {
 	local ruby_dir="$1"
 
@@ -116,7 +116,7 @@ function chruby()
 			fi
 
 			shift
-			chruby_use "$ruby_dir" "$*"
+			chruby_set "$ruby_dir" "$*"
 			;;
 	esac
 }

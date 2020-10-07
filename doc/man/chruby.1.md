@@ -51,7 +51,7 @@ Switch back to system Ruby:
     $ chruby system
 
 Switch to an arbitrary Ruby on the fly:
-    $ chruby_use /path/to/ruby
+    $ chruby_set /path/to/ruby
 
 ## FILES
 

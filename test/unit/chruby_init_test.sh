@@ -1,4 +1,4 @@
-. ./test/helper.sh
+. ./test/unit/helper.sh
 
 function test_chruby_init_with_clean_env()
 {
