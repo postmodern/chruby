@@ -1,4 +1,4 @@
-. ./test/helper.sh
+. ./test/unit/helper.sh
 
 function setUp()
 {

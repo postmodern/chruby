@@ -299,7 +299,7 @@ Run a command under a Ruby with `chruby-exec`:
 
 Switch to an arbitrary Ruby on the fly:
 
-    $ chruby_use /path/to/ruby
+    $ chruby_set /path/to/ruby
 
 ## Uninstall
 
