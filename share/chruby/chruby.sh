@@ -88,6 +88,7 @@ function chruby()
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				case "$ruby" in
 					"$1")	match="$dir" && break ;;
+					"$1"*)	match="$dir" && break ;;
 					*"$1"*)	match="$dir" ;;
 				esac
 			done
