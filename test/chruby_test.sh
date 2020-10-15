@@ -70,4 +70,31 @@ function test_chruby_invalid_ruby()
 	assertEquals "did not return 1" 1 $?
 }
 
+# "chruby ruby" should match "ruby" over "truffleruby"/"jruby"
+function test_chruby_match_ruby_first()
+{
+	local fake_jruby="/path/to/jruby-9.2.13.0"
+	local fake_truffle="/path/to/truffleruby-20.2.0"
+
+	# Put the fake ones both at the beginning and the end
+	RUBIES=("$fake_jruby" "$fake_truffle" "$test_ruby_root" "$fake_jruby" "$fake_truffle")
+
+	chruby "ruby" >/dev/null
+
+	assertEquals "did not match the standard Ruby first" "$test_ruby_root" "$RUBY_ROOT"
+}
+
+# "chruby ruby" should still match "truffleruby" (or "jruby") if it's the only ruby
+function test_chruby_match_truffleruby()
+{
+	local fake_truffle="/path/to/truffleruby-20.2.0"
+
+	RUBIES=("$fake_truffle")
+
+	local expected="chruby: $fake_truffle/bin/ruby not executable"
+	local result=$(chruby "ruby" 2>&1) # Captures stdout and stderr
+
+	assertEquals "did not match TruffleRuby" "$expected" "$result"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2
