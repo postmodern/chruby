@@ -51,6 +51,9 @@ function chruby_reset()
 	hash -r
 }
 
+function chruby_gem_home() { echo -n "$HOME/.gem/rubies/${RUBY_ROOT##*/}"; }
+function chruby_gem_path() { echo -n "$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"; }
+
 function chruby_set()
 {
 	local ruby_dir="$1"
@@ -75,8 +78,8 @@ EOF
 	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
 	if (( UID != 0 )); then
-		export GEM_HOME="$HOME/.gem/rubies/${RUBY_ROOT##*/}"
-		export GEM_PATH="$GEM_HOME${GEM_ROOT:+:$GEM_ROOT}${GEM_PATH:+:$GEM_PATH}"
+		export GEM_HOME="$(chruby_gem_home)"
+		export GEM_PATH="$(chruby_gem_path)"
 		export PATH="$GEM_HOME/bin:$PATH"
 	fi
 
