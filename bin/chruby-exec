@@ -5,7 +5,7 @@ source "$chruby_sh"
 
 case "$1" in
 	-h|--help)
-		echo "usage: chruby-exec RUBY [RUBYOPTS] -- COMMAND [ARGS...]"
+		echo "usage: chruby-exec RUBY [RUBYOPTS] [\"RUBIES=(...)\"] -- COMMAND [ARGS...]"
 		exit
 		;;
 	-V|--version)
@@ -24,7 +24,9 @@ argv=()
 for arg in "$@"; do
 	shift
 
-	if [[ "$arg" == "--" ]]; then break
+	if echo "$arg" | grep -q '^RUBIES=('; then
+		CUSTOM_RUBIES="$arg"
+	elif [[ "$arg" == "--" ]]; then break
 	else                          argv+=($arg)
 	fi
 done
@@ -38,6 +40,7 @@ shell_opts=("-l")
 [[ -t 0 ]] && shell_opts+=("-i")
 
 source_command="command -v chruby >/dev/null || source $chruby_sh"
+[[ -n "$CUSTOM_RUBIES" ]] && source_command+="; $CUSTOM_RUBIES"
 chruby_command="chruby $(printf "%q " "${argv[@]}")"
 sub_command="$(printf "%q " "$@")"
 command="$source_command; $chruby_command && exec $sub_command"
