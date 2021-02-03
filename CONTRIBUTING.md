@@ -60,7 +60,7 @@
   * Do they introduce possible Security risks?
 
 [Makefile]: https://gist.github.com/3224049
-[shunit2]: https://github.com/kward/shunit2
+[shunit2]: https://github.com/kward/shunit2#readme
 
 [bash]: http://www.gnu.org/software/bash/
 [zsh]: http://www.zsh.org/
