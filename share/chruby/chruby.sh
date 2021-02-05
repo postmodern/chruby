@@ -30,6 +30,22 @@ function chruby_reset()
 	hash -r
 }
 
+function chruby_generate_cached_env()
+{
+	"$SHELL" -c "unset JAVACMD JRUBY_OPTS; RUBYGEMS_GEMDEPS='' '$RUBY_ROOT/bin/ruby' -" <<'SCRIPT'
+env = {
+  :RUBY_ENGINE  => Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby',
+  :RUBY_VERSION => RUBY_VERSION,
+}
+begin
+  require 'rubygems'
+  env[:GEM_ROOT] = Gem.default_dir
+rescue LoadError
+end
+env.each { |k,v| puts "#{k}='#{v}'; export #{k}" }
+SCRIPT
+}
+
 function chruby_use()
 {
 	if [[ ! -x "$1/bin/ruby" ]]; then
@@ -42,13 +58,12 @@ function chruby_use()
 	export RUBY_ROOT="$1"
 	export RUBYOPT="$2"
 	export PATH="$RUBY_ROOT/bin:$PATH"
+	local ruby_cached_env="$RUBY_ROOT/.ruby_env"
+	if [[ ! -e "$ruby_cached_env" ]]; then
+		chruby_generate_cached_env > "$ruby_cached_env"
+	fi
+	. "$ruby_cached_env"
 
-	eval "$(RUBYGEMS_GEMDEPS="" "$RUBY_ROOT/bin/ruby" - <<EOF
-puts "export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};"
-puts "export RUBY_VERSION=#{RUBY_VERSION};"
-begin; require 'rubygems'; puts "export GEM_ROOT=#{Gem.default_dir.inspect};"; rescue LoadError; end
-EOF
-)"
 	export PATH="${GEM_ROOT:+$GEM_ROOT/bin:}$PATH"
 
 	if (( UID != 0 )); then
