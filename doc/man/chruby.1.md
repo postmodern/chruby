@@ -58,7 +58,7 @@ Switch to an arbitrary Ruby on the fly:
 */opt/rubies*
     Primary default Ruby install location.
     
-*~/.rubies/*
+*~/.local/share/rubies/*
     Secondary default Ruby install location.
 
 */etc/profile.d/chruby.sh*
