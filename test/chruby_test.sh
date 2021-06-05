@@ -5,13 +5,6 @@ function setUp()
 	original_rubies=(${RUBIES[@]})
 }
 
-function tearDown()
-{
-	chruby_reset
-
-	RUBIES=(${original_rubies[@]})
-}
-
 function test_chruby_default_RUBIES()
 {
 	assertEquals "did not correctly populate RUBIES" \
@@ -68,6 +61,13 @@ function test_chruby_invalid_ruby()
 	chruby "jruby" 2>/dev/null
 
 	assertEquals "did not return 1" 1 $?
+}
+
+function tearDown()
+{
+	chruby_reset
+
+	RUBIES=(${original_rubies[@]})
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
