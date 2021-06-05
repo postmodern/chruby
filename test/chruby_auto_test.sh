@@ -7,20 +7,20 @@ function oneTimeSetUp()
 {
 	mkdir -p "$test_dir"
 
-	mkdir  -p "$test_dir/bad"
-	echo "foo" > "$test_dir/bad/.ruby-version"
-
-	mkdir -p "$test_dir/bad2"
-	echo "ruby-2.2 -v" > "$test_dir/bad2/.ruby-version"
-
 	cat > "$test_dir/.ruby-version" <<EOF
 ${test_ruby_engine}-${test_ruby_version%*.}
 EOF
 
+	mkdir  -p "$test_dir/unknown_ruby"
+	echo "foo" > "$test_dir/unknown_ruby/.ruby-version"
+
+	mkdir -p "$test_dir/contains_options"
+	echo "ruby-2.2 -v" > "$test_dir/contains_options/.ruby-version"
+
 	mkdir -p "$test_dir/modified_version"
 	echo "system" > "$test_dir/modified_version/.ruby-version"
 
-	mkdir -p "$test_dir/sub_dir"
+	mkdir -p "$test_dir/empty_subdir"
 
 	mkdir -p "$test_dir/sub_versioned"
 	echo "system" > "$test_dir/sub_versioned/.ruby-version"
@@ -83,7 +83,7 @@ function test_chruby_auto_enter_project_dir()
 
 function test_chruby_auto_enter_subdir_directly()
 {
-	cd "$test_dir/sub_dir" && chruby_auto
+	cd "$test_dir/empty_subdir" && chruby_auto
 
 	assertEquals "did not switch Ruby when directly entering a sub-directory of a versioned directory" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -91,8 +91,8 @@ function test_chruby_auto_enter_subdir_directly()
 
 function test_chruby_auto_enter_subdir()
 {
-	cd "$test_dir" && chruby_auto
-	cd sub_dir     && chruby_auto
+	cd "$test_dir"  && chruby_auto
+	cd empty_subdir && chruby_auto
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -137,12 +137,25 @@ function test_chruby_auto_leave_project_dir()
 		   "$RUBY_ROOT"
 }
 
-function test_chruby_auto_invalid_ruby_version()
+function test_chruby_auto_unknown_ruby()
 {
-	local expected_auto_version="$(cat "$test_dir/bad/.ruby-version")"
+	local expected_auto_version="$(cat "$test_dir/unknown_ruby/.ruby-version")"
 
-	cd "$test_dir" && chruby_auto
-	cd bad/        && chruby_auto 2>/dev/null
+	cd "$test_dir"   && chruby_auto
+	cd unknown_ruby/ && chruby_auto 2>/dev/null
+
+	assertEquals "did not keep the current Ruby when loading an unknown version" \
+		     "$test_ruby_root" "$RUBY_ROOT"
+	assertEquals "did not set RUBY_AUTO_VERSION" \
+		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
+}
+
+function test_chruby_auto_ruby_version_containing_options()
+{
+	local expected_auto_version="$(cat "$test_dir/contains_options/.ruby-version")"
+
+	cd "$test_dir"       && chruby_auto
+	cd contains_options/ && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$test_ruby_root" "$RUBY_ROOT"
