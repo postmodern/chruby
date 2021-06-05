@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./test/helper.sh
+. ./test/helpers/ruby.sh
 
 function log() {
 	if [[ -t 1 ]]; then
