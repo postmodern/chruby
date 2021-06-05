@@ -1,9 +1,29 @@
 . ./share/chruby/auto.sh
 . ./test/helper.sh
 
+test_dir="$test_fixtures_dir/ruby_versions"
+
 function oneTimeSetUp()
 {
-	generate_ruby_version_fixtures
+	mkdir -p "$test_dir"
+
+	mkdir  -p "$test_dir/bad"
+	echo "foo" > "$test_dir/bad/.ruby-version"
+
+	mkdir -p "$test_dir/bad2"
+	echo "ruby-2.2 -v" > "$test_dir/bad2/.ruby-version"
+
+	cat > "$test_dir/.ruby-version" <<EOF
+${test_ruby_engine}-${test_ruby_version%*.}
+EOF
+
+	mkdir -p "$test_dir/modified_version"
+	echo "system" > "$test_dir/modified_version/.ruby-version"
+
+	mkdir -p "$test_dir/sub_dir"
+
+	mkdir -p "$test_dir/sub_versioned"
+	echo "system" > "$test_dir/sub_versioned/.ruby-version"
 }
 
 function setUp()
@@ -55,7 +75,7 @@ function test_chruby_auto_loaded_twice()
 
 function test_chruby_auto_enter_project_dir()
 {
-	cd "$ruby_version_fixtures" && chruby_auto
+	cd "$test_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -63,7 +83,7 @@ function test_chruby_auto_enter_project_dir()
 
 function test_chruby_auto_enter_subdir_directly()
 {
-	cd "$ruby_version_fixtures/sub_dir" && chruby_auto
+	cd "$test_dir/sub_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when directly entering a sub-directory of a versioned directory" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -71,8 +91,8 @@ function test_chruby_auto_enter_subdir_directly()
 
 function test_chruby_auto_enter_subdir()
 {
-	cd "$ruby_version_fixtures" && chruby_auto
-	cd sub_dir                  && chruby_auto
+	cd "$test_dir" && chruby_auto
+	cd sub_dir     && chruby_auto
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -80,8 +100,8 @@ function test_chruby_auto_enter_subdir()
 
 function test_chruby_auto_enter_subdir_with_ruby_version()
 {
-	cd "$ruby_version_fixtures"    && chruby_auto
-	cd sub_versioned/              && chruby_auto
+	cd "$test_dir"    && chruby_auto
+	cd sub_versioned/ && chruby_auto
 
 	assertNull "did not switch the Ruby when leaving a sub-versioned directory" \
 		   "$RUBY_ROOT"
@@ -89,7 +109,7 @@ function test_chruby_auto_enter_subdir_with_ruby_version()
 
 function test_chruby_auto_modified_ruby_version()
 {
-	cd "$ruby_version_fixtures/modified_version"  && chruby_auto
+	cd "$test_dir/modified_version"  && chruby_auto
 
 	cat > .ruby-version <<EOF
 $test_ruby_version
@@ -102,16 +122,16 @@ EOF
 
 function test_chruby_auto_overriding_ruby_version()
 {
-	cd "$ruby_version_fixtures" && chruby_auto
-	chruby system               && chruby_auto
+	cd "$test_dir" && chruby_auto
+	chruby system  && chruby_auto
 
 	assertNull "did not override the Ruby set in .ruby-version" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_leave_project_dir()
 {
-	cd "$ruby_version_fixtures"    && chruby_auto
-	cd "$ruby_version_fixtures/.." && chruby_auto
+	cd "$test_dir"    && chruby_auto
+	cd "$test_dir/.." && chruby_auto
 
 	assertNull "did not reset the Ruby when leaving a versioned directory" \
 		   "$RUBY_ROOT"
@@ -119,10 +139,10 @@ function test_chruby_auto_leave_project_dir()
 
 function test_chruby_auto_invalid_ruby_version()
 {
-	local expected_auto_version="$(cat "$ruby_version_fixtures/bad/.ruby-version")"
+	local expected_auto_version="$(cat "$test_dir/bad/.ruby-version")"
 
-	cd "$ruby_version_fixtures" && chruby_auto
-	cd bad/                     && chruby_auto 2>/dev/null
+	cd "$test_dir" && chruby_auto
+	cd bad/        && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$test_ruby_root" "$RUBY_ROOT"
@@ -133,6 +153,11 @@ function test_chruby_auto_invalid_ruby_version()
 function tearDown()
 {
 	cd "$PWD"
+}
+
+function oneTimeTearDown()
+{
+	rm -rf "$test_dir"
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2

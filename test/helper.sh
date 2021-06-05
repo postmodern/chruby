@@ -1,11 +1,11 @@
 [[ -z "$SHUNIT2"     ]] && SHUNIT2=/usr/share/shunit2/shunit2
 [[ -n "$ZSH_VERSION" ]] && setopt shwordsplit
 
-export PREFIX="$PWD/test/fixtures"
+test_fixtures_dir="$PWD/test/fixtures"
+
+export PREFIX="$test_fixtures_dir"
 export HOME="$PREFIX/home"
 export PATH="$PWD/bin:$PATH"
-
-. ./test/fixtures.sh
 
 test_ruby_engine="${TEST_RUBY_ENGINE:-ruby}"
 test_ruby_version="${TEST_RUBY_VERSION:-2.2.5}"
