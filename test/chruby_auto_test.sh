@@ -32,35 +32,35 @@ function setUp()
 	unset RUBY_AUTO_VERSION
 }
 
-function test_chruby_auto_loaded_in_zsh()
+function test_ruby_version_autoexec_loaded_in_zsh()
 {
 	[[ -n "$ZSH_VERSION" ]] || return
 
-	assertEquals "did not add chruby_auto to preexec_functions" \
-		     "chruby_auto" \
+	assertEquals "did not add ruby_version_autoexec to preexec_functions" \
+		     "ruby_version_autoexec" \
 		     "$preexec_functions"
 }
 
-function test_chruby_auto_loaded_in_bash()
+function test_ruby_version_autoexec_loaded_in_bash()
 {
 	[[ -n "$BASH_VERSION" ]] || return
 
 	local command=". $PWD/share/chruby/auto.sh && trap -p DEBUG"
 	local output="$("$SHELL" -c "$command")"
 
-	assertTrue "did not add a trap hook for chruby_auto" \
-		   '[[ "$output" == *chruby_auto* ]]'
+	assertTrue "did not add a trap hook for ruby_version_autoexec" \
+		   '[[ "$output" == *ruby_version_autoexec* ]]'
 }
 
-function test_chruby_auto_loaded_twice_in_zsh()
+function test_ruby_version_autoexec_loaded_twice_in_zsh()
 {
 	[[ -n "$ZSH_VERSION" ]] || return
 
 	. ./share/chruby/auto.sh
 
-	assertNotEquals "should not add chruby_auto twice" \
+	assertNotEquals "should not add ruby_version_autoexec twice" \
 		        "$preexec_functions" \
-			"chruby_auto chruby_auto"
+			"ruby_version_autoexec ruby_version_autoexec"
 }
 
 function test_chruby_auto_loaded_twice()

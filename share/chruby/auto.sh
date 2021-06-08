@@ -24,10 +24,14 @@ function chruby_auto() {
 	fi
 }
 
+function ruby_version_autoexec() {
+	chruby_auto
+}
+
 if [[ -n "$ZSH_VERSION" ]]; then
-	if [[ ! "$preexec_functions" == *chruby_auto* ]]; then
-		preexec_functions+=("chruby_auto")
+	if [[ ! "$preexec_functions" == *ruby_version_autoexec* ]]; then
+		preexec_functions+=("ruby_version_autoexec")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
-	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto' DEBUG
+	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && ruby_version_autoexec' DEBUG
 fi
