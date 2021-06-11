@@ -163,6 +163,12 @@ function test_chruby_auto_ruby_version_containing_options()
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
 
+function test_chruby_auto_preserves_dollar_underscore()
+{
+	: expected
+	assertEquals "value of $_ does not change" "$_" "expected"
+}
+
 function tearDown()
 {
 	cd "$PWD"

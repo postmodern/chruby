@@ -2,6 +2,7 @@ unset RUBY_AUTO_VERSION
 
 function chruby_auto() {
 	local dir="$PWD/" version
+	local old_="$1" # Save $_ for bash users
 
 	until [[ -z "$dir" ]]; do
 		dir="${dir%/*}"
@@ -22,6 +23,7 @@ function chruby_auto() {
 		chruby_reset
 		unset RUBY_AUTO_VERSION
 	fi
+	: "$old_" # restore $_ (last argument of last command executed)
 }
 
 if [[ -n "$ZSH_VERSION" ]]; then
@@ -29,5 +31,5 @@ if [[ -n "$ZSH_VERSION" ]]; then
 		preexec_functions+=("chruby_auto")
 	fi
 elif [[ -n "$BASH_VERSION" ]]; then
-	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto' DEBUG
+	trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_auto "$_"' DEBUG
 fi

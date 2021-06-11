@@ -1,3 +1,9 @@
+### 0.3.10 / TBA
+
+#### auto.sh
+
+* Preserve the value of `$_` for `bash` users. (@HaleTom)
+
 ### 0.3.9 / 2014-11-23
 
 #### chruby.sh
