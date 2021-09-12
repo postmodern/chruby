@@ -25,12 +25,19 @@ function test_chruby_exec()
 {
 	# Check to ensure that chruby-exec execs, not forks
 	if [ -n "$ZSH_VERSION" ] ; then
-		local checks=$(echo $$ ; chruby-exec ${test_ruby_version} -- ruby -e "puts Process.ppid")
+		local checks=$(
+			echo $$
+			chruby-exec ${test_ruby_version} -- ruby -e "puts Process.ppid"
+		)
 	else
 		# We need to check this way because $$ does not return the pid of the subprocess in bash
-		local checks=$(bash -c 'echo $PPID' ; bin/chruby-exec ${test_ruby_version} -- ruby -e "puts Process.ppid")
+		local checks=$(
+			echo $BASHPID
+			bin/chruby-exec ${test_ruby_version} -- ruby -e "puts Process.ppid"
+		)
 	fi
-	assertEquals "execed ruby" $checks
+
+	assertEquals "did not exec the ruby shell command in-pace" ${checks[@]}
 }
 
 function test_chruby_exec_with_version()
