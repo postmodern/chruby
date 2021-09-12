@@ -30,9 +30,11 @@ function test_chruby_exec()
 			chruby-exec ${test_ruby_version} -- ruby -e "puts Process.ppid"
 		)
 	else
-		# We need to check this way because $$ does not return the pid of the subprocess in bash
+		# We need to check this way because $$ does not return the pid
+		# of the subprocess in bash and $BASHPID is not available in
+		# Bash 3.x :(
 		local checks=$(
-			echo $BASHPID
+			bash -c 'echo $PPID'
 			bin/chruby-exec ${test_ruby_version} -- ruby -e "puts Process.ppid"
 		)
 	fi
