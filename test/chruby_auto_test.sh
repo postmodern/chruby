@@ -32,7 +32,7 @@ EOF
 
 function test_chruby_auto_loaded_in_zsh()
 {
-	[[ -n "$ZSH_VERSION" ]] || return
+	[[ -n "$ZSH_VERSION" ]] || return 0
 
 	assertEquals "did not add chruby_auto to preexec_functions" \
 		     "chruby_auto" \
@@ -41,7 +41,7 @@ function test_chruby_auto_loaded_in_zsh()
 
 function test_chruby_auto_loaded_in_bash()
 {
-	[[ -n "$BASH_VERSION" ]] || return
+	[[ -n "$BASH_VERSION" ]] || return 0
 
 	local command=". $PWD/share/chruby/auto.sh && trap -p DEBUG"
 	local output="$("$SHELL" -c "$command")"
@@ -52,7 +52,7 @@ function test_chruby_auto_loaded_in_bash()
 
 function test_chruby_auto_loaded_twice_in_zsh()
 {
-	[[ -n "$ZSH_VERSION" ]] || return
+	[[ -n "$ZSH_VERSION" ]] || return 0
 
 	. ./share/chruby/auto.sh
 
