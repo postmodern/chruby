@@ -2,8 +2,9 @@
 . ./test/helper.sh
 
 test_dir="$test_fixtures_dir/ruby_versions"
+test_pwd="$PWD"
 
-function oneTimeSetUp()
+function setUp()
 {
 	mkdir -p "$test_dir"
 
@@ -24,10 +25,7 @@ EOF
 
 	mkdir -p "$test_dir/sub_versioned"
 	echo "system" > "$test_dir/sub_versioned/.ruby-version"
-}
 
-function setUp()
-{
 	chruby_reset
 	unset RUBY_AUTO_VERSION
 }
@@ -165,11 +163,7 @@ function test_chruby_auto_ruby_version_containing_options()
 
 function tearDown()
 {
-	cd "$PWD"
-}
-
-function oneTimeTearDown()
-{
+	cd "$test_pwd"
 	rm -rf "$test_dir"
 }
 
