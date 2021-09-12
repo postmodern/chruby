@@ -163,8 +163,8 @@ test_ruby_archive="${test_ruby_engine}-${test_ruby_version}.tar.bz2"
 test_ruby_url="http://rvm.io/binaries/$system_name/$system_version/$system_arch/$test_ruby_archive"
 test_ruby_dirname="$test_ruby_engine-$test_ruby_version"
 
-mkdir -p "$PWD/test/fixtures/opt/rubies"
-cd "$PWD/test/fixtures/opt/rubies"
+mkdir -p "$PWD/test/fixtures/root/opt/rubies"
+cd "$PWD/test/fixtures/root/opt/rubies"
 
 log "Downloading $test_ruby_url ..."
 download "$test_ruby_url" "$test_ruby_archive" || fail "Download failed"

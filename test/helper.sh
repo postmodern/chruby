@@ -3,7 +3,7 @@
 
 test_fixtures_dir="$PWD/test/fixtures"
 
-export PREFIX="$test_fixtures_dir"
+export PREFIX="$test_fixtures_dir/root"
 export HOME="$PREFIX/home"
 export PATH="$PWD/bin:$PATH"
 
