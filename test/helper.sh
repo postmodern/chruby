@@ -7,6 +7,8 @@ export PREFIX="$test_fixtures_dir/root"
 export HOME="$PREFIX/home"
 export PATH="$PWD/bin:$PATH"
 
+unset GEM_HOME GEM_PATH
+
 . ./test/helpers/ruby.sh
 . ./share/chruby/chruby.sh
 chruby_reset
