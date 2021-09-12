@@ -1,23 +1,24 @@
 . ./test/helper.sh
 
-function setUp()
-{
-	chruby_use $test_ruby_root >/dev/null
-}
-
 function test_chruby_clears_hash_table()
 {
-	if [[ -n "$BASH_VERSION" ]]; then
-		assertEquals "did not clear the path table" \
-			     "hash: hash table empty" "$(hash)"
-	elif [[ -n "$ZSH_VERSION" ]]; then
+	if [[ -n "$ZSH_VERSION" ]]; then
+		chruby_use "$test_ruby_root" >/dev/null
+
 		assertEquals "did not clear the path table" \
 			     "" "$(hash)"
+	elif [[ -n "$BASH_VERSION" ]]; then
+		chruby_use "$test_ruby_root" >/dev/null
+
+		assertEquals "did not clear the path table" \
+			     "hash: hash table empty" "$(hash)"
 	fi
 }
 
 function test_chruby_use_env_variables()
 {
+	chruby_use "$test_ruby_root" >/dev/null
+
 	assertEquals "invalid RUBY_ROOT"    "$test_ruby_root" "$RUBY_ROOT"
 	assertEquals "invalid RUBY_ENGINE"  "$test_ruby_engine" "$RUBY_ENGINE"
 	assertEquals "invalid RUBY_VERSION" "$test_ruby_version" "$RUBY_VERSION"

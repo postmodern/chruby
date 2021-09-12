@@ -9,12 +9,16 @@ function setUp()
 
 function test_chruby_reset_hash_table()
 {
-	if [[ -n "$BASH_VERSION" ]]; then
-		assertEquals "did not clear the path table" \
-			     "hash: hash table empty" "$(hash)"
-	elif [[ -n "$ZSH_VERSION" ]]; then
+	if [[ -n "$ZSH_VERSION" ]]; then
+		chruby_reset
+
 		assertEquals "did not clear the path table" \
 			     "" "$(hash)"
+	elif [[ -n "$BASH_VERSION" ]]; then
+		chruby_reset
+
+		assertEquals "did not clear the path table" \
+			     "hash: hash table empty" "$(hash)"
 	fi
 }
 
