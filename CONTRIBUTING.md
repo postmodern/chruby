@@ -36,7 +36,7 @@
 
 * Completion: tab completion is not necessary for fuzzy matching
   (ex: `chruby 1.9`).
-* Gemset functionality: there is already [chgems] and others, which provides
+* Gemset functionality: there is already [gem_home] and others, which provides
   gemset like behavior.
 * Sub-commands: this tends to promote bloat. It was first popularized by [RVM]
   and then copied by [rbenv].
@@ -68,4 +68,4 @@
 [RVM]: https://rvm.io/
 [rbenv]: https://github.com/sstephenson/rbenv#readme
 
-[chgems]: https://github.com/postmodern/chgems#readme
+[gem_home]: https://github.com/postmodern/gem_home#readme
