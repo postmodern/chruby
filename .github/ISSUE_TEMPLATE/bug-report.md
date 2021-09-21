@@ -29,9 +29,9 @@ Steps to reproduce the bug:
 
 ## Environment
 
-    $ bash --version # if applicable
+    $ bash --version
     ...
-    $ zsh --version # if applicable
+    $ zsh --version
     ...
     $ chruby --version
     ...
@@ -41,3 +41,4 @@ Steps to reproduce the bug:
     ...
     $ gem env
     ...
+
