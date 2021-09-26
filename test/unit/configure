@@ -55,6 +55,9 @@ else
 			"puts \\"export RUBY_VERSION=#{RUBY_VERSION};\\"")
 				echo "export RUBY_VERSION=$ruby_version;"
 				;;
+			"puts \\"export RUBY_PATCHLEVEL=#{RUBY_PATCHLEVEL};\\"")
+				echo "export RUBY_PATCHLEVEL=$test_ruby_patchlevel;"
+				;;
 			*"puts \\"export GEM_ROOT=#{Gem.default_dir.inspect};\\""*)
 				echo "export GEM_ROOT=$gem_root;"
 				;;
