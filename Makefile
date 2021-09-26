@@ -44,10 +44,13 @@ clean:
 check:
 	shellcheck share/$(NAME)/*.sh
 
-test/fixtures/root/opt/rubies:
+test/fixtures/root:
 	./test/configure
 
-test: test/fixtures/root/opt/rubies
+test/fixtures/root/opt/rubies/*/bin/ruby: test/configure
+	./test/configure
+
+test: test/fixtures/root test/fixtures/root/opt/rubies/*/bin/ruby
 	SHELL=`command -v bash` ./test/runner
 	SHELL=`command -v zsh`  ./test/runner
 
