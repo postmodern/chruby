@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+pushd "${0%/*}" >/dev/null
+test_dir="$PWD"
+popd >/dev/null
+
+test_fixtures_dir="$test_dir/fixtures"
+test_root_dir="$test_fixtures_dir/root"
+
+# load the test configuration
+. "$test_dir/config.sh"
+
+mkdir -p "$test_root_dir"
+mkdir -p "$test_root_dir/home"
+mkdir -p "$test_root_dir/opt"
+
+# clean any pre-existing rubies
+rm -rf "$test_root_dir/opt/rubies/"*
+
+# create the test opt/rubies/ruby-X.Y.Z/bin/ruby stub
+mkdir -p "$test_ruby_root/bin"
+cat >"$test_ruby_root/bin/ruby" <<EOF
+#!/usr/bin/env bash
+
+if [[ "\$1" == "-e" ]]; then
+	case "\$2" in
+		"puts Process.pid")
+			echo \$BASHPID
+			;;
+		"puts Process.ppid")
+			echo \$PPID
+			;;
+		"print RUBY_VERSION")
+			echo -n 2.2.5
+			;;
+		*)
+			echo "error: no stub for ruby expression: \$2" >&2
+			exit -1
+			;;
+	esac
+else
+	while IFS=$'\\n' read -r line; do
+		if [[ "\$line" == *"puts \\"export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};\\""* ]]; then
+			echo "export RUBY_ENGINE=$test_ruby_engine;"
+		elif [[ "\$line" == *"puts \\"export RUBY_VERSION=#{RUBY_VERSION};\\""* ]]; then
+			echo "export RUBY_VERSION=$test_ruby_version;"
+		elif [[ "\$line" == *"puts \\"export GEM_ROOT=#{Gem.default_dir.inspect};\\""* ]]; then
+			echo "export GEM_ROOT=$test_gem_root;"
+		else
+			echo "error: no stub for ruby statement: \$line" >&2
+			exit -1
+		fi
+	done
+fi
+EOF
+chmod +x "$test_ruby_root/bin/ruby"
