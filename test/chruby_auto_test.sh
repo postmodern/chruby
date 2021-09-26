@@ -8,9 +8,8 @@ function setUp()
 {
 	mkdir -p "$test_dir"
 
-	cat > "$test_dir/.ruby-version" <<EOF
-${test_ruby_engine}-${test_ruby_version%*.}
-EOF
+	test_ruby_auto_version="${test_ruby_engine}-${test_ruby_version%*.}"
+	echo "$test_ruby_auto_version" > "$test_dir/.ruby-version"
 
 	mkdir  -p "$test_dir/unknown_ruby"
 	echo "foo" > "$test_dir/unknown_ruby/.ruby-version"
