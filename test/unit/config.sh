@@ -19,4 +19,4 @@ fi
 
 test_ruby_version_x_y="${test_ruby_version%.*}"
 
-test_gem_home="$HOME/.gem/$test_ruby_engine/$test_ruby_version"
+test_gem_home="$HOME/.gem/rubies/$test_ruby_engine-$test_ruby_version"
