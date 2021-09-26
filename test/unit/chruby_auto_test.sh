@@ -142,8 +142,8 @@ function test_chruby_auto_unknown_ruby()
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
 		     "$test_ruby_root" "$RUBY_ROOT"
-	assertEquals "did not set RUBY_AUTO_VERSION" \
-		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
+	assertEquals "did not set CHRUBY_AUTO_VERSION" \
+		     "$expected_auto_version" "$CHRUBY_AUTO_VERSION"
 }
 
 function test_chruby_auto_ruby_version_containing_options()
