@@ -44,13 +44,10 @@ clean:
 check:
 	shellcheck share/$(NAME)/*.sh
 
-test/fixtures/root:
+configure_tests:
 	./test/configure
 
-test/fixtures/root/opt/rubies/*/bin/ruby: test/configure
-	./test/configure
-
-test: test/fixtures/root test/fixtures/root/opt/rubies/*/bin/ruby
+test: configure_tests
 	SHELL=`command -v bash` ./test/runner
 	SHELL=`command -v zsh`  ./test/runner
 
@@ -77,4 +74,4 @@ uninstall:
 	rm -rf $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	rmdir $(DESTDIR)$(PREFIX)/$(SHARE_DIR)/chruby
 
-.PHONY: build download sign verify clean check test tag release rpm install uninstall all
+.PHONY: build download sign verify clean check configure_tests test tag release rpm install uninstall all
