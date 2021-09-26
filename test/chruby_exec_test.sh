@@ -14,14 +14,14 @@ function test_chruby_exec_no_command()
 	assertEquals "did not exit with 1" 1 $?
 }
 
-function test_chruby_exec()
+function test_chruby_exec_sets_ruby_version()
 {
 	local ruby_version=$(chruby-exec "$test_ruby_version" -- ruby -e "print RUBY_VERSION")
 
 	assertEquals "did change the ruby" "$test_ruby_version" "$ruby_version"
 }
 
-function test_chruby_exec()
+function test_chruby_exec_execs_process()
 {
 	# Check to ensure that chruby-exec execs, not forks
 	if [ -n "$ZSH_VERSION" ] ; then
