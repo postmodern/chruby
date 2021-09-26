@@ -76,8 +76,14 @@ function test_chruby_reload()
 
 	assertEquals "did not return 0" 0 $?
 	assertEquals "did not re-populate CHRUBY_RUBIES" 1 ${#CHRUBY_RUBIES[@]}
-	assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
-		     "$test_ruby_root" "${CHRUBY_RUBIES[0]}"
+
+	if [[ -n "$ZSH_VERSION" ]]; then
+		assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
+			     "$test_ruby_root" "${CHRUBY_RUBIES[1]}"
+	else
+		assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
+			     "$test_ruby_root" "${CHRUBY_RUBIES[0]}"
+	fi
 }
 
 function test_chruby_help()
