@@ -1,5 +1,7 @@
 # chruby
 
+[![CI](https://github.com/postmodern/chruby/actions/workflows/shunit2.yml/badge.svg)](https://github.com/postmodern/chruby/actions/workflows/shunit2.yml)
+
 [![Build Status](https://travis-ci.org/postmodern/chruby.svg?branch=master)](https://travis-ci.org/postmodern/chruby)
 
 Changes the current Ruby.
