@@ -51,6 +51,12 @@ test: configure_tests
 	SHELL=`command -v bash` ./test/unit/runner
 	SHELL=`command -v zsh`  ./test/unit/runner
 
+integration_tests:
+	SHELL=`command -v bash` ./test/integration/runner
+	SHELL=`command -v zsh`  ./test/integration/runner
+
+gauntlet: integration_tests
+
 tag:
 	git push origin master
 	git tag -s -m "Releasing $(VERSION)" v$(VERSION)
@@ -74,4 +80,4 @@ uninstall:
 	rm -rf $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	rmdir $(DESTDIR)$(PREFIX)/$(SHARE_DIR)/chruby
 
-.PHONY: build download sign verify clean check configure_tests test tag release rpm install uninstall all
+.PHONY: build download sign verify clean check configure_tests test integration_tests gauntlet tag release rpm install uninstall all
