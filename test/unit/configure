@@ -40,16 +40,21 @@ if [[ "\$1" == "-e" ]]; then
 	esac
 else
 	while IFS=$'\\n' read -r line; do
-		if [[ "\$line" == *"puts \\"export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};\\""* ]]; then
-			echo "export RUBY_ENGINE=$test_ruby_engine;"
-		elif [[ "\$line" == *"puts \\"export RUBY_VERSION=#{RUBY_VERSION};\\""* ]]; then
-			echo "export RUBY_VERSION=$test_ruby_version;"
-		elif [[ "\$line" == *"puts \\"export GEM_ROOT=#{Gem.default_dir.inspect};\\""* ]]; then
-			echo "export GEM_ROOT=$test_gem_root;"
-		else
-			echo "error: no stub for ruby statement: '\$line'" >&2
-			exit -1
-		fi
+		case "\$line" in
+			"puts \\"export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};\\"")
+				echo "export RUBY_ENGINE=$test_ruby_engine;"
+				;;
+			"puts \\"export RUBY_VERSION=#{RUBY_VERSION};\\"")
+				echo "export RUBY_VERSION=$test_ruby_version;"
+				;;
+			*"puts \\"export GEM_ROOT=#{Gem.default_dir.inspect};\\""*)
+				echo "export GEM_ROOT=$test_gem_root;"
+				;;
+			*)
+				echo "error: no stub for ruby statement: '\$line'" >&2
+				exit -1
+				;;
+		esac
 	done
 fi
 EOF
