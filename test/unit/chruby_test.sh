@@ -9,7 +9,7 @@ function test_chruby_default_RUBIES()
 {
 	assertEquals "did not correctly populate RUBIES" \
 		     "$test_ruby_root" \
-		     "${RUBIES[*]}"
+		     "${RUBIES[@]}"
 }
 
 function test_chruby_X_Y()
