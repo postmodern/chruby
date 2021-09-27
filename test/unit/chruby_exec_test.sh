@@ -1,4 +1,4 @@
-. ./test/helper.sh
+. ./test/unit/helper.sh
 
 function test_chruby_exec_no_arguments()
 {

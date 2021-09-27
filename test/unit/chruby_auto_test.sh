@@ -1,5 +1,5 @@
 . ./share/chruby/auto.sh
-. ./test/helper.sh
+. ./test/unit/helper.sh
 
 test_auto_version_dir="$test_fixtures_dir/ruby_versions"
 
@@ -161,7 +161,7 @@ function test_chruby_auto_ruby_version_containing_options()
 
 function tearDown()
 {
-	cd "$test_dir"
+	cd "$original_pwd"
 	rm -rf "$test_auto_version_dir"
 }
 

@@ -1,4 +1,4 @@
-. ./test/helper.sh
+. ./test/unit/helper.sh
 
 function test_chruby_clears_hash_table()
 {
@@ -25,7 +25,7 @@ function test_chruby_use_env_variables()
 	assertEquals "invalid GEM_ROOT"     "$test_ruby_root/lib/ruby/gems/$test_ruby_api" "$GEM_ROOT"
 	assertEquals "invalid GEM_HOME"     "$test_gem_home" "$GEM_HOME"
 	assertEquals "invalid GEM_PATH"     "$GEM_HOME:$GEM_ROOT" "$GEM_PATH"
-	assertEquals "invalid PATH"         "$test_gem_home/bin:$test_gem_root/bin:$test_ruby_root/bin:$__shunit_tmpDir:$test_path" "$PATH"
+	assertEquals "invalid PATH"         "$test_gem_home/bin:$test_gem_root/bin:$test_ruby_root/bin:$__shunit_tmpDir:$original_path" "$PATH"
 
 	assertEquals "could not find ruby in $PATH" \
 		     "$test_ruby_root/bin/ruby" \

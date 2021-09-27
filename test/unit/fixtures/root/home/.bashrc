@@ -6,4 +6,4 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-. $PWD/test/helper.sh
+. $PWD/share/chruby/chruby.sh

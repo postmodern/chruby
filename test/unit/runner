@@ -8,15 +8,16 @@ function log() {
 	fi
 }
 
+test_dir="${0%/*}"
 error=0
 
-for test in ${0%/*}/*_test.sh; do
+for test in "$test_dir/"*_test.sh; do
 	log "Running $test under $SHELL (interactive) ..."
 	"$SHELL" $* -i "$test" || error=1
 	echo
 done
 
-for test in ${0%/*}/*_test.sh; do
+for test in "$test_dir"/*_test.sh; do
 	log "Running $test under $SHELL (non-interactive) ..."
 	"$SHELL" $* "$test" || error=1
 	echo

@@ -45,11 +45,11 @@ check:
 	shellcheck share/$(NAME)/*.sh
 
 configure_tests:
-	./test/configure
+	./test/unit/configure
 
 test: configure_tests
-	SHELL=`command -v bash` ./test/runner
-	SHELL=`command -v zsh`  ./test/runner
+	SHELL=`command -v bash` ./test/unit/runner
+	SHELL=`command -v zsh`  ./test/unit/runner
 
 tag:
 	git push origin master

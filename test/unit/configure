@@ -34,7 +34,7 @@ if [[ "\$1" == "-e" ]]; then
 			echo -n 2.2.5
 			;;
 		*)
-			echo "error: no stub for ruby expression: \$2" >&2
+			echo "error: no stub for ruby expression: '\$2'" >&2
 			exit -1
 			;;
 	esac
@@ -47,7 +47,7 @@ else
 		elif [[ "\$line" == *"puts \\"export GEM_ROOT=#{Gem.default_dir.inspect};\\""* ]]; then
 			echo "export GEM_ROOT=$test_gem_root;"
 		else
-			echo "error: no stub for ruby statement: \$line" >&2
+			echo "error: no stub for ruby statement: '\$line'" >&2
 			exit -1
 		fi
 	done
