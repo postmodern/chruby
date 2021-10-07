@@ -17,9 +17,17 @@ mkdir -p "$test_root_dir/opt"
 # clean any pre-existing rubies
 rm -rf "$test_root_dir/opt/rubies/"*
 
-# create the test opt/rubies/ruby-X.Y.Z/bin/ruby stub
-mkdir -p "$test_ruby_root/bin"
-cat >"$test_ruby_root/bin/ruby" <<EOF
+function generate_bin_ruby()
+{
+	local ruby_engine="$1"
+	local ruby_version="$2"
+	local gem_root="$3"
+
+	pushd "$test_root_dir/opt/rubies" >/dev/null
+
+	# create the test opt/rubies/ruby-X.Y.Z/bin/ruby stub
+	mkdir -p "${ruby_engine}-${ruby_version}/bin"
+	cat >"${ruby_engine}-${ruby_version}/bin/ruby" <<EOF
 #!/usr/bin/env bash
 
 if [[ "\$1" == "-e" ]]; then
@@ -31,7 +39,7 @@ if [[ "\$1" == "-e" ]]; then
 			echo \$PPID
 			;;
 		"print RUBY_VERSION")
-			echo -n "$test_ruby_version"
+			echo -n "$ruby_version"
 			;;
 		*)
 			echo "error: no stub for ruby expression: '\$2'" >&2
@@ -42,13 +50,13 @@ else
 	while IFS=$'\\n' read -r line; do
 		case "\$line" in
 			"puts \\"export RUBY_ENGINE=#{Object.const_defined?(:RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'};\\"")
-				echo "export RUBY_ENGINE=$test_ruby_engine;"
+				echo "export RUBY_ENGINE=$ruby_engine;"
 				;;
 			"puts \\"export RUBY_VERSION=#{RUBY_VERSION};\\"")
-				echo "export RUBY_VERSION=$test_ruby_version;"
+				echo "export RUBY_VERSION=$ruby_version;"
 				;;
 			*"puts \\"export GEM_ROOT=#{Gem.default_dir.inspect};\\""*)
-				echo "export GEM_ROOT=$test_gem_root;"
+				echo "export GEM_ROOT=$gem_root;"
 				;;
 			*)
 				echo "error: no stub for ruby statement: '\$line'" >&2
@@ -58,4 +66,8 @@ else
 	done
 fi
 EOF
-chmod +x "$test_ruby_root/bin/ruby"
+	chmod +x "${ruby_engine}-${ruby_version}/bin/ruby"
+	popd >/dev/null
+}
+
+generate_bin_ruby "$test_ruby_engine" "$test_ruby_version" "$test_gem_root"
