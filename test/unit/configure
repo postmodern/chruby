@@ -31,7 +31,7 @@ if [[ "\$1" == "-e" ]]; then
 			echo \$PPID
 			;;
 		"print RUBY_VERSION")
-			echo -n 2.2.5
+			echo -n "$test_ruby_version"
 			;;
 		*)
 			echo "error: no stub for ruby expression: '\$2'" >&2
