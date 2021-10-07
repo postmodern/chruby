@@ -71,3 +71,4 @@ EOF
 }
 
 generate_bin_ruby "$test_ruby_engine" "$test_ruby_version" "$test_gem_root"
+generate_bin_ruby "$test_auto_ruby_engine" "$test_auto_ruby_version" "$test_auto_gem_root"

@@ -7,8 +7,8 @@ function setUp()
 {
 	mkdir -p "$test_auto_version_dir"
 
-	test_ruby_auto_version="${test_ruby_engine}-${test_ruby_version%*.}"
-	echo "$test_ruby_auto_version" > "$test_auto_version_dir/.ruby-version"
+	test_auto_version="${test_auto_ruby_engine}-${test_auto_ruby_version%*.}"
+	echo "$test_auto_version" > "$test_auto_version_dir/.ruby-version"
 
 	mkdir  -p "$test_auto_version_dir/unknown_ruby"
 	echo "foo" > "$test_auto_version_dir/unknown_ruby/.ruby-version"
@@ -74,7 +74,7 @@ function test_chruby_auto_enter_project_dir()
 	cd "$test_auto_version_dir" && chruby_auto
 
 	assertEquals "did not switch Ruby when entering a versioned directory" \
-		     "$test_ruby_root" "$RUBY_ROOT"
+		     "$test_auto_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir_directly()
@@ -82,7 +82,7 @@ function test_chruby_auto_enter_subdir_directly()
 	cd "$test_auto_version_dir/empty_subdir" && chruby_auto
 
 	assertEquals "did not switch Ruby when directly entering a sub-directory of a versioned directory" \
-		     "$test_ruby_root" "$RUBY_ROOT"
+		     "$test_auto_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir()
@@ -91,7 +91,7 @@ function test_chruby_auto_enter_subdir()
 	cd empty_subdir && chruby_auto
 
 	assertEquals "did not keep the current Ruby when entering a sub-dir" \
-		     "$test_ruby_root" "$RUBY_ROOT"
+		     "$test_auto_ruby_root" "$RUBY_ROOT"
 }
 
 function test_chruby_auto_enter_subdir_with_ruby_version()
@@ -141,7 +141,7 @@ function test_chruby_auto_unknown_ruby()
 	cd unknown_ruby/ && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
-		     "$test_ruby_root" "$RUBY_ROOT"
+		     "$test_auto_ruby_root" "$RUBY_ROOT"
 	assertEquals "did not set RUBY_AUTO_VERSION" \
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
@@ -154,7 +154,7 @@ function test_chruby_auto_ruby_version_containing_options()
 	cd contains_options/ && chruby_auto 2>/dev/null
 
 	assertEquals "did not keep the current Ruby when loading an unknown version" \
-		     "$test_ruby_root" "$RUBY_ROOT"
+		     "$test_auto_ruby_root" "$RUBY_ROOT"
 	assertEquals "did not set RUBY_AUTO_VERSION" \
 		     "$expected_auto_version" "$RUBY_AUTO_VERSION"
 }
