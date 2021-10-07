@@ -12,7 +12,7 @@ test_root_dir="$test_fixtures_dir/root"
 
 mkdir -p "$test_root_dir"
 mkdir -p "$test_root_dir/home"
-mkdir -p "$test_root_dir/opt"
+mkdir -p "$test_root_dir/opt/rubies"
 
 # clean any pre-existing rubies
 rm -rf "$test_root_dir/opt/rubies/"*
