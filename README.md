@@ -125,6 +125,13 @@ Add the following to the `~/.bashrc` or `~/.zshrc` file:
 source /usr/local/share/chruby/chruby.sh
 ```
 
+#### Mac
+
+``` bash
+
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
+```
+
 *Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
 
 ### System Wide
