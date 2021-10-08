@@ -129,7 +129,7 @@ source /usr/local/share/chruby/chruby.sh
 
 ``` bash
 
-source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
+source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
 ```
 
 *Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
