@@ -125,13 +125,13 @@ Add the following to the `~/.bashrc` or `~/.zshrc` file:
 source /usr/local/share/chruby/chruby.sh
 ```
 
-#### Mac
+#### macOS
 
 ``` bash
 source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
 ```
 
-*Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
+*Note:* macOS does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
 
 ### System Wide
 
@@ -199,7 +199,7 @@ source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 ```
 
-*Note:* OSX does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
+*Note:* macOS does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
 
 chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
