@@ -128,7 +128,6 @@ source /usr/local/share/chruby/chruby.sh
 #### Mac
 
 ``` bash
-
 source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
 ```
 
