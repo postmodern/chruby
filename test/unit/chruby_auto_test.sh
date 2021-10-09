@@ -107,9 +107,7 @@ function test_chruby_auto_modified_ruby_version()
 {
 	cd "$test_auto_version_dir/modified_version"  && chruby_auto
 
-	cat > .ruby-version <<EOF
-$test_ruby_version
-EOF
+	echo "$test_ruby_version" > .ruby-version
 	chruby_auto
 
 	assertEquals "did not detect the modified .ruby-version file" \
