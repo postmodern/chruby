@@ -139,13 +139,13 @@ ruby-build maglev-1.0.0 /opt/rubies/maglev-1.0.0
 
 Add the following to the `~/.bashrc` or `~/.zshrc` file:
 
-``` bash
+```shell
 source /usr/local/share/chruby/chruby.sh
 ```
 
 #### macOS
 
-``` bash
+```shell
 source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
 ```
 
@@ -156,7 +156,7 @@ source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh # Or run `brew info ch
 If you wish to enable chruby system-wide, add the following to
 `/etc/profile.d/chruby.sh`:
 
-``` bash
+```shell
 if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
   source /usr/local/share/chruby/chruby.sh
   ...
@@ -175,7 +175,7 @@ restart the shell before chruby can recognize them.
 For Rubies installed in non-standard locations, simply append their paths to
 the `RUBIES` variable:
 
-``` bash
+```shell
 source /usr/local/share/chruby/chruby.sh
 
 RUBIES+=(
@@ -190,19 +190,19 @@ If you are migrating from another Ruby manager, set `RUBIES` accordingly:
 
 #### RVM
 
-``` bash
+```shell
 RUBIES+=(~/.rvm/rubies/*)
 ```
 
 #### rbenv
 
-``` bash
+```shell
 RUBIES+=(~/.rbenv/versions/*)
 ```
 
 #### rbfu
 
-``` bash
+```shell
 RUBIES+=(~/.rbfu/rubies/*)
 ```
 
@@ -212,7 +212,7 @@ If you want chruby to auto-switch the current version of Ruby when you `cd`
 between your different projects, simply load `auto.sh` in `~/.bashrc` or
 `~/.zshrc`:
 
-``` bash
+```shell
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 ```
