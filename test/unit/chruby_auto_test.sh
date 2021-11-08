@@ -131,6 +131,19 @@ function test_chruby_auto_leave_project_dir()
 		   "$RUBY_ROOT"
 }
 
+function test_chruby_auto_leave_project_dir_and_a_default_ruby_is_set()
+{
+	chruby --default "$test_ruby_version"
+
+	cd "$test_auto_version_dir"    && chruby_auto
+	cd "$test_auto_version_dir/.." && chruby_auto
+
+	assertEquals "did not revert back to the default ruby when leaving a versioned directory" \
+		     "$test_ruby_root" "$RUBY_ROOT"
+
+	unset CHRUBY_DEFAULT
+}
+
 function test_chruby_auto_unknown_ruby()
 {
 	local expected_auto_version="$(cat "$test_auto_version_dir/unknown_ruby/.ruby-version")"
