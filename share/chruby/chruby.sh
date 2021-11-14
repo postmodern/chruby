@@ -83,8 +83,7 @@ function chruby()
 			done
 			;;
 		--default)
-			export CHRUBY_DEFAULT="$2"
-			shift && chruby "$@"
+			chruby "$2" && export CHRUBY_DEFAULT="${RUBY_ROOT##*/}"
 			;;
 		system) chruby_reset ;;
 		default) chruby "${CHRUBY_DEFAULT:-system}" ;;
