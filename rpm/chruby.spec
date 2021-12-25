@@ -24,9 +24,8 @@ Changes the current Ruby.
 %build
 
 %install
-make install PREFIX=%{buildroot}/usr
+make install install-zsh-completion PREFIX=%{buildroot}/usr
 install -m 644 share/chruby/completion.bash %{buildroot}/usr/share/bash-completion/completions/_chruby
-install -m 644 share/chruby/completion.zsh %{buildroot}/usr/share/zsh/site-functions/_chruby
 
 %files
 %defattr(-,root,root)
