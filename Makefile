@@ -16,7 +16,7 @@ SIG=$(PKG).asc
 PREFIX?=/usr/local
 SHARE_DIR=share
 DOC_DIR=$(SHARE_DIR)/doc/$(PKG_NAME)
-ZSH_COMP_DIR=$(DESTDIR)$(PREFIX)/$(SHARE_DIR)/zsh/site-functions
+zsh_comp_dir=$(DESTDIR)$(PREFIX)/$(SHARE_DIR)/zsh/site-functions
 
 all:
 
@@ -71,12 +71,13 @@ install:
 	cp -r $(DOC_FILES) $(DESTDIR)$(PREFIX)/$(DOC_DIR)/
 
 install-zsh-completion:
-	mkdir -p $(ZSH_COMP_DIR)
-	cp $(SHARE_DIR)/chruby/completion.zsh $(ZSH_COMP_DIR)/_chruby
+	mkdir -p $(zsh_comp_dir)
+	cp $(SHARE_DIR)/chruby/completion.zsh $(zsh_comp_dir)/_chruby
 
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	rmdir $(DESTDIR)$(PREFIX)/$(SHARE_DIR)
 
-.PHONY: build download sign verify clean check test tag release rpm install uninstall all install-zsh-completion
+.PHONY: build download sign verify clean check test tag release rpm all
+.PHONY: install uninstall install-zsh-completion
