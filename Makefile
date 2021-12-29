@@ -16,7 +16,9 @@ SIG=$(PKG).asc
 PREFIX?=/usr/local
 SHARE_DIR=share
 DOC_DIR=$(SHARE_DIR)/doc/$(PKG_NAME)
+
 zsh_comp_dir=$(DESTDIR)$(PREFIX)/$(SHARE_DIR)/zsh/site-functions
+bash_comp_dir=$(DESTDIR)$(PREFIX)/$(SHARE_DIR)/bash-completion/completions
 
 all:
 
@@ -70,9 +72,15 @@ install:
 	mkdir -p $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	cp -r $(DOC_FILES) $(DESTDIR)$(PREFIX)/$(DOC_DIR)/
 
+install-bash-completion:
+	mkdir -p $(bash_comp_dir)
+	cp $(SHARE_DIR)/chruby/completion.bash $(zsh_comp_dir)/chruby
+
 install-zsh-completion:
 	mkdir -p $(zsh_comp_dir)
 	cp $(SHARE_DIR)/chruby/completion.zsh $(zsh_comp_dir)/_chruby
+
+install-shell-completions: install-bash-completion install-zsh-completion
 
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(DESTDIR)$(PREFIX)/$$file; done
