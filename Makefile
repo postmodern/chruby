@@ -74,11 +74,11 @@ install:
 
 install-bash-completion:
 	mkdir -p $(bash_comp_dir)
-	cp $(SHARE_DIR)/chruby/completion.bash $(zsh_comp_dir)/chruby
+	cp integration/completion.bash $(bash_comp_dir)/chruby
 
 install-zsh-completion:
 	mkdir -p $(zsh_comp_dir)
-	cp $(SHARE_DIR)/chruby/completion.zsh $(zsh_comp_dir)/_chruby
+	cp integration/completion.zsh $(zsh_comp_dir)/_chruby
 
 install-shell-completions: install-bash-completion install-zsh-completion
 

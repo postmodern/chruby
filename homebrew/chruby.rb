@@ -9,7 +9,7 @@ class Chruby < Formula
 
   def install
     system 'make', 'install', 'install-zsh-completion', "PREFIX=#{prefix}"
-    bash_completion.install 'share/chruby/completion.bash' => 'chruby'
+    bash_completion.install 'integration/completion.bash' => 'chruby'
   end
 
   def caveats; <<-EOS.undent
