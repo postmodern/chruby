@@ -8,7 +8,8 @@ class Chruby < Formula
   head 'https://github.com/postmodern/chruby.git'
 
   def install
-    system 'make', 'install', "PREFIX=#{prefix}"
+    system 'make', 'install', 'install-zsh-completion', "PREFIX=#{prefix}"
+    bash_completion.install 'integration/completion.bash' => 'chruby'
   end
 
   def caveats; <<-EOS.undent

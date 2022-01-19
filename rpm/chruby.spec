@@ -24,7 +24,7 @@ Changes the current Ruby.
 %build
 
 %install
-make install PREFIX=%{buildroot}/usr
+make install install-shell-completions PREFIX=%{buildroot}/usr
 
 %files
 %defattr(-,root,root)

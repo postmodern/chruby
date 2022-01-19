@@ -34,8 +34,6 @@
 
 ### What Will Not Be Accepted
 
-* Completion: tab completion is not necessary for fuzzy matching
-  (ex: `chruby 1.9`).
 * Gemset functionality: there is already [gem_home] and others, which provides
   gemset like behavior.
 * Sub-commands: this tends to promote bloat. It was first popularized by [RVM]

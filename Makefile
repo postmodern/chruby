@@ -17,6 +17,9 @@ PREFIX?=/usr/local
 SHARE_DIR=share
 DOC_DIR=$(SHARE_DIR)/doc/$(PKG_NAME)
 
+zsh_comp_dir=$(DESTDIR)$(PREFIX)/$(SHARE_DIR)/zsh/site-functions
+bash_comp_dir=$(DESTDIR)$(PREFIX)/$(SHARE_DIR)/bash-completion/completions
+
 all:
 
 pkg:
@@ -84,9 +87,19 @@ install:
 	mkdir -p $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	cp -r $(DOC_FILES) $(DESTDIR)$(PREFIX)/$(DOC_DIR)/
 
+install-bash-completion:
+	mkdir -p $(bash_comp_dir)
+	cp integration/completion.bash $(bash_comp_dir)/chruby
+
+install-zsh-completion:
+	mkdir -p $(zsh_comp_dir)
+	cp integration/completion.zsh $(zsh_comp_dir)/_chruby
+
+install-shell-completions: install-bash-completion install-zsh-completion
+
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	rmdir $(DESTDIR)$(PREFIX)/$(SHARE_DIR)/chruby
 
-.PHONY: build man download sign verify clean check configure_tests test integration_tests gauntlet tag release rpm install uninstall all
+.PHONY: build man download sign verify clean check configure_tests test integration_tests gauntlet tag release rpm install install-bash-completion install-zsh-completion uninstall all
