@@ -24,7 +24,7 @@ function chruby_auto() {
 	fi
 }
 
-if [[ -n "$ZSH_VERSION" ]]; then
+if [[ -n "$ZSH_VERSION" ]] || [[ -n "${__bp_imported}" ]]; then
 	if [[ ! "$preexec_functions" == *chruby_auto* ]]; then
 		preexec_functions+=("chruby_auto")
 	fi
