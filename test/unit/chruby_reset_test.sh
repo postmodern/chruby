@@ -15,10 +15,13 @@ function test_chruby_reset_hash_table()
 		assertEquals "did not clear the path table" \
 			     "" "$(hash)"
 	elif [[ -n "$BASH_VERSION" ]]; then
+		export LANG=en_US.UTF-8
 		chruby_reset
 
 		assertEquals "did not clear the path table" \
 			     "hash: hash table empty" "$(hash)"
+
+		unset LANG
 	fi
 }
 
