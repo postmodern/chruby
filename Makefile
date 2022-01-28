@@ -48,8 +48,8 @@ configure_tests:
 	./test/unit/configure
 
 test: configure_tests
-	SHELL=`command -v bash` ./test/unit/runner
-	SHELL=`command -v zsh`  ./test/unit/runner
+	SHELL=`command -v bash` ./test/unit/runner --norc
+	SHELL=`command -v zsh`  ./test/unit/runner --no-rcs
 
 integration_tests:
 	SHELL=`command -v bash` ./test/integration/runner
