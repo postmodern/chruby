@@ -13,6 +13,6 @@ original_pwd="$PWD"
 original_ruby="$(command -v ruby 2>/dev/null)"
 original_gem="$(command -v gem 2>/dev/null)"
 
-setUp() { return; }
-tearDown() { return; }
-oneTimeTearDown() { return; }
+setUp() { return 0; }
+tearDown() { return 0; }
+oneTimeTearDown() { return 0; }
