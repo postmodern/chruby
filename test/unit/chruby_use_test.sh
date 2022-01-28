@@ -8,13 +8,14 @@ function test_chruby_clears_hash_table()
 		assertEquals "did not clear the path table" \
 			     "" "$(hash)"
 	elif [[ -n "$BASH_VERSION" ]]; then
+		local old_lang="$LANG"
 		export LANG=en_US.UTF-8
 		chruby_use "$test_ruby_root" >/dev/null
 
 		assertEquals "did not clear the path table" \
 			     "hash: hash table empty" "$(hash)"
 
-		unset LANG
+		LANG="$old_lang"
 	fi
 }
 
