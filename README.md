@@ -217,7 +217,22 @@ source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 ```
 
-*Note:* macOS does not automatically execute `~/.bashrc`, instead try adding to `/etc/bashrc`.
+> *Note:* macOS does not automatically source `~/.bashrc`. Bash users should
+> create the file `~/.bash_profile` with following content:
+>
+> ```bash
+> if [[ -f ~/.profile ]]; then
+>     source ~/.profile
+> fi
+>
+> if [[ $- == *i* ]] && [[ -f ~/.bashrc ]]; then
+>     source ~/.bashrc
+> fi
+> ```
+>
+> so that the terminal loads `~/.bashrc` and `~/.profile` (the POSIX one). If
+> `~/.bash_profile` exists, Bash users should append the above lines to
+> `~/.bash_profile` as needed.
 
 chruby will check the current and parent directories for a [.ruby-version]
 file. Other Ruby switchers also understand this file:
