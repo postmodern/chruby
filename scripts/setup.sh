@@ -4,6 +4,7 @@
 #
 
 set -e
+cd "${0%/*}"
 
 #
 # Constants
