@@ -37,13 +37,13 @@ Changes the current Ruby.
 
 ## Install
 
-```shell
-wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
-tar -xzvf chruby-0.3.9.tar.gz
-cd chruby-0.3.9/
-sudo make install
-```
+chruby includes a `setup.sh` script which installs chruby system-wide. Simply run the 
+script as root or via `sudo`:
 
+```shell
+sudo ./scripts/setup.sh
+```
+  
 ### PGP
 
 All releases are [PGP] signed for security. Instructions on how to import my
@@ -55,14 +55,15 @@ wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-0.3.9.tar.gz.asc
 gpg --verify chruby-0.3.9.tar.gz.asc chruby-0.3.9.tar.gz
 ```
 
-### setup.sh
-
-chruby also includes a `setup.sh` script, which installs chruby. Simply run the 
-script as root or via `sudo`:
+### Manual Installation
 
 ```shell
-sudo ./scripts/setup.sh
+wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+tar -xzvf chruby-0.3.9.tar.gz
+cd chruby-0.3.9/
+sudo make install
 ```
+> *Note:* Further setup is required when manually compiling -- see the "Configuration" section below
 
 ### Homebrew
 
