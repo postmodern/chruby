@@ -18,7 +18,7 @@ function chruby_find()
 {
 	local ruby_dir ruby_name match
 
-	while IFS= read ruby_dir; do
+	while IFS= read -r ruby_dir; do
 		ruby_dir="${ruby_dir%%/}"
 		ruby_name="${ruby_dir##*/}"
 
@@ -102,7 +102,7 @@ function chruby()
 		"")
 			local ruby_dir ruby_name
 
-			while IFS= read ruby_dir; do
+			while IFS= read -r ruby_dir; do
 				ruby_dir="${ruby_dir%%/}"
 				ruby_name="${ruby_dir##*/}"
 
