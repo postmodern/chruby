@@ -25,7 +25,7 @@ function chruby_find()
 		esac
 	done
 
-	echo "$match"
+	echo -n "$match"
 }
 
 function chruby_reset()
