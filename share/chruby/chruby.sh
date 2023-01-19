@@ -1,11 +1,12 @@
 CHRUBY_VERSION="1.0.0"
+CHRUBY_DIRS=("$PREFIX/opt/rubies" "$HOME/.rubies")
 
 function chruby_init()
 {
 	local dir
 
 	CHRUBY_RUBIES=()
-	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
+	for dir in "${CHRUBY_DIRS[@]}"; do
 		if [[ -d "$dir" ]] && [[ -n "$(ls -A "$dir")" ]]; then
 			CHRUBY_RUBIES+=("$dir"/*)
 		fi
