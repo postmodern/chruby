@@ -11,7 +11,7 @@ EOF
 )"
 else
 	test_ruby_engine="${TEST_RUBY_ENGINE:-ruby}"
-	test_ruby_version="${TEST_RUBY_VERSION:-2.2.5}"
+	test_ruby_version="${TEST_RUBY_VERSION:-3.0.0}"
 	test_ruby_root="$test_fixtures_dir/root/opt/rubies/$test_ruby_engine-$test_ruby_version"
 	test_ruby_api="${TEST_RUBY_API:-${test_ruby_version%.*}.0}"
 	test_gem_root="$test_ruby_root/lib/ruby/gems/$test_ruby_api"
