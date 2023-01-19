@@ -4,9 +4,10 @@
 test_dir="$PWD/test/unit"
 test_fixtures_dir="$test_dir/fixtures"
 test_root_dir="$test_fixtures_dir/root"
+test_home_dir="$test_root_dir/home"
 
 export PREFIX="$test_root_dir"
-export HOME="$test_root_dir/home"
+export HOME="$test_home_dir"
 export PATH="$PWD/bin:$PATH"
 hash -r
 

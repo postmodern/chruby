@@ -1,16 +1,11 @@
 . ./test/unit/helper.sh
 
-function setUp()
-{
-	original_rubies=("${CHRUBY_RUBIES[@]}")
-}
-
 function test_chruby_list_rubies()
 {
 	local expected="   ${test_ruby_engine}-${test_ruby_version}"
 	local output="$(chruby)"
 
-	assertEquals "did not correctly list CHRUBY_RUBIES" \
+	assertEquals "did not correctly list the rubies in CHRUBY_DIRS" \
 		     "$expected" "$output"
 }
 
@@ -21,20 +16,27 @@ function test_chruby_list_rubies_when_a_ruby_is_active()
 	local expected=" * ${test_ruby_engine}-${test_ruby_version}"
 	local output="$(chruby)"
 
-	assertEquals "did not correctly list CHRUBY_RUBIES" \
+	assertEquals "did not correctly list the rubies in CHRUBY_DIRS" \
 		     "$expected" "$output"
 }
 
 function test_chruby_list_rubies_when_one_contains_a_space()
 {
-	local ruby_name="ruby"
-	local path_with_spaces="/path/with spaces/$ruby_name"
+	local ruby_name="ruby with spaces"
+	local ruby_dir="$test_home_dir/.rubies/$ruby_name"
+	mkdir -p "$ruby_dir"
 
-	CHRUBY_RUBIES=("$path_with_spaces")
 	local output="$(chruby)"
+	local expected="$(cat <<EOS
+   ${test_ruby_engine}-${test_ruby_version}
+   ${ruby_name}
+EOS
+)"
 
 	assertEquals "did not correctly handle paths containing spaces" \
-		     "   $ruby_name" "$output"
+		     "$expected" "$output"
+
+	rmdir "$ruby_dir"
 }
 
 function test_chruby_with_X_Y()
@@ -68,27 +70,9 @@ function test_chruby_with_invalid_ruby()
 	assertEquals "did not return 1" 1 $?
 }
 
-function test_chruby_reload()
-{
-	CHRUBY_RUBIES=()
-
-	chruby --reload
-
-	assertEquals "did not return 0" 0 $?
-	assertEquals "did not re-populate CHRUBY_RUBIES" 1 ${#CHRUBY_RUBIES[@]}
-
-	if [[ -n "$ZSH_VERSION" ]]; then
-		assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
-			     "$test_ruby_root" "${CHRUBY_RUBIES[1]}"
-	else
-		assertEquals "did not detect rubies in \$PREFIX/opt/rubies" \
-			     "$test_ruby_root" "${CHRUBY_RUBIES[0]}"
-	fi
-}
-
 function test_chruby_help()
 {
-	local usage="usage: chruby [--reload | RUBY|VERSION [RUBYOPT...] | system]"
+	local usage="usage: chruby [RUBY|VERSION [RUBYOPT...] | system]"
 	local output="$(chruby --help)"
 
 	assertEquals "did not output the chruby usage string" \
@@ -106,8 +90,6 @@ function test_chruby_version()
 function tearDown()
 {
 	chruby_reset
-
-	CHRUBY_RUBIES=("${original_rubies[@]}")
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2

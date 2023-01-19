@@ -17,9 +17,6 @@
 
 ## OPTIONS
 
-`--reload`
-    Reloads the list of available Rubies
-
 `-h`, `--help`
 
 `-v`, `--version`
