@@ -1,29 +1,32 @@
 CHRUBY_VERSION="1.0.0"
 CHRUBY_DIRS=("$PREFIX/opt/rubies" "$HOME/.rubies")
 
-function chruby_init()
+function chruby_list()
 {
-	local dir
+	local rubies_dir ruby_dir
 
-	CHRUBY_RUBIES=()
-	for dir in "${CHRUBY_DIRS[@]}"; do
-		if [[ -d "$dir" ]] && [[ -n "$(ls -A "$dir")" ]]; then
-			CHRUBY_RUBIES+=("$dir"/*)
-		fi
+	for rubies_dir in "${CHRUBY_DIRS[@]}"; do
+		for ruby_dir in "${rubies_dir}"/*; do
+			if [[ -d "$ruby_dir" ]]; then
+				echo "$ruby_dir"
+			fi
+		done
 	done
 }
 
 function chruby_find()
 {
-	local dir ruby match
+	local ruby_dir ruby_name match
 
-	for dir in "${CHRUBY_RUBIES[@]}"; do
-		dir="${dir%%/}"; ruby="${dir##*/}"
-		case "$ruby" in
-			"$1")	match="$dir" && break ;;
-			*"$1"*)	match="$dir" ;;
+	while IFS= read ruby_dir; do
+		ruby_dir="${ruby_dir%%/}"
+		ruby_name="${ruby_dir##*/}"
+
+		case "$ruby_name" in
+			"$1")	match="$ruby_dir" && break ;;
+			*"$1"*)	match="$ruby_dir" ;;
 		esac
-	done
+	done <<< $(chruby_list)
 
 	echo -n "$match"
 }
@@ -91,23 +94,24 @@ function chruby()
 {
 	case "$1" in
 		-h|--help)
-			echo "usage: chruby [--reload | RUBY|VERSION [RUBYOPT...] | system]"
+			echo "usage: chruby [RUBY|VERSION [RUBYOPT...] | system]"
 			;;
 		-V|--version)
 			echo "chruby: $CHRUBY_VERSION"
 			;;
-		--reload) chruby_init ;;
 		"")
-			local dir ruby
+			local ruby_dir ruby_name
 
-			for dir in "${CHRUBY_RUBIES[@]}"; do
-				dir="${dir%%/}"; ruby="${dir##*/}"
-				if [[ "$dir" == "$RUBY_ROOT" ]]; then
-					echo " * ${ruby}${RUBYOPT:+ $RUBYOPT}"
+			while IFS= read ruby_dir; do
+				ruby_dir="${ruby_dir%%/}"
+				ruby_name="${ruby_dir##*/}"
+
+				if [[ "$ruby_dir" == "$RUBY_ROOT" ]]; then
+					echo " * ${ruby_name}${RUBYOPT:+ $RUBYOPT}"
 				else
-					echo "   ${ruby}"
+					echo "   ${ruby_name}"
 				fi
-			done
+			done <<< $(chruby_list)
 			;;
 		system) chruby_reset ;;
 		*)
@@ -124,5 +128,3 @@ function chruby()
 			;;
 	esac
 }
-
-chruby_init
