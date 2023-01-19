@@ -5,7 +5,7 @@ function chruby_init()
 	local dir
 
 	CHRUBY_RUBIES=()
-	for dir in "$PREFIX/opt/rubies" "${XDG_DATA_HOME:-$HOME/.local/share}/rubies"; do
+	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
 		if [[ -d "$dir" ]] && [[ -n "$(ls -A "$dir")" ]]; then
 			CHRUBY_RUBIES+=("$dir"/*)
 		fi

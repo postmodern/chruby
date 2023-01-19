@@ -9,7 +9,7 @@ Changes the current Ruby.
 * Updates `$PATH`.
   * Also adds RubyGems `bin/` directories to `$PATH`.
 * Correctly sets `$GEM_HOME` and `$GEM_PATH`.
-  * Users: gems are installed into `~/.gem/$ruby_name` (e.g., `~/.gem/ruby-2.6.3` for `~/.local/share/rubies/ruby-2.6.3`).
+  * Users: gems are installed into `~/.gem/$ruby_name` (e.g., `~/.gem/ruby-2.6.3` for `~/.rubies/ruby-2.6.3`).
   * Root: gems are installed directly into `$ruby_install_dir/$gemdir` (the default).
 * Additionally sets `$RUBY_ROOT`, `$RUBY_ENGINE`, `$RUBY_VERSION` and
   `$GEM_ROOT`.
@@ -99,7 +99,7 @@ Chruby provides detailed instructions for installing additional Rubies:
 
 You can also use [ruby-install] to install additional Rubies:
 
-Installing to `/opt/rubies` or `~/.local/share/rubies`:
+Installing to `/opt/rubies` or `~/.rubies`:
 
     ruby-install ruby
     ruby-install jruby
@@ -145,8 +145,8 @@ is not always the same as `/bin/bash`.
 ### Rubies
 
 When chruby is first loaded by the shell, it will auto-detect Rubies installed
-in `/opt/rubies/` and `~/.local/share/rubies/`. After installing new Rubies,
-you _must_ restart the shell before chruby can recognize them.
+in `/opt/rubies/` and `~/.rubies/`. After installing new Rubies, you _must_
+restart the shell before chruby can recognize them.
 
 For Rubies installed in non-standard locations, simply append their paths to
 the `RUBIES` variable:
