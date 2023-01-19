@@ -26,7 +26,7 @@ function chruby_find()
 			"$1")	match="$ruby_dir" && break ;;
 			*"$1"*)	match="$ruby_dir" ;;
 		esac
-	done <<< $(chruby_list)
+	done <<< "$(chruby_list)"
 
 	echo -n "$match"
 }
@@ -111,7 +111,7 @@ function chruby()
 				else
 					echo "   ${ruby_name}"
 				fi
-			done <<< $(chruby_list)
+			done <<< "$(chruby_list)"
 			;;
 		system) chruby_reset ;;
 		*)
