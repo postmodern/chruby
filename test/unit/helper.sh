@@ -20,6 +20,6 @@ chruby_reset
 original_path="$PATH"
 original_pwd="$PWD"
 
-setUp() { return; }
-tearDown() { return; }
-oneTimeTearDown() { return; }
+setUp() { return 0; }
+tearDown() { return 0; }
+oneTimeTearDown() { return 0; }
