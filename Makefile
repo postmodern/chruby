@@ -22,9 +22,6 @@ all:
 pkg:
 	mkdir $(PKG_DIR)
 
-download: pkg
-	wget -O $(PKG) $(URL)/archive/v$(VERSION).tar.gz
-
 build: pkg
 	git archive --output=$(PKG) --prefix=$(PKG_NAME)/ HEAD
 
@@ -62,7 +59,7 @@ tag:
 	git tag -s -m "Releasing $(VERSION)" v$(VERSION)
 	git push origin master --tags
 
-release: tag download sign
+release: build sign tag
 
 rpm:
 	rpmdev-setuptree
@@ -80,4 +77,4 @@ uninstall:
 	rm -rf $(DESTDIR)$(PREFIX)/$(DOC_DIR)
 	rmdir $(DESTDIR)$(PREFIX)/$(SHARE_DIR)/chruby
 
-.PHONY: build download sign verify clean check configure_tests test integration_tests gauntlet tag release rpm install uninstall all
+.PHONY: build sign verify clean check configure_tests test integration_tests gauntlet tag release rpm install uninstall all
