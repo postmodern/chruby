@@ -206,6 +206,12 @@ RUBIES+=(~/.rbenv/versions/*)
 RUBIES+=(~/.rbfu/rubies/*)
 ```
 
+#### brew
+
+``` bash
+RUBIES+=(/usr/local/Cellar/ruby/*)
+```
+
 ### Auto-Switching
 
 If you want chruby to auto-switch the current version of Ruby when you `cd`
