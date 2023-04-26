@@ -2,9 +2,10 @@ CHRUBY_VERSION="0.3.9"
 RUBIES=()
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(command ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+  [[ -d "$dir" ]] && dir_contents=("$dir"/*) && \
+    [[ ${#dir_contents[@]} -gt 0 ]] && RUBIES+=(${dir_contents[@]})
 done
-unset dir
+unset dir dir_contents
 
 function chruby_reset()
 {
