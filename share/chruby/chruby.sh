@@ -1,10 +1,13 @@
 CHRUBY_VERSION="0.3.9"
-RUBIES=()
 
-for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(command ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
-done
-unset dir
+function chruby_discover()
+{
+	RUBIES=()
+	local dir
+	for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
+		[[ -d "$dir" && -n "$(command ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+	done
+}
 
 function chruby_reset()
 {
@@ -102,3 +105,5 @@ function chruby()
 			;;
 	esac
 }
+
+chruby_discover
