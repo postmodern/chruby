@@ -14,6 +14,7 @@ License: MIT
 URL: https://github.com/postmodern/chruby#readme
 AutoReqProv: no
 BuildArch: noarch
+BuildRequires: make
 
 %description
 Changes the current Ruby.
