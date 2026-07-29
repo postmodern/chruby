@@ -80,7 +80,7 @@ brew install chruby --HEAD
 
 ### Arch Linux
 
-chruby is already included in the [AUR], you can install it using your favorite helper.
+chruby is already included in the [AUR], you can install it using [your favorite helper][aur-helpers].
 For example:
 
 ```shell
@@ -402,6 +402,7 @@ Switch to an arbitrary Ruby on the fly:
 [PGP]: http://en.wikipedia.org/wiki/Pretty_Good_Privacy
 [homebrew]: http://brew.sh/
 [AUR]: https://aur.archlinux.org/packages/chruby/
+[aur-helpers]: https://wiki.archlinux.org/index.php/AUR_Helpers
 [FreeBSD ports collection]: https://www.freshports.org/devel/chruby/
 [ruby-install]: https://github.com/postmodern/ruby-install#readme
 [ruby-build]: https://github.com/sstephenson/ruby-build#readme
