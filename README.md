@@ -80,10 +80,11 @@ brew install chruby --HEAD
 
 ### Arch Linux
 
-chruby is already included in the [AUR]:
+chruby is already included in the [AUR], you can install it using your favorite helper.
+For example:
 
 ```shell
-yaourt -S chruby
+yay -S chruby
 ```
 
 ### Fedora Linux
