@@ -1,10 +1,15 @@
 CHRUBY_VERSION="0.3.9"
-RUBIES=()
+RUBIES=""
 
 for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(command ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
+	if [[ -d "$dir" && -n "$(command ls -A "$dir")" ]]; then
+		for ruby in "$dir"/*; do
+			RUBIES="${RUBIES:+$RUBIES:}$ruby"
+		done
+	fi
 done
-unset dir
+unset dir ruby
+export RUBIES
 
 function chruby_reset()
 {
@@ -71,7 +76,8 @@ function chruby()
 			;;
 		"")
 			local dir ruby
-			for dir in "${RUBIES[@]}"; do
+			local IFS=:
+			for dir in $RUBIES; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
 					echo " * ${ruby} ${RUBYOPT}"
@@ -84,7 +90,8 @@ function chruby()
 		system) chruby_reset ;;
 		*)
 			local dir ruby match
-			for dir in "${RUBIES[@]}"; do
+			local IFS=:
+			for dir in $RUBIES; do
 				dir="${dir%%/}"; ruby="${dir##*/}"
 				case "$ruby" in
 					"$1")	match="$dir" && break ;;
