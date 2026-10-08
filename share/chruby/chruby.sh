@@ -1,10 +1,14 @@
 CHRUBY_VERSION="0.3.9"
-RUBIES=()
 
-for dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
-	[[ -d "$dir" && -n "$(command ls -A "$dir")" ]] && RUBIES+=("$dir"/*)
-done
-unset dir
+function chruby_list()
+{
+	local search_dir ruby_dir
+	for search_dir in "$PREFIX/opt/rubies" "$HOME/.rubies"; do
+		for ruby_dir in "$search_dir"/*; do
+			[[ -d "$ruby_dir" ]] && echo "$ruby_dir"
+		done
+	done
+}
 
 function chruby_reset()
 {
@@ -71,26 +75,25 @@ function chruby()
 			;;
 		"")
 			local dir ruby
-			for dir in "${RUBIES[@]}"; do
-				dir="${dir%%/}"; ruby="${dir##*/}"
+			while IFS= read -r dir; do
+				ruby="${dir##*/}"
 				if [[ "$dir" == "$RUBY_ROOT" ]]; then
 					echo " * ${ruby} ${RUBYOPT}"
 				else
 					echo "   ${ruby}"
 				fi
-
-			done
+			done <<< "$(chruby_list)"
 			;;
 		system) chruby_reset ;;
 		*)
 			local dir ruby match
-			for dir in "${RUBIES[@]}"; do
-				dir="${dir%%/}"; ruby="${dir##*/}"
+			while IFS= read -r dir; do
+				ruby="${dir##*/}"
 				case "$ruby" in
 					"$1")	match="$dir" && break ;;
 					*"$1"*)	match="$dir" ;;
 				esac
-			done
+			done <<< "$(chruby_list)"
 
 			if [[ -z "$match" ]]; then
 				echo "chruby: unknown Ruby: $1" >&2
